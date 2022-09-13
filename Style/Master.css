@@ -1,13 +1,50 @@
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("../Content/Fonts/Montserrat-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Montserrat-SemiBold";
+  src: url("../Content/Fonts/Montserrat-SemiBold.ttf") format("truetype");
+}
 body {
   margin: 0;
   background-color: #192133;
 }
 
+a {
+  font-family: "Montserrat-SemiBold";
+  padding: 0 15px;
+  font-size: 14px;
+  line-height: 20px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.6s;
+}
+a:hover {
+  color: #00d6bd;
+}
+
 .cpanel-navigation-wrapper {
-  width: 100vw;
-  height: 60px;
+  border-bottom: 1px solid #00d6bd;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  width: 100vw;
+  height: 60px;
+  padding: 0 30px;
+}
+.cpanel-navigation-wrapper .right-side {
+  display: flex;
+  flex-direction: row;
+}
+.cpanel-navigation-wrapper .right-side .logo-wrapper {
+  margin-right: 40px;
+}
+.cpanel-navigation-wrapper .right-side .navigation-links a {
+  text-transform: uppercase;
+}
+.cpanel-navigation-wrapper .right-side .navigation-links a.active {
+  color: #00d6bd;
 }
 
 /*# sourceMappingURL=Master.css.map */

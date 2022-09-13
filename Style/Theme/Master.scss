@@ -5,5 +5,19 @@ body {
     background-color: $background;
 }
 
+a {
+    font-family: "Montserrat-SemiBold";
+    padding: 0 15px;
+    font-size: 14px;
+    line-height: 20px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.6s;
+
+    &:hover {
+        color: $primarybluefive;
+    }
+}
+
 //Fixed styles
 @import "Page/CPanel.scss";

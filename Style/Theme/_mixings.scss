@@ -2,6 +2,16 @@
 @import '../../Plugins/bootstrap/scss/_variables';
 @import '../../Plugins/bootstrap/scss/mixins/_breakpoints';
 
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url('../Content/Fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Montserrat-SemiBold";
+    src: url('../Content/Fonts/Montserrat-SemiBold.ttf') format('truetype');
+}
+
 $background: #192133;
 $primaryblueone: #ccf7f2;
 $primarybluetwo: #99efe5;

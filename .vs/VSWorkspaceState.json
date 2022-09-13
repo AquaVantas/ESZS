@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Content",
+    "\\Content\\Fonts",
     "\\Style",
-    "\\Style\\Theme"
+    "\\Style\\Theme",
+    "\\Style\\Theme\\Page"
   ],
   "SelectedNode": "\\cpanel.php",
   "PreviewInSolutionExplorer": false

@@ -1,6 +1,28 @@
 .cpanel-navigation-wrapper {
-    width: 100vw;
-    height: 60px;
+    border-bottom: 1px solid $primarybluefive;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    width: 100vw;
+    height: 60px;
+    padding: 0 30px;
+
+    .right-side {
+        display: flex;
+        flex-direction: row;
+
+        .logo-wrapper {
+            margin-right: 40px;
+        }
+
+        .navigation-links {
+            a {
+                text-transform: uppercase;
+
+                &.active {
+                    color: $primarybluefive;
+                }
+            }
+        }
+    }
 }
