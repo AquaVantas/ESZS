@@ -1,0 +1,9 @@
+@import "mixings.scss";
+
+body {
+    margin: 0;
+    background-color: $background;
+}
+
+//Fixed styles
+@import "Page/CPanel.scss";

@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  background-color: #192133;
+}
+
+.cpanel-navigation-wrapper {
+  width: 100vw;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+}
+
+/*# sourceMappingURL=Master.css.map */
