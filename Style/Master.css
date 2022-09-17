@@ -20,8 +20,72 @@ a {
   text-decoration: none;
   transition: all 0.6s;
 }
+a.nav-link {
+  color: #FFFFFF;
+}
 a:hover {
   color: #00d6bd;
+}
+
+.btn {
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 20px;
+  height: 40px;
+  padding: 20px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.btn-primary {
+  color: #FFFFFF;
+  background-color: #00d6bd;
+}
+
+.arrow-icon {
+  height: 20px;
+  margin-right: 5px;
+  width: 20px;
+  background-image: url("../Content/Images/Icons/arrow.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+}
+
+span {
+  font-family: "Montserrat-SemiBold";
+  font-size: 16px;
+  line-height: 20px;
+  color: white;
+}
+
+form label {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FFFFFF;
+  font-family: "Montserrat-Regular";
+}
+form input {
+  height: 40px;
+  width: 100%;
+  border: 1px solid #00d6bd;
+  background-color: rgba(255, 255, 255, 0.1019607843);
+  padding: 20px;
+  color: #FFFFFF;
+}
+form input.submit {
+  height: 42px;
+  margin-top: 40px;
+  font-family: "Montserrat-SemiBold";
+  padding: 0 20px;
+}
+form input:focus-visible {
+  box-shadow: none;
 }
 
 .cpanel-navigation-wrapper {
@@ -29,7 +93,7 @@ a:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100vw;
+  justify-content: space-between;
   height: 60px;
   padding: 0 30px;
 }
@@ -38,13 +102,96 @@ a:hover {
   flex-direction: row;
 }
 .cpanel-navigation-wrapper .right-side .logo-wrapper {
+  display: flex;
+  align-items: center;
   margin-right: 40px;
+}
+.cpanel-navigation-wrapper .right-side .logo-wrapper img {
+  max-height: 30px;
+}
+.cpanel-navigation-wrapper .right-side .logo-wrapper span {
+  margin-left: 14px;
+  font-size: 20px;
+  line-height: 24px;
+}
+.cpanel-navigation-wrapper .right-side .navigation-links {
+  display: flex;
+  align-items: center;
 }
 .cpanel-navigation-wrapper .right-side .navigation-links a {
   text-transform: uppercase;
 }
 .cpanel-navigation-wrapper .right-side .navigation-links a.active {
-  color: #00d6bd;
+  color: #00d6bd !important;
+}
+
+.cpanel-body-wrapper .user-body .create-bar {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+.cpanel-body-wrapper .user-body .user-card {
+  padding: 30px 15px 20px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.1019607843);
+  border: 1px solid #00d6bd;
+  border-radius: 8px;
+}
+.cpanel-body-wrapper .user-body .user-card .user-icon {
+  min-height: 80px;
+  min-width: 80px;
+  border-radius: 100%;
+  background-color: #192133;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 34px;
+  line-height: 40px;
+  font-family: "Montserrat-SemiBold";
+}
+.cpanel-body-wrapper .user-body .user-card .user-info {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.cpanel-body-wrapper .user-body .user-card .user-info .user-info-name {
+  margin-bottom: 5px;
+}
+.cpanel-body-wrapper .user-body .user-card .user-info .user-info-email {
+  font-size: 12px;
+  line-height: 16px;
+}
+.cpanel-body-wrapper .user-body .user-card .user-actions {
+  display: flex;
+}
+.cpanel-body-wrapper .user-body .create-user p.error {
+  color: #ebc100;
+  font-size: 28px;
+  line-height: 34px;
+  margin-bottom: 30px;
+}
+.cpanel-body-wrapper .user-body .create-user .user-permissions {
+  display: flex;
+  align-items: center;
+}
+.cpanel-body-wrapper .user-body .create-user .user-permissions input {
+  height: 30px;
+  width: fit-content;
+  margin-right: 10px;
+}
+.cpanel-body-wrapper .user-body .create-user .user-permissions span {
+  font-size: 14px;
+}
+.cpanel-body-wrapper .user-body .create-user .submit-field {
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=Master.css.map */

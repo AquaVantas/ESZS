@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 100vw;
+    justify-content: space-between;
     height: 60px;
     padding: 0 30px;
 
@@ -12,17 +12,124 @@
         flex-direction: row;
 
         .logo-wrapper {
+            display: flex;
+            align-items: center;
             margin-right: 40px;
+
+            img {
+                max-height: 30px;
+            }
+
+            span {
+                margin-left: 14px;
+                font-size: 20px;
+                line-height: 24px;
+            }
         }
 
         .navigation-links {
+            display: flex;
+            align-items: center;
+
             a {
                 text-transform: uppercase;
 
                 &.active {
-                    color: $primarybluefive;
+                    color: $primarybluefive !important;
                 }
             }
         }
     }
+}
+
+.cpanel-body-wrapper {
+    .user-body {
+        .create-bar {
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .user-card {
+            padding: 30px 15px 20px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            color: $white;
+            background-color: #FFFFFF1A;
+            border: 1px solid $primarybluefive;
+            border-radius: 8px;
+
+            .user-icon {
+                min-height: 80px;
+                min-width: 80px;
+                border-radius: 100%;
+                background-color: $background;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $white;
+                font-size: 34px;
+                line-height: 40px;
+                font-family: "Montserrat-SemiBold";
+            }
+
+            .user-info {
+                padding: 20px 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+                .user-info-name {
+                    margin-bottom: 5px;
+                }
+
+                .user-info-email {
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+            }
+
+            .user-actions {
+                display: flex;
+            }
+        }
+
+        .create-user {
+            p {
+                &.error {
+                    color: $yellow;
+                    font-size: 28px;
+                    line-height: 34px;
+                    margin-bottom: 30px;
+                }
+            }
+
+            .user-permissions {
+                display: flex;
+                align-items: center;
+
+                input {
+                    height: 30px;
+                    width: fit-content;
+                    margin-right: 10px;
+                }
+
+                span {
+                    font-size: 14px;
+                }
+            }
+
+            .submit-field {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+.delete-user-modal {
+
 }
