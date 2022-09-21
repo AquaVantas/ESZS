@@ -14,6 +14,7 @@
 		<script src="Plugins/bootstrap/bootstrap.min.js"></script>
 	</head>
 	<body>
+		<?php if(isset($_SESSION['user'])) { ?>
 		<div class="cpanel-navigation-wrapper">
 			<div class="right-side">
 				<div class="logo-wrapper">
@@ -24,7 +25,7 @@
 					<a href="?tab=webpage_editor" class="nav-link <?php if($cpanel_tab == "webpage_editor"){echo "active"; } ?>">Spletna stran</a>
 					<a href="?tab=news_editor" class="nav-link <?php if($cpanel_tab == "news_editor"){echo "active"; } ?>">Novice</a>
 					<a href="?tab=tournaments" class="nav-link <?php if($cpanel_tab == "tournaments"){echo "active"; } ?>">Tekmovanja</a>
-					<a href="?tab=user_list" class="nav-link <?php if($cpanel_tab == "user_list" || $cpanel_tab == "user_list_create"){echo "active"; } ?>">Uporabniki</a>
+					<a href="?tab=user_list" class="nav-link <?php if($cpanel_tab == "user_list" || $cpanel_tab == "user_list_create" || $cpanel_tab == "user_list_edit"){echo "active"; } ?>">Uporabniki</a>
 				</div>
 			</div>
 			<div class="left-side">
@@ -56,13 +57,21 @@
 										<span class="user-info-email"><?= $admin['email'] ?></span>
 									</div>
 									<div class="user-roles">
-										<?php foreach(editors::getSpecificAdminRoles($admin['admin_id']) as $role) { ?>
-											<span><?= $role['title'] ?></span>
-										<?php } ?>
+										<?php 
+										$roleCount = 0;
+										foreach(editors::getSpecificAdminRoles($admin['admin_id']) as $role) { ?>
+											<?php if($roleCount == 0) { ?>
+												<span><?= $role['title'] ?></span>
+											<?php } 
+											else { ?>
+												<span>, <?= $role['title'] ?></span>
+											<?php } 
+											$roleCount++;
+										 } ?>
 									</div>
 									<div class="user-actions">
 										<a class="btn btn-secondary" href="?tab=user_list_edit&user=<?= $admin['admin_id'] ?>">Uredi</a>
-										<a class="btn btn-secondary" href="" data-bs-toggle="modal" data-bs-target="#delete-user-modal">Izbriši</a>
+										<a class="btn btn-secondary" onclick="deleteUser(<?= $admin['admin_id'] ?>)" data-bs-toggle="modal" data-bs-target="#delete-user-modal">Izbriši</a>
 									</div>
 								</div>
 							</div>
@@ -124,26 +133,129 @@
 					</div>
 				</div>
 			<?php } ?>
+			<!-- edit user -->
+			<?php if(isset($cpanel_tab) && $cpanel_tab == "user_list_edit") { ?>
+				<div class="user-body container">
+					<div class="row">
+						<div class="col-12 create-bar">
+							<a class="btn btn-primary" href="?tab=user_list"><div class="arrow-icon"></div>Prekliči</a>
+						</div>
+						<div class="col-8 offset-2 create-user">		
+							<?php if(isset($_GET['user'])) {
+								foreach(editors::getSpecificAdmin($_GET['user']) as $user) {
+							?>
+								<form class="row" method="post" action="Controllers/editors_edit_user_information.php?user=<?= $_GET['user'] ?>">
+									<div class="col-6">
+										<label for="name">Ime:</label><br>
+										<input type="text" id="name" name="name" value="<?= $user['ime'] ?>" required>
+									</div>								
+									<div class="col-6">
+										<label for="surname">Priimek:</label><br>
+										<input type="text" id="surname" name="surname" value="<?= $user['priimek'] ?>" required>
+									</div>
+									<div class="col-12">
+										<label for="email">Priimek:</label><br>
+										<input type="text" id="email" name="email" value="<?= $user['email'] ?>" required>
+									</div>
+									<div class="col-12 submit-field-edit">
+										<input class="btn btn-primary submit" type="submit" value="Posodobi podatke">
+									</div>								
+								</form>
+							<?php 
+								}
+							} ?>
+						</div>
+						<div class="col-8 offset-2 create-user">		
+							<?php if(isset($_GET['user'])) {
+								foreach(editors::getSpecificAdmin($_GET['user']) as $user) {
+							?>
+								<form class="row" method="post" action="Controllers/editors_edit_user_roles.php?user=<?= $_GET['user'] ?>">
+									<div class="col-12">
+										<label>Vloge uporabnika:</label>
+									</div>
+									<?php 
+										$roles = editors::getAdminRoles();
+										foreach($roles as $role): ?>
+											<div class="col-6 user-permissions">
+												<input type="checkbox" id="<?= strtolower(str_replace(" ", "_", $role["title"])) ?>" name="<?= strtolower(str_replace(" ", "_", $role["title"])) ?>" value="True" <?php foreach(editors::getSpecificAdminRoles($_GET['user']) as $user_roles) { if($user_roles['title'] == $role['title']) { echo "checked"; }} ?>>
+												<span><?= $role["title"] ?></span>
+											</div>										
+										<?php endforeach; 
+									?>
+									<div class="col-12 submit-field-edit">
+										<input class="btn btn-primary submit" type="submit" value="Posodobi dovoljenja">
+									</div>				
+								</form>
+							<?php 
+								}
+							} ?>
+						</div>
+						<div class="col-8 offset-2 create-user">		
+							<?php if(isset($_GET['user'])) {
+								foreach(editors::getSpecificAdmin($_GET['user']) as $user) {
+							?>
+								<form class="row" method="post" action="Controllers/editors_edit_user_password.php?user=<?= $_GET['user'] ?>">
+									<div class="col-6">
+										<label for="password">Geslo:</label><br>
+										<input type="password" id="password" name="password" required>
+									</div>								
+									<div class="col-6">
+										<label for="password-repeat">Ponovi geslo:</label><br>
+										<input type="password" id="password-repeat" name="password-repeat" required>
+									</div>
+									<div class="col-12 submit-field-edit">
+										<input class="btn btn-primary submit" type="submit" value="Posodobi geslo">
+									</div>				
+								</form>
+							<?php 
+								}
+							} ?>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
 		</div>
 		<div class="modal fade delete-user-modal" id="delete-user-modal" tabindex="-1" aria-labelledby="delete-user-modal-label" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="delete-user-modal-label">Modal title</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<h5 class="modal-title" id="delete-user-modal-label">Ali ste prepričani?</h5>
+						<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						Ali ste prepričani, da želite izbrisati tega uporabnika?
+						Tega dejanja se ne da razveljaviti.
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Prekliči</button>
-						<button type="button" class="btn btn-primary">Izbriši</button>
+						<a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Prekliči</a>
+						<a type="button" class="btn btn-primary delete-button">Izbriši</a>
 					</div>
 				</div>
 			</div>
 		</div>
+		<?php } else { ?> 
+			<div class="login-box container ">
+				<div class="row">
+					<div class="col-6">
+						<form class="row" method="post" action="Controllers/editors_login.php">
+							<div class="col-8">
+								<label for="name">E-pošta:</label><br>
+								<input type="text" id="name" name="name" value="<?= $user['ime'] ?>" required>
+							</div>								
+							<div class="col-8">
+								<label for="surname">Geslo:</label><br>
+								<input type="text" id="surname" name="surname" value="<?= $user['priimek'] ?>" required>
+							</div>
+							<div class="col-12 submit-field-edit">
+								<input class="btn btn-primary submit" type="submit" value="Posodobi podatke">
+							</div>								
+						</form>
+					</div>
+				</div>
+			</div>
+		<?php } ?>
+		<script type="text/javascript" src="Scripts/Main.js"></script>
 	</body>
 	<footer>
 	</footer>

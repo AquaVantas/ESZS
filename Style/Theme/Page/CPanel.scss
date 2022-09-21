@@ -92,6 +92,10 @@
                 }
             }
 
+            .user-roles {
+                margin-bottom: 20px;
+            }
+
             .user-actions {
                 display: flex;
             }
@@ -126,10 +130,35 @@
                 display: flex;
                 justify-content: center;
             }
+
+            .submit-field-edit {
+                display: flex;
+                justify-content: flex-start;
+            }
         }
     }
 }
 
-.delete-user-modal {
+.modal {
+    .modal-content {
+        background-color: $background;
+        color: $white;
+        border: 1px solid $primarybluefive;
 
+        .modal-header {
+            border-color: #FFFFFF1A;
+
+            button {
+                height: 30px;
+                width: 30px;
+                background-color: $primarybluefive;
+                opacity: 1;
+                border: none;
+            }
+        }
+
+        .modal-footer {
+            border-color: #FFFFFF1A;
+        }
+    }
 }

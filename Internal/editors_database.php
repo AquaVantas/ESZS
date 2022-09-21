@@ -32,6 +32,16 @@ class editors {
         return $statement->fetchAll();
     }
 
+    public static function getSpecificAdmin($admin_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT admin_id, ime, priimek, email, password FROM editors_admins WHERE admin_id = :admin_id");
+        $statement->bindParam(":admin_id", $admin_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public static function getSpecificAdminRoles($id_of_admin) {
         $db = self::getInstance();
 
@@ -53,7 +63,7 @@ class editors {
     public static function getAllAdmins() {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT admin_id, ime, priimek, email, password FROM editors_admins");
+        $statement = $db->prepare("SELECT admin_id, ime, priimek, email FROM editors_admins");
         $statement->execute();
 
         return $statement->fetchAll();
@@ -87,6 +97,42 @@ class editors {
         $statement->execute();
 
         return $statement->fetchColumn();
+    }
+
+    public static function updateAdmin($admin_id, $ime, $priimek, $email) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE editors_admins SET ime = :ime, priimek = :priimek, email = :email WHERE admin_id = :admin_id");
+        $statement->bindParam(":admin_id", $admin_id, PDO::PARAM_STR);
+        $statement->bindParam(":ime", $ime, PDO::PARAM_STR);
+        $statement->bindParam(":priimek", $priimek, PDO::PARAM_STR);
+        $statement->bindParam(":email", $email, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function updateAdminPass($admin_id, $password) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE editors_admins SET password = :password WHERE admin_id = :admin_id");
+        $statement->bindParam(":admin_id", $admin_id, PDO::PARAM_STR);
+        $statement->bindParam(":password", $password, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function deleteAdminRoles($admin_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("DELETE FROM editors_admin_has_role WHERE admin_id = :admin_id");
+        $statement->bindParam(":admin_id", $admin_id, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function deleteUser($admin_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("DELETE FROM editors_admins WHERE admin_id = :admin_id");
+        $statement->bindParam(":admin_id", $admin_id, PDO::PARAM_STR);
+        $statement->execute();
     }
 }
 ?>
