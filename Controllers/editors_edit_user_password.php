@@ -19,7 +19,7 @@
 	}
 
 	//encrypts the password and changes it on chosen user
-	editors::updateAdminPass($admin_id, sha1($password));
+	editors::updateAdminPass($admin_id, password_hash($password, PASSWORD_DEFAULT));
 	
 	//redirect back to user list
 	header('Location:../cpanel.php?tab=user_list');

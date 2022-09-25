@@ -63,7 +63,7 @@ class editors {
     public static function getAllAdmins() {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT admin_id, ime, priimek, email FROM editors_admins");
+        $statement = $db->prepare("SELECT admin_id, ime, priimek, email, password FROM editors_admins");
         $statement->execute();
 
         return $statement->fetchAll();

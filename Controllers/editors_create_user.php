@@ -21,7 +21,7 @@
 	}
 
 	//adds the user to the database and encrypts the password
-	editors::addAdmin($name, $surname, $email, sha1($password));
+	editors::addAdmin($name, $surname, $email, password_hash($password, PASSWORD_DEFAULT));
 
 	//we'll get the ID of the last added member here
 	$lastAddedAdminID = 0;

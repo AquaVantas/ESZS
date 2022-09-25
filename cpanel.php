@@ -5,13 +5,30 @@
 	if(isset($_GET['tab'])) {
 		$cpanel_tab = $_GET['tab'];
 	}
+
+	$role_admin = false;
+	$role_webdev = false;
+	$role_news = false;
+
+	if(isset($_SESSION['user'])) {
+		foreach(editors::getSpecificAdminRoles($_SESSION['user']) as $role) {
+			if($role['title'] == "Admin") {
+				$role_admin = true;
+			} else if ($role['title'] == "Web dev") {
+				$role_webdev = true;
+			} else if ($role['title'] == "Novinar") {
+				$role_news = true;
+			}
+		}
+	}
 ?>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<link rel="stylesheet" href="Plugins/bootstrap/bootstrap.min.css">
 		<link rel="stylesheet" href="Style/Master.css">
-		<script src="Plugins/bootstrap/bootstrap.min.js"></script>
+		<script type="text/javascript" src="Scripts/Main.js"></script>
+		<script src="Plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	</head>
 	<body>
 		<?php if(isset($_SESSION['user'])) { ?>
@@ -22,15 +39,28 @@
 					<span class="page-title">CPanel</span>
 				</div>
 				<div class="navigation-links">
-					<a href="?tab=webpage_editor" class="nav-link <?php if($cpanel_tab == "webpage_editor"){echo "active"; } ?>">Spletna stran</a>
-					<a href="?tab=news_editor" class="nav-link <?php if($cpanel_tab == "news_editor"){echo "active"; } ?>">Novice</a>
-					<a href="?tab=tournaments" class="nav-link <?php if($cpanel_tab == "tournaments"){echo "active"; } ?>">Tekmovanja</a>
+					<?php if($role_webdev || $role_admin){ ?><a href="?tab=webpage_editor" class="nav-link <?php if($cpanel_tab == "webpage_editor"){echo "active"; } ?>">Spletna stran</a><?php } ?>
+					<?php if($role_news || $role_admin){ ?><a href="?tab=news_editor" class="nav-link <?php if($cpanel_tab == "news_editor"){echo "active"; } ?>">Novice</a><?php } ?>
+					<?php if($role_admin){ ?><a href="?tab=tournaments" class="nav-link <?php if($cpanel_tab == "tournaments"){echo "active"; } ?>">Tekmovanja</a><?php } ?>
 					<a href="?tab=user_list" class="nav-link <?php if($cpanel_tab == "user_list" || $cpanel_tab == "user_list_create" || $cpanel_tab == "user_list_edit"){echo "active"; } ?>">Uporabniki</a>
 				</div>
 			</div>
 			<div class="left-side">
-				<div class="icon"></div>
-				Name Surname
+				<?php foreach(editors::getAllAdmins() as $user) {
+					if($user['admin_id'] == $_SESSION['user']) { ?>
+						<div class="icon"><?= $user['ime'][0] ?><?= $user['priimek'][0] ?></div>						
+						<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<?= $user['ime'] ?> <?= $user['priimek'] ?><div class="arrow"></div>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item logout" href="Controllers/editors_logout.php">Logout</a></li>
+							</ul>
+						</div>
+						<?php break;
+					}
+				} ?>
+				
 			</div>
 		</div>
 		<div class="cpanel-body-wrapper">
@@ -44,7 +74,7 @@
 				<div class="user-body container">
 					<div class="row">
 						<div class="col-12 create-bar">
-							<a class="btn btn-primary" href="?tab=user_list_create">Ustvari uporabnika</a>
+							<?php if($role_admin) { ?><a class="btn btn-primary" href="?tab=user_list_create">Ustvari uporabnika</a><?php } ?>
 						</div>
 						<?php foreach(editors::getAllAdmins() as $admin) { ?>
 							<div class="col-lg-3 col-md-4 col-6">
@@ -69,10 +99,12 @@
 											$roleCount++;
 										 } ?>
 									</div>
+									<?php if($role_admin) { ?>
 									<div class="user-actions">
 										<a class="btn btn-secondary" href="?tab=user_list_edit&user=<?= $admin['admin_id'] ?>">Uredi</a>
 										<a class="btn btn-secondary" onclick="deleteUser(<?= $admin['admin_id'] ?>)" data-bs-toggle="modal" data-bs-target="#delete-user-modal">Izbriši</a>
 									</div>
+									<?php } ?>
 								</div>
 							</div>
 						<?php } ?>
@@ -80,7 +112,7 @@
 				</div>
 			<?php } ?>
 			<!-- create new admin user -->
-			<?php if(isset($cpanel_tab) && $cpanel_tab == "user_list_create") { ?>
+			<?php if(isset($cpanel_tab) && $cpanel_tab == "user_list_create" && $role_admin) { ?>
 				<div class="user-body container">
 					<div class="row">
 						<div class="col-12 create-bar">
@@ -134,7 +166,7 @@
 				</div>
 			<?php } ?>
 			<!-- edit user -->
-			<?php if(isset($cpanel_tab) && $cpanel_tab == "user_list_edit") { ?>
+			<?php if(isset($cpanel_tab) && $cpanel_tab == "user_list_edit" && $role_admin) { ?>
 				<div class="user-body container">
 					<div class="row">
 						<div class="col-12 create-bar">
@@ -237,25 +269,24 @@
 		<?php } else { ?> 
 			<div class="login-box container ">
 				<div class="row">
-					<div class="col-6">
+					<div class="col-6 offset-3">
 						<form class="row" method="post" action="Controllers/editors_login.php">
-							<div class="col-8">
-								<label for="name">E-pošta:</label><br>
-								<input type="text" id="name" name="name" value="<?= $user['ime'] ?>" required>
+							<div class="col-12">
+								<label for="email">E-pošta:</label><br>
+								<input type="text" id="email" name="email" placeholder="janez.novak@eszs.si" required>
 							</div>								
-							<div class="col-8">
-								<label for="surname">Geslo:</label><br>
-								<input type="text" id="surname" name="surname" value="<?= $user['priimek'] ?>" required>
+							<div class="col-12">
+								<label for="password">Geslo:</label><br>
+								<input type="password" id="password" name="password" required>
 							</div>
 							<div class="col-12 submit-field-edit">
-								<input class="btn btn-primary submit" type="submit" value="Posodobi podatke">
+								<input class="btn btn-primary submit" type="submit" value="Prijava">
 							</div>								
 						</form>
 					</div>
 				</div>
 			</div>
 		<?php } ?>
-		<script type="text/javascript" src="Scripts/Main.js"></script>
 	</body>
 	<footer>
 	</footer>
