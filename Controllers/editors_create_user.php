@@ -10,6 +10,7 @@
 	}
 
 	$name = $_POST['name'];
+	echo $name;
 	$surname = $_POST['surname'];
 	$email = $_POST['email'];
 	$password = $_POST['password'];
@@ -21,7 +22,9 @@
 	}
 
 	//adds the user to the database and encrypts the password
-	editors::addAdmin($name, $surname, $email, password_hash($password, PASSWORD_DEFAULT));
+	if($_POST['name'] != NULL) {
+		editors::addAdmin($name, $surname, $email, password_hash($password, PASSWORD_DEFAULT));
+	}
 
 	//we'll get the ID of the last added member here
 	$lastAddedAdminID = 0;

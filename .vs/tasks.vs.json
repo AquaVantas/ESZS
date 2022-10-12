@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-tab_user_list_create",
+      "appliesTo": "Views/CPanel/tab_user_list_create.php",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-tab_user_list",
+      "appliesTo": "Views/CPanel/tab_user_list.php",
+      "type": "launch"
+    }
+  ]
+}

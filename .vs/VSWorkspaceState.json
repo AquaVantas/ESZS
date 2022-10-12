@@ -1,13 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Content",
-    "\\Content\\Fonts",
-    "\\Controllers",
+    "\\Internal",
+    "\\Scripts",
     "\\Style",
     "\\Style\\Theme",
-    "\\Style\\Theme\\Page"
+    "\\Style\\Theme\\Page",
+    "\\Style\\Theme\\Page\\Partials",
+    "\\Style\\Theme\\Page\\Partials\\SectionBlocks",
+    "\\Views",
+    "\\Views\\CPanel"
   ],
-  "SelectedNode": "\\Controllers\\editors_login.php",
+  "SelectedNode": "\\Style\\Theme\\Page\\CPanel.scss",
   "PreviewInSolutionExplorer": false
 }
