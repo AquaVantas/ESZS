@@ -30,7 +30,7 @@
 						<?php if($role_admin) { ?>
 						<div class="user-actions">
 							<a class="btn btn-secondary" href="?tab=user_list_edit&user=<?= $admin['admin_id'] ?>">Uredi</a>
-							<a class="btn btn-secondary" onclick="deleteUser(<?= $admin['admin_id'] ?>)" data-bs-toggle="modal" data-bs-target="#delete-user-modal">Izbriši</a>
+							<a class="btn btn-secondary" onclick="deleteUser('Controllers/Editors/editors_delete_user.php?user='+<?= $admin['admin_id'] ?>)" data-bs-toggle="modal" data-bs-target="#delete-user-modal">Izbriši</a>
 						</div>
 						<?php } ?>
 					</div>

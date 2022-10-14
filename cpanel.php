@@ -1,12 +1,16 @@
 ﻿<!DOCTYPE html>
 <?php
 	session_start();
-	require_once("Internal/editors_database.php");	
+	require_once("Internal/editors_database.php");
 	require_once("Internal/news_database.php");	
+	require_once("Internal/website_database.php");	
 
 	header('Content-Type: text/html; charset=utf8');
 	if(isset($_GET['tab'])) {
 		$cpanel_tab = $_GET['tab'];
+	}
+	if(isset($_GET['action'])) {
+		$cpanel_action = $_GET['action'];
 	}
 
 	$role_admin = false;
@@ -51,7 +55,7 @@
 							<li><?php if($role_news || $role_admin){ ?><a href="?tab=news_outside_media_add" class="nav-link <?php if($cpanel_tab == "news_editor"){echo "active"; } ?>">Mediji</a><?php } ?></li>
 						</ul>
 					</div>
-					<?php if($role_admin){ ?><a href="?tab=tournaments" class="nav-link <?php if($cpanel_tab == "tournaments"){echo "active"; } ?>">Tekmovanja</a><?php } ?>
+					<?php if($role_admin){ ?><a href="?tab=tournaments&path=/xampp/htdocs/ESZS_new/Content/Images" class="nav-link <?php if($cpanel_tab == "tournaments"){echo "active"; } ?>">Tekmovanja</a><?php } ?>
 					<a href="?tab=user_list" class="nav-link <?php if($cpanel_tab == "user_list" || $cpanel_tab == "user_list_create" || $cpanel_tab == "user_list_edit"){echo "active"; } ?>">Uporabniki</a>
 				</div>
 			</div>
@@ -64,7 +68,7 @@
 								<?= $user['ime'] ?> <?= $user['priimek'] ?><div class="arrow"></div>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item logout" href="Controllers/editors_logout.php">Logout</a></li>
+								<li><a class="dropdown-item logout" href="Controllers/Editors/editors_logout.php">Logout</a></li>
 							</ul>
 						</div>
 						<?php break;
@@ -83,12 +87,14 @@
 			<?php include "Views/CPanel/tab_website_default_template.php" ?>
 			<!-- outside news media-->
 			<?php include "Views/CPanel/tab_news_outside_media_add.php" ?>
+			<!-- media list -->
+			<?php include "Views/CPanel/tab_media.php" ?>
 			<!-- admin list -->
-			<?php include "Views/CPanel/tab_user_list.php" ?>
+			<?php include "Views/CPanel/Editors/tab_user_list.php" ?>
 			<!-- create new admin user -->
-			<?php include "Views/CPanel/tab_user_list_create.php" ?>			
+			<?php include "Views/CPanel/Editors/tab_user_list_create.php" ?>			
 			<!-- edit user -->
-			<?php include "Views/CPanel/tab_user_list_edit.php" ?>	
+			<?php include "Views/CPanel/Editors/tab_user_list_edit.php" ?>	
 		</div>
 		<div class="modal fade delete-user-modal" id="delete-user-modal" tabindex="-1" aria-labelledby="delete-user-modal-label" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -113,7 +119,7 @@
 			<div class="login-box container ">
 				<div class="row">
 					<div class="col-6 offset-3">
-						<form class="row" method="post" action="Controllers/editors_login.php">
+						<form class="row" method="post" action="Controllers/Editors/editors_login.php">
 							<div class="col-12">
 								<label for="email">E-pošta:</label><br>
 								<input type="text" id="email" name="email" placeholder="janez.novak@eszs.si" required>

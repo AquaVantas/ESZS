@@ -7,10 +7,9 @@
     "\\Style\\Theme",
     "\\Style\\Theme\\Page",
     "\\Style\\Theme\\Page\\Partials",
-    "\\Style\\Theme\\Page\\Partials\\SectionBlocks",
     "\\Views",
     "\\Views\\CPanel"
   ],
-  "SelectedNode": "\\Style\\Theme\\Page\\CPanel.scss",
+  "SelectedNode": "\\Internal\\editors_database.php",
   "PreviewInSolutionExplorer": false
 }

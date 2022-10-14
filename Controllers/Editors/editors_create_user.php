@@ -1,7 +1,7 @@
 <?php
 	
 	//gets the database we'll be working with
-	require_once("../Internal/editors_database.php");
+	require_once("../../Internal/editors_database.php");
 	
 	//since we had problems with NULL entries in the database
 	//we'll first check if there even is a value attached to what we're adding
@@ -18,7 +18,7 @@
 
 	//checks if the passwords match
 	if($password != $passwordRepeat) {
-		header('Location:../cpanel.php?tab=user_list_create&error=incorrect_password');
+		header('Location:../../cpanel.php?tab=user_list_create&error=incorrect_password');
 	}
 
 	//adds the user to the database and encrypts the password
@@ -43,5 +43,5 @@
 	}
 
 	//redirect back to user list
-	header('Location:../cpanel.php?tab=user_list');
+	header('Location:../../cpanel.php?tab=user_list');
 ?>

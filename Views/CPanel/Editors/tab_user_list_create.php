@@ -11,7 +11,7 @@ if(isset($cpanel_tab) && $cpanel_tab == "user_list_create" && $role_admin) { ?>
 					<p class="error">Gesli se ne ujemata! Poskusite ponovno!</p>
 				<?php }
 			?>						
-			<form class="row" method="post" action="Controllers/editors_create_user.php">
+			<form class="row" method="post" action="Controllers/Editors/editors_create_user.php">
 					<div class="col-6">
 						<label for="name">Ime:</label><br>
 						<input type="text" id="name" name="name" placeholder="Janez" required>

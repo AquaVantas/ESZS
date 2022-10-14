@@ -1,7 +1,7 @@
 <?php
 
 	//gets the database we'll be working with
-	require_once("../Internal/editors_database.php");
+	require_once("../../Internal/editors_database.php");
 		
 	if(isset($_GET['user'])) {
 		//delete previous roles
@@ -15,5 +15,5 @@
 		}	
 	}
 
-	header('Location:../cpanel.php?tab=user_list');
+	header('Location:../../cpanel.php?tab=user_list');
 ?>

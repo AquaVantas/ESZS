@@ -8,7 +8,7 @@
 				<?php if(isset($_GET['user'])) {
 					foreach(editors::getSpecificAdmin($_GET['user']) as $user) {
 				?>
-					<form class="row" method="post" action="Controllers/editors_edit_user_information.php?user=<?= $_GET['user'] ?>">
+					<form class="row" method="post" action="Controllers/Editors/editors_edit_user_information.php?user=<?= $_GET['user'] ?>">
 						<div class="col-6">
 							<label for="name">Ime:</label><br>
 							<input type="text" id="name" name="name" value="<?= $user['ime'] ?>" required>
@@ -33,7 +33,7 @@
 				<?php if(isset($_GET['user'])) {
 					foreach(editors::getSpecificAdmin($_GET['user']) as $user) {
 				?>
-					<form class="row" method="post" action="Controllers/editors_edit_user_roles.php?user=<?= $_GET['user'] ?>">
+					<form class="row" method="post" action="Controllers/Editors/editors_edit_user_roles.php?user=<?= $_GET['user'] ?>">
 						<div class="col-12">
 							<label>Vloge uporabnika:</label>
 						</div>
@@ -58,7 +58,7 @@
 				<?php if(isset($_GET['user'])) {
 					foreach(editors::getSpecificAdmin($_GET['user']) as $user) {
 				?>
-					<form class="row" method="post" action="Controllers/editors_edit_user_password.php?user=<?= $_GET['user'] ?>">
+					<form class="row" method="post" action="Controllers/Editors/editors_edit_user_password.php?user=<?= $_GET['user'] ?>">
 						<div class="col-6">
 							<label for="password">Geslo:</label><br>
 							<input type="password" id="password" name="password" required>
