@@ -74,5 +74,54 @@ class website {
         $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
         $statement->execute();
     }
+
+    public static function getAllWebsitePages() {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT page_id, page_title FROM website_page");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getSpecificWebsitePage($page_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT page_id, page_title FROM website_page WHERE page_id = :page_id");
+        $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function updateWebsitePage($page_id, $page_title) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_page SET page_title = :page_title WHERE page_id = :page_id");
+        $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->bindParam(":page_title", $page_title, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function getSpecificWebsitePageDetails($page_id, $language_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT page_detail_id, page_id, language_id, page_title, meta_name, meta_description, meta_keywords FROM website_page_details WHERE page_id = :page_id AND language_id = :language_id");        
+        $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function automaticallyAddWebsitePageDetailsForCurrentLanguage($page_id, $language_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("INSERT INTO website_page_details(page_id, language_id, page_title, meta_name, meta_description, meta_keywords) VALUES (:page_id, :language_id, null, null, null, null)");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+    
 }
 ?>

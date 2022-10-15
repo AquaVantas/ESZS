@@ -18,5 +18,10 @@
 	}
 
 	//redirect back to user list
-	header('Location:../../../cpanel.php?tab=webpage_editor&action=language_editor');
+	if(isset($_GET['lang_id'])) {		
+		header('Location:../../../cpanel.php?tab=webpage_editor&action=language_editor&lang_id='.$_GET['lang_id']);
+	}
+	else {		
+		header('Location:../../../cpanel.php?tab=webpage_editor&action=language_editor');
+	}
 ?>

@@ -1,5 +1,5 @@
 ﻿<?php 
-	if(isset($_GET['lang_id']) && $_GET['lang_id'] == 1) {
+	if(isset($_GET['edit_lang_id']) && $_GET['edit_lang_id'] == 1) {
 		header('url=../cpanel.php?tab=webpage_editor&action=language_editor');
 	}
 ?>
@@ -10,8 +10,8 @@
 	<div class="user-body">
 		<div class="row">
 			<div class="create-user">					
-				<form class="row" method="post" action="Controllers/Website/Languages/website_edit_language.php?lang_id=<?= $_GET['lang_id'] ?>.php">
-					<?php foreach(website::getSpecificWebsiteLanguage($_GET['lang_id']) as $language) { ?>
+				<form class="row" method="post" action="Controllers/Website/Languages/website_edit_language.php?edit_lang_id=<?= $_GET['edit_lang_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>">
+					<?php foreach(website::getSpecificWebsiteLanguage($_GET['edit_lang_id']) as $language) { ?>
 						<div class="col-6">
 							<label for="title">Jezik:</label><br>
 							<input type="text" id="title" name="title" value="<?= $language['title'] ?>" required>
