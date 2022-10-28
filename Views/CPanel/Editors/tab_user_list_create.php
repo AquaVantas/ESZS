@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 if(isset($cpanel_tab) && $cpanel_tab == "user_list_create" && $role_admin) { ?>
 	<div class="user-body container">
 		<div class="row">

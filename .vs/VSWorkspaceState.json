@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Internal",
+    "\\Controllers",
+    "\\Controllers\\Website",
+    "\\Controllers\\Website\\Languages",
+    "\\Controllers\\Website\\Page",
     "\\Scripts",
-    "\\Style",
-    "\\Style\\Theme",
-    "\\Style\\Theme\\Page",
-    "\\Style\\Theme\\Page\\Partials",
     "\\Views",
-    "\\Views\\CPanel"
+    "\\Views\\CPanel",
+    "\\Views\\CPanel\\WebpageEditor",
+    "\\Views\\CPanel\\WebpageEditor\\Languages"
   ],
-  "SelectedNode": "\\Internal\\editors_database.php",
+  "SelectedNode": "\\Scripts\\QuillEditor.js",
   "PreviewInSolutionExplorer": false
 }

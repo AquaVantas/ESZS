@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <?php
 	session_start();
 	require_once("Internal/editors_database.php");
@@ -34,6 +34,7 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<link rel="stylesheet" href="Plugins/bootstrap/bootstrap.min.css">
 		<link rel="stylesheet" href="Style/Master.css">
+        <link rel="stylesheet" href="Plugins/quill/quill.snow.css" />  
 		<script type="text/javascript" src="Scripts/Main.js"></script>
 		<script src="Plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	</head>
@@ -94,7 +95,9 @@
 			<!-- create new admin user -->
 			<?php include "Views/CPanel/Editors/tab_user_list_create.php" ?>			
 			<!-- edit user -->
-			<?php include "Views/CPanel/Editors/tab_user_list_edit.php" ?>	
+			<?php include "Views/CPanel/Editors/tab_user_list_edit.php" ?>				
+			<!-- edit user -->
+			<?php include "Views/CPanel/Universal/rich_text_editor.php" ?>	
 		</div>
 		<div class="modal fade delete-user-modal" id="delete-user-modal" tabindex="-1" aria-labelledby="delete-user-modal-label" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -111,6 +114,26 @@
 					<div class="modal-footer">
 						<a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Prekliči</a>
 						<a type="button" class="btn btn-primary delete-button">Izbriši</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade add-section" id="add-section" tabindex="-1" aria-labelledby="add-section-label" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="delete-user-modal-label">Kateri tip sekcije želite?</h5>
+						<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<?php foreach(website::getWebsiteSectionVariants() as $sectionVariants) {?>
+							<a class="variant-block" href="Controllers/Website/Page/website_create_page_section.php?page_id=<?= $_GET['page_id'] ?>&section_variant=<?= $sectionVariants['variant_id'] ?>">
+								<div class="variant-icon <?= $sectionVariants['section_type'] ?>"></div>
+								<span><?= $sectionVariants['section_type'] ?></span>
+							</a>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -136,6 +159,10 @@
 				</div>
 			</div>
 		<?php } ?>
+		<script src="Plugins/quill/quill.min.js"></script>
+        <script src="Plugins/quill/image-resize.min.js"></script>
+        <script src="Plugins/quill/quill.imageUploader.min.js"></script>		
+        <script src="Scripts/QuillEditor.js"></script>
 	</body>
 	<footer>
 	</footer>

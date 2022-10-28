@@ -1,4 +1,4 @@
-﻿<?php if((isset($cpanel_tab) && $cpanel_tab == "webpage_editor") && (isset($cpanel_action) && $cpanel_action == "language_add")) { ?>
+<?php if((isset($cpanel_tab) && $cpanel_tab == "webpage_editor") && (isset($cpanel_action) && $cpanel_action == "language_add")) { ?>
 	<div class="create-bar">
 		<?php if(isset($_GET['lang_id'])) { ?>
 			<a class="btn btn-primary" href="?tab=webpage_editor&action=language_editor&lang_id=<?= $_GET['lang_id'] ?>"><div class="arrow-icon"></div>Prekliči</a>

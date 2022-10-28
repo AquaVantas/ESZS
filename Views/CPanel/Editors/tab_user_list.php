@@ -1,4 +1,4 @@
-﻿<?php if(isset($cpanel_tab) && $cpanel_tab == "user_list") { ?>
+<?php if(isset($cpanel_tab) && $cpanel_tab == "user_list") { ?>
 	<div class="user-body container">
 		<div class="row">
 			<div class="col-12 create-bar">

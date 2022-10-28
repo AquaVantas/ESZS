@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 	if(isset($_GET['edit_lang_id']) && $_GET['edit_lang_id'] == 1) {
 		header('url=../cpanel.php?tab=webpage_editor&action=language_editor');
 	}

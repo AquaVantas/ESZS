@@ -10,7 +10,6 @@
 	}
 
 	$name = $_POST['name'];
-	echo $name;
 	$surname = $_POST['surname'];
 	$email = $_POST['email'];
 	$password = $_POST['password'];

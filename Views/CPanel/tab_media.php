@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	$media_root = "/xampp/htdocs/ESZS_new/Content/Images";
 	if(isset($_GET['path'])) {
 		$dir = $_GET['path'];

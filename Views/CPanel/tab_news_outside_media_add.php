@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 if(isset($cpanel_tab) && $cpanel_tab == "news_outside_media_add" && ($role_admin || $role_news)) { ?>
 	<div class="user-body container">
 		<div class="row">

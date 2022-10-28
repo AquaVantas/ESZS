@@ -106,8 +106,18 @@ class website {
     public static function getSpecificWebsitePageDetails($page_id, $language_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT page_detail_id, page_id, language_id, page_title, meta_name, meta_description, meta_keywords FROM website_page_details WHERE page_id = :page_id AND language_id = :language_id");        
+        $statement = $db->prepare("SELECT page_detail_id, page_id, language_id, page_title, meta_name, meta_description, meta_keyword FROM website_page_details WHERE page_id = :page_id AND language_id = :language_id");        
         $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getSpecificWebsitePageDetailsLanguage($language_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT page_detail_id, page_id, language_id, page_title, meta_name, meta_description, meta_keyword FROM website_page_details WHERE language_id = :language_id");        
         $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
         $statement->execute();
 
@@ -117,11 +127,85 @@ class website {
     public static function automaticallyAddWebsitePageDetailsForCurrentLanguage($page_id, $language_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("INSERT INTO website_page_details(page_id, language_id, page_title, meta_name, meta_description, meta_keywords) VALUES (:page_id, :language_id, null, null, null, null)");
+        $statement = $db->prepare("INSERT INTO website_page_details(page_id, language_id, page_title, meta_name, meta_description, meta_keyword) VALUES (:page_id, :language_id, null, null, null, null)");
+        $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
+        $statement->execute();
+                
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public static function updateWebsitePageDetails($page_id, $language_id, $page_title, $meta_name, $meta_description, $meta_keyword) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_page_details SET page_title = :page_title, meta_name = :meta_name, meta_description = :meta_description, meta_keyword = :meta_keyword WHERE page_id = :page_id AND language_id = :language_id");
+        $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
+        $statement->bindParam(":page_title", $page_title, PDO::PARAM_STR);
+        $statement->bindParam(":meta_name", $meta_name, PDO::PARAM_STR);
+        $statement->bindParam(":meta_description", $meta_description, PDO::PARAM_STR);
+        $statement->bindParam(":meta_keyword", $meta_keyword, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function getWebsiteSectionVariants() {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT variant_id, section_type FROM website_section_variants");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteExistingPageSections($page_detail_id, $variant_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT MAX(sequence_num) AS sequence_num FROM website_section WHERE page_detail_id = :page_detail_id AND variant_id = :variant_id");
+        $statement->bindParam(":page_detail_id", $page_detail_id, PDO::PARAM_STR);
+        $statement->bindParam(":variant_id", $variant_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteLastSection() {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT MAX(section_id) AS section_id FROM website_section");
         $statement->execute();
 
         return $statement->fetchAll();
     }
     
+    public static function addWebsiteSection($page_detail_id, $variant_id, $sequence_num) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("INSERT INTO website_section(sequence_num, page_detail_id, variant_id) VALUES(:sequence_num, :page_detail_id, :variant_id)");
+        $statement->bindParam(":page_detail_id", $page_detail_id, PDO::PARAM_STR);
+        $statement->bindParam(":variant_id", $variant_id, PDO::PARAM_STR);
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public static function addWebsiteSectionBlock($section_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("INSERT INTO website_section_block(section_name, section_id, block_template_id, section_class, block_header, block_subheader, block_rich_text) VALUES(NULL, :section_id, NULL, NULL, NULL, NULL, NULL)");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
 }
 ?>

@@ -26,7 +26,7 @@
 							if(isset($_GET['lang_id'])) { ?>
 								<li><a href="?tab=webpage_editor&action=language_editor&lang_id=<?= $_GET['lang_id'] ?>" class="nav-link">Uredi jezike</a></li>
 							<?php } else {	?>
-							<li><a href="?tab=webpage_editor&action=language_editor" class="nav-link">Uredi jezike</a></li>
+								<li><a href="?tab=webpage_editor&action=language_editor" class="nav-link">Uredi jezike</a></li>
 							<?php } 
 						?>
 					</ul>
@@ -39,22 +39,28 @@
 				<?php foreach(website::getAllWebsitePages() as $page) { 
 					if($page['page_id'] != 1) { ?>
 					<div class="list-element">
-						<span>
-							<?= $page['page_title'] ?>
-						</span>
+						<?php if (count(website::getSpecificWebsitePageDetails($page['page_id'], isset($_GET['lang_id']) ? $_GET['lang_id'] : 1)) != 0) { ?>
+							<a href="?tab=webpage_editor&action=edit_page_details&page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
+								<?= $page['page_title'] ?>
+							</a>
+						<?php } else { ?>
+							<a href="Controllers/Website/Page/website_create_page_details.php?page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
+								<?= $page['page_title'] ?>
+							</a>
+						<?php } ?>
 						<div class="dropdown">
 							<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<img src="Content/Images/Icons/three-dots.svg">
 							</button>
 							<ul class="dropdown-menu">							
-								<a class="nav-link" href="?tab=webpage_editor&action=edit_page&page_id=<?= $page['page_id'] ?>">Uredi</a>
+								<a class="nav-link" href="?tab=webpage_editor&action=edit_page&page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">Uredi</a>
 								<a class="nav-link">TO-DO: Izbriši (moraš izbrisat tudi vse kar sledi)</a>
 							</ul>
 						</div>
 					</div>
 					<?php } else { ?>
 						<div class="list-element">
-							<span><?= $page['page_title'] ?></span>
+							<a><?= $page['page_title'] ?></a>
 						</div>
 					<?php }
 				} ?>
@@ -62,7 +68,9 @@
 		</div>
 		<div class="right-side">
 			<!-- website page edit -->
-			<?php include "Views/CPanel/WebpageEditor/tab_website_page_edit.php" ?>
+			<?php include "Views/CPanel/WebpageEditor/Page/tab_website_page_edit.php" ?>
+			<!-- website page details edit -->
+			<?php include "Views/CPanel/WebpageEditor/Page/tab_website_page_details_edit.php" ?>
 			<!-- website language editor -->
 			<?php include "Views/CPanel/WebpageEditor/Languages/tab_website_language_editor.php" ?>
 			<!-- website language add -->
