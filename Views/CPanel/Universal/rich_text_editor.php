@@ -1,7 +1,6 @@
 <div id="editor-wrapper">
     <div id="editor-toolbar">
         <span class="ql-formats">
-            <select class="ql-font"></select>
             <select class="ql-size"></select>
         </span>
         <span class="ql-formats">
@@ -42,5 +41,11 @@
             <button class="ql-clean"></button>
         </span>
     </div>
-    <div id="editor-container"></div>
+    <div id="editor-container">
+    <?php if(isset($_GET['action']) && $_GET['action'] == "edit_page_details") { 
+        if($section['WS_variant_id'] == 1) { ?>
+        <?= $section['WSB_block_rich_text'] ?>
+        <?php }
+    } ?>
+    </div>
 </div>

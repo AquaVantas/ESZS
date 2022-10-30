@@ -95,9 +95,7 @@
 			<!-- create new admin user -->
 			<?php include "Views/CPanel/Editors/tab_user_list_create.php" ?>			
 			<!-- edit user -->
-			<?php include "Views/CPanel/Editors/tab_user_list_edit.php" ?>				
-			<!-- edit user -->
-			<?php include "Views/CPanel/Universal/rich_text_editor.php" ?>	
+			<?php include "Views/CPanel/Editors/tab_user_list_edit.php" ?>
 		</div>
 		<div class="modal fade delete-user-modal" id="delete-user-modal" tabindex="-1" aria-labelledby="delete-user-modal-label" aria-hidden="true">
 			<div class="modal-dialog" role="document">

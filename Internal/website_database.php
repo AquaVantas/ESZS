@@ -207,5 +207,22 @@ class website {
 
         return $statement->fetchColumn();
     }
+
+    public static function getWebsiteSections($page_detail_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_section.section_id AS WS_section_id, website_section.sequence_num AS WS_sequence_num, website_section.page_detail_id AS WS_page_detail_id, website_section.variant_id AS WS_variant_id,
+                                    website_section_block.section_block_id AS WSB_section_block_id, website_section_block.section_name AS WSB_section_name, website_section_block.block_template_id AS WSB_block_template_id,
+                                    website_section_block.section_class AS WSB_section_class, website_section_block.block_header AS WSB_block_header, website_section_block.block_subheader AS WSB_block_subheader,
+                                    website_section_block.block_rich_text AS WSB_block_rich_text
+                                    FROM website_section
+                                    INNER JOIN website_section_block ON website_section.section_id = website_section_block.section_id
+                                    WHERE website_section.page_detail_id = :page_detail_id
+                                    ORDER BY website_section.sequence_num ASC");
+        $statement->bindParam(":page_detail_id", $page_detail_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
 }
 ?>

@@ -74,7 +74,7 @@
 
                     li {                        
                         &:hover {
-                            background-color: #FFFFFF1A;
+                            background-color: $transparentwhite;
                             a {
                                 color: $white;
                             }
@@ -95,7 +95,7 @@
             border-radius: 100%;
             height: 40px;
             width: 40px;
-            background-color: #FFFFFF1A;
+            background-color: $transparentwhite;
             color: $white;
         }
 
@@ -147,7 +147,7 @@
             justify-content: center;
             width: 100%;
             color: $white;
-            background-color: #FFFFFF1A;
+            background-color: $transparentwhite;
             border: 1px solid $primarybluefive;
             border-radius: 8px;
 
@@ -209,19 +209,60 @@
                 }
 
                 .edit-cloud {
-                    background-color: #FFFFFF1A;
+                    background-color: $transparentwhite;
                     border-radius: 8px;
                     padding: 30px 30px;
 
                     label {
-                        margin-top: 0;
+                        margin-top: 15px;
+
+                        &:first-child {
+                            margin-top: 0;
+                        }
                     }
 
                     .section-list {
+                        .accordion {
+                            .accordion-item {
+                                margin-bottom: 5px;
+                                background-color: $background;
+
+                                .accordion-header {
+                                    border: 1px solid $primarybluefive;
+
+                                    button {
+                                        background-color: transparent;
+                                        color: $white;
+
+                                        &:not(.collapsed) {
+                                            color: $white;
+                                        }
+
+                                        &:focus {
+                                            border-color: none;
+                                            box-shadow: none;
+                                        }
+
+                                        &::after {
+                                            display: none;
+                                        }
+                                    }
+                                }
+
+                                .accordion-collapse {
+                                    .accordion-body {
+                                        border: 1px solid $primarybluefive;
+                                        border-top: none;
+                                        background-color: $transparentwhite;
+                                    }
+                                }
+                            }
+                        }
+
                         .add-section {
                             cursor: pointer;
-                            background-color: #FFFFFF1A;
-                            border: 1px dashed $white;
+                            background-color: $transparentwhite;
+                            border: 1px dashed $primarybluefive;
                             padding: 20px 40px;
                             display: flex;
                             justify-content: center;
@@ -270,7 +311,7 @@
                 position: relative;
                 width: 100%;
                 padding-bottom: 90%;
-                background-color: #FFFFFF1A;
+                background-color: $transparentwhite;
                 border-radius: 8px;
                 margin-bottom: 8px;
                 display: flex;
@@ -365,7 +406,7 @@
 
                     li {
                         &:hover {
-                            background-color: #FFFFFF1A;
+                            background-color: $transparentwhite;
 
                             a {
                                 color: $white;
@@ -441,7 +482,7 @@
                             }
 
                             &:hover {
-                                background-color: #FFFFFF1A;
+                                background-color: $transparentwhite;
                             }
                         }
                     }
@@ -464,7 +505,7 @@
         .content-wrapper {
             margin: 10px 50px;
             width: calc(100% - 100px);
-            background-color: #FFFFFF1A;
+            background-color: $transparentwhite;
             padding: 20px 40px;
             border-radius: 8px;
 
@@ -510,7 +551,7 @@
         border: 1px solid $primarybluefive;
 
         .modal-header {
-            border-color: #FFFFFF1A;
+            border-color: $transparentwhite;
 
             button {
                 height: 30px;
@@ -559,7 +600,7 @@
         }
 
         .modal-footer {
-            border-color: #FFFFFF1A;
+            border-color: $transparentwhite;
         }
     }
 }

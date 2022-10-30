@@ -309,12 +309,41 @@ table tr td {
   padding: 30px 30px;
 }
 .cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud label {
+  margin-top: 15px;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud label:first-child {
   margin-top: 0;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item {
+  margin-bottom: 5px;
+  background-color: #192133;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-header {
+  border: 1px solid #00d6bd;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-header button {
+  background-color: transparent;
+  color: #FFFFFF;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-header button:not(.collapsed) {
+  color: #FFFFFF;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-header button:focus {
+  border-color: none;
+  box-shadow: none;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-header button::after {
+  display: none;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-collapse .accordion-body {
+  border: 1px solid #00d6bd;
+  border-top: none;
+  background-color: rgba(255, 255, 255, 0.1019607843);
 }
 .cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .add-section {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.1019607843);
-  border: 1px dashed #FFFFFF;
+  border: 1px dashed #00d6bd;
   padding: 20px 40px;
   display: flex;
   justify-content: center;

@@ -3,14 +3,15 @@
     "",
     "\\Controllers",
     "\\Controllers\\Website",
-    "\\Controllers\\Website\\Languages",
     "\\Controllers\\Website\\Page",
     "\\Scripts",
+    "\\Style",
+    "\\Style\\Theme",
     "\\Views",
     "\\Views\\CPanel",
     "\\Views\\CPanel\\WebpageEditor",
     "\\Views\\CPanel\\WebpageEditor\\Languages"
   ],
-  "SelectedNode": "\\Scripts\\QuillEditor.js",
+  "SelectedNode": "\\Style\\Theme\\_mixings.scss",
   "PreviewInSolutionExplorer": false
 }

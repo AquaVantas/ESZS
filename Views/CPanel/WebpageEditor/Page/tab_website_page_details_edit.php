@@ -29,6 +29,56 @@
 					<div class="edit-cloud">
 						<div class="section-list">
 							<span>Seznam sekcij:</span>
+							<div class="section-list">
+								<div class="accordion" id="accordionExample">
+									<?php  
+									$counter = 0;
+									foreach(website::getWebsiteSections($_GET['page_id']) as $section) { ?>
+										<div class="accordion-item">
+											<h2 class="accordion-header" id="headingTwo">
+												<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $counter ?>" aria-expanded="false" aria-controls="collapse<?= $counter ?>">
+													<?php if($section['WSB_block_header'] == NULL || strcmp($section['WSB_block_header'], "")) { 
+														if($section['WS_variant_id'] == 1) { ?>
+															Section Block
+														<?php } elseif($section['WS_variant_id'] == 2) { ?>
+															Section Gallery
+														<?php } 
+													} else { 
+														if($section['WS_variant_id'] == 1) { ?>															
+															<div class="section-block-icon"></div><?= $section['WSB_block_header'] ?>
+														<?php } elseif($section['WS_variant_id'] == 2) { ?>															
+															<div class="section-gallery-icon"></div><?= $section['WSB_block_header'] ?>
+														<?php } 
+													}?>
+												</button>
+											</h2>
+											<div id="collapse<?= $counter ?>" class="accordion-collapse collapse" aria-labelledby="heading<?= $counter ?>" data-bs-parent="#accordionExample">
+												<div class="accordion-body">
+													<?php if($section['WS_variant_id'] == 1) { ?>															
+														<div class="section-block-info">
+															<label for="section-name">Ime sekcije:</label><br>
+															<input type="text" id="section-name" name="section-name" value="<?= $section['WSB_section_name'] ?>">
+															<label for="section-class">Class sekcije:</label><br>
+															<input type="text" id="section-class" name="section-class" value="<?= $section['WSB_section_class'] ?>">
+															<label for="section-header">Naslov sekcije:</label><br>
+															<input type="text" id="section-header" name="section-header" value="<?= $section['WSB_block_header'] ?>">
+															<label for="section-subheader">Podnaslov sekcije:</label><br>
+															<input type="text" id="section-subheader" name="section-subheader" value="<?= $section['WSB_block_subheader'] ?>">
+															<label for="section-rich-text">Besedilo sekcije:</label><br>																			
+															<!-- rich text editor -->
+															<?php include "Views/CPanel/Universal/rich_text_editor.php" ?>	
+														</div>
+													<?php } elseif($section['WS_variant_id'] == 2) { ?>															
+														<div class="section-gallery-icon"></div><?= $section['WSB_block_header'] ?>
+													<?php } ?>
+												</div>
+											</div>
+										</div>
+									<?php 
+									$counter = $counter + 1;
+									} ?>
+								</div>
+							</div>
 							<div class="add-section" data-bs-toggle="modal" data-bs-target="#add-section">
 								<span>Add section</span><dic class="plus-icon"></div>
 							</div>							

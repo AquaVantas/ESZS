@@ -80,7 +80,7 @@ input {
     height: 40px;
     width: 100%;
     border: 1px solid $primarybluefive;
-    background-color: #FFFFFF1A;
+    background-color: $transparentwhite;
     padding: 20px;
     color: $white;
 
@@ -102,7 +102,7 @@ select {
     height: 40px;
     padding: 0 20px;
     border: 1px solid $primarybluefive;
-    background-color: #FFFFFF1A;
+    background-color: $transparentwhite;
     background-image: url('../Content/Images/Icons/arrow-down.svg');
     background-position: 98% 50%;
     background-repeat: no-repeat;
@@ -124,7 +124,7 @@ select {
         padding: 10px 20px;
 
         &:hover {
-            background-color: #FFFFFF1A;
+            background-color: $transparentwhite;
         }
     }
 }

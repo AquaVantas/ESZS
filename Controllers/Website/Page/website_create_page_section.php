@@ -36,9 +36,7 @@
 		}
 
 		website::addWebsiteSectionBlock($section_id);
-	}
-
-	
+	}	
 
 	//redirect back to language list
 
