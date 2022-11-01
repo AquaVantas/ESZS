@@ -9,7 +9,6 @@
 body {
   margin: 0;
   background-color: #192133;
-  padding-bottom: 100px;
 }
 
 a {
@@ -339,6 +338,9 @@ table tr td {
   border: 1px solid #00d6bd;
   border-top: none;
   background-color: rgba(255, 255, 255, 0.1019607843);
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-collapse .accordion-body input {
+  margin-bottom: 15px;
 }
 .cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .add-section {
   cursor: pointer;

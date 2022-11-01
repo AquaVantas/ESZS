@@ -254,6 +254,10 @@
                                         border: 1px solid $primarybluefive;
                                         border-top: none;
                                         background-color: $transparentwhite;
+
+                                        input {
+                                            margin-bottom: 15px;
+                                        }
                                     }
                                 }
                             }
