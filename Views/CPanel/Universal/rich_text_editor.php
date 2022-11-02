@@ -1,5 +1,13 @@
 <div id="editor-wrapper">
-    <div id="editor-toolbar">
+    <?php if(isset($_GET['action']) && $_GET['action'] == "edit_page_details") { 
+        if(isset($blockContent['WBC_block_content_id']) && $blockContent['WBC_section_block_id'] == $section['WSB_section_block_id']) { ?>
+            <div id="editor-toolbar" class="editor-toolbar" toolbar-id="editorblocktoolbar<?= $blockContent['WBC_block_content_id'] ?>">
+        <?php } else { ?>         
+            <div id="editor-toolbar" class="editor-toolbar" toolbar-id="editortoolbar<?= $section['WS_section_id'] ?>">
+        <?php }
+        } else { ?>
+        <div id="editor-toolbar">
+    <?php } ?>
         <span class="ql-formats">
             <select class="ql-size"></select>
         </span>
@@ -41,11 +49,19 @@
             <button class="ql-clean"></button>
         </span>
     </div>
-    <div id="editor-container">
     <?php if(isset($_GET['action']) && $_GET['action'] == "edit_page_details") { 
-        if($section['WS_variant_id'] == 1) { ?>
-        <?= $section['WSB_block_rich_text'] ?>
-        <?php }
+        if(isset($blockContent['WBC_block_content_id']) && $blockContent['WBC_section_block_id'] == $section['WSB_section_block_id']) { ?>
+            <div id="editor-container" class="editor-container editor-block-container" container-id="editorblockcontainer<?= $blockContent['WBC_block_content_id'] ?>">
+        <?php } else { ?>         
+            <div id="editor-container" class="editor-container editor-section-container" container-id="editorcontainer<?= $section['WS_section_id'] ?>">
+        <?php }         
+        if($section['WS_variant_id'] == 1) { 
+            if(isset($blockContent['WBC_block_content_id'])) { ?>            
+                <?= $blockContent['WBC_block_text'] ?>
+            <?php } else { ?>
+                <?= $section['WSB_block_rich_text'] ?>
+            <?php }
+        } ?>      
+        </div> <?php 
     } ?>
-    </div>
 </div>

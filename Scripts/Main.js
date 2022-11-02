@@ -23,10 +23,40 @@ function submitPageChanges(page_id, lang_id) {
 
     $(".accordion-item").each(function (index) {
         if ($(".accordion-body", this).attr("variant-id") == 1) {
+            var sectionID = $(".accordion-body .section-block-info", this).attr("section-id");
             pageSectionBlockFormData.append("section-name", $(".accordion-body #section-name", this).val());
             pageSectionBlockFormData.append("section-class", $(".accordion-body #section-class", this).val());
             pageSectionBlockFormData.append("section-header", $(".accordion-body #section-header", this).val());
             pageSectionBlockFormData.append("section-subheader", $(".accordion-body #section-subheader", this).val());
+            var location = 'editor' + $(".accordion-body .editor-section-container", this).attr("container-id");    
+            pageSectionBlockFormData.append("section-rich-text", window[location].root.innerHTML);
+            var blockTemplateID = $(".accordion-body .template-dropdown li a.active", this).attr("template-id");
+            if (typeof blockTemplateID === 'undefined') {
+                blockTemplateID = 1;
+            }
+            pageSectionBlockFormData.append("section-template", blockTemplateID);
+
+            let pageSectionBlockFormDataXHR = new XMLHttpRequest(); 
+            pageSectionBlockFormDataXHR.open("POST", "Controllers/Website/Page/website_edit_block_section.php?page_id=" + page_id + "&lang_id=" + lang_id + "&section_id=" + sectionID);
+            pageSectionBlockFormDataXHR.send(pageSectionBlockFormData);
+
+            var blockContentList = $(".accordion-body .section-block-content .accordion .accordion-item", this);
+
+            let pageSectionBlockContentFormData = new FormData();
+            blockContentList.each(function (blockIndex) {
+                pageSectionBlockContentFormData.append("block-content-id", $(".accordion-body", this).attr("block-id"));
+                pageSectionBlockContentFormData.append("sequence-num", $(".accordion-body", this).attr("sequence-num"));
+                //dodaj še image
+                pageSectionBlockContentFormData.append("block-content-link", $(".accordion-body #block-content-link", this).val());
+                pageSectionBlockContentFormData.append("block-content-heading", $(".accordion-body #block-content-heading", this).val());
+                pageSectionBlockContentFormData.append("block-content-subheading", $(".accordion-body #block-content-subheading", this).val());
+                var blocklocation = 'editor' + $(".accordion-body .editor-block-container", this).attr("container-id");
+                pageSectionBlockContentFormData.append("block-content-text", window[blocklocation].root.innerHTML);
+
+                let pageSectionBlockContentFormDataXHR = new XMLHttpRequest();
+                pageSectionBlockContentFormDataXHR.open("POST", "Controllers/Website/Page/website_edit_block_content.php?page_id=" + page_id + "&lang_id=" + lang_id);
+                pageSectionBlockContentFormDataXHR.send(pageSectionBlockContentFormData);
+            });
         }
         else if ($(".accordion-body", this).attr("variant-id") == 2) {
             console.log("que");

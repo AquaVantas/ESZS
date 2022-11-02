@@ -208,6 +208,20 @@ class website {
         return $statement->fetchColumn();
     }
 
+    public static function updateWebsiteSectionBlock($section_id, $section_name, $block_template_id, $section_class, $block_header, $block_subheader, $block_rich_text) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_section_block SET section_name = :section_name, block_template_id = :block_template_id, section_class = :section_class, block_header = :block_header, block_subheader = :block_subheader, block_rich_text = :block_rich_text WHERE section_id = :section_id");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->bindParam(":section_name", $section_name, PDO::PARAM_STR);
+        $statement->bindParam(":block_template_id", $block_template_id, PDO::PARAM_STR);
+        $statement->bindParam(":section_class", $section_class, PDO::PARAM_STR);
+        $statement->bindParam(":block_header", $block_header, PDO::PARAM_STR);
+        $statement->bindParam(":block_subheader", $block_subheader, PDO::PARAM_STR);
+        $statement->bindParam(":block_rich_text", $block_rich_text, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
     public static function getWebsiteSections($page_detail_id) {
         $db = self::getInstance();
 
@@ -223,6 +237,83 @@ class website {
         $statement->execute();
 
         return $statement->fetchAll();
+    }
+
+    public static function getAllWebsiteBlockSectionTemplate() {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT block_template_id, template_name  FROM website_section_block_template");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteBlockSectionTemplate($section_block_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_section_block.section_block_id AS WSB_section_block_id, website_section_block.block_template_id AS WSB_block_template_id,
+                                    website_section_block_template.block_template_id AS WSBT_block_template_id, website_section_block_template.template_name AS WSBT_template_name
+                                    FROM website_section_block
+                                    INNER JOIN website_section_block_template ON website_section_block.block_template_id = website_section_block_template.block_template_id
+                                    WHERE website_section_block.section_block_id = :section_block_id");
+        $statement->bindParam(":section_block_id", $section_block_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteBlockSectionLastBlockContent($section_block_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT MAX(sequence_num) AS sequence_num FROM website_block_content WHERE section_block_id = :section_block_id");
+        $statement->bindParam(":section_block_id", $section_block_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function addWebsiteBlockContent($sequence_num, $section_block_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("INSERT INTO website_block_content(sequence_num, image_id, section_block_id, block_link, block_heading, block_subheading, block_text) VALUES(:sequence_num, NULL, :section_block_id, NULL, NULL, NULL, NULL)");
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->bindParam(":section_block_id", $section_block_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public static function getWebsiteBlockContent($section_block_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_block_content.block_content_id AS WBC_block_content_id, website_block_content.sequence_num AS WBC_sequence_num,
+                                    website_block_content.image_id AS WBC_image_id, website_block_content.section_block_id AS WBC_section_block_id, 
+                                    website_block_content.block_link AS WBC_block_link, website_block_content.block_heading AS WBC_block_heading,
+                                    website_block_content.block_subheading AS WBC_block_subheading, website_block_content.block_text AS WBC_block_text
+                                    FROM website_block_content
+                                    WHERE website_block_content.section_block_id = :section_block_id
+                                    ORDER BY website_block_content.sequence_num ASC");
+        $statement->bindParam(":section_block_id", $section_block_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function updateWebsiteBlockContent($block_content_id, $sequence_num, $image_id, $block_link, $block_heading, $block_subheading, $block_text) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_block_content SET sequence_num = :sequence_num, image_id = :image_id, block_link = :block_link, block_heading = :block_heading, block_subheading = :block_subheading, block_text = :block_text WHERE block_content_id = :block_content_id");
+        $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->bindParam(":image_id", $image_id, PDO::PARAM_STR);
+        $statement->bindParam(":block_link", $block_link, PDO::PARAM_STR);
+        $statement->bindParam(":block_heading", $block_heading, PDO::PARAM_STR);
+        $statement->bindParam(":block_subheading", $block_subheading, PDO::PARAM_STR);
+        $statement->bindParam(":block_text", $block_text, PDO::PARAM_STR);
+        $statement->execute();
     }
 }
 ?>

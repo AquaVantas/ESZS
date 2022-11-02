@@ -1,39 +1,44 @@
 Quill.register("modules/imageUploader", ImageUploader);
-var editor = new Quill('#editor-container', {
-	modules: {
-		toolbar: '#editor-toolbar',
-		imageResize: {
-			modules: ['Resize', 'DisplaySize', 'Toolbar']
-		},
-		imageUploader: {
-			upload: file => {
-				return new Promise((resolve, reject) => {
-					const formData = new FormData();
-					formData.append("image", file);
+var arrayOfToolbars = document.getElementsByClassName("editor-toolbar");
+var arrayOfContainers = document.getElementsByClassName("editor-container");
+for (let index = 0; index < arrayOfToolbars.length; index++) {
+	console.log('editor' + arrayOfContainers[index].getAttribute("container-id"));
+	window['editor' + arrayOfContainers[index].getAttribute("container-id")] = new Quill('[container-id="' + arrayOfContainers[index].getAttribute("container-id") + '"]', {
+		modules: {
+			toolbar: '[toolbar-id="' + arrayOfToolbars[index].getAttribute("toolbar-id") + '"]',
+			imageResize: {
+				modules: ['Resize', 'DisplaySize', 'Toolbar']
+			},
+			imageUploader: {
+				upload: file => {
+					return new Promise((resolve, reject) => {
+						const formData = new FormData();
+						formData.append("image", file);
 
-					fetch(
-						"/upload_image.php",
-						{
-							method: "POST",
-							body: formData
-						}
-					)
-						.then(response => {
-							if (response.status == 200) {
-								response.text().then(
-									txt => resolve(txt)
-								)
-							} else if (response.status != 0) {
-								reject("Upload failed");
+						fetch(
+							"/upload_image.php",
+							{
+								method: "POST",
+								body: formData
 							}
-						})
-						.catch(error => {
-							reject("Upload failed");
-							console.error("Error:", error);
-						});
-				});
+						)
+							.then(response => {
+								if (response.status == 200) {
+									response.text().then(
+										txt => resolve(txt)
+									)
+								} else if (response.status != 0) {
+									reject("Upload failed");
+								}
+							})
+							.catch(error => {
+								reject("Upload failed");
+								console.error("Error:", error);
+							});
+					});
+				}
 			}
-		}
-	},
-	theme: 'snow'
-});
+		},
+		theme: 'snow'
+	});
+}
