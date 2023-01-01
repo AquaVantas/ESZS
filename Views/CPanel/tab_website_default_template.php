@@ -79,4 +79,6 @@
 			<?php include "Views/CPanel/WebpageEditor/Languages/tab_website_language_edit.php" ?>
 		</div>
 	</div>
+	<!-- image picker sidebar -->
+	<?php include "Views/CPanel/WebpageEditor/Page/tab_website_content_siderbars.php" ?>
 <?php } ?>

@@ -1,5 +1,5 @@
 <?php
-	$media_root = "/xampp/htdocs/ESZS_new/Content/Images";
+	$media_root = "/xampp/htdocs/ESZS_new/Content/WebsiteContent";
 	if(isset($_GET['path'])) {
 		$dir = $_GET['path'];
 		$files1 = scandir($dir);
@@ -8,22 +8,22 @@
 		$prevPath = substr($_GET['path'], 0, (1+strpos(strrev($_GET['path']), "/"))*(-1));
 	}
 
-	if(isset($cpanel_tab) && $cpanel_tab == "tournaments" && ($role_admin || $role_news)) { ?>
+	if(isset($cpanel_tab) && $cpanel_tab == "media" && ($role_admin || $role_news)) { ?>
 		<div class="media-viewer">
 			<div class="user-body container">
 				<div class="row">
-					<?php if(isset($prevPath)) { ?>
 						<div class="col-12 create-bar">
-							<?php if($role_admin) { ?><a class="btn btn-primary" href="?tab=tournaments&path=<?= $prevPath ?>"><div class="arrow-icon"></div>Nazaj</a><?php } ?>
-							<?php if($role_admin) { ?><a class="btn btn-primary" href="?tab=tournaments&path=<?= $prevPath ?>">Dodaj sliko</a><?php } ?>
-						</div>
-					<?php } ?>
+							<?php if(isset($prevPath)) { ?>
+								<?php if($role_admin) { ?><a class="btn btn-primary" href="?tab=media&path=<?= $prevPath ?>"><div class="arrow-icon"></div>Nazaj</a><?php } ?>
+								<?php if($role_admin) { ?><a class="btn btn-primary" onclick="openFileUploader()">Dodaj sliko</a><?php } ?>
+							<?php } ?>
+							</div>
 					<?php				
 						foreach($files1 as $file) {
 							if(is_dir($dir . "/" . $file) && ($file != "." && $file != ".." && $file != "Icons")) {
 								?>
 								<div class="col-2 media-folder-wrapper">
-									<a href="?tab=tournaments&path=<?= $dir . '/' . $file ?>">
+									<a href="?tab=media&path=<?= $dir . '/' . $file ?>">
 										<div class="media-folder-image">
 											<div class="folder-image"></div>
 										</div>
@@ -57,5 +57,8 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- image upload sidebar -->
+		<?php include "Views/CPanel/WebpageEditor/Page/tab_website_content_upload_siderbars.php" ?>
 	<?php } 
 ?>

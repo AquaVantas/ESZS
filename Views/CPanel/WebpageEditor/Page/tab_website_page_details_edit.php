@@ -104,7 +104,11 @@
 																							<label for="block-content-image">Slika bloka:</label><br>
 																						</div>
 																						<div class="col-10">
-																							Insert image
+																							<div class="add-image-wrapper" onclick="openFileSelector(<?= $blockContent['WBC_block_content_id'] ?>, 'blockContent')">
+																								<div class="image-empty">
+																									<img src="Content/Images/Icons/plus.svg"></img>
+																								</div>
+																							</div>a
 																						</div>
 																						<div class="col-2 label">																
 																							<label for="block-content-link">Link bloka:</label><br>

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 	session_start();
 	require_once("Internal/editors_database.php");
@@ -29,6 +28,7 @@
 		}
 	}
 ?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -47,7 +47,18 @@
 					<span class="page-title">CPanel</span>
 				</div>
 				<div class="navigation-links">
-					<?php if($role_webdev || $role_admin){ ?><a href="?tab=webpage_editor" class="nav-link <?php if($cpanel_tab == "webpage_editor"){echo "active"; } ?>">Spletna stran</a><?php } ?>
+					<?php if($role_webdev || $role_admin){ ?>
+						<!--<a href="?tab=webpage_editor" class="nav-link <?php if($cpanel_tab == "webpage_editor"){echo "active"; } ?>">Spletna stran</a>-->
+						<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Spletna stran<div class="arrow"></div>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="?tab=webpage_editor" class="nav-link <?php if($cpanel_tab == "webpage_editor"){echo "active"; } ?>">Urejevalnik</a></li>
+							<li><a href="?tab=media&path=/xampp/htdocs/ESZS_new/Content/WebsiteContent" class="nav-link <?php if($cpanel_tab == "media"){echo "active"; } ?>">Vsebina</a></li>
+						</ul>
+					</div>
+					<?php } ?>
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 							Novice<div class="arrow"></div>
@@ -56,7 +67,7 @@
 							<li><?php if($role_news || $role_admin){ ?><a href="?tab=news_outside_media_add" class="nav-link <?php if($cpanel_tab == "news_editor"){echo "active"; } ?>">Mediji</a><?php } ?></li>
 						</ul>
 					</div>
-					<?php if($role_admin){ ?><a href="?tab=tournaments&path=/xampp/htdocs/ESZS_new/Content/Images" class="nav-link <?php if($cpanel_tab == "tournaments"){echo "active"; } ?>">Tekmovanja</a><?php } ?>
+					<?php if($role_admin){ ?><a href="?tab=tournaments&path=/xampp/htdocs/ESZS_new/Content/WebsiteContent" class="nav-link <?php if($cpanel_tab == "tournaments"){echo "active"; } ?>">Tekmovanja</a><?php } ?>
 					<a href="?tab=user_list" class="nav-link <?php if($cpanel_tab == "user_list" || $cpanel_tab == "user_list_create" || $cpanel_tab == "user_list_edit"){echo "active"; } ?>">Uporabniki</a>
 				</div>
 			</div>

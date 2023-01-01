@@ -8,6 +8,34 @@ function deleteUser(command) {
     $(".delete-user-modal .modal-footer .delete-button").attr("href", command);
 }
 
+function openFileSelector(id, typeOfContent) {
+    $(".content-sidebar-wrapper").each(function (index) {
+        if ($(this).attr("dirPath") === $(this).attr("origiDir")) {
+            $(this).toggleClass("active");
+        }
+        $(this).attr("lookingForContent", typeOfContent+"-"+id);
+    });
+    
+}
+
+function openCorrectFileSelector(selector) {
+    $(".content-sidebar-wrapper").removeClass("active");
+    $(".content-sidebar-wrapper").each(function (index) {
+        if ($(this).attr("dirpath") === selector) {
+            $(this).toggleClass("active");
+        }
+    });
+}
+
+function closeFileSelector() {
+    $(".content-sidebar-wrapper").removeClass("active");
+}
+
+function openFileUploader() {
+    console.log("hm");
+    $(".content-upload-sidebar").toggleClass("active");
+}
+
 function submitPageChanges(page_id, lang_id) {
     let pageDetailsFormData = new FormData();
     pageDetailsFormData.append("page_title", document.getElementById("page_title").value);

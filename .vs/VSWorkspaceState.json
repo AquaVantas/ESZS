@@ -1,16 +1,20 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Content",
+    "\\Content\\WebsiteContent",
+    "\\Content\\WebsiteContent\\Images",
+    "\\Content\\WebsiteContent\\Images\\Events",
+    "\\Content\\WebsiteContent\\Images\\Events\\SDP",
+    "\\Content\\WebsiteContent\\Images\\Events\\SDP\\2022-2023",
     "\\Controllers",
     "\\Controllers\\Website",
     "\\Controllers\\Website\\Page",
     "\\Scripts",
-    "\\Style",
-    "\\Style\\Theme",
     "\\Views",
     "\\Views\\CPanel",
     "\\Views\\CPanel\\WebpageEditor",
-    "\\Views\\CPanel\\WebpageEditor\\Languages"
+    "\\Views\\CPanel\\WebpageEditor\\Page"
   ],
   "SelectedNode": "\\Scripts\\Main.js",
   "PreviewInSolutionExplorer": false
