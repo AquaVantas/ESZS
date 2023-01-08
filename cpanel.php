@@ -2,6 +2,7 @@
 	session_start();
 	require_once("Internal/editors_database.php");
 	require_once("Internal/news_database.php");	
+	require_once("Internal/tournament_database.php");	
 	require_once("Internal/website_database.php");	
 
 	header('Content-Type: text/html; charset=utf8');
@@ -15,6 +16,7 @@
 	$role_admin = false;
 	$role_webdev = false;
 	$role_news = false;
+	$role_admin_dirt_rally_2_0 = false;
 
 	if(isset($_SESSION['user'])) {
 		foreach(editors::getSpecificAdminRoles($_SESSION['user']) as $role) {
@@ -24,6 +26,8 @@
 				$role_webdev = true;
 			} else if ($role['title'] == "Novinar") {
 				$role_news = true;
+			} else if ($role['title'] == "Game admin - DiRT Rally 2.0") {
+				$role_admin_dirt_rally_2_0 = true;
 			}
 		}
 	}
@@ -48,7 +52,6 @@
 				</div>
 				<div class="navigation-links">
 					<?php if($role_webdev || $role_admin){ ?>
-						<!--<a href="?tab=webpage_editor" class="nav-link <?php if($cpanel_tab == "webpage_editor"){echo "active"; } ?>">Spletna stran</a>-->
 						<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 							Spletna stran<div class="arrow"></div>
@@ -64,10 +67,21 @@
 							Novice<div class="arrow"></div>
 						</button>
 						<ul class="dropdown-menu">
-							<li><?php if($role_news || $role_admin){ ?><a href="?tab=news_outside_media_add" class="nav-link <?php if($cpanel_tab == "news_editor"){echo "active"; } ?>">Mediji</a><?php } ?></li>
+							<?php if($role_news || $role_admin){ ?><li><a href="?tab=news_outside_media_add" class="nav-link <?php if($cpanel_tab == "news_editor"){echo "active"; } ?>">Mediji</a></li><?php } ?>
 						</ul>
 					</div>
-					<?php if($role_admin){ ?><a href="?tab=tournaments&path=/xampp/htdocs/ESZS_new/Content/WebsiteContent" class="nav-link <?php if($cpanel_tab == "tournaments"){echo "active"; } ?>">Tekmovanja</a><?php } ?>
+					<!--<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Tekmovanja<div class="arrow"></div>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="?tab=tournament_add" class="nav-link">Dodaj tekmovanje</a></li>
+							<?php foreach(tournament::getAllGames() as $game) {?>
+								<li><a href="?tab=tournament&game=<?= str_replace(".", "_", str_replace(" ", "_", strtolower($game['game_title']))) ?>" class="nav-link"><?= $game['game_title'] ?></a></li>
+							<?php } ?>
+						</ul>
+					</div>-->
+					<a href="?tab=tournaments" class="nav-link <?php if($cpanel_tab == "tournaments"){echo "active"; } ?>">Tekmovanja</a>
 					<a href="?tab=user_list" class="nav-link <?php if($cpanel_tab == "user_list" || $cpanel_tab == "user_list_create" || $cpanel_tab == "user_list_edit"){echo "active"; } ?>">Uporabniki</a>
 				</div>
 			</div>
@@ -101,6 +115,10 @@
 			<?php include "Views/CPanel/tab_news_outside_media_add.php" ?>
 			<!-- media list -->
 			<?php include "Views/CPanel/tab_media.php" ?>
+			<!-- add tournaments -->			
+			<?php include "Views/CPanel/WebpageEditor/Tournaments/tab_tournaments_add.php" ?>
+			<!-- tournaments -->
+			<?php include "Views/CPanel/WebpageEditor/Tournaments/tab_tournaments.php" ?>
 			<!-- admin list -->
 			<?php include "Views/CPanel/Editors/tab_user_list.php" ?>
 			<!-- create new admin user -->
