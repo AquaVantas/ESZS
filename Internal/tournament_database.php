@@ -27,10 +27,26 @@ class tournament {
     public static function getAllGames() {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT id, game_title, game_short FROM tournament_games");
+        $statement = $db->prepare("SELECT id, game_title, game_short FROM tournament_games ORDER BY game_title ASC");
         $statement->execute();
 
         return $statement->fetchAll();
+    }
+
+    public static function addTournament($tournament_title, $game_id, $start, $end) {
+        $db = self::getInstance();
+        
+        $statement = $db->prepare("INSERT INTO tournament_list(tournament_title, game_id, apply_start_time, apply_end_time) VALUES(:tournament_title, :game_id, :apply_start_time, :apply_end_time)");
+        $statement->bindParam(":tournament_title", $tournament_title, PDO::PARAM_STR);
+        $statement->bindParam(":game_id", $game_id, PDO::PARAM_STR);
+        $statement->bindParam(":apply_start_time", $start, PDO::PARAM_STR);
+        $statement->bindParam(":apply_end_time", $end, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
     }
 }
 ?>
