@@ -1,4 +1,4 @@
-﻿<?php if((isset($cpanel_tab)) && ($cpanel_tab == "tournament_add") && $role_admin) { ?>
+<?php if((isset($cpanel_tab)) && ($cpanel_tab == "tournament_add") && $role_admin) { ?>
 	<div class="user-body container">
 		<div class="row">
 			<div class="col-12 create-bar">

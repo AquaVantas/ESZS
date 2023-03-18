@@ -105,10 +105,16 @@
 																						</div>
 																						<div class="col-10">
 																							<div class="add-image-wrapper" onclick="openFileSelector(<?= $blockContent['WBC_block_content_id'] ?>, 'blockContent')">
-																								<div class="image-empty">
-																									<img src="Content/Images/Icons/plus.svg"></img>
+																								<?php if($blockContent['WBC_image_id'] != NULL) { ?>								
+																									<?php foreach(website::getWebsiteImageByID(intval($blockContent['WBC_image_id'])) as $image) { ?>														
+																										<img class="non-empty" src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
+																									<?php } ?>
+																								<?php } else { ?>		
+																								<div class="image-empty">																																															
+																									<img src="Content/Images/Icons/plus.svg"></img>																									
 																								</div>
-																							</div>a
+																								<?php } ?>
+																							</div>
 																						</div>
 																						<div class="col-2 label">																
 																							<label for="block-content-link">Link bloka:</label><br>
@@ -138,7 +144,9 @@
 																							<label for="block-content-subheading">Gumbi bloka:</label><br>
 																						</div>
 																						<div class="col-10">
-																							Insert gumbi
+																							<a class="add-block-content" href="Controllers/Website/Page/website_create_button.php?page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_block_id=<?= $section['WSB_section_block_id'] ?>&block_content_id=<?= $blockContent['WBC_image_id'] ?>">
+																								<span>Dodaj gumb</span><div class="plus-icon"></div>
+																							</a>
 																						</div>
 																					</div>
 																				</div>

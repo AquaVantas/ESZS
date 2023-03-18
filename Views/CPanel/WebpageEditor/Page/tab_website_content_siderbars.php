@@ -22,16 +22,21 @@
 				<div class="row">
 					<div class="col-12 create-bar">
 						<?php
-							if($currDir == $dir) {
-							?>
-							<a class="btn btn-primary" onclick="closeFileSelector()"><div class="arrow-icon"></div>Nazaj</a>
-							<a class="btn btn-primary" href="">Dodaj sliko</a>
+							if($currDir == $dir) { ?>
+								<a class="btn btn-primary" onclick="closeFileSelector()"><div class="arrow-icon"></div>Nazaj</a>
 							<?php } else { 
-							$prevDiv = strrev(substr(strrev($currDir), (strpos(strrev($currDir), '/'))+1));?>
-							<a class="btn btn-primary" onclick="openCorrectFileSelector('<?= $prevDiv ?>')"><div class="arrow-icon"></div>Nazaj</a>
-							<a class="btn btn-primary" href="">Dodaj sliko</a>
+							$prevDiv = strrev(substr(strrev($currDir), (strpos(strrev($currDir), '/'))+1)); ?>
+								<a class="btn btn-primary" onclick="openCorrectFileSelector('<?= $prevDiv ?>')"><div class="arrow-icon"></div>Nazaj</a>								
 							<?php }
-						?>
+						?>						
+						<form id="<?= str_replace('/', '_', substr($currDir, 1, strlen($currDir) - 1)) ?>" class="hidden-add-pic">
+							<input type="file" id="myFile" name="filename" onchange="uploadImageToDatabase('<?= $currDir ?>')">
+							<input id="submit" type="submit" onclick="submitImageChanges()">
+						</form>
+						<div class="action-buttons">
+							<a class="btn btn-primary">TO-DO: Dodaj mapo</a>
+							<a class="btn btn-primary" onclick="openInputFileForm('<?= $currDir ?>')">Dodaj sliko</a>
+						</div>
 					</div>
 					<?php				
 						foreach(scandir($currDir) as $file) {
@@ -59,7 +64,7 @@
 								?>
 								<div class="col-2 media-folder-wrapper">
 									<div class="media-folder-image">
-										<img src="<?= substr($_GET['path'], strpos($_GET['path'], 'Content')) . '/' . $file ?>" />
+										<img src="<?= substr($currDir, strpos($currDir, "Content")) . "/" . $file ?>" />
 									</div>
 									<div class="media-folder-title">
 										<span><?php echo $file; ?></span>

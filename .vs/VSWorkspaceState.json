@@ -3,15 +3,14 @@
     "",
     "\\Controllers",
     "\\Controllers\\Website",
-    "\\Internal",
-    "\\Scripts",
+    "\\Controllers\\Website\\Page",
+    "\\Style",
+    "\\Style\\Theme",
     "\\Views",
     "\\Views\\CPanel",
     "\\Views\\CPanel\\WebpageEditor",
-    "\\Views\\CPanel\\WebpageEditor\\Languages",
-    "\\Views\\CPanel\\WebpageEditor\\Page",
     "\\Views\\CPanel\\WebpageEditor\\Tournaments"
   ],
-  "SelectedNode": "\\Views\\CPanel\\WebpageEditor\\Tournaments\\tab_tournaments_add.php",
+  "SelectedNode": "\\Controllers\\Website\\Page\\website_edit_page_details.php",
   "PreviewInSolutionExplorer": false
 }

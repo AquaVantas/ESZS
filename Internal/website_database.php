@@ -315,5 +315,24 @@ class website {
         $statement->bindParam(":block_text", $block_text, PDO::PARAM_STR);
         $statement->execute();
     }
+
+    public static function updateWebsiteBlockContentImage($block_content_id, $image_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_block_content SET image_id = :image_id WHERE block_content_id = :block_content_id");
+        $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
+        $statement->bindParam(":image_id", $image_id, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function getWebsiteImageByID($image_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT image_path, alt_text FROM website_images WHERE image_id = :image_id");
+        $statement->bindParam(":image_id", $image_id, PDO::PARAM_STR);
+        $statement->execute();
+        
+        return $statement->fetchAll();
+    }
 }
 ?>

@@ -192,6 +192,12 @@
         }
 
         .create-user {
+            form {
+                &.row {
+                    margin-bottom: 20px;
+                }
+            }
+
             p {
                 &.error {
                     color: $yellow;
@@ -327,6 +333,12 @@
                                             justify-content: center;
                                             align-items: center;
                                             margin-bottom: 15px;
+
+                                            img {
+                                                &.non-empty {
+                                                    max-width: calc(100% - 20px);
+                                                }
+                                            }
 
                                             .image-empty {
                                                 width: 120px;
@@ -737,10 +749,20 @@
         display: flex;
     }
 
+    form {
+        &.hidden-add-pic {
+            display: none;
+        }
+    }
+
     .create-bar {
         display: flex;
         justify-content: space-between;
         margin-bottom: 100px;
+
+        .action-buttons {
+            display: flex;
+        }
     }
 
     .media-folder-wrapper {

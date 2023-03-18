@@ -13,7 +13,7 @@ function openFileSelector(id, typeOfContent) {
         if ($(this).attr("dirPath") === $(this).attr("origiDir")) {
             $(this).toggleClass("active");
         }
-        $(this).attr("lookingForContent", typeOfContent+"-"+id);
+        $(this).attr("lookingForContent", typeOfContent + "-" + id);        
     });
     
 }
@@ -34,6 +34,29 @@ function closeFileSelector() {
 function openFileUploader() {
     console.log("hm");
     $(".content-upload-sidebar").toggleClass("active");
+}
+
+function uploadFile(filePath, formID) {
+
+    let pageDetailsFormData = new FormData();
+    pageDetailsFormData.append("filename", $(formID).prop('files')[0]);
+    var blockInfo = $(".content-sidebar-wrapper").attr("lookingforcontent");
+    blockInfo = blockInfo.split("-");
+
+    let pageDetailsFormDataXHR = new XMLHttpRequest();
+    pageDetailsFormDataXHR.open("POST", "Controllers/media_add_file.php?target_dir=" + filePath + "&contentType=" + blockInfo[0] + "&contentID=" + blockInfo[1]);
+    pageDetailsFormDataXHR.send(pageDetailsFormData);
+
+}
+
+function uploadImageToDatabase(data) {
+    var myFormID = "form#" + data.substring(1, data.length).replaceAll("/", "_") + " input#myFile";
+    uploadFile(data, myFormID);
+}
+
+function openInputFileForm(data) {
+    var myFormID = "form#" + data.substring(1, data.length).replaceAll("/", "_") + " input#myFile   ";   
+    $(myFormID).click();
 }
 
 function submitPageChanges(page_id, lang_id) {
