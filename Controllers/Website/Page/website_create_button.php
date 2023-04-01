@@ -14,16 +14,24 @@
 		}
 	}
 
-	$section_block_id = $_GET['section_block_id'];
-	
-	$last_sequence = 1;
-	foreach(website::getWebsiteBlockSectionLastBlockContent($section_block_id) as $blockContent) {
-		if($blockContent['sequence_num'] != NULL) {
-			$last_sequence = $blockContent['sequence_num'] + 1;
+	if(isset($_GET['button_type'])) {
+		if($_GET['button_type'] == 'block_content') {
+			website::addWebsiteButtonLink();
+			foreach(website::getWebsiteLastButtonLinkID() as $last_button_link) {
+				$last = $last_button_link['max_button_link_id'];
+			}			
+			$last_sequence_num = 1;
+			foreach(website::getWebsiteBlockContentButtonSequenceNum($_GET['block_content_id']) as $sequence_num) {
+				if($sequence_num['max_sequence_num'] != NULL) {
+					$last_sequence_num = $sequence_num['max_sequence_num'] + 1;
+					echo $last_sequence_num;
+				}
+			}
+			website::addWebsiteButton(NULL, NULL, NULL, $last_sequence_num, NULL, $_GET['block_content_id'], $last);
 		}
+		//TO-DO: add the rest
 	}
-	website::addWebsiteBlockContent($last_sequence, $section_block_id);
-	
+		
 	//redirect back to language list
 
 	if(isset($_GET['lang_id'])) {		

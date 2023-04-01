@@ -44,7 +44,7 @@ function uploadFile(filePath, formID) {
     blockInfo = blockInfo.split("-");
 
     let pageDetailsFormDataXHR = new XMLHttpRequest();
-    pageDetailsFormDataXHR.open("POST", "Controllers/media_add_file.php?target_dir=" + filePath + "&contentType=" + blockInfo[0] + "&contentID=" + blockInfo[1]);
+    pageDetailsFormDataXHR.open("POST", "Controllers/Website/Media/media_add_file.php?target_dir=" + filePath + "&contentType=" + blockInfo[0] + "&contentID=" + blockInfo[1]);
     pageDetailsFormDataXHR.send(pageDetailsFormData);
 
 }

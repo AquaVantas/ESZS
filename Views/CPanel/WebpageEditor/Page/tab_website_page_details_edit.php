@@ -144,7 +144,71 @@
 																							<label for="block-content-subheading">Gumbi bloka:</label><br>
 																						</div>
 																						<div class="col-10">
-																							<a class="add-block-content" href="Controllers/Website/Page/website_create_button.php?page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_block_id=<?= $section['WSB_section_block_id'] ?>&block_content_id=<?= $blockContent['WBC_image_id'] ?>">
+																							<div class="accordion" id="accordionBlockContentButtons">
+																							<div class="<?=$blockContent['WBC_block_content_id']?>"></div>
+																							<?php $innerButtonCounter = 0; 
+																							foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $blockContentButton) { ?>
+																								<div class="accordion-item">
+																									<h2 class="accordion-header" id="headingTwo">
+																										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInner<?= $counter ?><?= $innerCounter ?><?= $innerButtonCounter ?>" aria-expanded="false" aria-controls="collapseInner<?= $counter ?><?= $innerCounter ?><?= $innerButtonCounter ?>">
+																											<?php if(strlen($blockContentButton['WBCB_button_title']) == 0) { ?>
+																												<span>Button</span>																												
+																											<?php } else { ?>
+																												<span><?= $blockContentButton['WBCB_button_title'] ?></span>
+																											<?php } ?>
+																											<div class="actions-wrapper">
+																												<div class="up-down-arrows">
+																													<div class="up-arrow">
+																													</div>
+																													<div class="down-arrow">
+																													</div>
+																												</div>
+																												<div class="delete">
+																													<img src="Content/Images/Icons/plus.svg"></img>
+																												</div>
+																											</div>
+																										</button>
+																									</h2>
+																									<div id="collapseInner<?= $counter ?><?= $innerCounter ?><?= $innerButtonCounter ?>" class="accordion-collapse collapse" aria-labelledby="heading<?= $counter ?><?= $innerCounter ?><?= $innerButtonCounter ?>" data-bs-parent="#accordionBlockContentButtons">
+																										<div class="accordion-body" block-id="<?= $blockContent['WBC_block_content_id'] ?>" sequence-num="<?= $blockContent['WBC_sequence_num'] ?>">
+																											<div class="row">
+																												<div class="col-2 label">																
+																													<label for="button-image">Slika bloka:</label><br>
+																												</div>
+																												<div class="col-10">
+																													<div class="add-image-wrapper" onclick="openFileSelector(<?= $blockContentButton['WBCB_button_id'] ?>, 'buttonContent')">
+																														<?php if($blockContentButton['WBCB_image_id'] != NULL) { ?>								
+																															<?php foreach(website::getWebsiteImageByID(intval($blockContentButton['WBCB_image_id'])) as $image) { ?>														
+																																<img class="non-empty" src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
+																															<?php } ?>
+																														<?php } else { ?>		
+																														<div class="image-empty">																																															
+																															<img src="Content/Images/Icons/plus.svg"></img>																									
+																														</div>
+																														<?php } ?>
+																													</div>
+																												</div>
+																												<div class="col-2 label">																
+																													<label for="button-heading">Naslov gumba:</label><br>
+																												</div>
+																												<div class="col-10">
+																													<input type="text" id="button-heading" name="button-heading" value="<?= $blockContentButton['WBCB_button_title'] ?>">
+																												</div>
+																												<div class="col-2 label">																
+																													<label for="button-link">Povezava gumba:</label><br>
+																												</div>
+																												<div class="col-10">
+																													<input type="text" id="button-link" name="button-link">
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+																								</div>
+																							<?php $innerButtonCounter = $innerButtonCounter + 1; 
+																							}																							
+																							?>
+																							</div>
+																							<a class="add-block-content" href="Controllers/Website/Page/website_create_button.php?page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_block_id=<?= $section['WSB_section_block_id'] ?>&block_content_id=<?= $blockContent['WBC_block_content_id'] ?>&button_type=block_content">
 																								<span>Dodaj gumb</span><div class="plus-icon"></div>
 																							</a>
 																						</div>

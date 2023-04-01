@@ -5,13 +5,13 @@
 	require_once("../Internal/website_database.php");
 
 	if(!isset($_POST['filename'])) {
-		header('url=../cpanel.php');
+		header('url=../../../cpanel.php');
 	}
 	
 	$fileName = $_FILES["filename"]["name"];
 	$targetDir = $_GET["target_dir"];
 	$targetDirDatabase = substr($targetDir, strpos($targetDir, "Content")) . "/" . $_FILES["filename"]["name"];
-	$targetDir = "../" . substr($targetDir, strpos($targetDir, "Content")) . "/" . $_FILES["filename"]["name"];
+	$targetDir = "../../../" . substr($targetDir, strpos($targetDir, "Content")) . "/" . $_FILES["filename"]["name"];
 	echo $targetDir;
 	if (file_exists($targetDir)) {
 		echo "The file $targetDir exists";
@@ -27,6 +27,9 @@
 					website::updateWebsiteBlockContentImage($_GET['contentID'], intval($lastImg));
 				}
 				//TO-DO add upload for buttons
+				else if($_GET['contentType'] == "button") {
+					echo "button type";
+				}
 			}
 		}
 	}

@@ -4,6 +4,7 @@
     "\\Controllers",
     "\\Controllers\\Website",
     "\\Controllers\\Website\\Page",
+    "\\Internal",
     "\\Style",
     "\\Style\\Theme",
     "\\Views",
@@ -11,6 +12,6 @@
     "\\Views\\CPanel\\WebpageEditor",
     "\\Views\\CPanel\\WebpageEditor\\Tournaments"
   ],
-  "SelectedNode": "\\Controllers\\Website\\Page\\website_edit_page_details.php",
+  "SelectedNode": "\\Controllers\\Website\\Page\\website_create_block_content.php",
   "PreviewInSolutionExplorer": false
 }
