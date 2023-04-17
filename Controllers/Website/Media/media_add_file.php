@@ -1,8 +1,8 @@
 <?php
 
 	//gets the database we'll be working with
-	require_once("../Internal/media_database.php");
-	require_once("../Internal/website_database.php");
+	require_once("../../../Internal/media_database.php");
+	require_once("../../../Internal/website_database.php");
 
 	if(!isset($_POST['filename'])) {
 		header('url=../../../cpanel.php');

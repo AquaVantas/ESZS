@@ -5,7 +5,7 @@
 	
 	//since we had problems with NULL entries in the database
 	//we'll first check if there even is a value attached to what we're adding
-	if(!isset($_GET['section_variant'])) {
+	if(!isset($_GET['button_id'])) {
 		if(!isset($_GET['lang_id'])) {			
 			header('url=../../../cpanel.php?tab=webpage_editor&action=edit_page_details&page_id='.$_GET['page_id']);
 		}
@@ -13,33 +13,23 @@
 			header('url=../../../cpanel.php?tab=webpage_editor&action=edit_page_details&page_id='.$_GET['page_id'].'&lang_id='.$_GET['lang_id']);
 		}
 	}
+		
 
-	foreach(website::getSpecificWebsitePageDetails($_GET['page_id'], isset($_GET['lang_id']) ? $_GET['lang_id'] : 1) as $page) {
-		$page_detail_id = $page['page_detail_id'];
-	}
-	$section_variant = $_GET['section_variant'];
-
-	//edits language in the database
-	$arrayYes = 0;
-	foreach(website::getWebsiteExistingPageSections($page_detail_id, $section_variant) as $max_sequence) {
-		if($max_sequence['sequence_num'] != NULL) {
-			$sequence_num = $max_sequence['sequence_num'];
-		}
-	}
-
-	if($section_variant == 1) {
-		website::addWebsiteSection($page_detail_id, $section_variant, $sequence_num+1);
-
-		$section_id = 1;
-		foreach(website::getWebsiteLastSection() as $last_section) {
-			if($last_section['section_id'] != NULL) {
-				$section_id = $last_section['section_id'];
-			}
+	//change the sequence numbers if button wasn't last on list
+	if(isset($_GET['block_content_id'])) {
+		foreach(website::getWebsiteBlockContentButtonDeletedSequenceNumber($_GET['button_id']) as $deletedSequence) {
+			$deletedSequenceNumber = $deletedSequence['WBCB_sequence_num'];
 		}
 
-		website::addWebsiteSectionBlock($section_id);
-	}	
+		foreach(website::getWebsiteBlockContentButtonAfterDeleted($_GET['block_content_id'], $deletedSequenceNumber) as $fix_button) {
+			website::updateWebsiteBlockContentButtonSequenceNum($fix_button['WBCB_button_id']);
+		}
 
+		website::deleteWebsiteButton($_GET['button_id']);
+		website::deleteWebsiteButtonLink($_GET['button_id']);
+	}
+	
+		
 	//redirect back to language list
 
 	if(isset($_GET['lang_id'])) {		

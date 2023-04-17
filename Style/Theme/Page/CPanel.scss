@@ -263,8 +263,8 @@
                                                 width: 16px;
 
                                                 img {
-                                                    width: 100%;
-                                                    height: 100%;
+                                                    width: 16px;
+                                                    height: 16px;
                                                     transform: rotate(45deg);
                                                 }
                                             }
@@ -350,10 +350,31 @@
                                             justify-content: center;
                                             align-items: center;
                                             margin-bottom: 15px;
+                                            position: relative;
 
                                             img {
                                                 &.non-empty {
                                                     max-width: calc(100% - 20px);
+                                                }
+                                            }
+
+                                            .remove-image {
+                                                position: absolute;
+                                                top: 10px;
+                                                right: 10px;
+                                                background-color: $transparentwhite;
+                                                border-radius: 100%;
+                                                height: 25px;
+                                                width: 25px;
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+
+                                                img {
+                                                    transform: rotate(45deg);
+                                                    width: 15px;
+                                                    height: 15px;
+                                                    filter: invert(13%) sepia(98%) saturate(6543%) hue-rotate(0deg) brightness(110%) contrast(116%);
                                                 }
                                             }
 
@@ -382,6 +403,28 @@
                                             justify-content: center;
                                             border-radius: 8px;
                                             margin-bottom: 15px;
+                                        }
+
+                                        .page-list-wrapper {
+                                            max-height: 250px;
+                                            overflow-y: scroll;
+                                            background-color: $transparentwhite;
+                                            padding: 10px 15px;
+
+                                            .a-page {
+                                                padding-left: 10px;
+                                                display: flex;
+                                                flex-direction: column;
+
+                                                input {
+                                                    width: fit-content;
+                                                    margin: 0 10px 0 0;
+                                                }
+
+                                                label {
+                                                    margin: 0;
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -513,10 +556,67 @@
     display: flex;
 
     .left-side {
-        min-width: 250px;
+        min-width: 300px;
         width: auto;
         min-height: calc(100vh - 60px);
         border-right: 1px solid $primarybluefive;
+
+        .dropdown {
+            .btn {
+                font-size: 14px;
+                width: 20px;
+                height: 20px;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: transparent;
+
+
+                img {
+                    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(204deg) brightness(107%) contrast(102%);
+                }
+
+                &::after {
+                    display: none;
+                }
+
+                &:focus {
+                    box-shadow: none;
+                }
+
+                .arrow {
+                    width: 20px;
+                    height: 20px;
+                    background-image: url('../Content/Images/Icons/arrow.svg');
+                    background-position: center;
+                    background-size: contain;
+                    filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(92deg) brightness(104%) contrast(101%);
+                    margin-left: 10px;
+                    transform: rotate(-90deg);
+                }
+            }
+
+            ul {
+                background-color: $background;
+                border-color: $primarybluefive;
+
+                &.show {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                a {
+                    &.nav-link {
+                        color: $white;
+                    }
+
+                    &:hover {
+                        background-color: $transparentwhite;
+                    }
+                }
+            }
+        }
 
         .language-select {
             .dropdown {
@@ -579,74 +679,44 @@
             }
         }
 
+        .site-info {
+            padding: 20px 5px 10px 15px;
+            display: flex;
+            justify-content: space-between;
+
+            .dropdown {
+                .btn {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+
         .list-of-pages {
             .list-element {
-                display: flex;
-                justify-content: space-between;
-                padding: 5px;
+                &.first {
+                    padding: 5px 5px 5px 20px;
+                }
 
-                a {
-                    padding: 0 20px;
+                .element {
+                    padding: 5px 5px 5px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                a { 
+                    padding: 0;
                     font-size: 14px;
                     line-height: 20px;
-                    color: $white; 
+                    color: $white;
+
+                    &.nav-link {
+                        padding: 8px 14px;
+                    }
                 }
 
                 .dropdown {
                     .btn {
-                        font-size: 14px;
-                        width: 20px;
-                        height: 20px;
-                        padding: 0;
                         transform: rotate(90deg);
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: transparent;
-
-
-                        img {
-                            filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(204deg) brightness(107%) contrast(102%);
-                        }
-
-                        &::after {
-                            display: none;
-                        }
-
-                        &:focus {
-                            box-shadow: none;
-                        }
-
-                        .arrow {
-                            width: 20px;
-                            height: 20px;
-                            background-image: url('../Content/Images/Icons/arrow.svg');
-                            background-position: center;
-                            background-size: contain;
-                            filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(92deg) brightness(104%) contrast(101%);
-                            margin-left: 10px;
-                            transform: rotate(-90deg);
-                        }
-                    }
-
-                    ul {
-                        background-color: $background;
-                        border-color: $primarybluefive;
-
-                        &.show {
-                            display: flex;
-                            flex-direction: column;
-                        }
-
-                        a {
-                            &.nav-link {
-                                color: $white;
-                            }
-
-                            &:hover {
-                                background-color: $transparentwhite;
-                            }
-                        }
                     }
                 }
             }
@@ -793,6 +863,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            &.chosen-image {
+                background-color: $primarybluethree ;
+            }
 
             .folder-image {
                 position: absolute;

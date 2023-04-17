@@ -1,4 +1,5 @@
 ﻿<?php
+	
 	$dir = "/xampp/htdocs/ESZS_new/Content/WebsiteContent";					
 	$files1 = scandir($dir);
 	$fileDirectories = array($dir);
@@ -42,7 +43,7 @@
 						foreach(scandir($currDir) as $file) {
 							if(is_dir($currDir . "/" . $file) && ($file != "." && $file != ".." && $file != "Icons")) {
 								?>
-								<div class="col-2 media-folder-wrapper">
+								<div class="col-2 media-folder-wrapper folder-file">
 									<a onclick="openCorrectFileSelector('<?= $currDir . "/" . $file ?>')">
 										<div class="media-folder-image">
 											<div class="folder-image"></div>
@@ -61,16 +62,18 @@
 					<?php				
 						foreach(scandir($currDir) as $file) {
 							if(!is_dir($currDir . "/" . $file)) {
-								?>
-								<div class="col-2 media-folder-wrapper">
-									<div class="media-folder-image">
-										<img src="<?= substr($currDir, strpos($currDir, "Content")) . "/" . $file ?>" />
-									</div>
-									<div class="media-folder-title">
-										<span><?php echo $file; ?></span>
-									</div>
-								</div>
-								<?php
+								foreach(media::getImages() as $image) {
+									if(str_contains($currDir . "/" . $file, $image['image_path'])) { ?>
+										<div class="col-2 media-folder-wrapper image-file" onclick="selectThisFile(<?= $image['image_id'] ?>)" image-id="<?= $image['image_id'] ?>">
+											<div class="media-folder-image">
+												<img src="<?= substr($currDir, strpos($currDir, "Content")) . "/" . $file ?>" />
+											</div>
+											<div class="media-folder-title">
+												<span><?php echo $file; ?></span>
+											</div>
+										</div>
+									<?php }
+								}
 							}
 						}
 					?>

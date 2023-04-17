@@ -1,9 +1,10 @@
 <?php
 	session_start();
-	require_once("Internal/editors_database.php");
+	require_once("Internal/editors_database.php");	
+	require_once("Internal/media_database.php");
 	require_once("Internal/news_database.php");	
 	require_once("Internal/tournament_database.php");	
-	require_once("Internal/website_database.php");	
+	require_once("Internal/website_database.php");
 
 	header('Content-Type: text/html; charset=utf8');
 	if(isset($_GET['tab'])) {
@@ -30,6 +31,75 @@
 				$role_admin_dirt_rally_2_0 = true;
 			}
 		}
+	}
+
+	function printSubMenu($parent, $level) {
+		$html = "<div class='subpage-list'>";
+		
+		foreach(website::getAllWebsitePageSubpages($parent) as $subpage) {
+			$html .= "<div class='list-element'>
+			<div class='element' style='padding-left:" . $level*10 . "px; padding-right: 5px;'>";
+			if (count(website::getSpecificWebsitePageDetails($subpage['page_id'], isset($_GET['lang_id']) ? $_GET['lang_id'] : 1)) != 0) { 
+				if(isset($_GET['lang_id'])) {
+					$html .= "<a href='?tab=webpage_editor&action=edit_page_details&page_id=" . $subpage['page_id'] . "&lang_id=" . $_GET['lang_id'] . "'>
+						" . $subpage['page_title'] . "
+					</a>";
+				}
+				else {
+					$html .= "<a href='?tab=webpage_editor&action=edit_page_details&page_id=" . $subpage['page_id'] . "'>
+						" . $subpage['page_title'] . "
+					</a>";
+				}				
+			}
+			else {
+				if(isset($_GET['lang_id'])) {
+					$html .= "<a href='Controllers/Website/Page/website_create_page_details.php?page_id=" . $subpage['page_id'] . "&lang_id=" . $_GET['lang_id'] . "'>
+						" . $subpage['page_title'] . "
+					</a>";
+				}
+				else {
+					$html .= "<a href='Controllers/Website/Page/website_create_page_details.php?page_id=" . $subpage['page_id'] . "'>
+						". $subpage['page_title'] . "
+					</a>";
+				}
+			}
+			$html .= "<div class='dropdown'>
+						<button class='btn btn-secondary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+							<img src='Content/Images/Icons/three-dots.svg'>
+						</button>
+						<ul class='dropdown-menu'>";
+			if(isset($_GET['lang_id'])) {
+				$html .= "<a class='nav-link' href='Controllers/Website/Page/website_create_page.php?lang_id=" . $_GET['lang_id'] . "&parent_page_id=" . $subpage['page_id'] . "'>Dodaj podstran</a>
+				<a class='nav-link' href='?tab=webpage_editor&action=edit_page&page_id=" . $subpage['page_id'] . "&lang_id=" . $_GET['lang_id'] . "'>Uredi</a>
+				<a class='nav-link'>TO-DO: Izbriši (moraš izbrisat tudi vse kar sledi)</a>";
+			}
+			else {
+				$html .= "<a class='nav-link' href='Controllers/Website/Page/website_create_page.php?parent_page_id=" . $subpage['page_id'] . "'>Dodaj podstran</a>
+				<a class='nav-link' href='?tab=webpage_editor&action=edit_page&page_id=" . $subpage['page_id'] . "'>Uredi</a>
+				<a class='nav-link'>TO-DO: Izbriši (moraš izbrisat tudi vse kar sledi)</a>";
+			}
+			$html .= "</ul></div></div>";
+			if(count(website::getAllWebsitePageSubpages($subpage['page_id'])) > 0) {
+				$html .= printSubMenu($subpage['page_id'], $level+1);
+			}
+			$html .= "</div>";			
+		}	
+		
+		$html .= "</div>";
+		return $html;
+	}
+
+	function printButtonSubmenu($parent, $level) {
+		$html = "<div class='a-page'>";
+		foreach(website::getAllWebsitePageSubpages($parent) as $subpage) {
+			$html .= "<div class='option'><input type='checkbox' id='" . $subpage['page_id'] . "' name='" . $subpage['page_id'] . "' value='" . $subpage['page_id'] . "'>
+					<label for'" . $subpage['page_id'] . "'>" . $subpage['page_title'] . "</label></div>";
+			if(sizeof(website::getAllWebsitePageSubpages($subpage['page_id'])) > 0) {
+				$html .= printButtonSubmenu($subpage['page_id'], $level+1);
+			}
+		}
+		$html .= "</div>";
+		return $html;
 	}
 ?>
 <!DOCTYPE html>

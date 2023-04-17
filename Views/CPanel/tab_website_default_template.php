@@ -33,34 +33,58 @@
 				</div>
 			</div>
 			<div class="site-info">
-				<span>TO-DO: Add page setup
+				<span>EŠZS</span>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="Content/Images/Icons/three-dots.svg">
+					</button>
+					<ul class="dropdown-menu">							
+						<a class="nav-link" href="Controllers/Website/Page/website_create_page.php?<?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">Dodaj stran</a>
+					</ul>
+				</div>
 			</div>
-			<div class="list-of-pages">
+			<div class="list-of-pages">				
 				<?php foreach(website::getAllWebsitePages() as $page) { 
 					if($page['page_id'] != 1) { ?>
-					<div class="list-element">
-						<?php if (count(website::getSpecificWebsitePageDetails($page['page_id'], isset($_GET['lang_id']) ? $_GET['lang_id'] : 1)) != 0) { ?>
-							<a href="?tab=webpage_editor&action=edit_page_details&page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
-								<?= $page['page_title'] ?>
-							</a>
-						<?php } else { ?>
-							<a href="Controllers/Website/Page/website_create_page_details.php?page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
-								<?= $page['page_title'] ?>
-							</a>
-						<?php } ?>
-						<div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<img src="Content/Images/Icons/three-dots.svg">
-							</button>
-							<ul class="dropdown-menu">							
-								<a class="nav-link" href="?tab=webpage_editor&action=edit_page&page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">Uredi</a>
-								<a class="nav-link">TO-DO: Izbriši (moraš izbrisat tudi vse kar sledi)</a>
-							</ul>
+					<div class="main-element-wrapper">
+						<div class="list-element">
+							<div class="element">
+								<?php if (count(website::getSpecificWebsitePageDetails($page['page_id'], isset($_GET['lang_id']) ? $_GET['lang_id'] : 1)) != 0) { ?>
+									<a href="?tab=webpage_editor&action=edit_page_details&page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
+										<?= $page['page_title'] ?>
+									</a>
+								<?php } else { ?>
+									<a href="Controllers/Website/Page/website_create_page_details.php?page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
+										<?= $page['page_title'] ?>
+									</a>
+								<?php } ?>
+								<div class="dropdown">
+									<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+										<img src="Content/Images/Icons/three-dots.svg">
+									</button>
+									<ul class="dropdown-menu">					
+										<a class="nav-link" href="Controllers/Website/Page/website_create_page.php?<?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>&parent_page_id=<?= $page['page_id'] ?>">Dodaj podstran</a>
+										<a class="nav-link" href="?tab=webpage_editor&action=edit_page&page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">Uredi</a>
+										<a class="nav-link">TO-DO: Izbriši (moraš izbrisat tudi vse kar sledi)</a>
+									</ul>
+								</div>
+							</div>
 						</div>
+						<?php if(sizeof(website::getAllWebsitePageSubpages($page['page_id'])) > 0) {
+							echo printSubMenu($page['page_id'], 3);
+						} ?>
 					</div>
 					<?php } else { ?>
-						<div class="list-element">
-							<a><?= $page['page_title'] ?></a>
+						<div class="list-element first">
+							<?php if (count(website::getSpecificWebsitePageDetails(1, isset($_GET['lang_id']) ? $_GET['lang_id'] : 1)) != 0) { ?>
+								<a href="?tab=webpage_editor&action=edit_page_details&page_id=1<?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
+									<?= $page['page_title'] ?>
+								</a>
+							<?php } else { ?>
+								<a href="Controllers/Website/Page/website_create_page_details.php?page_id=1<?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
+									<?= $page['page_title'] ?>
+								</a>
+							<?php } ?>
 						</div>
 					<?php }
 				} ?>

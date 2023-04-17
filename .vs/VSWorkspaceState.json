@@ -3,15 +3,14 @@
     "",
     "\\Controllers",
     "\\Controllers\\Website",
-    "\\Controllers\\Website\\Page",
-    "\\Internal",
-    "\\Style",
-    "\\Style\\Theme",
+    "\\Controllers\\Website\\Media",
     "\\Views",
-    "\\Views\\CPanel",
-    "\\Views\\CPanel\\WebpageEditor",
-    "\\Views\\CPanel\\WebpageEditor\\Tournaments"
+    "\\Views\\CPanel\\Universal",
+    "\\Views\\Partials",
+    "\\Views\\Partials\\Master",
+    "\\Views\\Partials\\Sections",
+    "\\Views\\Partials\\Sections\\SectionBlock"
   ],
-  "SelectedNode": "\\Controllers\\Website\\Page\\website_create_block_content.php",
+  "SelectedNode": "\\Controllers\\Website\\Page\\website_create_page_details.php",
   "PreviewInSolutionExplorer": false
 }

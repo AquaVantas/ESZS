@@ -8,14 +8,32 @@ function deleteUser(command) {
     $(".delete-user-modal .modal-footer .delete-button").attr("href", command);
 }
 
+function selectThisFile(selected_image) {
+    var contentType = $(".content-sidebar-wrapper.active").attr("lookingforcontent");
+    contentType = contentType.split("-");
+    var chosenBlock = $(".accordion-body");
+    if (contentType[0] == "blockContent") {
+        for(var i = 0; i < chosenBlock.length; i++) {
+            if ($(chosenBlock[i]).attr("block-id") == contentType[1]) {
+                chosenBlock = chosenBlock[i];
+            }
+        }
+    }
+    var chosenImagePicker = $(chosenBlock).find(".add-image-wrapper")[0];
+    $(chosenImagePicker).attr("chosen-image-id", selected_image);
+    $(chosenImagePicker).empty();
+    $(chosenImagePicker).append("<img src='' alt='refresh-to-see'/>");
+    $(".media-folder-image").removeClass("chosen-image");
+    $($(".media-folder-wrapper[image-id=" + selected_image + "]").find(".media-folder-image")).toggleClass("chosen-image");
+}
+
 function openFileSelector(id, typeOfContent) {
     $(".content-sidebar-wrapper").each(function (index) {
         if ($(this).attr("dirPath") === $(this).attr("origiDir")) {
             $(this).toggleClass("active");
         }
         $(this).attr("lookingForContent", typeOfContent + "-" + id);        
-    });
-    
+    });    
 }
 
 function openCorrectFileSelector(selector) {
@@ -59,6 +77,10 @@ function openInputFileForm(data) {
     $(myFormID).click();
 }
 
+function deleteThisImage(image) {
+    $(image).parent().attr("chosen-image-id", null);
+}
+
 function submitPageChanges(page_id, lang_id) {
     let pageDetailsFormData = new FormData();
     pageDetailsFormData.append("page_title", document.getElementById("page_title").value);
@@ -91,13 +113,12 @@ function submitPageChanges(page_id, lang_id) {
             pageSectionBlockFormDataXHR.open("POST", "Controllers/Website/Page/website_edit_block_section.php?page_id=" + page_id + "&lang_id=" + lang_id + "&section_id=" + sectionID);
             pageSectionBlockFormDataXHR.send(pageSectionBlockFormData);
 
-            var blockContentList = $(".accordion-body .section-block-content .accordion .accordion-item", this);
-
+            var blockContentList = $(".accordion-body .section-block-content .accordion .block-content-item", this);
             let pageSectionBlockContentFormData = new FormData();
             blockContentList.each(function (blockIndex) {
                 pageSectionBlockContentFormData.append("block-content-id", $(".accordion-body", this).attr("block-id"));
                 pageSectionBlockContentFormData.append("sequence-num", $(".accordion-body", this).attr("sequence-num"));
-                //dodaj še image
+                pageSectionBlockContentFormData.append("block-content-image", $(".accordion-body #block-content-image", this).attr("chosen-image-id"));
                 pageSectionBlockContentFormData.append("block-content-link", $(".accordion-body #block-content-link", this).val());
                 pageSectionBlockContentFormData.append("block-content-heading", $(".accordion-body #block-content-heading", this).val());
                 pageSectionBlockContentFormData.append("block-content-subheading", $(".accordion-body #block-content-subheading", this).val());
@@ -107,6 +128,22 @@ function submitPageChanges(page_id, lang_id) {
                 let pageSectionBlockContentFormDataXHR = new XMLHttpRequest();
                 pageSectionBlockContentFormDataXHR.open("POST", "Controllers/Website/Page/website_edit_block_content.php?page_id=" + page_id + "&lang_id=" + lang_id);
                 pageSectionBlockContentFormDataXHR.send(pageSectionBlockContentFormData);
+
+                var blockContentButtonList = $(".block-content-button-item", this);
+                let pageSectionBlockContentButtonFormData = new FormData();
+                blockContentButtonList.each(function (blockContentButtonIndex) {
+                    pageSectionBlockContentButtonFormData.append("button-id", $(".accordion-body", this).attr("button-id"));
+                    pageSectionBlockContentButtonFormData.append("button-heading", $(".accordion-body #button-heading", this).val());
+                    pageSectionBlockContentButtonFormData.append("button-link", $(".accordion-body #button-link", this).val());
+                    pageSectionBlockContentButtonFormData.append("button-anchor", $(".accordion-body #button-anchor", this).val());
+                    pageSectionBlockContentButtonFormData.append("button-link-heading", $(".accordion-body #button-link-heading", this).val());
+                    pageSectionBlockContentButtonFormData.append("button-page-link", $(".accordion-body .page-list-wrapper input:checked", this).attr("value"));
+                    pageSectionBlockContentButtonFormData.append("button-target", $(".accordion-body #button-target", this).is(":checked"));
+
+                    let pageSectionBlockContentButtonFormDataXHR = new XMLHttpRequest();
+                    pageSectionBlockContentButtonFormDataXHR.open("POST", "Controllers/Website/Page/website_edit_block_content_button.php?page_id=" + page_id + "&lang_id=" + lang_id);
+                    pageSectionBlockContentButtonFormDataXHR.send(pageSectionBlockContentButtonFormData);
+                });
             });
         }
         else if ($(".accordion-body", this).attr("variant-id") == 2) {

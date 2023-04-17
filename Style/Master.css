@@ -348,8 +348,8 @@ table tr td {
   width: 16px;
 }
 .cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-header button .actions-wrapper .delete img {
-  width: 100%;
-  height: 100%;
+  width: 16px;
+  height: 16px;
   transform: rotate(45deg);
 }
 .cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-collapse .accordion-body {
@@ -415,9 +415,28 @@ table tr td {
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
+  position: relative;
 }
 .cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-collapse .accordion-body .add-image-wrapper img.non-empty {
   max-width: calc(100% - 20px);
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-collapse .accordion-body .add-image-wrapper .remove-image {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.1019607843);
+  border-radius: 100%;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-collapse .accordion-body .add-image-wrapper .remove-image img {
+  transform: rotate(45deg);
+  width: 15px;
+  height: 15px;
+  filter: invert(13%) sepia(98%) saturate(6543%) hue-rotate(0deg) brightness(110%) contrast(116%);
 }
 .cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-collapse .accordion-body .add-image-wrapper .image-empty {
   width: 120px;
@@ -441,6 +460,24 @@ table tr td {
   justify-content: center;
   border-radius: 8px;
   margin-bottom: 15px;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-collapse .accordion-body .page-list-wrapper {
+  max-height: 250px;
+  overflow-y: scroll;
+  background-color: rgba(255, 255, 255, 0.1019607843);
+  padding: 10px 15px;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page input {
+  width: fit-content;
+  margin: 0 10px 0 0;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .accordion .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page label {
+  margin: 0;
 }
 .cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .add-section {
   cursor: pointer;
@@ -534,10 +571,53 @@ table tr td {
   display: flex;
 }
 .website-default-template .left-side {
-  min-width: 250px;
+  min-width: 300px;
   width: auto;
   min-height: calc(100vh - 60px);
   border-right: 1px solid #00d6bd;
+}
+.website-default-template .left-side .dropdown .btn {
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+.website-default-template .left-side .dropdown .btn img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(204deg) brightness(107%) contrast(102%);
+}
+.website-default-template .left-side .dropdown .btn::after {
+  display: none;
+}
+.website-default-template .left-side .dropdown .btn:focus {
+  box-shadow: none;
+}
+.website-default-template .left-side .dropdown .btn .arrow {
+  width: 20px;
+  height: 20px;
+  background-image: url("../Content/Images/Icons/arrow.svg");
+  background-position: center;
+  background-size: contain;
+  filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(92deg) brightness(104%) contrast(101%);
+  margin-left: 10px;
+  transform: rotate(-90deg);
+}
+.website-default-template .left-side .dropdown ul {
+  background-color: #192133;
+  border-color: #00d6bd;
+}
+.website-default-template .left-side .dropdown ul.show {
+  display: flex;
+  flex-direction: column;
+}
+.website-default-template .left-side .dropdown ul a.nav-link {
+  color: #FFFFFF;
+}
+.website-default-template .left-side .dropdown ul a:hover {
+  background-color: rgba(255, 255, 255, 0.1019607843);
 }
 .website-default-template .left-side .language-select .dropdown button {
   display: flex;
@@ -584,60 +664,33 @@ table tr td {
 .website-default-template .left-side .language-select .dropdown ul li:hover a {
   color: #FFFFFF;
 }
-.website-default-template .left-side .list-of-pages .list-element {
+.website-default-template .left-side .site-info {
+  padding: 20px 5px 10px 15px;
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+}
+.website-default-template .left-side .site-info .dropdown .btn {
+  transform: rotate(90deg);
+}
+.website-default-template .left-side .list-of-pages .list-element.first {
+  padding: 5px 5px 5px 20px;
+}
+.website-default-template .left-side .list-of-pages .list-element .element {
+  padding: 5px 5px 5px 20px;
+  display: flex;
+  justify-content: space-between;
 }
 .website-default-template .left-side .list-of-pages .list-element a {
-  padding: 0 20px;
+  padding: 0;
   font-size: 14px;
   line-height: 20px;
   color: #FFFFFF;
 }
+.website-default-template .left-side .list-of-pages .list-element a.nav-link {
+  padding: 8px 14px;
+}
 .website-default-template .left-side .list-of-pages .list-element .dropdown .btn {
-  font-size: 14px;
-  width: 20px;
-  height: 20px;
-  padding: 0;
   transform: rotate(90deg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-}
-.website-default-template .left-side .list-of-pages .list-element .dropdown .btn img {
-  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(204deg) brightness(107%) contrast(102%);
-}
-.website-default-template .left-side .list-of-pages .list-element .dropdown .btn::after {
-  display: none;
-}
-.website-default-template .left-side .list-of-pages .list-element .dropdown .btn:focus {
-  box-shadow: none;
-}
-.website-default-template .left-side .list-of-pages .list-element .dropdown .btn .arrow {
-  width: 20px;
-  height: 20px;
-  background-image: url("../Content/Images/Icons/arrow.svg");
-  background-position: center;
-  background-size: contain;
-  filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(92deg) brightness(104%) contrast(101%);
-  margin-left: 10px;
-  transform: rotate(-90deg);
-}
-.website-default-template .left-side .list-of-pages .list-element .dropdown ul {
-  background-color: #192133;
-  border-color: #00d6bd;
-}
-.website-default-template .left-side .list-of-pages .list-element .dropdown ul.show {
-  display: flex;
-  flex-direction: column;
-}
-.website-default-template .left-side .list-of-pages .list-element .dropdown ul a.nav-link {
-  color: #FFFFFF;
-}
-.website-default-template .left-side .list-of-pages .list-element .dropdown ul a:hover {
-  background-color: rgba(255, 255, 255, 0.1019607843);
 }
 .website-default-template .right-side {
   width: 100%;
@@ -749,6 +802,9 @@ table tr td {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.content-sidebar-wrapper .media-folder-wrapper .media-folder-image.chosen-image {
+  background-color: #66e6d7;
 }
 .content-sidebar-wrapper .media-folder-wrapper .media-folder-image .folder-image {
   position: absolute;

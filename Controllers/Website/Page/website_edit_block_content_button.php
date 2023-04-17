@@ -20,17 +20,24 @@
 		$lang_id = 1;
 	}
 
-	$block_content_id = $_POST['block-content-id'];
-	$sequence_num = $_POST['sequence-num'];
-	$image_id = $_POST['block-content-image'];
-	$block_link = $_POST['block-content-link'];
-	$block_heading = $_POST['block-content-heading'];
-	$block_subheading = $_POST['block-content-subheading'];
-	$block_text = $_POST['block-content-text'];
+	$button_id = $_POST['button-id'];
+	$button_heading = $_POST['button-heading'];
+	$button_link = $_POST['button-link'];
+	$button_anchor = $_POST['button-anchor'];
+	$button_link_heading = $_POST['button-link-heading'];
+	$button_page_link = $_POST['button-page-link'];
+	$button_target = $_POST['button-target'];
+	if($button_target == "true") {
+		$button_target = 1;
+	}
+	else {
+		$button_target = 0;
+	}	
 
 	//edits language in the database
-	if($block_content_id != NULL) {
-		website::updateWebsiteBlockContent($block_content_id, $sequence_num, $image_id, $block_link, $block_heading, $block_subheading, $block_text);
+	if($button_id != NULL) {
+		website::updateWebsiteBlockContentButton($button_id, $button_heading);
+		website::updateWebsiteBlockContentButtonLink($button_id, $button_link, $button_anchor, $button_link_heading, $button_target, $button_page_link);
 	}
 
 	//redirect back to language list

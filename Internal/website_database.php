@@ -75,10 +75,33 @@ class website {
         $statement->execute();
     }
 
+     public static function addWebsitePage($parent) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("INSERT INTO website_page(page_title, subpage_to) VALUES('Neimenovana stran', :parent)");
+        $statement->bindParam(":parent", $parent, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
     public static function getAllWebsitePages() {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT page_id, page_title FROM website_page");
+        $statement = $db->prepare("SELECT page_id, page_title FROM website_page WHERE subpage_to IS NULL");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getAllWebsitePageSubpages($page_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT page_id, page_title, subpage_to FROM website_page WHERE subpage_to = :page_id");
+        $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
         $statement->execute();
 
         return $statement->fetchAll();
@@ -225,15 +248,25 @@ class website {
     public static function getWebsiteSections($page_detail_id) {
         $db = self::getInstance();
 
+        $statement = $db->prepare("SELECT section_id, variant_id FROM website_section WHERE page_detail_id = :page_detail_id");
+        $statement->bindParam(":page_detail_id", $page_detail_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteSectionBlocks($section_id) {
+        $db = self::getInstance();
+
         $statement = $db->prepare("SELECT website_section.section_id AS WS_section_id, website_section.sequence_num AS WS_sequence_num, website_section.page_detail_id AS WS_page_detail_id, website_section.variant_id AS WS_variant_id,
                                     website_section_block.section_block_id AS WSB_section_block_id, website_section_block.section_name AS WSB_section_name, website_section_block.block_template_id AS WSB_block_template_id,
                                     website_section_block.section_class AS WSB_section_class, website_section_block.block_header AS WSB_block_header, website_section_block.block_subheader AS WSB_block_subheader,
                                     website_section_block.block_rich_text AS WSB_block_rich_text
                                     FROM website_section
                                     INNER JOIN website_section_block ON website_section.section_id = website_section_block.section_id
-                                    WHERE website_section.page_detail_id = :page_detail_id
+                                    WHERE website_section.section_id = :section_id
                                     ORDER BY website_section.sequence_num ASC");
-        $statement->bindParam(":page_detail_id", $page_detail_id, PDO::PARAM_STR);
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
         $statement->execute();
 
         return $statement->fetchAll();
@@ -432,5 +465,66 @@ class website {
         return $statement->fetchAll();
     }
 
+    public static function getWebsiteBlockContentButtonDeletedSequenceNumber($button_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_button.sequence_num AS WBCB_sequence_num
+                                    FROM website_button                                    
+                                    WHERE website_button.button_id = :button_id");     
+        $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }    
+
+    public static function getWebsiteBlockContentButtonAfterDeleted($block_content_id, $sequence_num) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_button.button_id AS WBCB_button_id
+                                    FROM website_button                                    
+                                    WHERE website_button.sequence_num > :sequence_num AND website_button.block_content_id = :block_content_id
+                                    ORDER BY website_button.sequence_num ASC");
+        $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);        
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function updateWebsiteBlockContentButtonSequenceNum($button_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_button
+                                    SET sequence_num = sequence_num - 1                        
+                                    WHERE button_id = :button_id");
+        $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function updateWebsiteBlockContentButton($button_id, $button_title) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_button
+                                    SET button_title = :button_title
+                                    WHERE button_id = :button_id");
+        $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
+        $statement->bindParam(":button_title", $button_title, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function updateWebsiteBlockContentButtonLink($button_id, $button_link, $query_string, $link_title, $target, $page_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_button_link
+                                    SET button_link = :button_link, query_string = :query_string, link_title = :link_title, target = :target, page_id = :page_id
+                                    WHERE button_link_id = :button_id");
+        $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
+        $statement->bindParam(":button_link", $button_link, PDO::PARAM_STR);
+        $statement->bindParam(":query_string", $query_string, PDO::PARAM_STR);        
+        $statement->bindParam(":link_title", $link_title, PDO::PARAM_STR);
+        $statement->bindParam(":target", $target, PDO::PARAM_STR);
+        $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->execute();
+    }
 }
 ?>

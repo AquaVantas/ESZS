@@ -46,5 +46,14 @@ class media {
 
         return $statement->fetchColumn();
     }
+
+    public static function getImages() {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT image_id, image_path, alt_text FROM website_images");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
 }
 ?>
