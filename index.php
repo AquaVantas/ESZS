@@ -1,26 +1,21 @@
 <?php
-	session_start();
 	require_once("Internal/editors_database.php");	
 	require_once("Internal/media_database.php");
 	require_once("Internal/news_database.php");	
 	require_once("Internal/tournament_database.php");	
 	require_once("Internal/website_database.php");
 
-	header('Content-Type: text/html; charset=utf8');
-
-	
+	header('Content-Type: text/html; charset=utf8');	
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-		<link rel="stylesheet" href="Plugins/bootstrap/bootstrap.min.css">
-		<link rel="stylesheet" href="Style/Master.css">
-		<script type="text/javascript" src="Scripts/Main.js"></script>
-		<script src="Plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<?php include "Views/Partials/Master/header.php"; ?>
 	</head>
 	<body>
-		<?php if(!isset($_GET['page_id'])) {
+		<?php 
+		
+		if(!isset($_GET['page_id'])) {
 			$page_id = 1;
 		}
 		else {
@@ -39,18 +34,30 @@
 			$page_details_id = $page['page_detail_id'];
 		}
 
+		include "Views/Partials/Master/navigation.php";
+
 		foreach(website::getWebsiteSections($page_details_id) as $section_type) {
 			if($section_type['variant_id'] == 1) {
 				foreach(website::getWebsiteSectionBlocks($section_type['section_id']) as $section) {
-					echo $section['WSB_block_template_id'];
 					switch($section['WSB_block_template_id']) {
 						case 1: 
-							include "Views";
+							include "Views/Partials/Sections/SectionBlock/blockHightlightedNews.php";
+							break;
+						case 2:
+							include "Views/Partials/Sections/SectionBlock/blockAboutUsShort.php";
+							break;
+						case 3:
+							include "Views/Partials/Sections/SectionBlock/blockPartners.php";
+							break;
+						case 4:
+							include "Views/Partials/Sections/SectionBlock/blockMembers.php";
 							break;
 					}
 				} 
 			}
 		}
+
+		include "Views/Partials/Master/bootomer.php";
 		?>
 	</body>
 	<footer>

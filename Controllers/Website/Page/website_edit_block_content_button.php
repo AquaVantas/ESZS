@@ -21,6 +21,7 @@
 	}
 
 	$button_id = $_POST['button-id'];
+	$button_image = $_POST['button-image'];
 	$button_heading = $_POST['button-heading'];
 	$button_link = $_POST['button-link'];
 	$button_anchor = $_POST['button-anchor'];
@@ -36,7 +37,7 @@
 
 	//edits language in the database
 	if($button_id != NULL) {
-		website::updateWebsiteBlockContentButton($button_id, $button_heading);
+		website::updateWebsiteBlockContentButton($button_id, $button_heading, $button_image);
 		website::updateWebsiteBlockContentButtonLink($button_id, $button_link, $button_anchor, $button_link_heading, $button_target, $button_page_link);
 	}
 

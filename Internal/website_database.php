@@ -129,7 +129,7 @@ class website {
     public static function getSpecificWebsitePageDetails($page_id, $language_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT page_detail_id, page_id, language_id, page_title, meta_name, meta_description, meta_keyword FROM website_page_details WHERE page_id = :page_id AND language_id = :language_id");        
+        $statement = $db->prepare("SELECT page_detail_id, page_id, language_id, page_published, page_title, meta_name, meta_description, meta_keyword FROM website_page_details WHERE page_id = :page_id AND language_id = :language_id");        
         $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
         $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
         $statement->execute();
@@ -140,7 +140,7 @@ class website {
     public static function getSpecificWebsitePageDetailsLanguage($language_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT page_detail_id, page_id, language_id, page_title, meta_name, meta_description, meta_keyword FROM website_page_details WHERE language_id = :language_id");        
+        $statement = $db->prepare("SELECT page_detail_id, page_id, language_id, page_published, page_title, meta_name, meta_description, meta_keyword FROM website_page_details WHERE language_id = :language_id");        
         $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
         $statement->execute();
 
@@ -150,7 +150,7 @@ class website {
     public static function automaticallyAddWebsitePageDetailsForCurrentLanguage($page_id, $language_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("INSERT INTO website_page_details(page_id, language_id, page_title, meta_name, meta_description, meta_keyword) VALUES (:page_id, :language_id, null, null, null, null)");
+        $statement = $db->prepare("INSERT INTO website_page_details(page_id, language_id, page_published, page_title, meta_name, meta_description, meta_keyword) VALUES (:page_id, :language_id, 0, null, null, null, null)");
         $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
         $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
         $statement->execute();
@@ -161,12 +161,13 @@ class website {
         return $statement->fetchColumn();
     }
 
-    public static function updateWebsitePageDetails($page_id, $language_id, $page_title, $meta_name, $meta_description, $meta_keyword) {
+    public static function updateWebsitePageDetails($page_id, $language_id, $page_published, $page_title, $meta_name, $meta_description, $meta_keyword) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("UPDATE website_page_details SET page_title = :page_title, meta_name = :meta_name, meta_description = :meta_description, meta_keyword = :meta_keyword WHERE page_id = :page_id AND language_id = :language_id");
+        $statement = $db->prepare("UPDATE website_page_details SET page_published = :page_published, page_title = :page_title, meta_name = :meta_name, meta_description = :meta_description, meta_keyword = :meta_keyword WHERE page_id = :page_id AND language_id = :language_id");
         $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
         $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
+        $statement->bindParam(":page_published", $page_published, PDO::PARAM_STR);
         $statement->bindParam(":page_title", $page_title, PDO::PARAM_STR);
         $statement->bindParam(":meta_name", $meta_name, PDO::PARAM_STR);
         $statement->bindParam(":meta_description", $meta_description, PDO::PARAM_STR);
@@ -501,14 +502,15 @@ class website {
         $statement->execute();
     }
 
-    public static function updateWebsiteBlockContentButton($button_id, $button_title) {
+    public static function updateWebsiteBlockContentButton($button_id, $button_title, $image_id) {
         $db = self::getInstance();
 
         $statement = $db->prepare("UPDATE website_button
-                                    SET button_title = :button_title
+                                    SET button_title = :button_title, image_id = :image_id
                                     WHERE button_id = :button_id");
         $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
         $statement->bindParam(":button_title", $button_title, PDO::PARAM_STR);
+        $statement->bindParam(":image_id", $image_id, PDO::PARAM_STR);
         $statement->execute();
     }
 

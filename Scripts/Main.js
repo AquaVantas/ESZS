@@ -8,13 +8,30 @@ function deleteUser(command) {
     $(".delete-user-modal .modal-footer .delete-button").attr("href", command);
 }
 
+function setTemplateTitle(data) {
+    var templateID = $(data).attr("template-id");
+    var button = $(data).parents(".dropdown").find("button");
+    $(data).parents(".dropdown").attr("template-id", templateID);
+    $(button).text($(data).text());
+    console.log(data);
+    console.log(button);
+}
+
 function selectThisFile(selected_image) {
     var contentType = $(".content-sidebar-wrapper.active").attr("lookingforcontent");
     contentType = contentType.split("-");
     var chosenBlock = $(".accordion-body");
+    console.log(chosenBlock);
     if (contentType[0] == "blockContent") {
         for(var i = 0; i < chosenBlock.length; i++) {
             if ($(chosenBlock[i]).attr("block-id") == contentType[1]) {
+                chosenBlock = chosenBlock[i];
+            }
+        }
+    }
+    if (contentType[0] == "buttonContent") {
+        for (var i = 0; i < chosenBlock.length; i++) {
+            if ($(chosenBlock[i]).attr("button-id") == contentType[1]) {
                 chosenBlock = chosenBlock[i];
             }
         }
@@ -83,6 +100,7 @@ function deleteThisImage(image) {
 
 function submitPageChanges(page_id, lang_id) {
     let pageDetailsFormData = new FormData();
+    pageDetailsFormData.append("page_published", $("#page_published").is(":checked"));
     pageDetailsFormData.append("page_title", document.getElementById("page_title").value);
     pageDetailsFormData.append("meta_name", document.getElementById("meta_name").value);
     pageDetailsFormData.append("meta_description", document.getElementById("meta_description").value);
@@ -101,14 +119,10 @@ function submitPageChanges(page_id, lang_id) {
             pageSectionBlockFormData.append("section-class", $(".accordion-body #section-class", this).val());
             pageSectionBlockFormData.append("section-header", $(".accordion-body #section-header", this).val());
             pageSectionBlockFormData.append("section-subheader", $(".accordion-body #section-subheader", this).val());
+            pageSectionBlockFormData.append("section-template", $(".accordion-body #section-template", this).attr("template-id"));
             var location = 'editor' + $(".accordion-body .editor-section-container", this).attr("container-id");    
             pageSectionBlockFormData.append("section-rich-text", window[location].root.innerHTML);
-            var blockTemplateID = $(".accordion-body .template-dropdown li a.active", this).attr("template-id");
-            if (typeof blockTemplateID === 'undefined') {
-                blockTemplateID = 1;
-            }
-            pageSectionBlockFormData.append("section-template", blockTemplateID);
-
+            
             let pageSectionBlockFormDataXHR = new XMLHttpRequest(); 
             pageSectionBlockFormDataXHR.open("POST", "Controllers/Website/Page/website_edit_block_section.php?page_id=" + page_id + "&lang_id=" + lang_id + "&section_id=" + sectionID);
             pageSectionBlockFormDataXHR.send(pageSectionBlockFormData);
@@ -133,6 +147,7 @@ function submitPageChanges(page_id, lang_id) {
                 let pageSectionBlockContentButtonFormData = new FormData();
                 blockContentButtonList.each(function (blockContentButtonIndex) {
                     pageSectionBlockContentButtonFormData.append("button-id", $(".accordion-body", this).attr("button-id"));
+                    pageSectionBlockContentButtonFormData.append("button-image", $(".accordion-body #button-image", this).attr("chosen-image-id"));
                     pageSectionBlockContentButtonFormData.append("button-heading", $(".accordion-body #button-heading", this).val());
                     pageSectionBlockContentButtonFormData.append("button-link", $(".accordion-body #button-link", this).val());
                     pageSectionBlockContentButtonFormData.append("button-anchor", $(".accordion-body #button-anchor", this).val());

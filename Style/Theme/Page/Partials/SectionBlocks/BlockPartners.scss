@@ -1,0 +1,40 @@
+.BlockPartners {
+    @include media-breakpoint-up(lg) {
+        padding-top: 100px;
+    }
+
+    .heading {
+        display: flex;
+        align-items: center;
+
+        .line {
+            height: 2px;
+            width: 100%;
+            background-color: $primarybluefive;
+        }
+
+        h3 {
+            margin: 0 10px;
+            text-transform: uppercase;
+        }
+    }
+
+    .partner-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @include media-breakpoint-up(lg) {
+            margin-top: 40px;
+        }
+
+        a {
+            padding-bottom: 30px;
+
+            img {
+                max-height: 170px;
+                min-height: 170px;
+            }
+        }
+    }
+}

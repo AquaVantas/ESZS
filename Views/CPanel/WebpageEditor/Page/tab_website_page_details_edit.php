@@ -10,6 +10,12 @@ $page_details_id = 0;
 						?>
 						<div class="col-12">
 							<div class="edit-cloud">
+								<label for="page_title">Objavljena:</label><br>
+								<input type="checkbox" id="page_published" name="page_published" <?= ($page['page_published']) == 1 ? 'checked' : '' ?>>
+							</div>	
+						</div>
+						<div class="col-12">
+							<div class="edit-cloud">
 								<label for="page_title">Naslov strani:</label><br>
 								<input type="text" id="page_title" name="page_title" value="<?= $page['page_title'] ?>">
 							</div>	
@@ -185,7 +191,7 @@ $page_details_id = 0;
 																															<label for="button-image">Slika bloka:</label><br>
 																														</div>
 																														<div class="col-10">
-																															<div class="add-image-wrapper" onclick="openFileSelector(<?= $blockContentButton['WBCB_button_id'] ?>, 'buttonContent')">
+																															<div class="add-image-wrapper" id="button-image" chosen-image-id="<?= $blockContentButton['WBCB_image_id'] ?>" onclick="openFileSelector(<?= $blockContentButton['WBCB_button_id'] ?>, 'buttonContent')">
 																																<?php if($blockContentButton['WBCB_image_id'] != NULL) { ?>								
 																																	<?php foreach(website::getWebsiteImageByID(intval($blockContentButton['WBCB_image_id'])) as $image) { ?>														
 																																		<img class="non-empty" src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
@@ -281,7 +287,7 @@ $page_details_id = 0;
 																		<label for="section-template">Template sekcije:</label><br>
 																	</div>
 																	<div class="col-10">
-																		<div class="dropdown template-dropdown">
+																		<div class="dropdown template-dropdown" id="section-template" template-id="<?= $section['WSB_block_template_id'] ?>">
 																			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 																				<?php																			
 																					foreach(website::getWebsiteBlockSectionTemplate($section['WSB_section_block_id']) as $template) {
@@ -294,7 +300,7 @@ $page_details_id = 0;
 																				<li></li>
 																				<?php
 																					foreach(website::getAllWebsiteBlockSectionTemplate() as $blockTemplate) {?>
-																						<li><a template-id="<?= $blockTemplate['block_template_id'] ?>" class="nav-link <?= ($section['WSB_block_template_id'] == $blockTemplate['block_template_id']) ? "active" : ""?>"><?= $blockTemplate['template_name']?></a></li>
+																						<li><a template-id="<?= $blockTemplate['block_template_id'] ?>" class="nav-link <?= ($section['WSB_block_template_id'] == $blockTemplate['block_template_id']) ? "active" : ""?>" onclick="setTemplateTitle(this)"><?= $blockTemplate['template_name']?></a></li>
 																					<?php }
 																				?>
 																			</ul>

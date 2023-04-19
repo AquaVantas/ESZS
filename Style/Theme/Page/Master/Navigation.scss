@@ -1,0 +1,39 @@
+.navigation-desktop {
+    display: none;
+    width: 100%;
+    height: 70px;
+    border-bottom: 2px solid $primarybluefive;
+
+    @include media-breakpoint-up(md) {
+        display: block;
+    }
+
+    .left-side {
+        height: 70px;
+        width: 410px;
+        overflow: hidden;
+        position: relative;
+        padding: 0;
+
+        .logo-wrapper {
+            height: 80px;
+            width: 210px;
+            text-align: right;
+            background-color: $primarybluefive;
+
+            &::after {
+                content: "";
+                display: block;
+                background-color: $primarybluefive;
+                position: absolute;
+                bottom: 0;
+                left: 210px;
+                transform: rotate(35deg);
+                transform-origin: top left;
+                height: 100%;
+                width: 300px;
+                z-index: -10;
+            }
+        }
+    }
+}

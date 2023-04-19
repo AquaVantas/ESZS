@@ -21,6 +21,14 @@
 	}
 
 	$page_id = $_GET['page_id'];
+	$page_published = $_POST['page_published'];
+	if($page_published == "true") {
+		$page_published = 1;
+	}
+	else {
+		$page_published = 0;
+	}
+
 	$page_title = $_POST['page_title'];
 	$meta_name = $_POST['meta_name'];
 	$meta_description = $_POST['meta_description'];
@@ -28,7 +36,7 @@
 
 	//edits language in the database
 	if($page_id != NULL) {
-		website::updateWebsitePageDetails($page_id, $lang_id, $page_title, $meta_name, $meta_description, $meta_keyword);
+		website::updateWebsitePageDetails($page_id, $lang_id, $page_published, $page_title, $meta_name, $meta_description, $meta_keyword);
 	}
 
 	//redirect back to language list

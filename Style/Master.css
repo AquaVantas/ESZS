@@ -12,6 +12,17 @@ body {
   width: 100vw;
   overflow-x: hidden;
 }
+body p {
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+}
+@media (min-width: 768px) {
+  body p {
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
 
 a {
   font-family: "Montserrat-SemiBold";
@@ -27,6 +38,24 @@ a.nav-link {
 }
 a:hover {
   color: #00d6bd;
+}
+
+@media (min-width: 992px) {
+  h2 {
+    font-size: 54px;
+    line-height: 60px;
+    margin-bottom: 24px;
+    color: #FFFFFF;
+  }
+}
+
+@media (min-width: 992px) {
+  h3 {
+    font-size: 40px;
+    line-height: 45px;
+    margin-bottom: 0px;
+    color: #FFFFFF;
+  }
 }
 
 .btn {
@@ -909,6 +938,152 @@ table tr td {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.navigation-desktop {
+  display: none;
+  width: 100%;
+  height: 70px;
+  border-bottom: 2px solid #00d6bd;
+}
+@media (min-width: 768px) {
+  .navigation-desktop {
+    display: block;
+  }
+}
+.navigation-desktop .left-side {
+  height: 70px;
+  width: 410px;
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+}
+.navigation-desktop .left-side .logo-wrapper {
+  height: 80px;
+  width: 210px;
+  text-align: right;
+  background-color: #00d6bd;
+}
+.navigation-desktop .left-side .logo-wrapper::after {
+  content: "";
+  display: block;
+  background-color: #00d6bd;
+  position: absolute;
+  bottom: 0;
+  left: 210px;
+  transform: rotate(35deg);
+  transform-origin: top left;
+  height: 100%;
+  width: 300px;
+  z-index: -10;
+}
+
+@media (min-width: 992px) {
+  .BlockHighlightedNews {
+    height: 70vh;
+  }
+}
+.BlockHighlightedNews .swiper {
+  height: 100%;
+  width: 100%;
+}
+.BlockHighlightedNews .swiper .swiper-wrapper .swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+.BlockHighlightedNews .swiper .swiper-wrapper .swiper-slide .content-wrapper {
+  background-color: rgba(0, 0, 0, 0.6274509804);
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.BlockHighlightedNews .swiper .swiper-wrapper .swiper-slide .content-wrapper .colors {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(322deg, #00d6bd 10%, #33deca 10%, #33deca 20%, #66e6d7 20%, #66e6d7 30%, #99efe5 30%, #99efe5 40%, #ccf7f2 40%, #ccf7f2 50%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%);
+  opacity: 0.7;
+}
+.BlockHighlightedNews .swiper .swiper-wrapper .swiper-slide .content-wrapper .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  z-index: 1;
+  position: relative;
+}
+.BlockHighlightedNews .swiper .swiper-wrapper .swiper-slide .content-wrapper .container .row {
+  margin-bottom: 100px;
+}
+.BlockHighlightedNews .swiper .swiper-wrapper .swiper-slide .content-wrapper .container .row .content .short-text {
+  padding-bottom: 20px;
+}
+.BlockHighlightedNews .swiper .swiper-wrapper .swiper-slide .content-wrapper .container .row .content .btn {
+  margin: 0;
+}
+
+@media (min-width: 992px) {
+  .BlockPartners {
+    padding-top: 100px;
+  }
+}
+.BlockPartners .heading {
+  display: flex;
+  align-items: center;
+}
+.BlockPartners .heading .line {
+  height: 2px;
+  width: 100%;
+  background-color: #00d6bd;
+}
+.BlockPartners .heading h3 {
+  margin: 0 10px;
+  text-transform: uppercase;
+}
+.BlockPartners .partner-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+@media (min-width: 992px) {
+  .BlockPartners .partner-list {
+    margin-top: 40px;
+  }
+}
+.BlockPartners .partner-list a {
+  padding-bottom: 30px;
+}
+.BlockPartners .partner-list a img {
+  max-height: 170px;
+  min-height: 170px;
+}
+
+@media (min-width: 992px) {
+  .BlockMembers {
+    padding-top: 100px;
+  }
+}
+.BlockMembers .heading {
+  display: flex;
+  align-items: center;
+}
+.BlockMembers .heading .line {
+  height: 2px;
+  width: 100%;
+  background-color: #00d6bd;
+}
+.BlockMembers .heading h3 {
+  margin: 0 10px;
+  text-transform: uppercase;
+}
+@media (min-width: 992px) {
+  .BlockMembers .member-list {
+    margin-top: 40px;
+  }
+}
+.BlockMembers .member-list a img {
+  max-height: 170px;
+  min-height: 170px;
 }
 
 /*# sourceMappingURL=Master.css.map */
