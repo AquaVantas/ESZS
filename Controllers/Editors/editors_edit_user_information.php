@@ -2,7 +2,7 @@
 	require_once("../../Internal/editors_database.php");
 
 	if(!isset($_POST['name']) || !isset($_GET['user'])) {
-		header('url=../../cpanel.php?tab=user_list_create');
+		header("url=../../cpanel.php?tab=user_list_create");
 	}
 
 	$admin_id = $_GET['user'];
@@ -12,5 +12,5 @@
 	
 	editors::updateAdmin($admin_id, $name, $surname, $email);
 
-	header('Location:../../cpanel.php?tab=user_list');
+	header("Location:../../cpanel.php?tab=user_list");
 ?>

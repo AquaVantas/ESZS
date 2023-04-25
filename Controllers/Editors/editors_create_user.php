@@ -6,7 +6,7 @@
 	//since we had problems with NULL entries in the database
 	//we'll first check if there even is a value attached to what we're adding
 	if(!isset($_POST['name'])) {
-		header('url=../cpanel.php?tab=user_list_create');
+		header("url=../cpanel.php?tab=user_list_create");
 	}
 
 	$name = $_POST['name'];
@@ -17,7 +17,7 @@
 
 	//checks if the passwords match
 	if($password != $passwordRepeat) {
-		header('Location:../../cpanel.php?tab=user_list_create&error=incorrect_password');
+		header("Location:../../cpanel.php?tab=user_list_create&error=incorrect_password");
 	}
 
 	//adds the user to the database and encrypts the password
@@ -42,5 +42,5 @@
 	}
 
 	//redirect back to user list
-	header('Location:../../cpanel.php?tab=user_list');
+	header("Location:../../cpanel.php?tab=user_list");
 ?>

@@ -6,7 +6,7 @@
 	//since we had problems with NULL entries in the database
 	//we'll first check if there even is a value attached to what we're adding
 	if(!isset($_GET['page_id'])) {
-		header('url=../../../cpanel.php?tab=webpage_editor');
+		header("url=../../../cpanel.php?tab=webpage_editor");
 	}
 
 	$page_id = $_GET['page_id'];
@@ -19,9 +19,9 @@
 
 	//redirect back to language list
 	if(isset($_GET['lang_id'])) {
-		header('Location:../../../cpanel.php?tab=webpage_editor&page_id=' . $_GET['page_id'] . '&lang_id=' . $_GET['lang_id']);
+		header("Location:../../../cpanel.php?tab=webpage_editor&page_id=" . $_GET['page_id'] . "&lang_id=" . $_GET['lang_id']);
 	}
 	else {		
-		header('Location:../../../cpanel.php?tab=webpage_editor&page_id=' . $_GET['page_id']);
+		header("Location:../../../cpanel.php?tab=webpage_editor&page_id=" . $_GET['page_id']);
 	}
 ?>

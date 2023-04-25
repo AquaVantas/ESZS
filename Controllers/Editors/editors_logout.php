@@ -8,5 +8,5 @@
 	// destroy the session
 	session_destroy();
 
-	header('Location:../../cpanel.php');
+	header("Location:../../cpanel.php");
 ?>

@@ -15,5 +15,5 @@
 		}	
 	}
 
-	header('Location:../../cpanel.php?tab=user_list');
+	header("Location:../../cpanel.php?tab=user_list");
 ?>

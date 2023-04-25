@@ -5,7 +5,24 @@
 	require_once("Internal/tournament_database.php");	
 	require_once("Internal/website_database.php");
 
-	header('Content-Type: text/html; charset=utf8');	
+	header('Content-Type: text/html; charset=utf8');
+	
+	function printSubMenu($parent, $parent_title) {
+		$html = "<li class='nav-item dropdown'>
+					<a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" . $parent_title . "</a>
+					<ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>";
+			foreach(website::getAllWebsitePageSubpages($parent) as $subpage) {
+				if(count(website::getAllWebsitePageSubpages($subpage['page_id'])) > 0) { 
+					$html .= printSubMenu($subpage['page_id'], $subpage['page_title']);
+				} else {
+					$html .= "<li class='nav-item'>
+							<a class='nav-link' href=''>" . $subpage['page_title'] . "</a>
+						</li>";
+				}
+			}
+		$html .= "</ul></li>";
+		return $html;
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,6 +68,9 @@
 							break;
 						case 4:
 							include "Views/Partials/Sections/SectionBlock/blockMembers.php";
+							break;
+						case 5:
+							include "Views/Partials/Sections/SectionBlock/blockOtherSocials.php";
 							break;
 					}
 				} 

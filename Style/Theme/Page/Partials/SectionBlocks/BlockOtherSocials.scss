@@ -1,0 +1,33 @@
+.BlockOtherSocials {
+    @include media-breakpoint-up(lg) {
+        padding-top: 10px;
+    }
+
+    .socials-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include media-breakpoint-up(lg) {
+            margin-top: 40px;
+        }
+
+        .line {
+            height: 2px;
+            width: 100%;
+            background-color: $primarybluefive;
+        }
+
+        a {
+            img {
+                max-height: 40px;
+                min-height: 40px;
+                filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(176deg) brightness(102%) contrast(101%);
+
+                &:hover {
+                    filter: invert(65%) sepia(100%) saturate(2261%) hue-rotate(127deg) brightness(98%) contrast(101%);
+                }
+            }
+        }
+    }
+}

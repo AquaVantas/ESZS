@@ -1,5 +1,4 @@
-﻿<?php
-	
+<?php	
 	//gets the database we'll be working with
 	require_once("../../../Internal/website_database.php");
 	
@@ -24,5 +23,5 @@
 	website::addWebsitePage($parent);
 
 	//redirect back to language list
-	header('Location:../../../cpanel.php?tab=webpage_editor&lang_id=' . $lang_id);
+	header("Location:../../../cpanel.php?tab=webpage_editor&lang_id=" . $lang_id);
 ?>

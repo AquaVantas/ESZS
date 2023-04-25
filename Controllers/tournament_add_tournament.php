@@ -2,7 +2,7 @@
 	require_once("../Internal/tournament_database.php");
 
 	if(!isset($_POST['title']) || !isset($_POST['game']) || !isset($_POST['tournament-start']) || !isset($_POST['tournament-end'])) {
-		header('url=../cpanel.php?tab=tournament');
+		header("url=../cpanel.php?tab=tournament");
 	}
 
 	$title = $_POST['title'];
@@ -16,7 +16,7 @@
 	}
 
 	//reditect back to tournament list
-	header('Location:../cpanel.php?tab=tournament');
+	header("Location:../cpanel.php?tab=tournament");
 
 	echo $start;
 ?>

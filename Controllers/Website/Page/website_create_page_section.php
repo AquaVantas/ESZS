@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	
 	//gets the database we'll be working with
 	require_once("../../../Internal/website_database.php");

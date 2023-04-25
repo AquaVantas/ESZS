@@ -4,35 +4,59 @@
     height: 70px;
     border-bottom: 2px solid $primarybluefive;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
         display: block;
     }
 
-    .left-side {
-        height: 70px;
-        width: 410px;
-        overflow: hidden;
-        position: relative;
+    .content-wrapper {
+        width: 100%;
+        height: 100%;
         padding: 0;
+        display: flex;
 
-        .logo-wrapper {
-            height: 80px;
-            width: 210px;
-            text-align: right;
-            background-color: $primarybluefive;
+        .left-side {
+            height: 70px;
+            width: 410px;
+            overflow: hidden;
+            position: relative;
+            padding: 0;
 
-            &::after {
-                content: "";
-                display: block;
+            .logo-wrapper {
+                height: 80px;
+                width: 210px;
+                text-align: right;
                 background-color: $primarybluefive;
-                position: absolute;
-                bottom: 0;
-                left: 210px;
-                transform: rotate(35deg);
-                transform-origin: top left;
-                height: 100%;
-                width: 300px;
-                z-index: -10;
+
+                &::after {
+                    content: "";
+                    display: block;
+                    background-color: $primarybluefive;
+                    position: absolute;
+                    bottom: 0;
+                    left: 210px;
+                    transform: rotate(35deg);
+                    transform-origin: top left;
+                    height: 100%;
+                    width: 300px;
+                    z-index: -10;
+                }
+            }
+        }
+
+        .right-side {
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+
+            .navbar-nav {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+
+                li {
+                    padding: 0 15px;
+                }
             }
         }
     }

@@ -5,7 +5,7 @@
 	require_once("../../../Internal/website_database.php");
 
 	if(!isset($_POST['filename'])) {
-		header('url=../../../cpanel.php');
+		header("url=../../../cpanel.php");
 	}
 	
 	$fileName = $_FILES["filename"]["name"];

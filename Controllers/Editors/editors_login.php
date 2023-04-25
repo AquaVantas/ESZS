@@ -6,7 +6,7 @@
 	//since we had problems with NULL entries in the database
 	//we'll first check if there even is a value attached to what we're adding
 	if(!isset($_POST['email'])) {
-		header('url=../../cpanel.php');
+		header("url=../../cpanel.php");
 	}
 
 	$email = $_POST['email'];
@@ -24,5 +24,5 @@
 	}
 
 	//redirect back to user list
-	header('Location:../../cpanel.php');
+	header("Location:../../cpanel.php");
 ?>
