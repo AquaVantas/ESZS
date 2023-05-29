@@ -24,10 +24,10 @@
 		foreach(website::getWebsiteBlockContentButtonAfterDeleted($_GET['block_content_id'], $deletedSequenceNumber) as $fix_button) {
 			website::updateWebsiteBlockContentButtonSequenceNum($fix_button['WBCB_button_id']);
 		}
-
-		website::deleteWebsiteButton($_GET['button_id']);
-		website::deleteWebsiteButtonLink($_GET['button_id']);
 	}
+
+	website::deleteWebsiteButton($_GET['button_id']);
+	website::deleteWebsiteButtonLink($_GET['button_id']);
 	
 		
 	//redirect back to language list

@@ -26,6 +26,7 @@
                 width: 210px;
                 text-align: right;
                 background-color: $primarybluefive;
+                display: flex;
 
                 &::after {
                     content: "";
@@ -39,6 +40,11 @@
                     height: 100%;
                     width: 300px;
                     z-index: -10;
+                }
+
+                img {
+                    height: 70px;
+                    padding: 10px 0px 10px 40px;
                 }
             }
         }
@@ -56,6 +62,36 @@
 
                 li {
                     padding: 0 15px;
+                }
+            }
+
+            .dropdown-menu {
+                text-transform: uppercase;
+                background-color: $background;
+                border: 1px solid $primarybluefive;
+                font-weight: 700;
+                font-size: 12px;
+
+                .nav-item {
+                    font-weight: 700;
+                    color: white;
+                    font-size: 11px;
+
+                    &:hover {
+                        background-color: $primarybluefive;
+                        color: $background;
+                        text-decoration: none;
+                    }
+
+                    a {
+                        &:hover {
+                            color: $background;
+                        }
+
+                        &:focus {
+                            color: $background;
+                        }
+                    }
                 }
             }
         }

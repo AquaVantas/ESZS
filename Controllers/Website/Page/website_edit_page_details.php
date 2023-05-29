@@ -13,14 +13,16 @@
 			header('url=../../../cpanel.php?tab=webpage_editor&lang_id='.$_GET['lang_id']);
 		}
 	}
-
+    
+    
 	if(isset($_GET['lang_id'])) {
 		$lang_id = $_GET['lang_id'];
 	} else {
 		$lang_id = 1;
 	}
+    echo $lang_id;
 
-	$page_id = $_GET['page_id'];
+	$page_id = intval($_GET['page_id']);
 	$page_published = $_POST['page_published'];
 	if($page_published == "true") {
 		$page_published = 1;

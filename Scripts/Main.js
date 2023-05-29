@@ -36,6 +36,13 @@ function selectThisFile(selected_image) {
             }
         }
     }
+    if (contentType[0] == "websiteDefaultHeader") {
+        chosenBlock = $(".website-header");
+    }
+    if (contentType[0] == "websiteDefaultFooter") {
+        chosenBlock = $(".website-footer");
+    }
+
     var chosenImagePicker = $(chosenBlock).find(".add-image-wrapper")[0];
     $(chosenImagePicker).attr("chosen-image-id", selected_image);
     $(chosenImagePicker).empty();
@@ -72,7 +79,8 @@ function openFileUploader() {
 }
 
 function uploadFile(filePath, formID) {
-
+    filePath = filePath.replaceAll('.', '_');
+    formID = formID.replaceAll('.', '_');
     let pageDetailsFormData = new FormData();
     pageDetailsFormData.append("filename", $(formID).prop('files')[0]);
     var blockInfo = $(".content-sidebar-wrapper").attr("lookingforcontent");
@@ -90,7 +98,7 @@ function uploadImageToDatabase(data) {
 }
 
 function openInputFileForm(data) {
-    var myFormID = "form#" + data.substring(1, data.length).replaceAll("/", "_") + " input#myFile   ";   
+    var myFormID = "form#" + data.substring(1, data.length).replaceAll("/", "_").replaceAll(".", "_") + " input#myFile";   
     $(myFormID).click();
 }
 
@@ -166,4 +174,34 @@ function submitPageChanges(page_id, lang_id) {
         }
     });
 
+}
+
+function submitWebsiteDefault(lang_id) {
+    let pageDetailsFormData = new FormData();
+    pageDetailsFormData.append("website_title", document.getElementById("website_title").value);
+    pageDetailsFormData.append("header_logo", $("#header_logo").attr("chosen-image-id"));
+    pageDetailsFormData.append("footer_logo", $("#footer_logo").attr("chosen-image-id"));
+    pageDetailsFormData.append("footer_copyright", document.getElementById("footer_copyright").value);
+    pageDetailsFormData.append("footer_about", $(".ql-editor")[0].innerHTML);
+
+    let pageDetailsFormDataXHR = new XMLHttpRequest();
+    pageDetailsFormDataXHR.open("POST", "Controllers/Website/Page/website_edit_default.php?lang_id=" + lang_id);
+    pageDetailsFormDataXHR.send(pageDetailsFormData);
+
+    var blockContentButtonList = $(".block-content-button-item");
+    let pageSectionBlockContentButtonFormData = new FormData();
+    blockContentButtonList.each(function (blockContentButtonIndex) {
+        pageSectionBlockContentButtonFormData.append("button-id", $(".accordion-body", this).attr("button-id"));
+        pageSectionBlockContentButtonFormData.append("button-image", $(".accordion-body #button-image", this).attr("chosen-image-id"));
+        pageSectionBlockContentButtonFormData.append("button-heading", $(".accordion-body #button-heading", this).val());
+        pageSectionBlockContentButtonFormData.append("button-link", $(".accordion-body #button-link", this).val());
+        pageSectionBlockContentButtonFormData.append("button-anchor", $(".accordion-body #button-anchor", this).val());
+        pageSectionBlockContentButtonFormData.append("button-link-heading", $(".accordion-body #button-link-heading", this).val());
+        pageSectionBlockContentButtonFormData.append("button-page-link", $(".accordion-body .page-list-wrapper input:checked", this).attr("value"));
+        pageSectionBlockContentButtonFormData.append("button-target", $(".accordion-body #button-target", this).is(":checked"));
+
+        let pageSectionBlockContentButtonFormDataXHR = new XMLHttpRequest();
+        pageSectionBlockContentButtonFormDataXHR.open("POST", "Controllers/Website/Page/website_edit_block_content_button.php?lang_id=" + lang_id);
+        pageSectionBlockContentButtonFormDataXHR.send(pageSectionBlockContentButtonFormData);
+    });
 }

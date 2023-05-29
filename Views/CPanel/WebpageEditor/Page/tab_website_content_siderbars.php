@@ -30,7 +30,7 @@
 								<a class="btn btn-primary" onclick="openCorrectFileSelector('<?= $prevDiv ?>')"><div class="arrow-icon"></div>Nazaj</a>								
 							<?php }
 						?>						
-						<form id="<?= str_replace('/', '_', substr($currDir, 1, strlen($currDir) - 1)) ?>" class="hidden-add-pic">
+						<form id="<?= str_replace('.', '_', str_replace('/', '_', substr($currDir, 1, strlen($currDir) - 1))) ?>" class="hidden-add-pic">
 							<input type="file" id="myFile" name="filename" onchange="uploadImageToDatabase('<?= $currDir ?>')">
 							<input id="submit" type="submit" onclick="submitImageChanges()">
 						</form>

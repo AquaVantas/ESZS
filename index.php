@@ -7,16 +7,16 @@
 
 	header('Content-Type: text/html; charset=utf8');
 	
-	function printSubMenu($parent, $parent_title) {
+	function printSubMenu($parent, $parent_title, $lang_id) {
 		$html = "<li class='nav-item dropdown'>
 					<a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" . $parent_title . "</a>
 					<ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>";
 			foreach(website::getAllWebsitePageSubpages($parent) as $subpage) {
 				if(count(website::getAllWebsitePageSubpages($subpage['page_id'])) > 0) { 
-					$html .= printSubMenu($subpage['page_id'], $subpage['page_title']);
+					$html .= printSubMenu($subpage['page_id'], $subpage['page_title'], $lang_id);
 				} else {
 					$html .= "<li class='nav-item'>
-							<a class='nav-link' href=''>" . $subpage['page_title'] . "</a>
+							<a class='nav-link' href='?lang_id=" . $lang_id . "&page_id=" . $subpage['page_id'] . "'>" . $subpage['page_title'] . "</a>
 						</li>";
 				}
 			}
@@ -72,14 +72,30 @@
 						case 5:
 							include "Views/Partials/Sections/SectionBlock/blockOtherSocials.php";
 							break;
+						case 6:
+							include "Views/Partials/Sections/SectionBlock/blockLastNews.php";
+							break;
+						case 7:
+							include "Views/Partials/Sections/SectionBlock/blockNews.php";
+							break;
+						case 8:
+							include "Views/Partials/Sections/SectionBlock/blockSDPAnnouncement.php";
+							break;
+						case 9:
+							include "Views/Partials/Sections/SectionBlock/blockSDPGameShort.php";
+							break;
+						case 10:
+							include "Views/Partials/Sections/SectionBlock/blockSDPGameFileDownload.php";
+							break;
+						case 11:
+							include "Views/Partials/Sections/SectionBlock/blockSDPGameAccordionRules.php";
+							break;
 					}
 				} 
 			}
 		}
-
+		include "Views/Partials/Master/footer.php";
 		include "Views/Partials/Master/bootomer.php";
 		?>
 	</body>
-	<footer>
-	</footer>
 </html>

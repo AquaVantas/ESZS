@@ -33,7 +33,16 @@
 				</div>
 			</div>
 			<div class="site-info">
-				<span>EŠZS</span>
+				<?php if(isset($_GET['lang_id'])) {
+					$lang_id = $_GET['lang_id'];					
+				} else {
+					$lang_id = 1;
+				}
+				if(count(website::getWebsiteDefault($lang_id)) > 0) { ?>
+					<a href="?tab=webpage_editor&action=edit_page_header_footer&lang_id=<?= $lang_id ?>">EŠZS</a>				
+				<?php } else { ?>
+					<a href="Controllers/Website/Page/website_default_create.php?lang_id=<?= $lang_id ?>">EŠZS</a>
+				<?php } ?>
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 						<img src="Content/Images/Icons/three-dots.svg">
@@ -91,6 +100,8 @@
 			</div>
 		</div>
 		<div class="right-side">
+			<!-- website default editor -->
+			<?php include "Views/CPanel/WebpageEditor/Page/tab_website_page_header_footer.php" ?>
 			<!-- website page edit -->
 			<?php include "Views/CPanel/WebpageEditor/Page/tab_website_page_edit.php" ?>
 			<!-- website page details edit -->

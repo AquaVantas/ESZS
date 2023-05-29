@@ -6,7 +6,7 @@
             <div id="editor-toolbar" class="editor-toolbar" toolbar-id="editortoolbar<?= $section['WS_section_id'] ?>">
         <?php }
         } else { ?>
-        <div id="editor-toolbar">
+        <div id="editor-toolbar" class="editor-toolbar" toolbar-id="editorwebsiteDefault">
     <?php } ?>
         <span class="ql-formats">
             <select class="ql-size"></select>
@@ -61,7 +61,11 @@
             <?php } else { ?>
                 <?= $section['WSB_block_rich_text'] ?>
             <?php }
-        } ?>      
+        } ?>  
         </div> <?php 
-    } ?>
+    } else if(isset($_GET['action']) && $_GET['action'] == "edit_page_header_footer") { ?>
+        <div id="editor-container" class="editor-container editor-block-container" container-id="editorwebsiteDefault">
+            <?= $pageDefault['footer_about'] ?>
+        </div>
+    <?php } ?> 
 </div>

@@ -138,6 +138,162 @@
             margin-bottom: 50px;
         }
 
+        .accordion-item {
+            margin-bottom: 5px;
+            background-color: $background;
+
+            .accordion-header {
+                border: 1px solid $primarybluefive;
+
+                button {
+                    background-color: transparent;
+                    color: $white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    line-height: normal;
+
+                    &:not(.collapsed) {
+                        color: $white;
+                    }
+
+                    &:focus {
+                        border-color: none;
+                        box-shadow: none;
+                    }
+
+                    &::after {
+                        display: none;
+                    }
+
+                    .actions-wrapper {
+                        .delete {
+                            margin-top: -7px;
+                            height: 16px;
+                            width: 16px;
+
+                            img {
+                                width: 16px;
+                                height: 16px;
+                                transform: rotate(45deg);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .accordion-collapse {
+                .accordion-body {
+                    border: 1px solid $primarybluefive;
+                    border-top: none;
+                    background-color: $transparentwhite;
+
+                    input {
+                        margin-bottom: 15px;
+                    }
+
+                    #editor-wrapper {
+                        margin-bottom: 15px;
+                    }
+
+                    .dropdown {
+                        button {
+                            width: 100%;
+                            padding: 0;
+                            background-color: transparent;
+                            font-family: "Montserrat-SemiBold";
+                            font-size: 14px;
+                            line-height: 20px;
+
+                            &.btn {
+                                margin: 0;
+                                justify-content: space-between;
+                                padding: 20px;
+                                border: 1px solid $primarybluefive;
+                                background-color: $transparentwhite;
+                                text-transform: none;
+                            }
+
+                            &::after {
+                                display: none;
+                            }
+
+                            &:focus {
+                                box-shadow: none;
+                            }
+
+                            .arrow {
+                                width: 20px;
+                                height: 20px;
+                                background-image: url('../Content/Images/Icons/arrow.svg');
+                                background-position: center;
+                                background-size: contain;
+                                filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(92deg) brightness(104%) contrast(101%);
+                                margin-left: 10px;
+                                transform: rotate(-90deg);
+                            }
+                        }
+
+                        ul {
+                            background-color: #464c5b;
+                            border-color: $primarybluefive;
+                            width: 100%;
+
+                            li {
+                                &:hover {
+                                    background-color: $transparentwhite;
+
+                                    a {
+                                        color: $white;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .template-dropdown {
+                        .dropdown-menu {
+                            max-height: 200px;
+                            overflow-y: scroll;
+                        }
+                    }
+
+                    .page-list-wrapper {
+                        max-height: 250px;
+                        overflow-y: scroll;
+                        background-color: $transparentwhite;
+                        padding: 10px 15px;
+
+                        .a-page {
+                            padding-left: 10px;
+                            display: flex;
+                            flex-direction: column;
+
+                            input {
+                                width: fit-content;
+                                margin: 0 10px 0 0;
+                            }
+
+                            label {
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .add-block-content {
+            cursor: pointer;
+            background-color: $transparentwhite;
+            border: 1px dashed $primarybluefive;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
         .user-card {
             margin-bottom: 20px;
             padding: 30px 15px 20px 15px;
@@ -192,6 +348,59 @@
         }
 
         .create-user {
+            .add-image-wrapper {
+                cursor: pointer;
+                width: 150px;
+                height: 150px;
+                border: 1px solid $primarybluefive;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 15px;
+                position: relative;
+
+                img {
+                    &.non-empty {
+                        max-width: calc(100% - 20px);
+                    }
+                }
+
+                .remove-image {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background-color: $transparentwhite;
+                    border-radius: 100%;
+                    height: 25px;
+                    width: 25px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        transform: rotate(45deg);
+                        width: 15px;
+                        height: 15px;
+                        filter: invert(13%) sepia(98%) saturate(6543%) hue-rotate(0deg) brightness(110%) contrast(116%);
+                    }
+                }
+
+                .image-empty {
+                    width: 120px;
+                    height: 120px;
+                    border: 1px dashed $primarybluefive;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
+                    }
+                }
+            }
+
             form {
                 &.row {
                     margin-bottom: 20px;
@@ -228,208 +437,6 @@
                     }
 
                     .section-list {
-                        .accordion {
-                            .accordion-item {
-                                margin-bottom: 5px;
-                                background-color: $background;
-
-                                .accordion-header {
-                                    border: 1px solid $primarybluefive;
-
-                                    button {
-                                        background-color: transparent;
-                                        color: $white;
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: space-between;
-
-                                        &:not(.collapsed) {
-                                            color: $white;
-                                        }
-
-                                        &:focus {
-                                            border-color: none;
-                                            box-shadow: none;
-                                        }
-
-                                        &::after {
-                                            display: none;
-                                        }
-
-                                        .actions-wrapper {
-                                            .delete {
-                                                margin-top: -7px;
-                                                height: 16px;
-                                                width: 16px;
-
-                                                img {
-                                                    width: 16px;
-                                                    height: 16px;
-                                                    transform: rotate(45deg);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                .accordion-collapse {
-                                    .accordion-body {
-                                        border: 1px solid $primarybluefive;
-                                        border-top: none;
-                                        background-color: $transparentwhite;
-
-                                        input {
-                                            margin-bottom: 15px;
-                                        }
-
-                                        #editor-wrapper {
-                                            margin-bottom: 15px;
-                                        }
-
-                                        .dropdown {
-                                            button {
-                                                width: 100%;
-                                                padding: 0;
-                                                background-color: transparent;
-                                                font-family: "Montserrat-SemiBold";
-                                                font-size: 14px;
-                                                line-height: 20px;
-
-                                                &.btn {
-                                                    margin: 0;
-                                                    justify-content: space-between;
-                                                    padding: 20px;
-                                                    border: 1px solid $primarybluefive;
-                                                    background-color: $transparentwhite;
-                                                    text-transform: none;
-                                                }
-
-                                                &::after {
-                                                    display: none;
-                                                }
-
-                                                &:focus {
-                                                    box-shadow: none;
-                                                }
-
-                                                .arrow {
-                                                    width: 20px;
-                                                    height: 20px;
-                                                    background-image: url('../Content/Images/Icons/arrow.svg');
-                                                    background-position: center;
-                                                    background-size: contain;
-                                                    filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(92deg) brightness(104%) contrast(101%);
-                                                    margin-left: 10px;
-                                                    transform: rotate(-90deg);
-                                                }
-                                            }
-
-                                            ul {
-                                                background-color: #464c5b;
-                                                border-color: $primarybluefive;
-                                                width: 100%;
-
-                                                li {
-                                                    &:hover {
-                                                        background-color: $transparentwhite;
-
-                                                        a {
-                                                            color: $white;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                        .add-image-wrapper {
-                                            cursor: pointer;
-                                            width: 150px;
-                                            height: 150px;
-                                            border: 1px solid $primarybluefive;
-                                            display: flex;
-                                            justify-content: center;
-                                            align-items: center;
-                                            margin-bottom: 15px;
-                                            position: relative;
-
-                                            img {
-                                                &.non-empty {
-                                                    max-width: calc(100% - 20px);
-                                                }
-                                            }
-
-                                            .remove-image {
-                                                position: absolute;
-                                                top: 10px;
-                                                right: 10px;
-                                                background-color: $transparentwhite;
-                                                border-radius: 100%;
-                                                height: 25px;
-                                                width: 25px;
-                                                display: flex;
-                                                justify-content: center;
-                                                align-items: center;
-
-                                                img {
-                                                    transform: rotate(45deg);
-                                                    width: 15px;
-                                                    height: 15px;
-                                                    filter: invert(13%) sepia(98%) saturate(6543%) hue-rotate(0deg) brightness(110%) contrast(116%);
-                                                }
-                                            }
-
-                                            .image-empty {
-                                                width: 120px;
-                                                height: 120px;
-                                                border: 1px dashed $primarybluefive;
-                                                display: flex;
-                                                justify-content: center;
-                                                align-items: center;
-
-                                                img {
-                                                    width: 30px;
-                                                    height: 30px;
-                                                    filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
-                                                }
-                                            }
-                                        }
-
-                                        .add-block-content {
-                                            cursor: pointer;
-                                            background-color: $transparentwhite;
-                                            border: 1px dashed $primarybluefive;
-                                            padding: 20px 40px;
-                                            display: flex;
-                                            justify-content: center;
-                                            border-radius: 8px;
-                                            margin-bottom: 15px;
-                                        }
-
-                                        .page-list-wrapper {
-                                            max-height: 250px;
-                                            overflow-y: scroll;
-                                            background-color: $transparentwhite;
-                                            padding: 10px 15px;
-
-                                            .a-page {
-                                                padding-left: 10px;
-                                                display: flex;
-                                                flex-direction: column;
-
-                                                input {
-                                                    width: fit-content;
-                                                    margin: 0 10px 0 0;
-                                                }
-
-                                                label {
-                                                    margin: 0;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
 
                         .add-section {
                             cursor: pointer;

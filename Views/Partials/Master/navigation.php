@@ -3,6 +3,13 @@
 		<div class="content-wrapper">
 			<div class="left-side">
 				<div class="logo-wrapper">
+					<?php foreach(website::getWebsiteDefault($lang_id) as $default) {
+						if($default['header_logo'] != NULL) {
+							foreach(website::getWebsiteImageByID(intval($default['header_logo'])) as $image) { ?>
+								<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
+							<?php }
+						}
+					} ?>			
 				</div>
 			</div>
 			<div class="right-side">
@@ -10,10 +17,10 @@
 					<ul class="navbar-nav ml-auto staridelaj" style="padding-right: 70px;">
 						<?php foreach(website::getAllWebsitePages() as $page) { 
 						if(count(website::getAllWebsitePageSubpages($page['page_id'])) > 0) {
-							echo printSubMenu($page['page_id'], $page['page_title']);
+							echo printSubMenu($page['page_id'], $page['page_title'], $lang_id);
 						} else { ?>
 							<li class="nav-item">
-								<a class="nav-link" href=""><?= $page['page_title'] ?></a>
+								<a class="nav-link" href="?lang_id=<?= $lang_id ?>&page_id=<?= $page['page_id'] ?>"><?= $page['page_title'] ?></a>
 							</li>
 						<?php }
 						} ?>

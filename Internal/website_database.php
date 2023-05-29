@@ -73,9 +73,178 @@ class website {
         $statement = $db->prepare("DELETE FROM website_language WHERE language_id = :language_id");
         $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
         $statement->execute();
+
+        return $statement->fetchAll();
     }
 
-     public static function addWebsitePage($parent) {
+    public static function addWebsiteDefault($lang_id, $header_logo, $footer_logo, $footer_copyright, $footer_about, $website_title) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("INSERT INTO website_default(lang_id, header_logo, footer_logo, footer_copyright, footer_about, website_title) 
+                                    VALUES(:lang_id, :header_logo, :footer_logo, :footer_copyright, :footer_about, :website_title)");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->bindParam(":header_logo", $header_logo, PDO::PARAM_STR);
+        $statement->bindParam(":footer_logo", $footer_logo, PDO::PARAM_STR);
+        $statement->bindParam(":footer_copyright", $footer_copyright, PDO::PARAM_STR);
+        $statement->bindParam(":footer_about", $footer_about, PDO::PARAM_STR);
+        $statement->bindParam(":website_title", $website_title, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public static function getWebsiteDefault($lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT lang_id, header_logo, footer_logo, footer_copyright, footer_about, website_title FROM website_default WHERE lang_id = :lang_id");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function updateWebsiteDefault($lang_id, $header_logo, $footer_logo, $footer_copyright, $footer_about, $website_title) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_default SET header_logo = :header_logo, footer_logo = :footer_logo, footer_copyright = :footer_copyright, footer_about = :footer_about, website_title = :website_title WHERE lang_id = :lang_id");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->bindParam(":header_logo", $header_logo, PDO::PARAM_STR);
+        $statement->bindParam(":footer_logo", $footer_logo, PDO::PARAM_STR);
+        $statement->bindParam(":footer_copyright", $footer_copyright, PDO::PARAM_STR);
+        $statement->bindParam(":footer_about", $footer_about, PDO::PARAM_STR);
+        $statement->bindParam(":website_title", $website_title, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function addWebsiteFooterLinks($lang_id, $button_id, $sequence_num) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("INSERT INTO website_footer_links(lang_id, button_id, sequence_num) 
+                                    VALUES(:lang_id, :button_id, :sequence_num)");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public static function getWebsiteFooterLinksMaxSequenceNumber($lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT MAX(sequence_num) as max_sequence_num FROM website_footer_links WHERE lang_id = :lang_id");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->execute();
+        
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteFooterLink($lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT lang_id, button_id, sequence_num FROM website_footer_links WHERE lang_id = :lang_id ORDER BY sequence_num ASC");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->execute();
+        
+        return $statement->fetchAll();
+    }
+
+    public static function addWebsiteFooterDocumentation($lang_id, $button_id, $sequence_num) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("INSERT INTO website_footer_documentation(lang_id, button_id, sequence_num) 
+                                    VALUES(:lang_id, :button_id, :sequence_num)");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public static function getWebsiteFooterDocumentationMaxSequenceNumber($lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT MAX(sequence_num) as max_sequence_num FROM website_footer_documentation WHERE lang_id = :lang_id");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->execute();
+        
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteDocumentation($lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT lang_id, button_id, sequence_num FROM website_footer_documentation WHERE lang_id = :lang_id ORDER BY sequence_num ASC");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->execute();
+        
+        return $statement->fetchAll();
+    }
+
+    public static function addWebsiteFooterImages($lang_id, $button_id, $sequence_num) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("INSERT INTO website_footer_images(lang_id, button_id, sequence_num) 
+                                    VALUES(:lang_id, :button_id, :sequence_num)");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public static function getWebsiteFooterImagesMaxSequenceNumber($lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT MAX(sequence_num) as max_sequence_num FROM website_footer_images WHERE lang_id = :lang_id");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->execute();
+        
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteFooterImages($lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT lang_id, button_id, sequence_num FROM website_footer_images WHERE lang_id = :lang_id ORDER BY sequence_num ASC");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->execute();
+        
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteDefaultButton($button_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_button.button_title AS WBCB_button_title, website_button.image_id AS WBCB_image_id, 
+                                    website_button.sequence_num AS WBCB_sequence_num, website_button_link.button_link AS WBCB_button_link, 
+                                    website_button_link.query_string AS WBCB_query_string, website_button_link.link_title AS WBCB_link_title, 
+                                    website_button_link.target AS WBCB_target, website_button_link.page_id AS WBCB_page_id,
+                                    website_button.button_id AS WBCB_button_id
+                                    FROM website_button
+                                    INNER JOIN website_button_link ON website_button.button_link_id = website_button_link.button_link_id
+                                    WHERE website_button.button_id = :button_id");
+        $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function addWebsitePage($parent) {
         $db = self::getInstance();
 
         $statement = $db->prepare("INSERT INTO website_page(page_title, subpage_to) VALUES('Neimenovana stran', :parent)");
@@ -154,11 +323,6 @@ class website {
         $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
         $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
         $statement->execute();
-                
-        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
-        $statement->execute();
-
-        return $statement->fetchColumn();
     }
 
     public static function updateWebsitePageDetails($page_id, $language_id, $page_published, $page_title, $meta_name, $meta_description, $meta_keyword) {
@@ -414,6 +578,23 @@ class website {
         $db = self::getInstance();
 
         $statement = $db->prepare("SELECT MAX(button_link_id) as max_button_link_id FROM website_button_link");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteButtonByID($button_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_button.button_title AS WBCB_button_title, website_button.image_id AS WBCB_image_id, 
+                                    website_button.sequence_num AS WBCB_sequence_num, website_button_link.button_link AS WBCB_button_link, 
+                                    website_button_link.query_string AS WBCB_query_string, website_button_link.link_title AS WBCB_link_title, 
+                                    website_button_link.target AS WBCB_target, website_button_link.page_id AS WBCB_page_id,
+                                    website_button.button_id AS WBCB_button_id
+                                    FROM website_button
+                                    INNER JOIN website_button_link ON website_button.button_link_id = website_button_link.button_link_id
+                                    WHERE website_button.button_id = :button_id");
+        $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
         $statement->execute();
 
         return $statement->fetchAll();

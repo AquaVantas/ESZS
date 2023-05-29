@@ -22,7 +22,7 @@
 
 	$section_id = $_GET['section_id'];
 	$section_name = $_POST['section-name'];
-	$block_template_id = $_POST['section-template'];
+	$block_template_id = intval($_POST['section-template']);
 	$section_class = $_POST['section-class'];
 	$block_header = $_POST['section-header'];
 	$block_subheader = $_POST['section-subheader'];

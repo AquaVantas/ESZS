@@ -2,7 +2,6 @@ Quill.register("modules/imageUploader", ImageUploader);
 var arrayOfToolbars = document.getElementsByClassName("editor-toolbar");
 var arrayOfContainers = document.getElementsByClassName("editor-container");
 for (let index = 0; index < arrayOfToolbars.length; index++) {
-	console.log('editor' + arrayOfContainers[index].getAttribute("container-id"));
 	window['editor' + arrayOfContainers[index].getAttribute("container-id")] = new Quill('[container-id="' + arrayOfContainers[index].getAttribute("container-id") + '"]', {
 		modules: {
 			toolbar: '[toolbar-id="' + arrayOfToolbars[index].getAttribute("toolbar-id") + '"]',

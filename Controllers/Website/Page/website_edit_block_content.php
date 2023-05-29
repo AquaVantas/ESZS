@@ -22,7 +22,11 @@
 
 	$block_content_id = $_POST['block-content-id'];
 	$sequence_num = $_POST['sequence-num'];
-	$image_id = $_POST['block-content-image'];
+	if($_POST['block-content-image'] == '') {
+	    $image_id = NULL;
+	} else {
+	    $image_id = intval($_POST['block-content-image']);
+	}
 	$block_link = $_POST['block-content-link'];
 	$block_heading = $_POST['block-content-heading'];
 	$block_subheading = $_POST['block-content-subheading'];
