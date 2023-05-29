@@ -1,0 +1,81 @@
+.BlockSDPAnnouncement {
+    @include media-breakpoint-up(lg) {
+        padding-top: 30px;
+    }
+
+    .heading {
+        overflow: hidden;
+
+        .newstitletext {
+            padding: 40px;
+            line-height: 26px;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            float: left;
+            width: 80%;
+            background-color: $primarybluefive;
+            color: $white;
+            text-align: left;
+            font-weight: 700;
+            font-size: 24px;
+            transform-style: preserve-3d;
+
+            &::after {
+                content: "";
+                display: block;
+                background: $primarybluefive;
+                position: absolute;
+                left: 100%;
+                bottom: 0;
+                transform: rotate(45deg);
+                transform-origin: top left;
+                height: 100%;
+                width: 300px;
+                z-index: -1;
+            }
+        }
+    }
+
+    .content {
+        .banner {
+            img {
+                width: 100%;
+                padding: 15px 0;
+            }
+        }
+
+        .text {
+            p {
+                color: $white;
+                margin-bottom: 0;
+            }
+        }
+
+        .available-games {
+            padding-top: 70px;
+
+            h1 {
+                text-align: center;
+                padding-bottom: 20px;
+            }
+
+            .game {
+                a {
+                    width: 100%;
+
+                    img {
+                        width: 100%;
+                        padding-bottom: 25px;
+                    }
+
+                    &.link-closed {
+                        img {
+                            filter: grayscale(100%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

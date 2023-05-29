@@ -1,0 +1,39 @@
+.BlockSDPGameAccordionRules {
+    @include media-breakpoint-up(lg) {
+        padding-top: 30px;
+    }
+
+    .rules-list {
+        margin-top: 20px;
+
+        .accordion {
+            .accordion-item {
+                border: 1px solid $primarybluefive;
+                background-color: transparent !important;
+
+                .accordion-header {
+                    border: 1px solid $primarybluefive;
+                    text-transform: uppercase;
+
+                    button {
+                        font-size: 15px;
+                        font-style: normal;
+                        text-decoration: none;
+                        color: $primarybluefive;
+                        background-color: transparent;
+                        height: 70px;
+                        box-shadow: none;
+
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    }
+}

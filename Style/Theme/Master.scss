@@ -5,22 +5,59 @@ body {
     background-color: $background;
     //  padding-bottom: 100px;
     width: 100vw;
-    overflow-x: hidden;   
+    overflow-x: hidden;
 
     p {
+        font-family: "Montserrat-Regular";
         font-size: 14px;
-        line-height: 16px;
+        line-height: 28px;
         color: $white;
 
         @include media-breakpoint-up(md) {
             font-size: 16px;
-            line-height: 18px;
+            line-height: 24px;
+        }
+
+        a {
+            font-family: "Montserrat-SemiBold";
+            margin: 0 5px;
+            text-transform: uppercase;
+            font-size: 14px;
+            line-height: 20px;
+            height: 40px;
+            padding: 20px;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            border: none;
+            color: $white;
+            background-color: $primarybluefive;
+
+            &:hover {
+                background-color: $primarybluefive;
+            }
+        }
+    }
+
+    ul {
+        margin-top: 15px;
+
+        li {
+            font-size: 14px;
+            line-height: 16px;
+            color: $white;
+
+            @include media-breakpoint-up(md) {
+                font-size: 16px;
+                line-height: 24px;
+            }
         }
     }
 }
 
 a {
-    font-family: "Montserrat-SemiBold";
+    font-family: "Montserrat-Regular";
     padding: 0 15px;
     font-size: 14px;
     line-height: 20px;
@@ -38,10 +75,13 @@ a {
 }
 
 h1 {
-
+    font-family: "Montserrat-SemiBold";
+    color: $white;
 }
 
 h2 {
+    font-family: "Montserrat-SemiBold";
+
     @include media-breakpoint-up(lg) {
         font-size: 54px;
         line-height: 60px;
@@ -51,6 +91,8 @@ h2 {
 }
 
 h3 {
+    font-family: "Montserrat-SemiBold";
+
     @include media-breakpoint-up(lg) {
         font-size: 40px;
         line-height: 45px;
@@ -95,7 +137,7 @@ h3 {
 
 
 span {
-    font-family: "Montserrat-SemiBold";
+    font-family: "Montserrat-Regular";
     font-size: 16px;
     line-height: 20px;
     color: white;
@@ -175,7 +217,10 @@ table {
     }
 }
 
-
+.ql-align-center {
+    display: flex;
+    justify-content: center;
+}
 //Fixed styles
 @import "Page/CPanel.scss";
 @import "Page/Master/Footer.scss";
@@ -185,3 +230,7 @@ table {
 @import "Page/Partials/SectionBlocks/BlockPartners.scss";
 @import "Page/Partials/SectionBlocks/BlockMembers.scss";
 @import "Page/Partials/SectionBlocks/BlockOtherSocials.scss";
+@import "Page/Partials/SectionBlocks/BlockSDPAnnouncement.scss";
+@import "Page/Partials/SectionBlocks/BlockSDPGameShort.scss";
+@import "Page/Partials/SectionBlocks/BlockSDPGameFileDownload.scss";
+@import "Page/Partials/SectionBlocks/BlockSDPGameAccordionRules.scss";

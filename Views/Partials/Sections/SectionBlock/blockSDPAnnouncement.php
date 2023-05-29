@@ -1,36 +1,56 @@
-<section class="BlockMembers">
+<section class="BlockSDPAnnouncement">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12 heading">
-				<div class="line">
-				</div>
-				<h3><?= $section['WSB_block_header'] ?></h3>
-				<div class="line">
+			<div class="col-lg-10 heading">
+				<div class="newstitletext">
+					<h3><?= $section['WSB_block_header'] ?></h3>
 				</div>
 			</div>
-			<div class="col-12 member-list">
+			<div class="col-12 content">
 				<div class="row">
-					<?php foreach(website::getWebsiteBlockContent($section['WSB_section_block_id']) as $blockContent) { 
-						foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $button) {						
-							if($button['WBCB_image_id'] != NULL) {
-								foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { 						
-									if($button['WBCB_page_id'] == NULL || $button['WBCB_page_id'] == 0) { ?>
-										<div class="col-lg-2">
-											<a class="partner" href="<?= $button['WBCB_button_link'] ?>">
-												<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
-											</a>
-										</div>
-									<?php } else { ?>
-										<div class="col-lg-2">
-											<a class="partner" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>">
-												<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
-											</a>
-										</div>
-									<?php }
-								}					
-							}						
-						}
-					} ?>
+					<?php foreach(website::getWebsiteBlockContent($section['WSB_section_block_id']) as $blockContent) { 						
+						if($blockContent['WBC_image_id'] != NULL) {
+							foreach(website::getWebsiteImageByID(intval($blockContent['WBC_image_id'])) as $image) { ?>
+								<div class="col-12 banner">
+									<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+								</div>
+							<?php 
+							}					
+						} ?>
+						<div class="col-12 text">
+							<?= $blockContent['WBC_block_text'] ?>
+						</div>
+						<div class="available-games col-12">
+							<h1><?= $blockContent['WBC_block_heading'] ?></h1>
+							<div class="row">
+								<?php foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $button) {						
+									if($button['WBCB_image_id'] != NULL) {
+										foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { ?>
+											<div class="col-2 game">
+												<?php if($button['WBCB_button_title'] != "closed") {
+													if($button['WBCB_button_link'] != NULL || $button['WBCB_button_link'] != "") { ?>
+														<a href="<?= $button['WBCB_button_link'] ?>">
+															<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+														</a>
+													<?php }
+													else { ?>
+														<a href="?lang_id=<?= $lang_id ?>&page_id=<?= $button['WBCB_page_id'] ?>">
+															<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+														</a>
+													<?php }
+												} else { ?>
+													<a class="link-closed">
+														<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+													</a>
+												<?php } ?>
+											</div>
+										<?php 
+										}					
+									}						
+								} ?>
+							</div>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

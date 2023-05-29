@@ -13,19 +13,53 @@ body {
   overflow-x: hidden;
 }
 body p {
+  font-family: "Montserrat-Regular";
   font-size: 14px;
-  line-height: 16px;
+  line-height: 28px;
   color: #FFFFFF;
 }
 @media (min-width: 768px) {
   body p {
     font-size: 16px;
-    line-height: 18px;
+    line-height: 24px;
+  }
+}
+body p a {
+  font-family: "Montserrat-SemiBold";
+  margin: 0 5px;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 20px;
+  height: 40px;
+  padding: 20px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  border: none;
+  color: #FFFFFF;
+  background-color: #00d6bd;
+}
+body p a:hover {
+  background-color: #00d6bd;
+}
+body ul {
+  margin-top: 15px;
+}
+body ul li {
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+}
+@media (min-width: 768px) {
+  body ul li {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
 a {
-  font-family: "Montserrat-SemiBold";
+  font-family: "Montserrat-Regular";
   padding: 0 15px;
   font-size: 14px;
   line-height: 20px;
@@ -40,6 +74,14 @@ a:hover {
   color: #00d6bd;
 }
 
+h1 {
+  font-family: "Montserrat-SemiBold";
+  color: #FFFFFF;
+}
+
+h2 {
+  font-family: "Montserrat-SemiBold";
+}
 @media (min-width: 992px) {
   h2 {
     font-size: 54px;
@@ -49,6 +91,9 @@ a:hover {
   }
 }
 
+h3 {
+  font-family: "Montserrat-SemiBold";
+}
 @media (min-width: 992px) {
   h3 {
     font-size: 40px;
@@ -92,7 +137,7 @@ a:hover {
 }
 
 span {
-  font-family: "Montserrat-SemiBold";
+  font-family: "Montserrat-Regular";
   font-size: 16px;
   line-height: 20px;
   color: white;
@@ -161,6 +206,11 @@ table {
 table tr td {
   border: 1px solid #FFFFFF;
   padding: 5px 10px;
+}
+
+.ql-align-center {
+  display: flex;
+  justify-content: center;
 }
 
 .cpanel-navigation-wrapper {
@@ -951,6 +1001,10 @@ footer {
 footer .about span p {
   font-size: 13px;
   line-height: 1.2;
+  margin-bottom: 0;
+}
+footer .about span p:first-child {
+  padding-bottom: 15px;
 }
 footer .links {
   display: flex;
@@ -961,6 +1015,7 @@ footer .links .footer-link-title {
   text-transform: uppercase;
   font-size: 13px;
   line-height: 1.2;
+  font-family: "Montserrat-SemiBold";
 }
 footer .links a {
   font-size: 13px;
@@ -971,6 +1026,7 @@ footer .footer-image-wrapper img {
   width: 100%;
 }
 footer .footer-last-container {
+  margin-top: 25px;
   overflow: hidden;
 }
 footer .footer-last-container .container {
@@ -1064,8 +1120,11 @@ footer .footer-last-container .container .row .copyright span {
   width: 300px;
   z-index: -10;
 }
-.navigation-desktop .content-wrapper .left-side .logo-wrapper img {
-  height: 70px;
+.navigation-desktop .content-wrapper .left-side .logo-wrapper a {
+  padding: 0;
+}
+.navigation-desktop .content-wrapper .left-side .logo-wrapper a img {
+  height: 60px;
   padding: 10px 0px 10px 40px;
 }
 .navigation-desktop .content-wrapper .right-side {
@@ -1078,6 +1137,7 @@ footer .footer-last-container .container .row .copyright span {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  margin-top: 0;
 }
 .navigation-desktop .content-wrapper .right-side .navbar-nav li {
   padding: 0 15px;
@@ -1098,6 +1158,9 @@ footer .footer-last-container .container .row .copyright span {
   background-color: #00d6bd;
   color: #192133;
   text-decoration: none;
+}
+.navigation-desktop .content-wrapper .right-side .dropdown-menu .nav-item a {
+  font-family: "Montserrat-SemiBold";
 }
 .navigation-desktop .content-wrapper .right-side .dropdown-menu .nav-item a:hover {
   color: #192133;
@@ -1237,6 +1300,10 @@ footer .footer-last-container .container .row .copyright span {
     margin-top: 40px;
   }
 }
+.BlockMembers .member-list .list {
+  display: flex;
+  justify-content: center;
+}
 .BlockMembers .member-list a img {
   max-height: 70px;
   min-height: 70px;
@@ -1269,6 +1336,187 @@ footer .footer-last-container .container .row .copyright span {
 }
 .BlockOtherSocials .socials-list a img:hover {
   filter: invert(65%) sepia(100%) saturate(2261%) hue-rotate(127deg) brightness(98%) contrast(101%);
+}
+
+@media (min-width: 992px) {
+  .BlockSDPAnnouncement {
+    padding-top: 30px;
+  }
+}
+.BlockSDPAnnouncement .heading {
+  overflow: hidden;
+}
+.BlockSDPAnnouncement .heading .newstitletext {
+  padding: 40px;
+  line-height: 26px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  float: left;
+  width: 80%;
+  background-color: #00d6bd;
+  color: #FFFFFF;
+  text-align: left;
+  font-weight: 700;
+  font-size: 24px;
+  transform-style: preserve-3d;
+}
+.BlockSDPAnnouncement .heading .newstitletext::after {
+  content: "";
+  display: block;
+  background: #00d6bd;
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  transform: rotate(45deg);
+  transform-origin: top left;
+  height: 100%;
+  width: 300px;
+  z-index: -1;
+}
+.BlockSDPAnnouncement .content .banner img {
+  width: 100%;
+  padding: 15px 0;
+}
+.BlockSDPAnnouncement .content .text p {
+  color: #FFFFFF;
+  margin-bottom: 0;
+}
+.BlockSDPAnnouncement .content .available-games {
+  padding-top: 70px;
+}
+.BlockSDPAnnouncement .content .available-games h1 {
+  text-align: center;
+  padding-bottom: 20px;
+}
+.BlockSDPAnnouncement .content .available-games .game a {
+  width: 100%;
+}
+.BlockSDPAnnouncement .content .available-games .game a img {
+  width: 100%;
+  padding-bottom: 25px;
+}
+.BlockSDPAnnouncement .content .available-games .game a.link-closed img {
+  filter: grayscale(100%);
+}
+
+@media (min-width: 992px) {
+  .BlockSDPGameShort {
+    padding-top: 30px;
+  }
+}
+.BlockSDPGameShort .heading {
+  overflow: hidden;
+}
+.BlockSDPGameShort .heading .newstitletext {
+  padding: 40px;
+  line-height: 26px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  float: left;
+  width: 80%;
+  background-color: #00d6bd;
+  color: #FFFFFF;
+  text-align: left;
+  font-weight: 700;
+  font-size: 24px;
+  transform-style: preserve-3d;
+}
+.BlockSDPGameShort .heading .newstitletext::after {
+  content: "";
+  display: block;
+  background: #00d6bd;
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  transform: rotate(45deg);
+  transform-origin: top left;
+  height: 100%;
+  width: 300px;
+  z-index: -1;
+}
+.BlockSDPGameShort .content .banner img {
+  width: 100%;
+  padding: 15px 0;
+}
+.BlockSDPGameShort .content .text p {
+  color: #FFFFFF;
+  margin-bottom: 0;
+}
+
+@media (min-width: 992px) {
+  .BlockSDPGameFileDownload {
+    padding-top: 50px;
+  }
+}
+.BlockSDPGameFileDownload .heading {
+  padding-bottom: 20px;
+}
+.BlockSDPGameFileDownload .document-list .document-sdp {
+  width: 100%;
+  border: 2px solid #00d6bd;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+}
+.BlockSDPGameFileDownload .document-list .document-sdp .document-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.BlockSDPGameFileDownload .document-list .document-sdp .document-wrapper .image-and-text {
+  display: flex;
+  align-items: center;
+}
+.BlockSDPGameFileDownload .document-list .document-sdp .document-wrapper .image-and-text img {
+  height: 50px;
+  filter: invert(69%) sepia(66%) saturate(3560%) hue-rotate(128deg) brightness(99%) contrast(102%);
+}
+.BlockSDPGameFileDownload .document-list .document-sdp .document-wrapper .image-and-text p {
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 0;
+  margin-left: 15px;
+}
+.BlockSDPGameFileDownload .document-list .document-sdp .document-wrapper a {
+  font-weight: 700;
+  padding: 15px 20px;
+  background-color: #00d6bd;
+  font-size: 18px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+@media (min-width: 992px) {
+  .BlockSDPGameAccordionRules {
+    padding-top: 30px;
+  }
+}
+.BlockSDPGameAccordionRules .rules-list {
+  margin-top: 20px;
+}
+.BlockSDPGameAccordionRules .rules-list .accordion .accordion-item {
+  border: 1px solid #00d6bd;
+  background-color: transparent !important;
+}
+.BlockSDPGameAccordionRules .rules-list .accordion .accordion-item .accordion-header {
+  border: 1px solid #00d6bd;
+  text-transform: uppercase;
+}
+.BlockSDPGameAccordionRules .rules-list .accordion .accordion-item .accordion-header button {
+  font-size: 15px;
+  font-style: normal;
+  text-decoration: none;
+  color: #00d6bd;
+  background-color: transparent;
+  height: 70px;
+  box-shadow: none;
+}
+.BlockSDPGameAccordionRules .rules-list .accordion .accordion-item .accordion-header button::after {
+  display: none;
+}
+.BlockSDPGameAccordionRules .rules-list .accordion h1 {
+  font-size: 25px;
 }
 
 /*# sourceMappingURL=Master.css.map */

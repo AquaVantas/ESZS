@@ -6,7 +6,7 @@
 					<?php foreach(website::getWebsiteDefault($lang_id) as $default) {
 						if($default['header_logo'] != NULL) {
 							foreach(website::getWebsiteImageByID(intval($default['header_logo'])) as $image) { ?>
-								<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
+								<a href="/"><img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" /></a>
 							<?php }
 						}
 					} ?>			

@@ -1,0 +1,50 @@
+.BlockSDPGameFileDownload {
+    @include media-breakpoint-up(lg) {
+        padding-top: 50px;
+    }
+
+    .heading {
+        padding-bottom: 20px;
+    }
+
+    .document-list {
+        .document-sdp {
+            width: 100%;
+            border: 2px solid $primarybluefive;
+            margin-bottom: 20px;
+            padding: 15px 20px;
+
+            .document-wrapper {
+                display: flex;
+                justify-content: space-between;
+
+                .image-and-text {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        height: 50px;
+                        filter: invert(69%) sepia(66%) saturate(3560%) hue-rotate(128deg) brightness(99%) contrast(102%);
+                    }
+
+                    p {
+                        color: $white;
+                        font-weight: 700;
+                        font-size: 18px;
+                        margin-bottom: 0;
+                        margin-left: 15px;
+                    }
+                }
+
+                a {
+                    font-weight: 700;
+                    padding: 15px 20px;
+                    background-color: $primarybluefive;
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
