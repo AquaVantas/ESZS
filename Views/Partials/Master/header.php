@@ -4,3 +4,4 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 <script src="Plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="Scripts/Main.js"></script>
+<title>E-športna zveza Slovenije</title>

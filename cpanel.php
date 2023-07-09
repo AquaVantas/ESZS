@@ -7,6 +7,12 @@
 	require_once("Internal/website_database.php");
 
 	header('Content-Type: text/html; charset=utf8');
+	if (!function_exists('str_contains')) {
+    function str_contains (string $haystack, string $needle)
+    {
+        return empty($needle) || strpos($haystack, $needle) !== false;
+    }
+}
 	if(isset($_GET['tab'])) {
 		$cpanel_tab = $_GET['tab'];
 	}
@@ -89,13 +95,16 @@
 		return $html;
 	}
 
-	function printButtonSubmenu($parent, $level) {
+	function printButtonSubmenu($parent, $level, $button_page_id) {
 		$html = "<div class='a-page'>";
 		foreach(website::getAllWebsitePageSubpages($parent) as $subpage) {
-			$html .= "<div class='option'><input type='checkbox' id='" . $subpage['page_id'] . "' name='" . $subpage['page_id'] . "' value='" . $subpage['page_id'] . "'>
-					<label for'" . $subpage['page_id'] . "'>" . $subpage['page_title'] . "</label></div>";
+			$html .= "<div class='option'><input type='checkbox' id='" . $subpage['page_id'] . "' name='" . $subpage['page_id'] . "' value='" . $subpage['page_id'] . "'";
+			if ($button_page_id == $subpage['page_id']) {
+				$html .= " checked";
+			}
+			$html .= "><label for='" . $subpage['page_id'] . "'>" . $subpage['page_title'] . "</label></div>";
 			if(sizeof(website::getAllWebsitePageSubpages($subpage['page_id'])) > 0) {
-				$html .= printButtonSubmenu($subpage['page_id'], $level+1);
+				$html .= printButtonSubmenu($subpage['page_id'], $level+1, $button_page_id);
 			}
 		}
 		$html .= "</div>";

@@ -3,14 +3,13 @@
     "",
     "\\Controllers",
     "\\Controllers\\Website",
-    "\\Controllers\\Website\\Media",
+    "\\Controllers\\Website\\Page",
+    "\\Internal",
     "\\Views",
-    "\\Views\\CPanel\\Universal",
+    "\\Views\\CPanel",
     "\\Views\\Partials",
-    "\\Views\\Partials\\Master",
-    "\\Views\\Partials\\Sections",
-    "\\Views\\Partials\\Sections\\SectionBlock"
+    "\\Views\\Partials\\Master"
   ],
-  "SelectedNode": "\\Controllers\\Website\\Page\\website_create_page_details.php",
+  "SelectedNode": "\\Controllers\\Website\\Page\\website_delete_button.php",
   "PreviewInSolutionExplorer": false
 }

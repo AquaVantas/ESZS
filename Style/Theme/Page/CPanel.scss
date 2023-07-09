@@ -171,11 +171,13 @@
                             margin-top: -7px;
                             height: 16px;
                             width: 16px;
+                            padding-right: 0;
 
                             img {
                                 width: 16px;
                                 height: 16px;
                                 transform: rotate(45deg);
+                                filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
                             }
                         }
                     }
@@ -479,6 +481,22 @@
                         .editor-container {
                             border-color: $primarybluefive;
                             min-height: 130px;
+                        }
+                    }
+
+                    &.publish-bubble {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+
+                        label {
+                            margin-bottom: 0;
+                        }
+
+                        input {
+                            height: 30px;
+                            width: 30px;
+                            margin-left: 30px;
                         }
                     }
                 }

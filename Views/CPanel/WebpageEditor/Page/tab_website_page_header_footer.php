@@ -150,7 +150,7 @@
 																	<label for="<?= $page['page_id'] ?>"> <?= $page['page_title'] ?></label>
 																</div>
 																<?php if(sizeof(website::getAllWebsitePageSubpages($page['page_id'])) > 0) {
-																	echo printButtonSubmenu($page['page_id'], 3);
+																	echo printButtonSubmenu($page['page_id'], 3, 3);
 
 																} ?>
 															</div>
@@ -258,7 +258,7 @@
 																	<label for="<?= $page['page_id'] ?>"> <?= $page['page_title'] ?></label>
 																</div>
 																<?php if(sizeof(website::getAllWebsitePageSubpages($page['page_id'])) > 0) {
-																	echo printButtonSubmenu($page['page_id'], 3);
+																	echo printButtonSubmenu($page['page_id'], 3, 3);
 
 																} ?>
 															</div>
@@ -366,7 +366,7 @@
 																	<label for="<?= $page['page_id'] ?>"> <?= $page['page_title'] ?></label>
 																</div>
 																<?php if(sizeof(website::getAllWebsitePageSubpages($page['page_id'])) > 0) {
-																	echo printButtonSubmenu($page['page_id'], 3);
+																	echo printButtonSubmenu($page['page_id'], 3, 3);
 
 																} ?>
 															</div>

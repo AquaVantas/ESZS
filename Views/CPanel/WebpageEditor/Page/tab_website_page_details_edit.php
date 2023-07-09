@@ -9,7 +9,7 @@ $page_details_id = 0;
 							$page_details_id = $page['page_detail_id'];
 						?>
 						<div class="col-12">
-							<div class="edit-cloud">
+							<div class="edit-cloud publish-bubble">
 								<label for="page_title">Objavljena:</label><br>
 								<input type="checkbox" id="page_published" name="page_published" <?= ($page['page_published']) == 1 ? 'checked' : '' ?>>
 							</div>	
@@ -49,19 +49,32 @@ $page_details_id = 0;
 												<div class="accordion-item">
 													<h2 class="accordion-header" id="headingTwo">
 														<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $counter ?>" aria-expanded="false" aria-controls="collapse<?= $counter ?>">
-															<?php if($section['WSB_section_name'] == NULL || strlen($section['WSB_section_name']) == 0) { 
-																if($section['WS_variant_id'] == 1) { ?>
-																	Section Block
-																<?php } elseif($section['WS_variant_id'] == 2) { ?>
-																	Section Gallery
-																<?php } 
-															} else { 
-																if($section['WS_variant_id'] == 1) { ?>															
-																	<div class="section-block-icon"></div><?= $section['WSB_section_name'] ?>
-																<?php } elseif($section['WS_variant_id'] == 2) { ?>															
-																	<div class="section-gallery-icon"></div><?= $section['WSB_block_header'] ?>
-																<?php } 
-															}?>
+															<div class="header-left-side">
+																<?php if($section['WSB_section_name'] == NULL || strlen($section['WSB_section_name']) == 0) { 
+																	if($section['WS_variant_id'] == 1) { ?>
+																		Section Block
+																	<?php } elseif($section['WS_variant_id'] == 2) { ?>
+																		Section Gallery
+																	<?php } 
+																} else { 
+																	if($section['WS_variant_id'] == 1) { ?>															
+																		<div class="section-block-icon"></div><?= $section['WSB_section_name'] ?>
+																	<?php } elseif($section['WS_variant_id'] == 2) { ?>															
+																		<div class="section-gallery-icon"></div><?= $section['WSB_block_header'] ?>
+																	<?php } 
+																}?>
+															</div>
+															<div class="actions-wrapper">
+																<div class="up-down-arrows">
+																	<div class="up-arrow">
+																	</div>
+																	<div class="down-arrow">
+																	</div>
+																</div>
+																<a class="delete" href="Controllers/Website/Page/website_delete_button.php?page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&button_id=<?= $blockContentButton['WBCB_button_id'] ?>&block_content_id=<?= $blockContent['WBC_block_content_id'] ?>">
+																	<img src="Content/Images/Icons/plus.svg"></img>
+																</a>
+															</div>
 														</button>
 													</h2>
 													<div id="collapse<?= $counter ?>" class="accordion-collapse collapse" aria-labelledby="heading<?= $counter ?>" data-bs-parent="#accordionExample">
@@ -103,10 +116,21 @@ $page_details_id = 0;
 																					<h2 class="accordion-header" id="headingTwo">
 																						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInner<?= $counter ?><?= $innerCounter ?>" aria-expanded="false" aria-controls="collapseInner<?= $counter ?><?= $innerCounter ?>">
 																							<?php if(strlen($blockContent['WBC_block_heading']) == 0) { ?>
-																								Block Content
+																								<span>Block Content</span>
 																							<?php } else { ?>
-																								<?= $blockContent['WBC_block_heading'] ?>
+																								<span><?= $blockContent['WBC_block_heading'] ?></span>
 																							<?php } ?>
+																							<div class="actions-wrapper">
+																								<div class="up-down-arrows">
+																									<div class="up-arrow">
+																									</div>
+																									<div class="down-arrow">
+																									</div>
+																								</div>
+																								<a class="delete" href="Controllers/Website/Page/website_delete_block_content.php?page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_id=<?= $section['WS_section_id'] ?>&block_content_id=<?= $blockContent['WBC_block_content_id'] ?>">
+																									<img src="Content/Images/Icons/plus.svg"></img>
+																								</a>
+																							</div>
 																						</button>
 																					</h2>
 																					<div id="collapseInner<?= $counter ?><?= $innerCounter ?>" class="accordion-collapse collapse" aria-labelledby="heading<?= $counter ?><?= $innerCounter ?>" data-bs-parent="#accordionBlockContent">
@@ -239,8 +263,7 @@ $page_details_id = 0;
 																																			<label for="<?= $page['page_id'] ?>"> <?= $page['page_title'] ?></label>
 																																		</div>
 																																		<?php if(sizeof(website::getAllWebsitePageSubpages($page['page_id'])) > 0) {
-																																			echo printButtonSubmenu($page['page_id'], 3);
-
+																																			echo printButtonSubmenu($page['page_id'], 3, $blockContentButton['WBCB_page_id']);
 																																		} ?>
 																																	</div>
 																																<?php } ?>
@@ -250,7 +273,7 @@ $page_details_id = 0;
 																															<label for="button-target">Odpre novo okno:</label><br>
 																														</div>
 																														<div class="col-10">
-																															<input type="checkbox" id="button-target" name="button-target" value="button-target">
+																															<input type="checkbox" id="button-target" name="button-target" value="button-target" <?= (intval($blockContentButton['WBCB_target']) == 1) ? 'checked' : '' ?>>
 																														</div>
 																													</div>
 																												</div>

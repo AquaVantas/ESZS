@@ -354,11 +354,13 @@ table tr td {
   margin-top: -7px;
   height: 16px;
   width: 16px;
+  padding-right: 0;
 }
 .cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .delete img {
   width: 16px;
   height: 16px;
   transform: rotate(45deg);
+  filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
 }
 .cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body {
   border: 1px solid #00d6bd;
@@ -592,6 +594,19 @@ table tr td {
 .cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-container {
   border-color: #00d6bd;
   min-height: 130px;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud.publish-bubble {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud.publish-bubble label {
+  margin-bottom: 0;
+}
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud.publish-bubble input {
+  height: 30px;
+  width: 30px;
+  margin-left: 30px;
 }
 .cpanel-body-wrapper .user-body .create-user .user-permissions {
   display: flex;
@@ -1101,7 +1116,7 @@ footer .footer-last-container .container .row .copyright span {
   padding: 0;
 }
 .navigation-desktop .content-wrapper .left-side .logo-wrapper {
-  height: 80px;
+  height: 70px;
   width: 210px;
   text-align: right;
   background-color: #00d6bd;
@@ -1121,6 +1136,8 @@ footer .footer-last-container .container .row .copyright span {
   z-index: -10;
 }
 .navigation-desktop .content-wrapper .left-side .logo-wrapper a {
+  display: flex;
+  align-items: center;
   padding: 0;
 }
 .navigation-desktop .content-wrapper .left-side .logo-wrapper a img {

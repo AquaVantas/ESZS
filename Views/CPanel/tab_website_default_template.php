@@ -58,11 +58,13 @@
 					<div class="main-element-wrapper">
 						<div class="list-element">
 							<div class="element">
-								<?php if (count(website::getSpecificWebsitePageDetails($page['page_id'], isset($_GET['lang_id']) ? $_GET['lang_id'] : 1)) != 0) { ?>
-									<a href="?tab=webpage_editor&action=edit_page_details&page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
-										<?= $page['page_title'] ?>
-									</a>
-								<?php } else { ?>
+								<?php if (count(website::getSpecificWebsitePageDetails($page['page_id'], isset($_GET['lang_id']) ? $_GET['lang_id'] : 1)) != 0) { 
+									foreach(website::getSpecificWebsitePageDetails($page['page_id'], isset($_GET['lang_id']) ? $_GET['lang_id'] : 1) as $page_detail) { ?>
+										<a class="published-<?= $page_detail['page_published'] ?>" href="?tab=webpage_editor&action=edit_page_details&page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
+											<?= $page['page_title'] ?>
+										</a>
+									<?php } 									
+								} else { ?>
 									<a href="Controllers/Website/Page/website_create_page_details.php?page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
 										<?= $page['page_title'] ?>
 									</a>
@@ -86,7 +88,7 @@
 					<?php } else { ?>
 						<div class="list-element first">
 							<?php if (count(website::getSpecificWebsitePageDetails(1, isset($_GET['lang_id']) ? $_GET['lang_id'] : 1)) != 0) { ?>
-								<a href="?tab=webpage_editor&action=edit_page_details&page_id=1<?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
+								<a class="published-1" href="?tab=webpage_editor&action=edit_page_details&page_id=1<?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">
 									<?= $page['page_title'] ?>
 								</a>
 							<?php } else { ?>

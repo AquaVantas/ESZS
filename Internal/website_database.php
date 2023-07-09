@@ -523,6 +523,52 @@ class website {
         $statement->execute();
     }
 
+    public static function deleteWebsiteBlockContent($block_content_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("DELETE FROM website_block_content WHERE block_content_id = :block_content_id");
+        $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteBlockContentDeletedSequenceNumber($block_content_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_block_content.sequence_num AS WBC_sequence_num
+                                    FROM website_block_content                                    
+                                    WHERE website_block_content.block_content_id = :block_content_id");     
+        $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }  
+
+    public static function getWebsiteBlockContentAfterDeleted($section_id, $sequence_num) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_block_content.block_content_id AS WBC_block_content_id
+                                    FROM website_block_content
+                                    WHERE website_block_content.sequence_num > :sequence_num AND website_block_content.section_block_id = :section_id
+                                    ORDER BY website_block_content.sequence_num ASC");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);        
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function updateWebsiteBlockContentSequenceNum($block_content_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_block_content
+                                    SET sequence_num = sequence_num - 1                        
+                                    WHERE block_content_id = :block_content_id");
+        $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
     public static function getWebsiteImageByID($image_id) {
         $db = self::getInstance();
 

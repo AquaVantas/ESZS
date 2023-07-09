@@ -6,7 +6,13 @@
 	require_once("Internal/website_database.php");
 
 	header('Content-Type: text/html; charset=utf8');
-	
+
+	if (!function_exists('str_contains')) {
+		function str_contains (string $haystack, string $needle)
+		{
+			return empty($needle) || strpos($haystack, $needle) !== false;
+		}
+	}
 	function printSubMenu($parent, $parent_title, $lang_id) {
 		$html = "<li class='nav-item dropdown'>
 					<a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" . $parent_title . "</a>
