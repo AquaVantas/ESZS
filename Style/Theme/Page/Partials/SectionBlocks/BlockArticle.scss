@@ -1,0 +1,41 @@
+.BlockArticle {
+
+    .article-title {
+        overflow: hidden;
+
+        .newstitletext {
+            line-height: 26px;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            float: left;
+            width: 50%;
+            background-color: $primarybluefive;
+            color: white;
+            text-align: left;
+            font-weight: 700;
+            font-size: 24px;
+            padding: 16px 32px;
+            transform-style: preserve-3d;
+
+            &::after {
+                content: "";
+                display: block;
+                background: $primarybluefive;
+                position: absolute;
+                left: 100%;
+                bottom: 0;
+                transform: rotate(45deg);
+                transform-origin: top left;
+                height: 100%;
+                width: 300px;
+                z-index: -1;
+            }
+        }
+
+        .newssubtitlepin {
+            color: black;
+            font-size: 12px;
+        }
+    }
+}

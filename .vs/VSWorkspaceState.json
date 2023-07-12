@@ -4,12 +4,11 @@
     "\\Controllers",
     "\\Controllers\\Website",
     "\\Controllers\\Website\\Page",
-    "\\Internal",
-    "\\Views",
-    "\\Views\\CPanel",
-    "\\Views\\Partials",
-    "\\Views\\Partials\\Master"
+    "\\Style",
+    "\\Style\\Theme",
+    "\\Style\\Theme\\Page",
+    "\\Style\\Theme\\Page\\Master"
   ],
-  "SelectedNode": "\\Controllers\\Website\\Page\\website_delete_button.php",
+  "SelectedNode": "\\Controllers\\Website\\Page\\website_delete_block_content.php",
   "PreviewInSolutionExplorer": false
 }

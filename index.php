@@ -96,6 +96,9 @@
 						case 11:
 							include "Views/Partials/Sections/SectionBlock/blockSDPGameAccordionRules.php";
 							break;
+						case 12:
+							include "Views/Partials/Sections/SectionBlock/blockArticle.php";
+							break;
 					}
 				} 
 			}

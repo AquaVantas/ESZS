@@ -71,7 +71,7 @@ $page_details_id = 0;
 																	<div class="down-arrow">
 																	</div>
 																</div>
-																<a class="delete" href="Controllers/Website/Page/website_delete_button.php?page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&button_id=<?= $blockContentButton['WBCB_button_id'] ?>&block_content_id=<?= $blockContent['WBC_block_content_id'] ?>">
+																<a class="delete" href="Controllers/Website/Page/website_delete_section.php?section_id=<?= $section['WS_section_id'] ?>&variant_id=<?= $section['WS_variant_id'] ?>&page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_id=<?= $section['WS_section_id'] ?>&block_content_id=<?= $blockContent['WBC_block_content_id'] ?>">
 																	<img src="Content/Images/Icons/plus.svg"></img>
 																</a>
 															</div>

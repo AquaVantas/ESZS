@@ -1141,8 +1141,8 @@ footer .footer-last-container .container .row .copyright span {
   padding: 0;
 }
 .navigation-desktop .content-wrapper .left-side .logo-wrapper a img {
-  height: 60px;
-  padding: 10px 0px 10px 40px;
+  height: 70px;
+  padding: 15px 0px 15px 40px;
 }
 .navigation-desktop .content-wrapper .right-side {
   width: 100%;
@@ -1534,6 +1534,125 @@ footer .footer-last-container .container .row .copyright span {
 }
 .BlockSDPGameAccordionRules .rules-list .accordion h1 {
   font-size: 25px;
+}
+
+.BlockLastNews {
+  padding-top: 50px;
+}
+.BlockLastNews .news-link {
+  padding: 0;
+}
+.BlockLastNews .newsboxcontainer {
+  width: 100%;
+  max-height: 320px;
+  min-height: 320px;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 24px;
+}
+.BlockLastNews .newsboxcontainer:hover {
+  opacity: 0.3;
+}
+.BlockLastNews .newsboxcontainer .newspreviewimage {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.BlockLastNews .newsboxcontainer .newspreviewimage:hover {
+  opacity: 0.3;
+}
+.BlockLastNews .newsboxcontainer .overlay {
+  transition: 0.5s ease;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.BlockLastNews .newsboxcontainer .overlay:hover {
+  opacity: 0.3;
+}
+.BlockLastNews .newsboxcontainer .overlay .newstitletext {
+  line-height: 26px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  float: left;
+  width: 50%;
+  background-color: #00d6bd;
+  color: white;
+  text-align: left;
+  font-weight: 700;
+  font-size: 24px;
+  padding: 16px 32px;
+  transform-style: preserve-3d;
+}
+.BlockLastNews .newsboxcontainer .overlay .newstitletext::after {
+  content: "";
+  display: block;
+  background: #00d6bd;
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  transform: rotate(45deg);
+  transform-origin: top left;
+  height: 100%;
+  width: 300px;
+  z-index: -1;
+}
+.BlockLastNews .newsboxcontainer .overlay .newstitletext .newssubtitlepin {
+  color: black;
+  font-size: 12px;
+}
+.BlockLastNews .newsboxcontainer .overlay .newstitletext .newstitlepin {
+  max-height: 78px;
+  overflow: hidden;
+}
+.BlockLastNews .button-wrapper {
+  padding-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.BlockArticle .article-title {
+  overflow: hidden;
+}
+.BlockArticle .article-title .newstitletext {
+  line-height: 26px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  float: left;
+  width: 50%;
+  background-color: #00d6bd;
+  color: white;
+  text-align: left;
+  font-weight: 700;
+  font-size: 24px;
+  padding: 16px 32px;
+  transform-style: preserve-3d;
+}
+.BlockArticle .article-title .newstitletext::after {
+  content: "";
+  display: block;
+  background: #00d6bd;
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  transform: rotate(45deg);
+  transform-origin: top left;
+  height: 100%;
+  width: 300px;
+  z-index: -1;
+}
+.BlockArticle .article-title .newssubtitlepin {
+  color: black;
+  font-size: 12px;
 }
 
 /*# sourceMappingURL=Master.css.map */
