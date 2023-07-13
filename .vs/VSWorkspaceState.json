@@ -1,14 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Controllers",
-    "\\Controllers\\Website",
-    "\\Controllers\\Website\\Page",
     "\\Style",
     "\\Style\\Theme",
     "\\Style\\Theme\\Page",
-    "\\Style\\Theme\\Page\\Master"
+    "\\Style\\Theme\\Page\\Partials",
+    "\\Style\\Theme\\Page\\Partials\\SectionBlocks",
+    "\\Views",
+    "\\Views\\Partials",
+    "\\Views\\Partials\\Sections",
+    "\\Views\\Partials\\Sections\\SectionBlock"
   ],
-  "SelectedNode": "\\Controllers\\Website\\Page\\website_delete_block_content.php",
+  "SelectedNode": "\\Style\\Theme\\Page\\Master\\Navigation.scss",
   "PreviewInSolutionExplorer": false
 }

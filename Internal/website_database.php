@@ -383,6 +383,50 @@ class website {
         return $statement->fetchColumn();
     }
 
+    public static function deleteWebsiteSection($section_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("DELETE FROM website_section WHERE section_id = :section_id");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function getWebsiteSectionDeletedSequenceNumber($section_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_section.sequence_num AS WS_sequence_num
+                                    FROM website_section                                    
+                                    WHERE website_section.section_id = :section_id");     
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }  
+
+    public static function getWebsiteSectionAfterDeleted($page_detail_id, $sequence_num) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_section.section_id AS WS_section_id
+                                    FROM website_section
+                                    WHERE website_section.sequence_num > :sequence_num AND website_section.page_detail_id = :page_detail_id
+                                    ORDER BY website_section.sequence_num ASC");
+        $statement->bindParam(":page_detail_id", $page_detail_id, PDO::PARAM_STR);        
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function updateWebsiteSectionSequenceNum($section_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_section
+                                    SET sequence_num = sequence_num - 1                        
+                                    WHERE section_id = :section_id");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
     public static function addWebsiteSectionBlock($section_id) {
         $db = self::getInstance();
 
@@ -407,6 +451,14 @@ class website {
         $statement->bindParam(":block_header", $block_header, PDO::PARAM_STR);
         $statement->bindParam(":block_subheader", $block_subheader, PDO::PARAM_STR);
         $statement->bindParam(":block_rich_text", $block_rich_text, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function deleteWebsiteSectionBlock($section_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("DELETE FROM website_section_block WHERE section_id = :section_id");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
         $statement->execute();
     }
 
