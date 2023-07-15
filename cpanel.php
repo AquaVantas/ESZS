@@ -77,12 +77,14 @@
 			if(isset($_GET['lang_id'])) {
 				$html .= "<a class='nav-link' href='Controllers/Website/Page/website_create_page.php?lang_id=" . $_GET['lang_id'] . "&parent_page_id=" . $subpage['page_id'] . "'>Dodaj podstran</a>
 				<a class='nav-link' href='?tab=webpage_editor&action=edit_page&page_id=" . $subpage['page_id'] . "&lang_id=" . $_GET['lang_id'] . "'>Uredi</a>
-				<a class='nav-link'>TO-DO: Izbriši (moraš izbrisat tudi vse kar sledi)</a>";
+				<a class='nav-link' href='?tab=Controllers/Website/Page/website_delete_page_details.php?lang_id=" . $_GET['lang_id'] . "&page_id=" . $subpage['page_id'] . "'>Izbriši za ta jezik</a>
+				<a class='nav-link' href='?tab=Controllers/Website/Page/website_delete_page_details.php?page_id=" . $subpage['page_id'] . "'>Izbriši za vse jezike</a>";
 			}
 			else {
 				$html .= "<a class='nav-link' href='Controllers/Website/Page/website_create_page.php?parent_page_id=" . $subpage['page_id'] . "'>Dodaj podstran</a>
 				<a class='nav-link' href='?tab=webpage_editor&action=edit_page&page_id=" . $subpage['page_id'] . "'>Uredi</a>
-				<a class='nav-link'>TO-DO: Izbriši (moraš izbrisat tudi vse kar sledi)</a>";
+				<a class='nav-link' href='?tab=Controllers/Website/Page/website_delete_page_details.php?lang_id=1&page_id=" . $subpage['page_id'] . "'>Izbriši za ta jezik</a>
+				<a class='nav-link' href='?tab=Controllers/Website/Page/website_delete_page_details.php?page_id=" . $subpage['page_id'] . "'>Izbriši za vse jezike</a>";
 			}
 			$html .= "</ul></div></div>";
 			if(count(website::getAllWebsitePageSubpages($subpage['page_id'])) > 0) {
