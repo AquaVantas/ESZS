@@ -14,6 +14,8 @@
 		}
 	}		
 
+	//TO-DO: finish this!
+
 	//change the sequence numbers if button wasn't last on list
 	if(isset($_GET['variant_id']) && isset($_GET['section_id'])) {
 		if($_GET['variant_id'] == 1) {
@@ -39,10 +41,6 @@
 			website::deleteWebsiteSection($_GET['section_id']);
 			website::deleteWebsiteSectionBlock($_GET['section_id']);
 
-		}
-		else if($_GET['variant_id'] == 2) {
-			website::deleteWebsiteSection($_GET['section_id']);
-			website::deleteWebsiteSectionForm($_GET['section_id']);
 		}
 	}
 		

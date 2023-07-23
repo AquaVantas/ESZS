@@ -36,6 +36,13 @@ function selectThisFile(selected_image) {
             }
         }
     }
+    if (contentType[0] == "sectionForm") {
+        for (var i = 0; i < chosenBlock.length; i++) {
+            if ($(chosenBlock[i]).attr("form-id") == contentType[1]) {
+                chosenBlock = chosenBlock[i];
+            }
+        }
+    }
     if (contentType[0] == "websiteDefaultHeader") {
         chosenBlock = $(".website-header");
     }
@@ -67,6 +74,7 @@ function openCorrectFileSelector(selector) {
             $(this).toggleClass("active");
         }
     });
+    console.log("I happened");
 }
 
 function closeFileSelector() {
@@ -170,7 +178,20 @@ function submitPageChanges(page_id, lang_id) {
             });
         }
         else if ($(".accordion-body", this).attr("variant-id") == 2) {
-            console.log("que");
+            let pageSectionFormFormData = new FormData();
+            var sectionID = $(".accordion-body", this).attr("section-id");
+            console.log(sectionID);
+            pageSectionFormFormData.append("form-image", $("#form-image", this).attr("chosen-image-id"));
+            pageSectionFormFormData.append("section-name", $("#section-name", this).val());
+            pageSectionFormFormData.append("section-class", $("#section-class", this).val());
+            pageSectionFormFormData.append("section-header", $("#section-header", this).val());
+            pageSectionFormFormData.append("section-subheader", $("#section-subheader", this).val());
+            pageSectionFormFormData.append("form-receivers", $("#form-receivers", this).val());
+            pageSectionFormFormData.append("section-template", $("#section-template", this).attr("template-id"));
+
+            let pageSectionFormFormDataXHR = new XMLHttpRequest();
+            pageSectionFormFormDataXHR.open("POST", "Controllers/Website/Page/website_edit_form_section.php?page_id=" + page_id + "&lang_id=" + lang_id + "&section_id=" + sectionID);
+            pageSectionFormFormDataXHR.send(pageSectionFormFormData);
         }
     });
 

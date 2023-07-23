@@ -339,7 +339,113 @@ $page_details_id = 0;
 											<?php 
 											}
 										}
-									$counter = $counter + 1;
+										if($page_section['variant_id'] == 2) { 
+											foreach(website::getWebsiteSectionForm($page_section['section_id']) as $section) { ?>
+												<div class="accordion-item">
+													<h2 class="accordion-header" id="headingTwo">
+														<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $counter ?>" aria-expanded="false" aria-controls="collapse<?= $counter ?>">
+															<div class="header-left-side">
+																<?php if($section['WSF_section_name'] == NULL || strlen($section['WSF_section_name']) == 0) { ?>
+																	Section Form
+																<?php } else { ?>
+																	<?= $section['WSF_form_header'] ?>
+																<?php }?>
+															</div>
+															<div class="actions-wrapper">
+																<div class="up-down-arrows">
+																	<div class="up-arrow">
+																	</div>
+																	<div class="down-arrow">
+																	</div>
+																</div>
+																<a class="delete" href="Controllers/Website/Page/website_delete_section.php?section_id=<?= $section['WS_section_id'] ?>&variant_id=<?= $section['WS_variant_id'] ?>&page_id=<?= $_GET['page_id'] ?>&lang_id=<?= $lang_id ?>">
+																	<img src="Content/Images/Icons/plus.svg"></img>
+																</a>
+															</div>
+														</button>
+													</h2>
+													<div id="collapse<?= $counter ?>" class="accordion-collapse collapse" aria-labelledby="heading<?= $counter ?>" data-bs-parent="#accordionExample">
+														<div class="accordion-body" form-id="<?= $section['WSF_section_form_id'] ?>" variant-id="<?= $section['WS_variant_id'] ?>" section-id="<?= $section['WS_section_id'] ?>">
+															<?php if($section['WS_variant_id'] == 2) { ?>															
+																<div class="section-block-info row" section-id="<?= $section['WS_section_id'] ?>">
+																	<div class="col-2 label">																
+																		<label for="form-image">Slika bloka:</label><br>
+																	</div>
+																	<div class="col-10">
+																		<div class="add-image-wrapper" id="form-image" chosen-image-id="<?= $section['WSF_image_id'] ?>" onclick="openFileSelector(<?= $section['WSF_section_form_id'] ?>, 'sectionForm')">
+																			<?php if($section['WSF_image_id'] != NULL) { ?>								
+																				<?php foreach(website::getWebsiteImageByID(intval($section['WSF_image_id'])) as $image) { ?>														
+																					<img class="non-empty" src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
+																				<?php } ?>
+																			<?php } else { ?>		
+																			<div class="image-empty">																																															
+																				<img src="Content/Images/Icons/plus.svg"></img>																									
+																			</div>
+																			<?php } ?>
+																		</div>
+																	</div>
+																	<div class="col-2 label">																
+																		<label for="section-name">Ime sekcije:</label><br>
+																	</div>
+																	<div class="col-10">
+																		<input type="text" id="section-name" name="section-name" value="<?= $section['WSF_section_name'] ?>">
+																	</div>
+																	<div class="col-2 label">
+																		<label for="section-class">Class sekcije:</label><br>
+																	</div>
+																	<div class="col-10">
+																		<input type="text" id="section-class" name="section-class" value="<?= $section['WSF_section_class'] ?>">
+																	</div>
+																	<div class="col-2 label">
+																		<label for="section-header">Naslov sekcije:</label><br>
+																	</div>
+																	<div class="col-10">
+																		<input type="text" id="section-header" name="section-header" value="<?= $section['WSF_form_header'] ?>">
+																	</div>
+																	<div class="col-2 label">
+																		<label for="section-subheader">Podnaslov sekcije:</label><br>
+																	</div>
+																	<div class="col-10">
+																		<input type="text" id="section-subheader" name="section-subheader" value="<?= $section['WSF_form_subheader'] ?>">
+																	</div>
+																	<div class="col-2 label">
+																		<label for="form-receivers">Prejemniki obrazca:</label><br>
+																	</div>																	
+																	<div class="col-10">
+																		<input type="text" id="form-receivers" name="form-receivers" value="<?= $section['WSF_form_receivers'] ?>">
+																	</div>
+																	<div class="col-2 label">
+																		<label for="section-template">Template sekcije:</label><br>
+																	</div>
+																	<div class="col-10">
+																		<div class="dropdown template-dropdown" id="section-template" template-id="<?= $section['WSF_form_template_id'] ?>">
+																			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+																				<?php																			
+																					foreach(website::getWebsiteFormSectionTemplate($section['WSF_section_form_id']) as $template) {
+																						?><?= $template['WSFT_template_name'] ?>
+																					<?php }
+																				?>
+																				<div class="arrow"></div>
+																			</button>
+																			<ul class="dropdown-menu">
+																				<li></li>
+																				<?php
+																					foreach(website::getAllWebsiteFormSectionTemplate() as $sectionTemplate) {?>
+																						<li><a template-id="<?= $sectionTemplate['form_template_id'] ?>" class="nav-link <?= ($section['WSF_form_template_id'] == $sectionTemplate['form_template_id']) ? "active" : ""?>" onclick="setTemplateTitle(this)"><?= $sectionTemplate['template_name']?></a></li>
+																					<?php }
+																				?>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+															<?php } ?>
+														</div>
+													</div>
+												</div>
+											<?php 
+											}
+										}
+										$counter = $counter + 1;
 									} ?>
 								</div>
 							</div>

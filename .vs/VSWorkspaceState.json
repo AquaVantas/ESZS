@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Controllers",
+    "\\Controllers\\Website",
+    "\\Controllers\\Website\\Page",
+    "\\Scripts",
     "\\Style",
     "\\Style\\Theme",
     "\\Style\\Theme\\Page",
@@ -11,6 +15,6 @@
     "\\Views\\Partials\\Sections",
     "\\Views\\Partials\\Sections\\SectionBlock"
   ],
-  "SelectedNode": "\\Style\\Theme\\Page\\Master\\Navigation.scss",
+  "SelectedNode": "\\Scripts\\Main.js",
   "PreviewInSolutionExplorer": false
 }

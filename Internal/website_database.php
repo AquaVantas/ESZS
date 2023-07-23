@@ -427,6 +427,19 @@ class website {
         $statement->execute();
     }
 
+    public static function addWebsiteSectionForm($section_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("INSERT INTO website_section_form(image_id, section_name, section_id, form_template_id, section_class, form_header, form_subheader, form_receivers) VALUES(NULL, NULL, :section_id, NULL, NULL, NULL, NULL, NULL)");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
     public static function addWebsiteSectionBlock($section_id) {
         $db = self::getInstance();
 
@@ -454,10 +467,33 @@ class website {
         $statement->execute();
     }
 
+    public static function updateWebsiteSectionForm($section_id, $section_name, $form_template_id, $section_class, $form_header, $form_subheader, $form_receivers, $image_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_section_form SET section_name = :section_name, form_template_id = :form_template_id, section_class = :section_class, form_header = :form_header, form_subheader = :form_subheader, form_receivers = :form_receivers, image_id = :image_id WHERE section_id = :section_id");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->bindParam(":section_name", $section_name, PDO::PARAM_STR);
+        $statement->bindParam(":form_template_id", $form_template_id, PDO::PARAM_STR);
+        $statement->bindParam(":section_class", $section_class, PDO::PARAM_STR);
+        $statement->bindParam(":form_header", $form_header, PDO::PARAM_STR);
+        $statement->bindParam(":form_subheader", $form_subheader, PDO::PARAM_STR);
+        $statement->bindParam(":form_receivers", $form_receivers, PDO::PARAM_STR);
+        $statement->bindParam(":image_id", $image_id, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
     public static function deleteWebsiteSectionBlock($section_id) {
         $db = self::getInstance();
 
         $statement = $db->prepare("DELETE FROM website_section_block WHERE section_id = :section_id");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function deleteWebsiteSectionForm($section_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("DELETE FROM website_section_form WHERE section_id = :section_id");
         $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
         $statement->execute();
     }
@@ -489,10 +525,36 @@ class website {
         return $statement->fetchAll();
     }
 
+    public static function getWebsiteSectionForm($section_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_section.section_id AS WS_section_id, website_section.sequence_num AS WS_sequence_num, website_section.page_detail_id AS WS_page_detail_id, website_section.variant_id AS WS_variant_id,
+                                    website_section_form.image_id AS WSF_image_id, website_section_form.section_form_id AS WSF_section_form_id, website_section_form.section_name AS WSF_section_name, website_section_form.form_template_id AS WSF_form_template_id,
+                                    website_section_form.section_class AS WSF_section_class, website_section_form.form_header AS WSF_form_header, website_section_form.form_subheader AS WSF_form_subheader,
+                                    website_section_form.form_receivers AS WSF_form_receivers
+                                    FROM website_section
+                                    INNER JOIN website_section_form ON website_section.section_id = website_section_form.section_id
+                                    WHERE website_section.section_id = :section_id
+                                    ORDER BY website_section.sequence_num ASC");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public static function getAllWebsiteBlockSectionTemplate() {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT block_template_id, template_name  FROM website_section_block_template");
+        $statement = $db->prepare("SELECT block_template_id, template_name FROM website_section_block_template");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getAllWebsiteFormSectionTemplate() {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT form_template_id, template_name FROM website_section_form_template");
         $statement->execute();
 
         return $statement->fetchAll();
@@ -507,6 +569,20 @@ class website {
                                     INNER JOIN website_section_block_template ON website_section_block.block_template_id = website_section_block_template.block_template_id
                                     WHERE website_section_block.section_block_id = :section_block_id");
         $statement->bindParam(":section_block_id", $section_block_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteFormSectionTemplate($section_form_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_section_form.section_form_id AS WSF_section_form_id, website_section_form.form_template_id AS WSF_form_template_id,
+                                    website_section_form_template.form_template_id AS WSFT_form_template_id, website_section_form_template.template_name AS WSFT_template_name
+                                    FROM website_section_form
+                                    INNER JOIN website_section_form_template ON website_section_form.form_template_id = website_section_form_template.form_template_id
+                                    WHERE website_section_form.section_form_id = :section_form_id");
+        $statement->bindParam(":section_form_id", $section_form_id, PDO::PARAM_STR);
         $statement->execute();
 
         return $statement->fetchAll();

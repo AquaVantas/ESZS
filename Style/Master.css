@@ -991,8 +991,8 @@ table tr td {
 .modal .modal-content .modal-body .variant-block .variant-icon.SectionBlock {
   background-image: url("../Content/Images/Icons/block-icon.svg");
 }
-.modal .modal-content .modal-body .variant-block .variant-icon.SectionGallery {
-  background-image: url("../Content/Images/Icons/gallery-icon.svg");
+.modal .modal-content .modal-body .variant-block .variant-icon.SectionForm {
+  background-image: url("../Content/Images/Icons/form-icon.svg");
 }
 .modal .modal-content .modal-body .variant-block span {
   font-size: 14px;

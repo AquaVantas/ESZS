@@ -27,18 +27,21 @@
 		}
 	}
 
-	if($section_variant == 1) {
-		website::addWebsiteSection($page_detail_id, $section_variant, $sequence_num+1);
+	website::addWebsiteSection($page_detail_id, $section_variant, $sequence_num+1);
 
-		$section_id = 1;
-		foreach(website::getWebsiteLastSection() as $last_section) {
-			if($last_section['section_id'] != NULL) {
-				$section_id = $last_section['section_id'];
-			}
+	$section_id = 1;
+	foreach(website::getWebsiteLastSection() as $last_section) {
+		if($last_section['section_id'] != NULL) {
+			$section_id = $last_section['section_id'];
 		}
+	}
 
+	if($section_variant == 1) {		
 		website::addWebsiteSectionBlock($section_id);
-	}	
+	}
+	else if($section_variant == 2) {
+		website::addWebsiteSectionForm($section_id);
+	}
 
 	//redirect back to language list
 

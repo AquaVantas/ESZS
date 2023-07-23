@@ -5,8 +5,8 @@
 	
 	//since we had problems with NULL entries in the database
 	//we'll first check if there even is a value attached to what we're adding
-	if(!isset($_GET['section_id'])) {
-		if(!isset($_GET['variant_id'])) {			
+	if(!isset($_GET['page_id'])) {
+		if(!isset($_GET['lang_id'])) {			
 			header('url=../../../cpanel.php?tab=webpage_editor&action=edit_page_details&page_id='.$_GET['page_id']);
 		}
 		else {
@@ -15,6 +15,10 @@
 	}		
 
 	//change the sequence numbers if button wasn't last on list
+	if(isset($_GET['page_id']) && isset($_GET['lang_id'])) {
+
+	}
+
 	if(isset($_GET['variant_id']) && isset($_GET['section_id'])) {
 		if($_GET['variant_id'] == 1) {
 			foreach(website::getWebsiteBlockContent($_GET['section_id']) as $blockContent) {
@@ -39,10 +43,6 @@
 			website::deleteWebsiteSection($_GET['section_id']);
 			website::deleteWebsiteSectionBlock($_GET['section_id']);
 
-		}
-		else if($_GET['variant_id'] == 2) {
-			website::deleteWebsiteSection($_GET['section_id']);
-			website::deleteWebsiteSectionForm($_GET['section_id']);
 		}
 	}
 		
