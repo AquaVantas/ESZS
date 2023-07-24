@@ -266,6 +266,16 @@ class website {
         return $statement->fetchAll();
     }
 
+    public static function deleteSpecificWebsitePage($page_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("DELETE FROM website_page WHERE page_id = :page_id");        
+        $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public static function getAllWebsitePageSubpages($page_id) {
         $db = self::getInstance();
 
@@ -337,6 +347,17 @@ class website {
         $statement->bindParam(":meta_description", $meta_description, PDO::PARAM_STR);
         $statement->bindParam(":meta_keyword", $meta_keyword, PDO::PARAM_STR);
         $statement->execute();
+    }
+
+    public static function deleteSpecificWebsitePageDetails($page_id, $language_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("DELETE FROM website_page_details WHERE page_id = :page_id AND language_id = :language_id");        
+        $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
     }
 
     public static function getWebsiteSectionVariants() {

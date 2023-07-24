@@ -76,7 +76,8 @@
 									<ul class="dropdown-menu">					
 										<a class="nav-link" href="Controllers/Website/Page/website_create_page.php?<?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>&parent_page_id=<?= $page['page_id'] ?>">Dodaj podstran</a>
 										<a class="nav-link" href="?tab=webpage_editor&action=edit_page&page_id=<?= $page['page_id'] ?><?= (isset($_GET['lang_id'])) ? '&lang_id='.$_GET['lang_id'] : '' ?>">Uredi</a>
-										<a class="nav-link">TO-DO: Izbriši (moraš izbrisat tudi vse kar sledi)</a>
+										<a class='nav-link' href="Controllers/Website/Page/website_delete_page_details.php?lang_id=<?= $lang_id ?>&page_id=<?= $page['page_id']?>">Izbriši za ta jezik</a>
+										<a class='nav-link' href="Controllers/Website/Page/website_delete_page.php?lang_id=<?= $lang_id ?>&page_id=<?= $page['page_id']?>">Izbriši za vse jezike</a>
 									</ul>
 								</div>
 							</div>
