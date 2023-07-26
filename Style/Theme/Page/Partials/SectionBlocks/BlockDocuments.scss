@@ -1,0 +1,67 @@
+.BlockDocuments {
+    @include media-breakpoint-up(lg) {
+        padding-top: 30px;
+    }
+
+    .heading {
+        overflow: hidden;
+
+        .newstitletext {
+            padding: 40px;
+            line-height: 26px;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            float: left;
+            width: 80%;
+            background-color: $primarybluefive;
+            color: $white;
+            text-align: left;
+            font-weight: 700;
+            font-size: 24px;
+            transform-style: preserve-3d;
+
+            &::after {
+                content: "";
+                display: block;
+                background: $primarybluefive;
+                position: absolute;
+                left: 100%;
+                bottom: 0;
+                transform: rotate(45deg);
+                transform-origin: top left;
+                height: 100%;
+                width: 300px;
+                z-index: -1;
+            }
+        }
+    }
+
+    .file-wrapper {
+        margin-top: 40px;
+        width: 100%;
+        height: 315px;
+        border: 2px solid $primarybluefive;
+        border-radius: 2px;
+        text-align: center;
+        padding: 25px 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        img {
+            height: 75px;
+            filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
+        }
+
+        h4 {
+            padding-top: 40px;
+        }
+
+        p {
+            padding: 10px 10px;
+            font-size: 11px;
+        }
+    }
+}

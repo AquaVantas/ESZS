@@ -102,6 +102,12 @@
 						case 13:
 							include "Views/Partials/Sections/SectionBlock/blockAds.php";
 							break;
+						case 14:
+							include "Views/Partials/Sections/SectionBlock/blockDocuments.php";
+							break;
+						case 15:
+							include "Views/Partials/Sections/SectionBlock/blockResultsUpcoming.php";
+							break;
 					}
 				} 
 			}
