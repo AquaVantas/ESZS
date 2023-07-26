@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Controllers",
-    "\\Controllers\\Website",
-    "\\Controllers\\Website\\Page",
-    "\\Scripts",
+    "\\Content",
+    "\\Content\\Images",
+    "\\Content\\Images\\Icons",
     "\\Style",
     "\\Style\\Theme",
     "\\Style\\Theme\\Page",
@@ -15,6 +14,6 @@
     "\\Views\\Partials\\Sections",
     "\\Views\\Partials\\Sections\\SectionBlock"
   ],
-  "SelectedNode": "\\Scripts\\Main.js",
+  "SelectedNode": "\\Controllers\\Website\\Page\\website_move_button.php",
   "PreviewInSolutionExplorer": false
 }

@@ -197,13 +197,15 @@ $page_details_id = 0;
 																													<?php } ?>
 																													<div class="actions-wrapper">
 																														<div class="up-down-arrows">
-																															<div class="up-arrow">
-																															</div>
-																															<div class="down-arrow">
-																															</div>
+																															<a class="up-arrow" href="Controllers/Website/Page/website_move_button.php?move_direction=up&page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&button_id=<?= $blockContentButton['WBCB_button_id'] ?>&block_content_id=<?= $blockContent['WBC_block_content_id'] ?>">
+																																<img src="Content/Images/Icons/arrow-down.svg">
+																															</a>
+																															<a class="down-arrow" href="Controllers/Website/Page/website_move_button.php?move_direction=down&page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&button_id=<?= $blockContentButton['WBCB_button_id'] ?>&block_content_id=<?= $blockContent['WBC_block_content_id'] ?>">
+																																<img src="Content/Images/Icons/arrow-down.svg">
+																															</a>
 																														</div>
 																														<a class="delete" href="Controllers/Website/Page/website_delete_button.php?page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&button_id=<?= $blockContentButton['WBCB_button_id'] ?>&block_content_id=<?= $blockContent['WBC_block_content_id'] ?>">
-																															<img src="Content/Images/Icons/plus.svg"></img>
+																															<img src="Content/Images/Icons/plus.svg">
 																														</a>
 																													</div>
 																												</button>

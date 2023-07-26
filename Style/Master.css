@@ -350,16 +350,47 @@ table tr td {
 .cpanel-body-wrapper .user-body .accordion-item .accordion-header button::after {
   display: none;
 }
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper {
+  display: flex;
+  flex-direction: row;
+}
 .cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .delete {
-  margin-top: -7px;
+  margin-top: -2px;
   height: 16px;
   width: 16px;
   padding-right: 0;
 }
 .cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .delete img {
+  margin-left: -10px;
   width: 16px;
   height: 16px;
   transform: rotate(45deg);
+  filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
+}
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+}
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .up-arrow {
+  margin-top: 2px;
+  padding: 0;
+  height: 18px;
+  width: 18px;
+  transform: rotate(180deg);
+}
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .up-arrow img {
+  width: 100%;
+  filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
+}
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .down-arrow {
+  margin-top: -2px;
+  padding: 0;
+  height: 18px;
+  width: 18px;
+}
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .down-arrow img {
+  width: 100%;
   filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
 }
 .cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body {
@@ -992,7 +1023,7 @@ table tr td {
   background-image: url("../Content/Images/Icons/block-icon.svg");
 }
 .modal .modal-content .modal-body .variant-block .variant-icon.SectionForm {
-  background-image: url("../Content/Images/Icons/form-icon.svg");
+  background-image: url("../Content/Images/Icons/gallery-icon.svg");
 }
 .modal .modal-content .modal-body .variant-block span {
   font-size: 14px;
@@ -1653,6 +1684,19 @@ footer .footer-last-container .container .row .copyright span {
 .BlockArticle .article-title .newssubtitlepin {
   color: black;
   font-size: 12px;
+}
+
+@media (min-width: 992px) {
+  .BlockAds {
+    padding-top: 30px;
+  }
+}
+.BlockAds a {
+  width: 100%;
+  padding: 0;
+}
+.BlockAds a img {
+  width: 100%;
 }
 
 /*# sourceMappingURL=Master.css.map */

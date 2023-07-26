@@ -99,6 +99,9 @@
 						case 12:
 							include "Views/Partials/Sections/SectionBlock/blockArticle.php";
 							break;
+						case 13:
+							include "Views/Partials/Sections/SectionBlock/blockAds.php";
+							break;
 					}
 				} 
 			}

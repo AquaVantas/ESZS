@@ -167,17 +167,52 @@
                     }
 
                     .actions-wrapper {
+                        display: flex;
+                        flex-direction: row;
+
                         .delete {
-                            margin-top: -7px;
+                            margin-top: -2px;
                             height: 16px;
                             width: 16px;
                             padding-right: 0;
 
                             img {
+                                margin-left: -10px;
                                 width: 16px;
                                 height: 16px;
                                 transform: rotate(45deg);
                                 filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
+                            }
+                        }
+
+                        .up-down-arrows {
+                            display: flex;
+                            flex-direction: row;
+                            margin-right: 10px;
+
+                            .up-arrow {
+                                margin-top: 2px;
+                                padding: 0;
+                                height: 18px;
+                                width: 18px;
+                                transform: rotate(180deg);
+
+                                img {
+                                    width: 100%;
+                                    filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
+                                }
+                            }
+
+                            .down-arrow {
+                                margin-top: -2px;
+                                padding: 0;
+                                height: 18px;
+                                width: 18px;
+
+                                img {
+                                    width: 100%;
+                                    filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
+                                }
                             }
                         }
                     }

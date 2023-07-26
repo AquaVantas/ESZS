@@ -757,6 +757,16 @@ class website {
         return $statement->fetchAll();
     }
 
+    public static function getWebsiteBlockContentButtonSequenceNumMin($block_content_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT MIN(sequence_num) as min_sequence_num FROM website_button WHERE block_content_id = :block_content_id");
+        $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public static function addWebsiteButtonLink() {
         $db = self::getInstance();
 
