@@ -1588,12 +1588,17 @@ footer .footer-last-container .container .row .copyright span {
   min-height: 320px;
   position: relative;
   overflow: hidden;
+  margin-bottom: 24px;
+}
+.BlockLastNews .newsboxcontainer .article-background {
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin-bottom: 24px;
+  position: absolute;
 }
-.BlockLastNews .newsboxcontainer:hover {
+.BlockLastNews .newsboxcontainer:hover .article-background {
   opacity: 0.3;
 }
 .BlockLastNews .newsboxcontainer .newspreviewimage {
@@ -1607,14 +1612,13 @@ footer .footer-last-container .container .row .copyright span {
   opacity: 0.3;
 }
 .BlockLastNews .newsboxcontainer .overlay {
+  display: flex;
+  align-items: flex-end;
   transition: 0.5s ease;
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-}
-.BlockLastNews .newsboxcontainer .overlay:hover {
-  opacity: 0.3;
 }
 .BlockLastNews .newsboxcontainer .overlay .newstitletext {
   line-height: 26px;
@@ -1651,6 +1655,19 @@ footer .footer-last-container .container .row .copyright span {
 .BlockLastNews .newsboxcontainer .overlay .newstitletext .newstitlepin {
   max-height: 78px;
   overflow: hidden;
+}
+.BlockLastNews .newsboxcontainer .overlay .newstitlevec {
+  font-family: "Montserrat-SemiBold";
+  width: 100%;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  padding-bottom: 15px;
+  padding-right: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.BlockLastNews .newsboxcontainer .overlay .newstitlevec .vectext {
+  text-align: right;
 }
 .BlockLastNews .button-wrapper {
   padding-top: 25px;
@@ -1767,6 +1784,225 @@ footer .footer-last-container .container .row .copyright span {
 .BlockDocuments .file-wrapper p {
   padding: 10px 10px;
   font-size: 11px;
+}
+
+@media (min-width: 992px) {
+  .BlockResultsUpcoming {
+    padding-top: 100px;
+  }
+}
+.BlockResultsUpcoming .title-wrapper {
+  width: 100%;
+  background-color: #00d6bd;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+.BlockResultsUpcoming .title-wrapper .title {
+  font-family: "Montserrat-SemiBold";
+  color: #FFFFFF;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 18px;
+}
+.BlockResultsUpcoming .title-wrapper a {
+  line-height: 26px;
+  background-color: #192133;
+  font-family: "Montserrat-SemiBold";
+  color: #FFFFFF;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 16px;
+}
+.BlockResultsUpcoming .match-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 10px;
+  border-bottom: 1px solid #00d6bd;
+}
+.BlockResultsUpcoming .match-wrapper .contestant {
+  width: 33%;
+  display: flex;
+  align-items: center;
+}
+.BlockResultsUpcoming .match-wrapper .contestant.right-contestant {
+  flex-direction: row-reverse;
+}
+.BlockResultsUpcoming .match-wrapper .contestant .logo {
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.BlockResultsUpcoming .match-wrapper .contestant .name {
+  font-family: "Montserrat-SemiBold";
+  color: #FFFFFF;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 16px;
+}
+.BlockResultsUpcoming .match-wrapper .contestant .name span {
+  padding: 0 10px;
+}
+.BlockResultsUpcoming .match-wrapper .middle-block {
+  width: 34%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.BlockResultsUpcoming .match-wrapper .middle-block .match-title {
+  display: flex;
+  justify-content: center;
+}
+.BlockResultsUpcoming .match-wrapper .middle-block .match-title span {
+  font-size: 12px;
+  padding-bottom: 4px;
+}
+.BlockResultsUpcoming .match-wrapper .middle-block .match-score {
+  font-family: "Montserrat-SemiBold";
+  font-size: 16px;
+  line-height: 20px;
+  color: white;
+}
+.BlockResultsUpcoming .match-wrapper.upcoming a.btn-primary {
+  background-color: #192133;
+}
+
+.BlockNews {
+  padding-top: 50px;
+}
+.BlockNews .heading {
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+.BlockNews .heading .newstitletext {
+  padding: 40px;
+  line-height: 26px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  float: left;
+  width: 80%;
+  background-color: #00d6bd;
+  color: #FFFFFF;
+  text-align: left;
+  font-weight: 700;
+  font-size: 24px;
+  transform-style: preserve-3d;
+}
+.BlockNews .heading .newstitletext::after {
+  content: "";
+  display: block;
+  background: #00d6bd;
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  transform: rotate(45deg);
+  transform-origin: top left;
+  height: 100%;
+  width: 300px;
+  z-index: -1;
+}
+.BlockNews .news-link {
+  padding: 0;
+}
+.BlockNews .newsboxcontainer {
+  width: 100%;
+  max-height: 320px;
+  min-height: 320px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.BlockNews .newsboxcontainer .article-background {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+.BlockNews .newsboxcontainer:hover .article-background {
+  opacity: 0.3;
+}
+.BlockNews .newsboxcontainer .newspreviewimage {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.BlockNews .newsboxcontainer .newspreviewimage:hover {
+  opacity: 0.3;
+}
+.BlockNews .newsboxcontainer .overlay {
+  display: flex;
+  align-items: flex-end;
+  transition: 0.5s ease;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.BlockNews .newsboxcontainer .overlay .newstitletext {
+  line-height: 26px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  float: left;
+  width: 50%;
+  background-color: #00d6bd;
+  color: white;
+  text-align: left;
+  font-weight: 700;
+  font-size: 24px;
+  padding: 16px 32px;
+  transform-style: preserve-3d;
+}
+.BlockNews .newsboxcontainer .overlay .newstitletext::after {
+  content: "";
+  display: block;
+  background: #00d6bd;
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  transform: rotate(45deg);
+  transform-origin: top left;
+  height: 100%;
+  width: 300px;
+  z-index: -1;
+}
+.BlockNews .newsboxcontainer .overlay .newstitletext .newssubtitlepin {
+  color: black;
+  font-size: 12px;
+}
+.BlockNews .newsboxcontainer .overlay .newstitletext .newstitlepin {
+  max-height: 78px;
+  overflow: hidden;
+}
+.BlockNews .newsboxcontainer .overlay .newstitlevec {
+  font-family: "Montserrat-SemiBold";
+  width: 100%;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  padding-bottom: 15px;
+  padding-right: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.BlockNews .newsboxcontainer .overlay .newstitlevec .vectext {
+  text-align: right;
+}
+.BlockNews .button-wrapper {
+  padding-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=Master.css.map */

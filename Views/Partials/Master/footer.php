@@ -14,9 +14,6 @@
 				<?php }
 				} ?>
 			</div>
-			<div class="col-2 links">
-				<span class="footer-link-title">Dokumentacije</span>
-			</div>
 			<?php foreach(website::getWebsiteFooterImages($lang_id) as $button) {
 				foreach(website::getWebsiteButtonByID(intval($button['button_id'])) as $button_image) { 
 					foreach(website::getWebsiteImageByID(intval($button_image['WBCB_image_id'])) as $image) {?>
