@@ -9,40 +9,20 @@
 		</div>
 		<div class="row">
 			<?php foreach(website::getWebsiteBlockContent($section['WSB_section_block_id']) as $blockContent) { 
-				foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $button) {						
-					if($button['WBCB_image_id'] != NULL) { ?>
+				if($blockContent['WBC_image_id'] != NULL) { ?>
 						<div class="col-lg-2 col-4">
 							<div class="file-wrapper">
 								<img src="Content/Images/Icons/pdf.svg" alt="pdf_file">
-								<h4><?= $button['WBCB_button_title'] ?></h4>
-								<p><?= $button['WBCB_button_link'] ?></p>
-								<?php foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { 						
-									if($button['WBCB_page_id'] == NULL || $button['WBCB_page_id'] == 0) { 
-										if($button['WBCB_target'] == 1) { ?>
-											<a class="btn btn-primary" href="<?= $button['WBCB_button_link'] ?>" target="_blank">
-												PRENESI
-											</a>
-										<?php } else { ?>
-											<a class="btn btn-primary" href="<?= $button['WBCB_button_link'] ?>">
-												PRENESI
-											</a>
-										<?php }									
-									} else { 
-										if($button['WBCB_target'] == 1) { ?>
-											<a class="btn btn-primary" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>" target="_blank">
-												PRENESI
-											</a>
-										<?php } else { ?>
-											<a class="btn btn-primary" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>">
-												PRENESI
-											</a>
-										<?php }
-									}
-								} ?>
+								<h4><?= $blockContent['WBC_block_heading'] ?></h4>
+								<p><?= $blockContent['WBC_block_subheading'] ?></p>
+								<?php foreach(website::getWebsiteImageByID(intval($blockContent['WBC_image_id'])) as $image) { ?>						
+									<a class="btn btn-primary" href="<?= $image['image_path'] ?>" target="_blank">
+										PRENESI
+									</a>
+								<?php } ?>
 							</div>
 						</div>
-					<?php }						
-				}
+					<?php }		
 			} ?>				
 		</div>
 	</div>

@@ -1053,31 +1053,38 @@ table tr td {
 footer {
   padding-top: 60px;
 }
-footer .about span p {
+footer .row {
+  justify-content: center;
+}
+footer .row .about span p {
   font-size: 13px;
   line-height: 1.2;
   margin-bottom: 0;
 }
-footer .about span p:first-child {
+footer .row .about span p:first-child {
   padding-bottom: 15px;
 }
-footer .links {
+footer .row .links {
   display: flex;
   flex-direction: column;
 }
-footer .links .footer-link-title {
+footer .row .links .footer-link-title {
   padding-bottom: 15px;
   text-transform: uppercase;
   font-size: 13px;
   line-height: 1.2;
   font-family: "Montserrat-SemiBold";
 }
-footer .links a {
+footer .row .links a {
   font-size: 13px;
   line-height: 1.2;
   padding: 0;
 }
-footer .footer-image-wrapper img {
+footer .row .footer-image-wrapper {
+  display: flex;
+  align-items: center;
+}
+footer .row .footer-image-wrapper img {
   width: 100%;
 }
 footer .footer-last-container {

@@ -22,8 +22,7 @@
 													<?php } else { ?>
 														<a class="btn btn-primary" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>"><?= $button['WBCB_button_title'] ?></a>
 													<?php }
-												}
-												?>
+												} ?>
 											</div>
 										</div>
 									</div>
@@ -32,8 +31,7 @@
 						</div>
 					<?php }					
 				}
-			}
-			?>
+			} ?>
 		</div>
-	</div>
+	</div>	
 </section>

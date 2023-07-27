@@ -522,7 +522,7 @@ class website {
     public static function getWebsiteSections($page_detail_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT section_id, variant_id FROM website_section WHERE page_detail_id = :page_detail_id");
+        $statement = $db->prepare("SELECT section_id, variant_id FROM website_section WHERE page_detail_id = :page_detail_id ORDER BY sequence_num");
         $statement->bindParam(":page_detail_id", $page_detail_id, PDO::PARAM_STR);
         $statement->execute();
 

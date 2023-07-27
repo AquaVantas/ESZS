@@ -21,7 +21,7 @@
                 $counter = 0;
                 foreach(website::getWebsiteBlockContent($section['WSB_section_block_id']) as $blockContent) { 
 				    foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $button) {	
-                        if($counter == 1) {
+                        if($counter == 0) {
                             $news_page = $button['WBCB_page_id'];
                         }
                         $counter++;
