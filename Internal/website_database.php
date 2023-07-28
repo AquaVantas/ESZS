@@ -417,6 +417,16 @@ class website {
 
         return $statement->fetchAll();
     }
+
+    public static function getWebsiteSectionByID($section_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT sequence_num FROM website_section WHERE section_id = :section_id");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
     
     public static function addWebsiteSection($page_detail_id, $variant_id, $sequence_num) {
         $db = self::getInstance();
@@ -438,6 +448,61 @@ class website {
 
         $statement = $db->prepare("DELETE FROM website_section WHERE section_id = :section_id");
         $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function getWebsiteSectionSequenceNumMin($page_detail_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT MIN(sequence_num) as min_sequence_num FROM website_section WHERE page_detail_id = :page_detail_id");
+        $statement->bindParam(":page_detail_id", $page_detail_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteSectionSequenceNumMax($page_detail_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT MAX(sequence_num) as max_sequence_num FROM website_section WHERE page_detail_id = :page_detail_id");
+        $statement->bindParam(":page_detail_id", $page_detail_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteSectionNext($sequence_num, $page_detail_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_section.section_id AS section_id
+                                    FROM website_section
+                                    WHERE website_section.sequence_num = :sequence_num + 1 AND website_section.page_detail_id = :page_detail_id");
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->bindParam(":page_detail_id", $page_detail_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteSectionPrev($sequence_num, $page_detail_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_section.section_id AS section_id
+                                    FROM website_section
+                                    WHERE website_section.sequence_num = :sequence_num - 1 AND website_section.page_detail_id = :page_detail_id");
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->bindParam(":page_detail_id", $page_detail_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function updateWebsiteSectionSequenceNumbers($section_id, $sequence_num) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_section SET sequence_num = :sequence_num WHERE section_id = :section_id");
+        $statement->bindParam(":section_id", $section_id, PDO::PARAM_STR);
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
         $statement->execute();
     }
 
@@ -678,6 +743,21 @@ class website {
         return $statement->fetchAll();
     }
 
+    public static function getWebsiteBlockContentByID($block_content_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_block_content.block_content_id AS WBC_block_content_id, website_block_content.sequence_num AS WBC_sequence_num,
+                                    website_block_content.image_id AS WBC_image_id, website_block_content.section_block_id AS WBC_section_block_id, 
+                                    website_block_content.block_link AS WBC_block_link, website_block_content.block_heading AS WBC_block_heading,
+                                    website_block_content.block_subheading AS WBC_block_subheading, website_block_content.block_text AS WBC_block_text
+                                    FROM website_block_content
+                                    WHERE website_block_content.block_content_id = :block_content_id");
+        $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public static function updateWebsiteBlockContent($block_content_id, $sequence_num, $image_id, $block_link, $block_heading, $block_subheading, $block_text) {
         $db = self::getInstance();
 
@@ -723,6 +803,41 @@ class website {
         return $statement->fetchAll();
     }  
 
+    public static function getWebsiteBlockContentNext($sequence_num, $section_block_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_block_content.block_content_id AS WBC_block_content_id
+                                    FROM website_block_content
+                                    WHERE website_block_content.sequence_num = :sequence_num + 1 AND website_block_content.section_block_id = :section_block_id");
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->bindParam(":section_block_id", $section_block_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteBlockContentPrev($sequence_num, $section_block_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_block_content.block_content_id AS WBC_block_content_id
+                                    FROM website_block_content
+                                    WHERE website_block_content.sequence_num = :sequence_num - 1 AND website_block_content.section_block_id = :section_block_id");
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->bindParam(":section_block_id", $section_block_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function updateWebsiteBlockContentSequenceNumbers($block_content_id, $sequence_num) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_block_content SET sequence_num = :sequence_num WHERE block_content_id = :block_content_id");
+        $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
     public static function getWebsiteBlockContentAfterDeleted($section_id, $sequence_num) {
         $db = self::getInstance();
 
@@ -745,6 +860,26 @@ class website {
                                     WHERE block_content_id = :block_content_id");
         $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
         $statement->execute();
+    }
+
+    public static function getWebsiteBlockContentSequenceNumMin($section_block_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT MIN(sequence_num) as min_sequence_num FROM website_block_content WHERE section_block_id = :section_block_id");
+        $statement->bindParam(":section_block_id", $section_block_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteBlockContentSequenceNumMax($section_block_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT MAX(sequence_num) as max_sequence_num FROM website_block_content WHERE section_block_id = :section_block_id");
+        $statement->bindParam(":section_block_id", $section_block_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
     }
 
     public static function getWebsiteImageByID($image_id) {
@@ -834,12 +969,47 @@ class website {
         return $statement->fetchAll();
     }
 
+    public static function getWebsiteButtonPrev($sequence_num, $block_content_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_button.button_id AS WBCB_button_id
+                                    FROM website_button
+                                    WHERE website_button.sequence_num = :sequence_num - 1 AND website_button.block_content_id = :block_content_id");
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getWebsiteButtonNext($sequence_num, $block_content_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_button.button_id AS WBCB_button_id
+                                    FROM website_button
+                                    WHERE website_button.sequence_num = :sequence_num + 1 AND website_button.block_content_id = :block_content_id");
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
+        $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public static function updateWebsiteButton($button_id, $image_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("UPDATE website_block_content SET image_id = :image_id WHERE block_content_id = :block_content_id");
+        $statement = $db->prepare("UPDATE website_button SET image_id = :image_id WHERE block_content_id = :block_content_id");
         $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
         $statement->bindParam(":image_id", $image_id, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public static function updateWebsiteButtonSequenceNumbers($button_id, $sequence_num) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_button SET sequence_num = :sequence_num WHERE button_id = :button_id");
+        $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
+        $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
         $statement->execute();
     }
 

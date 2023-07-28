@@ -390,7 +390,7 @@ table tr td {
 }
 .cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .up-arrow img {
   width: 100%;
-  filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
+  filter: brightness(100%);
 }
 .cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .down-arrow {
   margin-top: -2px;
@@ -400,7 +400,7 @@ table tr td {
 }
 .cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .down-arrow img {
   width: 100%;
-  filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
+  filter: brightness(100%);
 }
 .cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body {
   border: 1px solid #00d6bd;

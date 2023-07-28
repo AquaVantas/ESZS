@@ -66,10 +66,12 @@ $page_details_id = 0;
 															</div>
 															<div class="actions-wrapper">
 																<div class="up-down-arrows">
-																	<div class="up-arrow">
-																	</div>
-																	<div class="down-arrow">
-																	</div>
+																	<a class="up-arrow" href="Controllers/Website/Page/website_move_section.php?move_direction=up&page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_id=<?= $page_section['section_id'] ?>&page_detail_id=<?= $page_details_id ?>">
+																		<img src="Content/Images/Icons/arrow-down.svg">
+																	</a>
+																	<a class="down-arrow" href="Controllers/Website/Page/website_move_section.php?move_direction=down&page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_id=<?= $page_section['section_id'] ?>&page_detail_id=<?= $page_details_id ?>">
+																		<img src="Content/Images/Icons/arrow-down.svg">
+																	</a>
 																</div>
 																<a class="delete" href="Controllers/Website/Page/website_delete_section.php?section_id=<?= $section['WS_section_id'] ?>&variant_id=<?= $section['WS_variant_id'] ?>&page_id=<?= $_GET['page_id'] ?>&lang_id=<?= $lang_id ?>">
 																	<img src="Content/Images/Icons/plus.svg"></img>
@@ -122,10 +124,12 @@ $page_details_id = 0;
 																							<?php } ?>
 																							<div class="actions-wrapper">
 																								<div class="up-down-arrows">
-																									<div class="up-arrow">
-																									</div>
-																									<div class="down-arrow">
-																									</div>
+																									<a class="up-arrow" href="Controllers/Website/Page/website_move_block_content.php?move_direction=up&page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_id=<?= $section['WSB_section_block_id'] ?>&block_content_id=<?= $blockContent['WBC_block_content_id'] ?>">
+																										<img src="Content/Images/Icons/arrow-down.svg">
+																									</a>
+																									<a class="down-arrow" href="Controllers/Website/Page/website_move_block_content.php?move_direction=down&page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_id=<?= $section['WSB_section_block_id'] ?>&block_content_id=<?= $blockContent['WBC_block_content_id'] ?>">
+																										<img src="Content/Images/Icons/arrow-down.svg">
+																									</a>
 																								</div>
 																								<a class="delete" href="Controllers/Website/Page/website_delete_block_content.php?page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_id=<?= $section['WS_section_id'] ?>&block_content_id=<?= $blockContent['WBC_block_content_id'] ?>">
 																									<img src="Content/Images/Icons/plus.svg"></img>
@@ -355,10 +359,12 @@ $page_details_id = 0;
 															</div>
 															<div class="actions-wrapper">
 																<div class="up-down-arrows">
-																	<div class="up-arrow">
-																	</div>
-																	<div class="down-arrow">
-																	</div>
+																	<a class="up-arrow" href="Controllers/Website/Page/website_move_section.php?move_direction=up&page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_id=<?= $page_section['section_id'] ?>&page_detail_id=<?= $page_details_id ?>">
+																		<img src="Content/Images/Icons/arrow-down.svg">
+																	</a>
+																	<a class="down-arrow" href="Controllers/Website/Page/website_move_section.php?move_direction=down&page_id=<?= $_GET['page_id'] ?><?= isset($_GET['lang_id']) ? '&lang_id=' . $_GET['lang_id'] : ''?>&section_id=<?= $page_section['section_id'] ?>&page_detail_id=<?= $page_details_id ?>">
+																		<img src="Content/Images/Icons/arrow-down.svg">
+																	</a>
 																</div>
 																<a class="delete" href="Controllers/Website/Page/website_delete_section.php?section_id=<?= $section['WS_section_id'] ?>&variant_id=<?= $section['WS_variant_id'] ?>&page_id=<?= $_GET['page_id'] ?>&lang_id=<?= $lang_id ?>">
 																	<img src="Content/Images/Icons/plus.svg"></img>

@@ -21,13 +21,19 @@
 				$min_sequence_num = $min_seq['min_sequence_num'];
 			}
 			foreach(website::getWebsiteButtonByID($_GET['button_id']) as $button) {
-				if($button['WBCB_sequence_num'] != $min_seq) {
-
+				$chosenButtonSequenceNumber = $button['WBCB_sequence_num'];
+				if($button['WBCB_sequence_num'] != $min_sequence_num) {
+					foreach(website::getWebsiteButtonByID($_GET['button_id']) as $chosenButton) {
+						foreach(website::getWebsiteButtonPrev($chosenButton['WBCB_sequence_num'], $_GET['block_content_id']) as $previousButton) {
+							$prev_button = $previousButton['WBCB_button_id'];
+						}
+					}
 				}
 			}
-		}
-		else {
-
+			if(isset($prev_button)) {				
+				website::updateWebsiteButtonSequenceNumbers($_GET['button_id'], intval($chosenButtonSequenceNumber) - 1);
+				website::updateWebsiteButtonSequenceNumbers($prev_button, intval($chosenButtonSequenceNumber));
+			}
 		}
 	}
 	else if($_GET['move_direction'] == "down") {
@@ -35,12 +41,23 @@
 			foreach(website::getWebsiteBlockContentButtonSequenceNum($_GET['block_content_id']) as $max_seq) {
 				$max_sequence_num = $max_seq['max_sequence_num'];
 			}
-		}
-		else {
-
+			foreach(website::getWebsiteButtonByID($_GET['button_id']) as $button) {
+				$chosenButtonSequenceNumber = $button['WBCB_sequence_num'];
+				if($button['WBCB_sequence_num'] != $max_sequence_num) {
+					foreach(website::getWebsiteButtonByID($_GET['button_id']) as $chosenButton) {
+						foreach(website::getWebsiteButtonNext($chosenButton['WBCB_sequence_num'], $_GET['block_content_id']) as $previousButton) {
+							$prev_button = $previousButton['WBCB_button_id'];
+						}
+					}
+				}
+			}
+			if(isset($prev_button)) {				
+				website::updateWebsiteButtonSequenceNumbers($_GET['button_id'], intval($chosenButtonSequenceNumber) + 1);
+				website::updateWebsiteButtonSequenceNumbers($prev_button, intval($chosenButtonSequenceNumber));
+			}
 		}
 	}
 
 	//redirect back to language list
-	//header('Location:../../../cpanel.php?tab=webpage_editor&action=edit_page_details&page_id=' . $_GET['page_id'] . '&lang_id=' . $lang_id);
+	header('Location:../../../cpanel.php?tab=webpage_editor&action=edit_page_details&page_id=' . $_GET['page_id'] . '&lang_id=' . $_GET['lang_id']);
 ?>
