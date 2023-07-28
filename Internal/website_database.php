@@ -266,6 +266,20 @@ class website {
         return $statement->fetchAll();
     }
 
+    public static function getAllWebsitePagesPageNavigation($lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_page.page_id as WP_page_id, website_page_details.page_title as WPD_page_title
+                                    FROM website_page 
+                                    INNER JOIN website_page_details
+                                    ON website_page_details.page_id = website_page.page_id
+                                    WHERE website_page.subpage_to IS NULL AND website_page_details.language_id = :lang_id AND website_page_details.page_published = 1");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public static function deleteSpecificWebsitePage($page_id) {
         $db = self::getInstance();
 
@@ -281,6 +295,21 @@ class website {
 
         $statement = $db->prepare("SELECT page_id, page_title, subpage_to FROM website_page WHERE subpage_to = :page_id");
         $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getAllWebsitePageSubpagesPageNavigation($page_id, $lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_page.page_id as WP_page_id, website_page_details.page_title as WPD_page_title
+                                    FROM website_page 
+                                    INNER JOIN website_page_details
+                                    ON website_page_details.page_id = website_page.page_id
+                                    WHERE website_page.subpage_to = :page_id AND website_page_details.language_id = :lang_id AND website_page_details.page_published = 1");
+        $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
         $statement->execute();
 
         return $statement->fetchAll();
@@ -862,7 +891,19 @@ class website {
         $statement->execute();
 
         return $statement->fetchAll();
-    }    
+    } 
+    
+    public static function getWebsiteBlockContentButtonBeforeSequenceNumber($button_id, $sequence_num, $block_content_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_button.sequence_num AS WBCB_sequence_num
+                                    FROM website_button                                    
+                                    WHERE website_button.button_id = :button_id");     
+        $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
 
     public static function getWebsiteBlockContentButtonAfterDeleted($block_content_id, $sequence_num) {
         $db = self::getInstance();

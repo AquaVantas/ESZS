@@ -15,14 +15,14 @@
 			<div class="right-side">
 				<div class="navbar-collapse" id="navbarNavDropdown">
 					<ul class="navbar-nav ml-auto staridelaj" style="padding-right: 70px;">
-						<?php foreach(website::getAllWebsitePages() as $page) { 
-						if(count(website::getAllWebsitePageSubpages($page['page_id'])) > 0) {
-							echo printSubMenu($page['page_id'], $page['page_title'], $lang_id);
-						} else { ?>
-							<li class="nav-item">
-								<a class="nav-link" href="?lang_id=<?= $lang_id ?>&page_id=<?= $page['page_id'] ?>"><?= $page['page_title'] ?></a>
-							</li>
-						<?php }
+						<?php foreach(website::getAllWebsitePagesPageNavigation($lang_id) as $page) { 
+							if(count(website::getAllWebsitePageSubpages($page['WP_page_id'])) > 0) {
+								echo printSubMenu($page['WP_page_id'], $page['WPD_page_title'], $lang_id);
+							} else { ?>
+								<li class="nav-item">
+									<a class="nav-link" href="?lang_id=<?= $lang_id ?>&page_id=<?= $page['WP_page_id'] ?>"><?= $page['WPD_page_title'] ?></a>
+								</li>
+							<?php }
 						} ?>
 					</ul>
 				</div>

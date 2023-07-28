@@ -17,12 +17,12 @@
 		$html = "<li class='nav-item dropdown'>
 					<a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" . $parent_title . "</a>
 					<ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>";
-			foreach(website::getAllWebsitePageSubpages($parent) as $subpage) {
-				if(count(website::getAllWebsitePageSubpages($subpage['page_id'])) > 0) { 
+			foreach(website::getAllWebsitePageSubpagesPageNavigation($parent, $lang_id) as $subpage) {
+				if(count(website::getAllWebsitePageSubpagesPageNavigation($subpage['page_id'], $lang_id)) > 0) { 
 					$html .= printSubMenu($subpage['page_id'], $subpage['page_title'], $lang_id);
 				} else {
 					$html .= "<li class='nav-item'>
-							<a class='nav-link' href='?lang_id=" . $lang_id . "&page_id=" . $subpage['page_id'] . "'>" . $subpage['page_title'] . "</a>
+							<a class='nav-link' href='?lang_id=" . $lang_id . "&page_id=" . $subpage['WP_page_id'] . "'>" . $subpage['WPD_page_title'] . "</a>
 						</li>";
 				}
 			}

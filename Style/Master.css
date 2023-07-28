@@ -1233,6 +1233,9 @@ footer .footer-last-container .container .row .copyright span {
   color: #192133;
 }
 
+.BlockHighlightedNews {
+  height: calc(100vh - 60px);
+}
 @media (min-width: 992px) {
   .BlockHighlightedNews {
     height: 70vh;
