@@ -500,6 +500,14 @@ table tr td {
   background-color: rgba(255, 255, 255, 0.1019607843);
   border: 1px solid #00d6bd;
   border-radius: 8px;
+  height: calc(100% - 20px);
+}
+.cpanel-body-wrapper .user-body .user-card .news-image {
+  width: 100%;
+  height: 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .cpanel-body-wrapper .user-body .user-card .user-icon {
   min-height: 80px;
@@ -522,6 +530,7 @@ table tr td {
   flex-direction: column;
 }
 .cpanel-body-wrapper .user-body .user-card .user-info .user-info-name {
+  text-align: center;
   margin-bottom: 5px;
 }
 .cpanel-body-wrapper .user-body .user-card .user-info .user-info-email {

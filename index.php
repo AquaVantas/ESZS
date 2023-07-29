@@ -110,6 +110,17 @@
 							break;
 					}
 				} 
+			} else if($section_type['variant_id'] == 2) {
+				foreach(website::getWebsiteSectionForm($section_type['section_id']) as $section) {
+					switch($section['WSF_form_template_id']) {
+						case 1: 
+							include "Views/Partials/Sections/SectionBlock/formLeagueOfLegends.php";
+							break;
+						case 2:
+							include "Views/Partials/Sections/SectionBlock/formAssettoCorsa.php";
+							break;
+					}
+				}
 			}
 		}
 		include "Views/Partials/Master/footer.php";

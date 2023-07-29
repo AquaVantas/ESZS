@@ -144,7 +144,7 @@ class news {
     public static function addAuthor($name, $description) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("INSERT INTO news_authors(news_author_name, news_author_description) VALUES(:name, :description)");
+        $statement = $db->prepare("INSERT INTO news_authors(news_author_name) VALUES(:name)");
         $statement->bindParam(":name", $name, PDO::PARAM_STR);
         $statement->bindParam(":description", $description, PDO::PARAM_STR);
         $statement->execute();

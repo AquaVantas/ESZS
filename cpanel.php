@@ -148,7 +148,10 @@
 							Novice<div class="arrow"></div>
 						</button>
 						<ul class="dropdown-menu">
-							<?php if($role_news || $role_admin){ ?><li><a href="?tab=news_outside_media_add" class="nav-link <?php if($cpanel_tab == "news_editor"){echo "active"; } ?>">Mediji</a></li><?php } ?>
+							<?php if($role_news || $role_admin){ ?>
+								<li><a href="?tab=news" class="nav-link <?php if($cpanel_tab == "news_editor"){echo "active"; } ?>">Novice</a></li>
+								<li><a href="?tab=news_outside_media_add" class="nav-link <?php if($cpanel_tab == "news_editor"){echo "active"; } ?>">Mediji</a></li>
+							<?php } ?>
 						</ul>
 					</div>
 					<!--<div class="dropdown">
@@ -192,8 +195,10 @@
 			<?php } ?>
 			<!-- website editor -->
 			<?php include "Views/CPanel/tab_website_default_template.php" ?>
-			<!-- outside news media-->
-			<?php include "Views/CPanel/tab_news_outside_media_add.php" ?>
+			<!-- outside news media -->
+			<?php include "Views/CPanel/WebpageEditor/News/tab_news_outside_media_add.php" ?>
+			<!-- outside news -->
+			<?php include "Views/CPanel/WebpageEditor/News/tab_news.php" ?>
 			<!-- media list -->
 			<?php include "Views/CPanel/tab_media.php" ?>
 			<!-- add tournaments -->			
