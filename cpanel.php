@@ -205,6 +205,8 @@
 			<?php include "Views/CPanel/WebpageEditor/Tournaments/tab_tournaments_add.php" ?>
 			<!-- tournaments -->
 			<?php include "Views/CPanel/WebpageEditor/Tournaments/tab_tournaments.php" ?>
+			<!-- tournament -->
+			<?php include "Views/CPanel/WebpageEditor/Tournaments/tab_competition.php" ?>
 			<!-- admin list -->
 			<?php include "Views/CPanel/Editors/tab_user_list.php" ?>
 			<!-- create new admin user -->

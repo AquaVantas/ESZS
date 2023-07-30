@@ -132,6 +132,14 @@
 }
 
 .cpanel-body-wrapper {
+    .tournament-list {
+        h4 {
+            padding: 10px 20px;
+            background-color: $primarybluefive;
+            color: $white;
+        }
+    }
+
     .user-body {
         .create-bar {
             margin-top: 20px;

@@ -330,6 +330,11 @@ table tr td {
   transform: rotate(-90deg);
 }
 
+.cpanel-body-wrapper .tournament-list h4 {
+  padding: 10px 20px;
+  background-color: #00d6bd;
+  color: #FFFFFF;
+}
 .cpanel-body-wrapper .user-body .create-bar {
   margin-top: 20px;
   margin-bottom: 50px;
