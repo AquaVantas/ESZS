@@ -197,8 +197,10 @@
 			<?php include "Views/CPanel/tab_website_default_template.php" ?>
 			<!-- outside news media -->
 			<?php include "Views/CPanel/WebpageEditor/News/tab_news_outside_media_add.php" ?>
-			<!-- outside news -->
+			<!-- news -->
 			<?php include "Views/CPanel/WebpageEditor/News/tab_news.php" ?>
+			<!-- edit news -->
+			<?php include "Views/CPanel/WebpageEditor/News/tab_news_edit.php" ?>
 			<!-- media list -->
 			<?php include "Views/CPanel/tab_media.php" ?>
 			<!-- add tournaments -->			

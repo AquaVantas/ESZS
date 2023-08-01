@@ -26,7 +26,7 @@ class news {
     public static function getArticlesPreviews() {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT news_article_id, news_article_title, news_article_description, news_article_preview_image, news_article_date FROM news_articles WHERE news_article_hidden is FALSE AND news_article_date <= NOW() ORDER BY news_article_date DESC");
+        $statement = $db->prepare("SELECT news_article_id, news_article_title, news_article_description, news_article_preview_image, news_article_date FROM news_articles WHERE news_article_date <= NOW() ORDER BY news_article_date DESC");
         $statement->execute();
 
         return $statement->fetchAll();

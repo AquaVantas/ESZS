@@ -62,7 +62,8 @@ class tournament {
     public static function getTournamentsACCEntries($from, $to) {
          $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT id, tournament_title, game_id, apply_start_time, apply_end_time FROM tournament_list WHERE game_id = :game_id ORDER BY apply_end_time DESC");
+        $statement = $db->prepare("SELECT application_id, player_name, player_surname, email, address, discord, steam_id, team
+                                    FROM tournament_assetto_corsa WHERE game_id = :game_id ORDER BY apply_end_time DESC");
         $statement->bindParam(":game_id", $game_id, PDO::PARAM_STR);
         $statement->execute();
 
