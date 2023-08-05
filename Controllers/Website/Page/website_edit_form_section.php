@@ -27,7 +27,12 @@
 	$form_header = $_POST['section-header'];
 	$form_subheader = $_POST['section-subheader'];
 	$form_receivers = $_POST['form-receivers'];
-	$image_id = $_POST['form-image'];
+	if($_POST['form-receivers'] == '') {
+	    $image_id = NULL;
+	}
+	else {
+	    $image_id = $_POST['form-image'];
+	}
 
 	//edits language in the database
 	if($section_id != NULL) {

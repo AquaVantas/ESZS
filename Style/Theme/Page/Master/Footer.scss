@@ -4,6 +4,11 @@ footer {
     .row {
         justify-content: center;
 
+        .col-2 {
+            max-width: 190px;
+            width: auto;
+        }
+
         .about {
             span {
                 p {
@@ -40,9 +45,17 @@ footer {
         .footer-image-wrapper {
             display: flex;
             align-items: center;
+            justify-content: center;
 
             img {
+                max-height: 51px;
                 width: 100%;
+            }
+
+            &.special {
+                img {
+                    max-height: 40px;
+                }
             }
         }
     }

@@ -1,3 +1,17 @@
+.navigation-mobile {
+    display: block;
+    position: fixed;
+    height: 60px;
+    width: 100%;
+    background-color: $background;
+    border-bottom: 1px solid $primarybluefive;
+    margin-top: -60px;
+
+    @include media-breakpoint-up(lg) {
+        display: none;
+    }
+}
+
 .navigation-desktop {
     display: none;
     width: 100%;

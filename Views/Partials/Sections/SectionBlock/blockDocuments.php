@@ -12,9 +12,11 @@
 				if($blockContent['WBC_image_id'] != NULL) { ?>
 						<div class="col-lg-2 col-4">
 							<div class="file-wrapper">
-								<img src="Content/Images/Icons/pdf.svg" alt="pdf_file">
-								<h4><?= $blockContent['WBC_block_heading'] ?></h4>
-								<p><?= $blockContent['WBC_block_subheading'] ?></p>
+								<div>
+									<img src="Content/Images/Icons/pdf.svg" alt="pdf_file">
+									<h4><?= $blockContent['WBC_block_heading'] ?></h4>
+									<p><?= $blockContent['WBC_block_subheading'] ?></p>
+								</div>
 								<?php foreach(website::getWebsiteImageByID(intval($blockContent['WBC_image_id'])) as $image) { ?>						
 									<a class="btn btn-primary" href="<?= $image['image_path'] ?>" target="_blank">
 										PRENESI

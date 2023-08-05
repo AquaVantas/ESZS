@@ -67,5 +67,9 @@
         <div id="editor-container" class="editor-container editor-block-container" container-id="editorwebsiteDefault">
             <?= $pageDefault['footer_about'] ?>
         </div>
+    <?php } else if(isset($_GET['news_id'])) { ?>
+        <div id="editor-container" class="editor-container editor-block-container" container-id="editorwebsiteNews">
+            <?= $content ?>
+        </div>
     <?php } ?> 
 </div>

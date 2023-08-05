@@ -29,17 +29,17 @@
 			    } ?>			
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
                     <a class="news-link" href="?lang_id=<?= $lang_id ?>&page_id=<?= $news_page ?>&news_id=<?= $preview["news_article_id"] ?>" target="_blank">
-                        <div class="newsboxcontainer">
-                            <div class="article-background" style="background-image: url('<?= $preview['news_article_preview_image'] ?>')"></div>
-                            <div class="overlay">
-                                <div class="newstitletext">
-                                    <div class="newssubtitlepin">Dogodek | <?= $date ?></div>
-                                    <div class="newstitlepin"><?= $preview["news_article_title"] ?></div>
-                                </div>
-                                <div class="newstitlevec"><div class="vectext">več</div></div>
+                    <div class="newsboxcontainer">
+                        <div class="article-background" style="background-image: url('<?= $preview['news_article_preview_image'] ?>')"></div>
+                        <div class="overlay">
+                            <div class="newstitletext">
+                                <div class="newssubtitlepin">Dogodek | <?= $date ?></div>
+                                <div class="newstitlepin"><?= $preview["news_article_title"] ?></div>
                             </div>
+                            <div class="newstitlevec"><div class="vectext">več</div></div>
                         </div>
-                    </a>
+                    </div>
+                </a>
                 </div>
             <?php
                 $i=$i+1;

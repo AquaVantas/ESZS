@@ -29,10 +29,9 @@
 	$button_anchor = $_POST['button-anchor'];
 	$button_link_heading = $_POST['button-link-heading'];
 	
-	if(isset($_POST['button-page-link'])) {
+	if(isset($_POST['button-page-link']) && $_POST['button-page-link'] !== 'undefined') {
 	    $button_page_link = $_POST['button-page-link'];
 	} else {
-	    
 	    $button_page_link = NULL;
 	}
 	
@@ -45,6 +44,7 @@
 	}	
 
 	echo $button_id;
+	echo $button_page_link;
 
 	//edits language in the database
 	if($button_id != NULL) {
@@ -53,5 +53,5 @@
 	}
 
 	//redirect back to language list
-	//header('Location:../../../cpanel.php?tab=webpage_editor&action=edit_page_details&page_id=' . $_GET['page_id'] . '&lang_id=' . $lang_id);
+	header('Location:../../../cpanel.php?tab=webpage_editor&action=edit_page_details&page_id=' . $_GET['page_id'] . '&lang_id=' . $lang_id);
 ?>

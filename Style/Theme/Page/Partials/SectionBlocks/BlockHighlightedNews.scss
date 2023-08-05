@@ -1,8 +1,10 @@
 .BlockHighlightedNews {
     height: calc(100vh - 60px);
+    margin-top: 60px;
 
     @include media-breakpoint-up(lg) {
         height: 70vh;
+        margin-top: 0px;
     }
 
     .swiper {

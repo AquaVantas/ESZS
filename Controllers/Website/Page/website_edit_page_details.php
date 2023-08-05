@@ -20,7 +20,6 @@
 	} else {
 		$lang_id = 1;
 	}
-    echo $lang_id;
 
 	$page_id = intval($_GET['page_id']);
 	$page_published = $_POST['page_published'];

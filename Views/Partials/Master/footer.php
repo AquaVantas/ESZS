@@ -1,3 +1,34 @@
+<?php if($page_id != 1) { ?>
+	<section class="BlockOtherSocials">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 socials-list">
+					<div class="line">
+					</div>
+					<?php foreach(website::getWebsiteBlockContent($section['WSB_section_block_id']) as $blockContent) { 
+						foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $button) {						
+							if($button['WBCB_image_id'] != NULL) {
+								foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { 						
+									if($button['WBCB_page_id'] == NULL || $button['WBCB_page_id'] == 0) { ?>
+										<a class="partner" href="<?= $button['WBCB_button_link'] ?>">
+											<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+										</a>
+									<?php } else { ?>
+										<a class="partner" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>">
+											<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+										</a>
+									<?php }
+								}					
+							}						
+						 }
+					} ?>
+					<div class="line">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<?php } ?>
 <footer>
 	<div class="container">
 		<div class="row">
@@ -17,8 +48,10 @@
 			<?php foreach(website::getWebsiteFooterImages($lang_id) as $button) {
 				foreach(website::getWebsiteButtonByID(intval($button['button_id'])) as $button_image) { 
 					foreach(website::getWebsiteImageByID(intval($button_image['WBCB_image_id'])) as $image) {?>
-						<div class="col-2 footer-image-wrapper">
-							<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
+						<div class="col-2 footer-image-wrapper <?= $button_image['WBCB_button_title'] ?>">
+							<a href="<?= $button_image['WBCB_button_link'] ?>">
+								<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
+							</a>
 						</div>
 					<?php }					
 				}

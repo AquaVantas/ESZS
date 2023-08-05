@@ -9,7 +9,7 @@
         align-items: center;
 
         @include media-breakpoint-up(lg) {
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
         .line {
@@ -20,8 +20,8 @@
 
         a {
             img {
-                max-height: 40px;
-                min-height: 40px;
+                max-height: 28px;
+                min-height: 28px;
                 filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(176deg) brightness(102%) contrast(101%);
 
                 &:hover {
