@@ -27,6 +27,10 @@
 					 }
 				} ?>				
 			</div>
+			<div class="col-lg-12 bottom">
+				<div class="line">
+				</div>
+			</div>
 		</div>
 	</div>
 </section>

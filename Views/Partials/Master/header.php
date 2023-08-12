@@ -22,12 +22,23 @@
                 <title><?= $default['website_title'] ?></title>
             <?php }
         } ?>
-        <meta charset="UTF-8">
         <meta name="description" content="<?= $page_details['meta_description'] ?>">
         <meta name="keywords" content="<?= $page_details['meta_keyword'] ?>">
         <meta name="author" content="EŠZS">
     <?php }
+    if(isset($_COOKIE['cookies']) && $_COOKIE['cookies'] == "yes") { ?>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1161MEK8Q"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-Q1161MEK8Q');
+        </script>
+    <?php }
 ?>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 <link rel="stylesheet" href="Plugins/bootstrap/bootstrap.min.css">

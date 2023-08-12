@@ -99,7 +99,7 @@ class website {
     public static function getWebsiteDefault($lang_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT lang_id, header_logo, footer_logo, footer_copyright, footer_about, website_title FROM website_default WHERE lang_id = :lang_id");
+        $statement = $db->prepare("SELECT lang_id, header_logo, footer_logo, footer_copyright, footer_about, website_title, website_cookies_title, website_cookies_text FROM website_default WHERE lang_id = :lang_id");
         $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
         $statement->execute();
 
@@ -155,10 +155,10 @@ class website {
         return $statement->fetchAll();
     }
 
-    public static function addWebsiteFooterDocumentation($lang_id, $button_id, $sequence_num) {
+    public static function addWebsiteFooterSocials($lang_id, $button_id, $sequence_num) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("INSERT INTO website_footer_documentation(lang_id, button_id, sequence_num) 
+        $statement = $db->prepare("INSERT INTO website_footer_socials(lang_id, button_id, sequence_num) 
                                     VALUES(:lang_id, :button_id, :sequence_num)");
         $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
         $statement->bindParam(":button_id", $button_id, PDO::PARAM_STR);
@@ -171,20 +171,20 @@ class website {
         return $statement->fetchColumn();
     }
 
-    public static function getWebsiteFooterDocumentationMaxSequenceNumber($lang_id) {
+    public static function getWebsiteFooterSocialsMaxSequenceNumber($lang_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT MAX(sequence_num) as max_sequence_num FROM website_footer_documentation WHERE lang_id = :lang_id");
+        $statement = $db->prepare("SELECT MAX(sequence_num) as max_sequence_num FROM website_footer_socials WHERE lang_id = :lang_id");
         $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
         $statement->execute();
         
         return $statement->fetchAll();
     }
 
-    public static function getWebsiteDocumentation($lang_id) {
+    public static function getWebsiteFooterSocials($lang_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT lang_id, button_id, sequence_num FROM website_footer_documentation WHERE lang_id = :lang_id ORDER BY sequence_num ASC");
+        $statement = $db->prepare("SELECT lang_id, button_id, sequence_num FROM website_footer_socials WHERE lang_id = :lang_id ORDER BY sequence_num ASC");
         $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
         $statement->execute();
         
@@ -273,7 +273,8 @@ class website {
                                     FROM website_page 
                                     INNER JOIN website_page_details
                                     ON website_page_details.page_id = website_page.page_id
-                                    WHERE website_page.subpage_to IS NULL AND website_page_details.language_id = :lang_id AND website_page_details.page_published = 1");
+                                    WHERE website_page.subpage_to IS NULL AND website_page_details.language_id = :lang_id AND website_page_details.page_published = 1
+                                    ORDER BY website_page.sequence_num");
         $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
         $statement->execute();
 
@@ -293,7 +294,7 @@ class website {
     public static function getAllWebsitePageSubpages($page_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT page_id, page_title, subpage_to FROM website_page WHERE subpage_to = :page_id");
+        $statement = $db->prepare("SELECT page_id, page_title, subpage_to FROM website_page WHERE subpage_to = :page_id ORDER BY sequence_num");
         $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
         $statement->execute();
 
@@ -307,7 +308,8 @@ class website {
                                     FROM website_page 
                                     INNER JOIN website_page_details
                                     ON website_page_details.page_id = website_page.page_id
-                                    WHERE website_page.subpage_to = :page_id AND website_page_details.language_id = :lang_id AND website_page_details.page_published = 1");
+                                    WHERE website_page.subpage_to = :page_id AND website_page_details.language_id = :lang_id AND website_page_details.page_published = 1
+                                    ORDER BY website_page.sequence_num");
         $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
         $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
         $statement->execute();
@@ -892,15 +894,13 @@ class website {
         return $statement->fetchAll();
     }    
 
-    public static function addWebsiteButton($button_title, $section_gallery_id, $image_id, $sequence_num, $section_block_id, $block_content_id, $button_link_id) {
+    public static function addWebsiteButton($button_title, $image_id, $sequence_num, $block_content_id, $button_link_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("INSERT INTO website_button(button_title, section_gallery_id, image_id, sequence_num, section_block_id, block_content_id, button_link_id) VALUES(:button_title, :section_gallery_id, :image_id, :sequence_num, :section_block_id, :block_content_id, :button_link_id)");
+        $statement = $db->prepare("INSERT INTO website_button(button_title, image_id, sequence_num, block_content_id, button_link_id) VALUES(:button_title, :image_id, :sequence_num, :block_content_id, :button_link_id)");
         $statement->bindParam(":button_title", $button_title, PDO::PARAM_STR);
-        $statement->bindParam(":section_gallery_id", $section_gallery_id, PDO::PARAM_STR);
         $statement->bindParam(":image_id", $image_id, PDO::PARAM_STR);
         $statement->bindParam(":sequence_num", $sequence_num, PDO::PARAM_STR);
-        $statement->bindParam(":section_block_id", $section_block_id, PDO::PARAM_STR);
         $statement->bindParam(":block_content_id", $block_content_id, PDO::PARAM_STR);
         $statement->bindParam(":button_link_id", $button_link_id, PDO::PARAM_STR);
         $statement->execute();

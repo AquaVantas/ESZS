@@ -5,8 +5,8 @@
 				<div class="col-12 socials-list">
 					<div class="line">
 					</div>
-					<?php foreach(website::getWebsiteBlockContent($section['WSB_section_block_id']) as $blockContent) { 
-						foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $button) {						
+					<?php foreach(website::getWebsiteFooterSocials($lang_id) as $social) {
+						foreach(website::getWebsiteButtonByID($social['button_id']) as $button) {
 							if($button['WBCB_image_id'] != NULL) {
 								foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { 						
 									if($button['WBCB_page_id'] == NULL || $button['WBCB_page_id'] == 0) { ?>
@@ -19,9 +19,10 @@
 										</a>
 									<?php }
 								}					
-							}						
-						 }
-					} ?>
+							}
+						}
+					}
+					?>
 					<div class="line">
 					</div>
 				</div>

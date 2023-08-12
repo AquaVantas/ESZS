@@ -8,10 +8,21 @@
 			</div>		
 		</div>
         <div class="row">
+            <div class="col-12">
+                <form id="urlForm" action="" method="get">
+                    <input type="text" id="query" name="query" placeholder="Išči..."><br>
+                    <input type="hidden" name="lang_id" value="<?php echo $_GET['lang_id']; ?>">
+                    <input type="hidden" name="page_id" value="<?php echo $_GET['page_id']; ?>">
+                </form>
+            </div>
+        </div>
+        <div class="row">
             <?php
-            if (isset($_GET["tag_id"])) {
-                $previews = news::getArticlesByTag($_GET["tag_id"]);
-            } else {
+            if(isset($_GET['query'])) {
+                $query = $_GET['query'];
+                $previews = news::getArticlesPreviewsSearch($query);
+            }
+            else {                
                 $previews = news::getArticlesPreviews();
             }
             $i = 0;
@@ -52,3 +63,19 @@
         </div>
 	</div>
 </section>
+<script>
+document.getElementById("query").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Prevent form submission
+
+        var queryValue = encodeURIComponent(document.getElementById("query").value);
+        var lang_id = "<?php echo $_GET['lang_id']; ?>";
+        var page_id = "<?php echo $_GET['page_id']; ?>";
+
+        var generatedURL = "?lang_id=" + lang_id + "&page_id=" + page_id + "&query=" + queryValue;
+
+        // Redirect to the generated URL
+        window.location.href = generatedURL;
+    }
+});
+</script>

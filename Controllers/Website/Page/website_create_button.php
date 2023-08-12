@@ -27,7 +27,7 @@
 					echo $last_sequence_num;
 				}
 			}
-			website::addWebsiteButton(NULL, NULL, NULL, $last_sequence_num, NULL, $_GET['block_content_id'], $last);
+			website::addWebsiteButton(NULL, NULL, $last_sequence_num, $_GET['block_content_id'], $last);
 		}
 		//TO-DO: add the rest
 	}

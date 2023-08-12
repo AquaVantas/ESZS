@@ -26,7 +26,33 @@ class news {
     public static function getArticlesPreviews() {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT news_article_id, news_article_title, news_article_description, news_article_preview_image, news_article_date FROM news_articles WHERE news_article_date <= NOW() ORDER BY news_article_date DESC");
+        $statement = $db->prepare("SELECT news_article_id, news_article_title, news_article_description, news_article_preview_image, news_article_date FROM news_articles WHERE news_article_date <= NOW() && shows_on_news = 1 ORDER BY news_article_date DESC");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function getArticlesPreviewsSearch($query) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT news_article_id, news_article_title, news_article_description, news_article_preview_image, news_article_content, news_article_date 
+                                   FROM news_articles 
+                                   WHERE news_article_date <= NOW() AND shows_on_news = 1 
+                                   AND (news_article_title LIKE :query OR news_article_description LIKE :query OR news_article_content LIKE :query) 
+                                   ORDER BY news_article_date DESC");
+
+        $queryParam = "%" . $query . "%"; // Add wildcards to the query
+
+        $statement->bindParam(":query", $queryParam, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }   
+
+    public static function getArticlesHighlighted() {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT news_article_id, news_article_title, news_article_description, news_article_preview_image, news_article_content FROM news_articles WHERE news_article_date <= NOW() && shows_on_highlights = 1 ORDER BY news_article_date DESC");
         $statement->execute();
 
         return $statement->fetchAll();

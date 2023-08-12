@@ -1,0 +1,45 @@
+.cookies {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: $primarybluefive;
+    max-width: 500px;
+    padding: 40px 30px;
+
+    .heading-line {
+        display: flex;
+        font-size: 30px;
+        font-weight: 700;
+        color: $white;
+        margin-bottom: 20px;
+
+        img {
+            margin-right: 20px;
+            width: 50px;
+            filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(176deg) brightness(102%) contrast(101%);
+        }
+    }
+
+    .accept-deny {
+        display: flex;
+        justify-content: flex-end;
+
+        a {
+            padding: 0;
+            display: inline;
+
+            &.btn-primary {
+                background-color: $white;
+                color: $primarybluefive;
+                font-weight: 700;
+                text-transform: uppercase
+            }
+
+            &:first-child {
+                margin-right: 10px;
+                background-color: $background;
+
+            }
+        }
+    }
+}

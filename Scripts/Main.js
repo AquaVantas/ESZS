@@ -226,3 +226,12 @@ function submitWebsiteDefault(lang_id) {
         pageSectionBlockContentButtonFormDataXHR.send(pageSectionBlockContentButtonFormData);
     });
 }
+
+function cookiePolicy(name, value, expirationDays) {
+    const expiration = new Date();
+    expiration.setTime(expiration.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
+
+    const cookieValue = encodeURIComponent(value) + "; expires=" + expiration.toUTCString() + "; path=/";
+    document.cookie = name + "=" + cookieValue;
+    location.reload();
+}

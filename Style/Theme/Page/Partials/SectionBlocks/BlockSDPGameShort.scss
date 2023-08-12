@@ -56,4 +56,33 @@
             font-size: 30px;
         }
     }
+
+    .banners {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: space-around;
+        align-items: center;
+        justify-content: space-between;
+
+        img {
+            max-width: 100%;
+            max-height: 50px;
+            padding: 5px 0;
+        }
+
+        .line {
+            height: 1px;
+            width: 100%;
+            margin: 10px 0;
+            width: 100%;
+            background-color: $primarybluefive;
+        }
+
+        span {
+            &.bold {
+                font-weight: 700;
+            }
+        }
+    }
 }

@@ -21,13 +21,13 @@
 		}
 		$last_sequence_num = 1;
 		
-		if($_GET['default_table'] == "document") {
-			foreach(website::getWebsiteFooterDocumentationMaxSequenceNumber(intval($_GET['lang_id'])) as $sequence_num) {
+		if($_GET['default_table'] == "socials") {
+			foreach(website::getWebsiteFooterSocialsMaxSequenceNumber(intval($_GET['lang_id'])) as $sequence_num) {
 				if($sequence_num['max_sequence_num'] != NULL) {
 					$last_sequence_num = $sequence_num['max_sequence_num'] + 1;
 				}
 			}
-			website::addWebsiteFooterDocumentation($_GET['lang_id'], $last, $last_sequence_num);
+			website::addWebsiteFooterSocials($_GET['lang_id'], $last, $last_sequence_num);
 		}
 		else if($_GET['default_table'] == "images") {
 			foreach(website::getWebsiteFooterImagesMaxSequenceNumber(intval($_GET['lang_id'])) as $sequence_num) {
@@ -46,7 +46,7 @@
 			website::addWebsiteFooterLinks($_GET['lang_id'], $last, $last_sequence_num);
 		}
 
-		website::addWebsiteButton(NULL, NULL, NULL, NULL, NULL, NULL, $last);		
+		website::addWebsiteButton(NULL, NULL, NULL, NULL, $last);		
 	}
 		
 	//redirect back to language list

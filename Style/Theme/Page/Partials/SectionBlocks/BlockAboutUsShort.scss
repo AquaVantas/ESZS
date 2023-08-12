@@ -1,5 +1,7 @@
 .BlockAboutUsShort {
 
+    padding-top: 60px;
+
     @include media-breakpoint-up(lg) {
         padding-top: 100px;
     }
