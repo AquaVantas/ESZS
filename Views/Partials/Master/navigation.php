@@ -1,3 +1,32 @@
+<div class="navigation-mobile">
+	<div class="logo">
+		<?php foreach(website::getWebsiteDefault($lang_id) as $default) {
+			if($default['header_logo'] != NULL) {
+				foreach(website::getWebsiteImageByID(intval($default['header_logo'])) as $image) { ?>
+					<a href="/"><img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" /></a>
+				<?php }
+			}
+		} ?>	
+	</div>
+	<div class="hamburger-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+	</div>
+</div>
+<?php foreach(website::getAllWebsitePagesPageNavigationMobile($lang_id) as $page) { 
+	if($page['WP_subpage_to'] == NULL) { ?>
+		<div clasS="mobile-menu-sidebar sidebar-0">
+			<div class="content">
+			</div>
+		</div>
+	<?php } else { ?>
+		<div clasS="mobile-menu-sidebar sidebar-<?= $page['WP_subpage_to'] ?>">
+			<div class="content">				
+			</div>
+		</div>	
+	<?php } ?>		
+<?php } ?>
 <div class="navigation-desktop container-fluid">
 	<div class="row">
 		<div class="content-wrapper">
@@ -30,10 +59,3 @@
 		</div>
 	</div>
 </div>
-<div class="navigation-mobile">
-	<div class="logo">
-	</div>
-	<div class="hamburger-menu">
-	</div>
-</div>
-

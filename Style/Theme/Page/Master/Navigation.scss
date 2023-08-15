@@ -1,5 +1,9 @@
 .navigation-mobile {
-    display: block;
+    z-index: 20;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: fixed;
     height: 60px;
     width: 100%;
@@ -9,6 +13,55 @@
 
     @include media-breakpoint-up(lg) {
         display: none;
+    }
+
+    .logo {
+        height: 60px;
+        width: 150px;
+        text-align: right;
+        background-color: $primarybluefive;
+        display: flex;
+
+        &::after {
+            content: "";
+            display: block;
+            background-color: $primarybluefive;
+            position: absolute;
+            bottom: 0;
+            left: 150px;
+            transform: rotate(35deg);
+            transform-origin: top left;
+            height: 100%;
+            width: 300px;
+            z-index: -10;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            padding: 0;
+
+            img {
+                height: 60px;
+                padding: 15px 0px 15px 15px;
+            }
+        }
+    }
+
+    .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        justify-content: center;
+
+        .bar {
+            width: 30px;
+            height: 3px;
+            background-color: $primarybluefive;
+            margin: 3px 0;
+        }
     }
 }
 
@@ -118,5 +171,24 @@
                 }
             }
         }
+    }
+}
+
+.mobile-menu-sidebar {
+    z-index: 21;
+    position: fixed;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    margin-left: -100vw;
+
+    @include media-breakpoint-up(lg) {
+        display: none;
+    }
+
+    .content {
+        width: 100%;
+        min-height: 100vh;
+        background-color: $primarybluefive;
     }
 }

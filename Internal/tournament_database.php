@@ -69,5 +69,25 @@ class tournament {
 
         return $statement->fetchAll();
     }
+
+    public static function addPlayerValorant($team, $name, $surname, $email, $discord, $nickname, $dateofbirth, $postalcode) {
+        $db = self::getInstance();
+        
+        $statement = $db->prepare("INSERT INTO tournament_valorant(player_name, player_surname, email, discord, nickname, date_of_birth, postal_code, apply_time, team) VALUES(:player_name, :player_surname, :email, :discord, :nickname, :date_of_birth, :postal_code, NOW(), :team)");
+        $statement->bindParam(":team", $team, PDO::PARAM_STR);
+        $statement->bindParam(":player_name", $name, PDO::PARAM_STR);
+        $statement->bindParam(":player_surname", $surname, PDO::PARAM_STR);
+        $statement->bindParam(":email", $email, PDO::PARAM_STR);
+        $statement->bindParam(":discord", $discord, PDO::PARAM_STR);
+        $statement->bindParam(":nickname", $nickname, PDO::PARAM_STR);
+        $statement->bindParam(":date_of_birth", $dateofbirth, PDO::PARAM_STR);
+        $statement->bindParam(":postal_code", $postalcode, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
 }
 ?>

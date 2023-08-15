@@ -281,6 +281,22 @@ class website {
         return $statement->fetchAll();
     }
 
+    public static function getAllWebsitePagesPageNavigationMobile($lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_page.page_id as WP_page_id, website_page.subpage_to as WP_subpage_to
+                                    FROM website_page 
+                                    INNER JOIN website_page_details
+                                    ON website_page_details.page_id = website_page.page_id
+                                    WHERE website_page_details.language_id = :lang_id AND website_page_details.page_published = 1
+                                    GROUP BY website_page.subpage_to
+                                    ORDER BY website_page.sequence_num;");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public static function deleteSpecificWebsitePage($page_id) {
         $db = self::getInstance();
 

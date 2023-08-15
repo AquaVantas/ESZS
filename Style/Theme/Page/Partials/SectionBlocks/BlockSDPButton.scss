@@ -1,0 +1,21 @@
+.BlockSDPButton {
+    margin-top: 30px;
+
+    .col-12 {
+        display: flex;
+        justify-content: center;
+
+        a {
+            font-weight: 700;
+            padding: 20px 40px;
+            background-color: $primarybluefive;
+            font-size: 18px;
+            text-transform: uppercase;
+            text-decoration: none;
+
+            &:hover {
+                color: $white;
+            }
+        }
+    }
+}

@@ -108,16 +108,19 @@
 						case 15:
 							include "Views/Partials/Sections/SectionBlock/blockResultsUpcoming.php";
 							break;
+						case 16:
+							include "Views/Partials/Sections/SectionBlock/blockSDPButton.php";
+							break;
 					}
 				} 
 			} else if($section_type['variant_id'] == 2) {
 				foreach(website::getWebsiteSectionForm($section_type['section_id']) as $section) {
 					switch($section['WSF_form_template_id']) {
 						case 1: 
-							include "Views/Partials/Sections/SectionBlock/formLeagueOfLegends.php";
+							include "Views/Partials/Sections/SectionForm/formLeagueOfLegends.php";
 							break;
 						case 2:
-							include "Views/Partials/Sections/SectionBlock/formAssettoCorsa.php";
+							include "Views/Partials/Sections/SectionForm/formValorant.php";
 							break;
 					}
 				}

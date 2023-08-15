@@ -1,0 +1,23 @@
+.FormApplication {
+    background-color: $background;
+    color: $white;
+
+    h4 {
+        margin-top: 50px;
+    }
+
+    table {
+        tr {
+            td {
+                border: none;
+                padding: 0;
+            }
+        }
+    }
+
+    #submitButton {
+        background-color: $primarybluefive;
+        padding: 10px 20px;
+        height: auto;
+    }
+}
