@@ -284,7 +284,7 @@ class website {
     public static function getAllWebsitePagesPageNavigationMobile($lang_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT website_page.page_id as WP_page_id, website_page.subpage_to as WP_subpage_to
+        $statement = $db->prepare("SELECT website_page.page_id as WP_page_id, website_page_details.page_title as WPD_page_title, website_page.subpage_to as WP_subpage_to
                                     FROM website_page 
                                     INNER JOIN website_page_details
                                     ON website_page_details.page_id = website_page.page_id

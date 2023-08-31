@@ -235,3 +235,24 @@ function cookiePolicy(name, value, expirationDays) {
     document.cookie = name + "=" + cookieValue;
     location.reload();
 }
+
+function openMobileSidemuneHamburger(value) {
+    $(".hamburger-menu").toggleClass("active");
+    if (!($(".hamburger-menu").hasClass("active"))) {
+        console.log("ehe");
+        $(".mobile-menu-sidebar").removeClass("active");
+    }
+    else {
+        openMobileSidemenu(value);
+    }
+}
+
+function openMobileSidemenu(value) {
+    var sidebar = ".mobile-menu-sidebar.sidebar-" + value;
+    if ($(sidebar).hasClass("active")) {
+        $(sidebar).removeClass("active");
+    } else {
+        $(sidebar).addClass("active");
+    }
+    
+}

@@ -16,15 +16,15 @@
 
 	//change the sequence numbers if button wasn't last on list
 	if(isset($_GET['page_id']) && isset($_GET['lang_id'])) {
-		if(count(website::getAllWebsitePageSubpages($_GET['page_id'])) > 0) {
+		if(count(website::getAllWebsitePageSubpages($_GET['page_id'], $lang_id)) > 0) {
 			findWebsiteSubpages($_GET['page_id']);
 		}
 		deleteWebsiteSubpages($_GET['page_id']);
 	}
 
 	function findWebsiteSubpages($page_id) {
-		foreach(website::getAllWebsitePageSubpages($page_id) as $subpage) {
-			if(count(website::getAllWebsitePageSubpages($subpage['page_id'])) > 0) {
+		foreach(website::getAllWebsitePageSubpages($page_id, $lang_id) as $subpage) {
+			if(count(website::getAllWebsitePageSubpages($subpage['page_id'], $lang_id)) > 0) {
 				findWebsiteSubpages($subpage['page_id']);
 			}
 			else {

@@ -1,9 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Content",
-    "\\Content\\Images",
-    "\\Content\\Images\\Icons",
     "\\Style",
     "\\Style\\Theme",
     "\\Style\\Theme\\Page",
@@ -14,6 +11,6 @@
     "\\Views\\Partials\\Sections",
     "\\Views\\Partials\\Sections\\SectionBlock"
   ],
-  "SelectedNode": "\\Controllers\\Website\\Page\\website_move_button.php",
+  "SelectedNode": "\\Views\\Partials\\Sections\\SectionBlock\\blockResultsUpcoming.php",
   "PreviewInSolutionExplorer": false
 }
