@@ -162,6 +162,8 @@ function submitPageChanges(page_id, lang_id) {
                 var blockContentButtonList = $(".block-content-button-item", this);
                 let pageSectionBlockContentButtonFormData = new FormData();
                 blockContentButtonList.each(function (blockContentButtonIndex) {
+                    console.log($(".accordion-body", this).attr("button-id"));
+                    console.log($(".accordion-body .page-list-wrapper input:checked", this).attr("value"));
                     pageSectionBlockContentButtonFormData.append("button-id", $(".accordion-body", this).attr("button-id"));
                     pageSectionBlockContentButtonFormData.append("button-image", $(".accordion-body #button-image", this).attr("chosen-image-id"));
                     pageSectionBlockContentButtonFormData.append("button-heading", $(".accordion-body #button-heading", this).val());

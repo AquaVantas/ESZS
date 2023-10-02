@@ -47,7 +47,11 @@
 
 	function printSubMenu($parent, $level) {
 		$html = "<div class='subpage-list'>";
-		
+		if(isset($_GET['lang_id'])) {
+			$lang_id = $_GET['lang_id'];
+		} else {
+			$lang_id = 1;
+		}
 		foreach(website::getAllWebsitePageSubpages($parent, $lang_id) as $subpage) {
 			$html .= "<div class='list-element'>
 			<div class='element' style='padding-left:" . $level*10 . "px; padding-right: 5px;'>";

@@ -112,79 +112,92 @@
             height: 100%;
             overflow-y: scroll;
 
-            .match-wrapper {
-                display: flex;
-                flex-direction: row;
-                padding: 20px 40px;
-                border-bottom: 2px solid $background;
-
-                .contestant {
-                    width: 33%;
-                    display: flex;
-                    align-items: center;
-
-                    &.right-contestant {
-                        flex-direction: row-reverse;
-                    }
-
-                    .logo {
-                        width: 50px;
-                        height: 50px;
-                        background-size: contain;
-                        background-position: center;
-                        background-repeat: no-repeat;
-                    }
-
-                    .name {
-                        font-family: "Montserrat-SemiBold";
-                        color: $background;
-                        font-weight: 700;
-                        text-transform: uppercase;
-                        text-align: center;
-                        font-size: 16px;
-
-                        span {
-                            padding: 0 10px;
-                            color: $background;
-                        }
-                    }
-                }
-
-                .middle-block {
-                    width: 34%;
+            .tab-pane {
+                .tab-container {
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
 
-                    .match-title {
+                    .match-wrapper {
                         display: flex;
-                        justify-content: center;
+                        flex-direction: row;
+                        padding: 20px 40px;
+                        border-bottom: 2px solid $background;
 
-                        span {
-                            font-size: 12px;
-                            padding-bottom: 4px;
-                            color: $background;
+                        .contestant {
+                            width: 33%;
+                            display: flex;
+                            align-items: center;
+
+                            &.right-contestant {
+                                flex-direction: row-reverse;
+                            }
+
+                            .logo {
+                                width: 50px;
+                                height: 50px;
+                                background-size: contain;
+                                background-position: center;
+                                background-repeat: no-repeat;
+                            }
+
+                            .name {
+                                font-family: "Montserrat-SemiBold";
+                                color: $background;
+                                font-weight: 700;
+                                text-transform: uppercase;
+                                text-align: center;
+                                font-size: 16px;
+
+                                span {
+                                    padding: 0 10px;
+                                    color: $background;
+                                }
+                            }
                         }
 
-                        a {
-                            background-color: $background;
-                        }
-                    }
+                        .middle-block {
+                            width: 34%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
 
-                    .match-score {
-                        font-family: "Montserrat-SemiBold";
-                        font-size: 16px;
-                        line-height: 20px;
-                        color: white;
-                        background-color: $background;
+                            .match-title {
+                                display: flex;
+                                justify-content: center;
+
+                                span {
+                                    font-size: 12px;
+                                    padding-bottom: 4px;
+                                    color: $background;
+                                }
+
+                                a {
+                                    background-color: $background;
+                                }
+                            }
+
+                            .match-score {
+                                font-family: "Montserrat-SemiBold";
+                                font-size: 16px;
+                                line-height: 20px;
+                                color: white;
+                                background-color: $background;
+                            }
+                        }
+
+                        &.upcoming {
+                            a {
+                                &.btn-primary {
+                                    background-color: $background;
+                                }
+                            }
+                        }
                     }
                 }
 
-                &.upcoming {
-                    a {
-                        &.btn-primary {
-                            background-color: $background;
-                        }
+                &:first-child {
+                    .tab-container {
+                        flex-direction: column-reverse;
                     }
                 }
             }

@@ -52,7 +52,7 @@ class news {
     public static function getArticlesHighlighted() {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT news_article_id, news_article_title, news_article_description, news_article_preview_image, news_article_content FROM news_articles WHERE news_article_date <= NOW() && shows_on_highlights = 1 ORDER BY news_article_date DESC");
+        $statement = $db->prepare("SELECT news_article_id, news_article_title, news_article_description, news_article_preview_image, news_article_content, shows_on_news FROM news_articles WHERE news_article_date <= NOW() ORDER BY news_article_date DESC LIMIT 5");
         $statement->execute();
 
         return $statement->fetchAll();

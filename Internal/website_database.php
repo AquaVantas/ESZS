@@ -1061,7 +1061,7 @@ class website {
         $db = self::getInstance();
 
         $statement = $db->prepare("DELETE FROM website_button_link WHERE button_link_id = :button_link_id");
-        $statement->bindParam(":button_link_id", $button_id, PDO::PARAM_STR);
+        $statement->bindParam(":button_link_id", $button_link_id, PDO::PARAM_STR);
         $statement->execute();
 
         return $statement->fetchAll();

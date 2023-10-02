@@ -5,13 +5,6 @@
 	
 	//since we had problems with NULL entries in the database
 	//we'll first check if there even is a value attached to what we're adding
-	if(!isset($_GET['lang_id'])) {			
-		header('url=../../../cpanel.php?tab=webpage_editor');
-	}
-	else {
-		header('url=../../../cpanel.php?tab=webpage_editor&lang_id='.$_GET['lang_id']);
-	}	
-
 	if(isset($_GET['lang_id'])) {
 		$lang_id = $_GET['lang_id'];
 	} else {
