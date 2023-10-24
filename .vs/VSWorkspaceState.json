@@ -1,16 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Style",
     "\\Style\\Theme",
     "\\Style\\Theme\\Page",
     "\\Style\\Theme\\Page\\Partials",
     "\\Style\\Theme\\Page\\Partials\\SectionBlocks",
     "\\Views",
-    "\\Views\\Partials",
+    "\\Views\\CPanel",
     "\\Views\\Partials\\Sections",
     "\\Views\\Partials\\Sections\\SectionBlock"
   ],
-  "SelectedNode": "\\Scripts\\Main.js",
+  "SelectedNode": "\\Views\\CPanel\\tab_media.php",
   "PreviewInSolutionExplorer": false
 }

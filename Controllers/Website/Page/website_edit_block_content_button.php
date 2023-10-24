@@ -36,9 +36,6 @@
 		$button_target = 0;
 	}	
 
-	echo $button_id;
-	echo $button_page_link;
-
 	//edits language in the database
 	if($button_id != NULL) {
 		website::updateWebsiteBlockContentButton($button_id, $button_heading, $button_image);

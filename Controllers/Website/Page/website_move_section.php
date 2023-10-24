@@ -14,7 +14,6 @@
 		}
 	}
 
-	echo $_GET['section_id'];
 	if($_GET['move_direction'] == "up") {
 		if(isset($_GET['page_detail_id'])) {
 			foreach(website::getWebsiteSectionSequenceNumMin($_GET['page_detail_id']) as $min_seq) {

@@ -14,7 +14,6 @@
 		}
 	}
 
-	echo $_GET['block_content_id'];
 	if($_GET['move_direction'] == "up") {
 		if(isset($_GET['section_id'])) {
 			foreach(website::getWebsiteBlockContentSequenceNumMin($_GET['section_id']) as $min_seq) {

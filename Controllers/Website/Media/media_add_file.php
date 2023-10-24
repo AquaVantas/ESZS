@@ -12,7 +12,6 @@
 	$targetDir = $_GET["target_dir"];
 	$targetDirDatabase = substr($targetDir, strpos($targetDir, "Content")) . "/" . $_FILES["filename"]["name"];
 	$targetDir = "../../../" . substr($targetDir, strpos($targetDir, "Content")) . "/" . $_FILES["filename"]["name"];
-	echo $targetDir;
 	if (file_exists($targetDir)) {
 		echo "The file $targetDir exists";
 	} else {

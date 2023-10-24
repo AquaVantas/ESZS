@@ -18,5 +18,4 @@
 	//reditect back to tournament list
 	header("Location:../cpanel.php?tab=tournament");
 
-	echo $start;
 ?>

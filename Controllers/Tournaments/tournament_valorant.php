@@ -141,8 +141,6 @@ Poštna številka: " . $postalcode7 . "\n\n
 	
 Za dodatne informacije smo vam na voljo na info@eszs.si ali na discord server pod #vprašanja.";
 	
-	echo $messagekapetan;
-
     $headers = "From:" . $from . "\r\n";
     $headers2 = "From:" . $to;
     mail($to,$subject,$message,$headers);

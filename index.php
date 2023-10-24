@@ -122,6 +122,9 @@
 						case 2:
 							include "Views/Partials/Sections/SectionForm/formValorant.php";
 							break;
+						case 3:
+							include "Views/Partials/Sections/SectionForm/formFifa.php";
+							break;
 					}
 				}
 			}

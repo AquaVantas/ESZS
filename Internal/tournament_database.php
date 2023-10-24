@@ -89,5 +89,27 @@ class tournament {
 
         return $statement->fetchColumn();
     }
+
+    public static function addPlayerFifa($first_name, $last_name, $nickname, $discord, $from, $ekipa, $platform, $term, $dateofbirth, $postalcode) {
+        $db = self::getInstance();
+        
+        $statement = $db->prepare("INSERT INTO tournament_fifa(ime, priimek, nick, email, discord, ekipa, platform, date_of_birth, postal_code, time_applied) VALUES(:ime, :priimek, :nickname, :email, :discord, :ekipa, :platform, :term, :date_of_birth, :postal_code, NOW())");
+        $statement->bindParam(":ime", $first_name, PDO::PARAM_STR);
+        $statement->bindParam(":priimek", $last_name, PDO::PARAM_STR);
+        $statement->bindParam(":nickname", $nickname, PDO::PARAM_STR);
+        $statement->bindParam(":email", $from, PDO::PARAM_STR);
+        $statement->bindParam(":discord", $discord, PDO::PARAM_STR);
+        $statement->bindParam(":ekipa", $ekipa, PDO::PARAM_STR);
+        $statement->bindParam(":platform", $platform, PDO::PARAM_STR);
+        $statement->bindParam(":term", $term, PDO::PARAM_STR);
+        $statement->bindParam(":date_of_birth", $dateofbirth, PDO::PARAM_STR);
+        $statement->bindParam(":postal_code", $postalcode, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
 }
 ?>

@@ -24,7 +24,6 @@
 			foreach(website::getWebsiteBlockContentButtonSequenceNum($_GET['block_content_id']) as $sequence_num) {
 				if($sequence_num['max_sequence_num'] != NULL) {
 					$last_sequence_num = $sequence_num['max_sequence_num'] + 1;
-					echo $last_sequence_num;
 				}
 			}
 			website::addWebsiteButton(NULL, NULL, $last_sequence_num, $_GET['block_content_id'], $last);
