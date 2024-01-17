@@ -1,15 +1,17 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Style\\Theme",
-    "\\Style\\Theme\\Page",
-    "\\Style\\Theme\\Page\\Partials",
-    "\\Style\\Theme\\Page\\Partials\\SectionBlocks",
+    "\\Controllers",
+    "\\Controllers\\Website",
+    "\\Controllers\\Website\\News",
+    "\\Internal",
     "\\Views",
     "\\Views\\CPanel",
-    "\\Views\\Partials\\Sections",
-    "\\Views\\Partials\\Sections\\SectionBlock"
+    "\\Views\\CPanel\\WebpageEditor",
+    "\\Views\\CPanel\\WebpageEditor\\News",
+    "\\Views\\Partials",
+    "\\Views\\Partials\\Sections"
   ],
-  "SelectedNode": "\\Views\\CPanel\\tab_media.php",
+  "SelectedNode": "\\Controllers\\Website\\News\\news_add_new_article.php",
   "PreviewInSolutionExplorer": false
 }

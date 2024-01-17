@@ -67,9 +67,13 @@
         <div id="editor-container" class="editor-container editor-block-container" container-id="editorwebsiteDefault">
             <?= $pageDefault['footer_about'] ?>
         </div>
-    <?php } else if(isset($_GET['news_id'])) { ?>
+    <?php } else if(isset($_GET['news_id']) && $_GET['tab'] == "news_editor") { ?>
         <div id="editor-container" class="editor-container editor-block-container" container-id="editorwebsiteNews">
             <?= $content ?>
+        </div>
+    <?php } else if(!isset($_GET['news_id']) && $_GET['tab'] == "news_editor") { ?>
+        <div id="editor-container" class="editor-container editor-block-container" container-id="editorwebsiteNews">
+
         </div>
     <?php } ?> 
 </div>

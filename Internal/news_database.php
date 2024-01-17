@@ -176,16 +176,17 @@ class news {
         $statement->execute();
     }
 
-    public static function addArticle($title, $description, $content, $preview_image, $date, $author_id) {
+    public static function addArticle($title, $description, $content, $preview_image, $date, $author_id, $shows_on_news) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("INSERT INTO news_articles(news_article_title, news_article_description, news_article_content, news_article_preview_image, news_article_date, news_author_id) VALUES(:title, :description, :content, :preview_image, :date, :author_id)");
+        $statement = $db->prepare("INSERT INTO news_articles(news_article_title, news_article_description, news_article_content, news_article_preview_image, news_article_date, news_author_id, shows_on_news) VALUES(:title, :description, :content, :preview_image, :date, :author_id, :shows_on_news)");
         $statement->bindParam(":title", $title, PDO::PARAM_STR);
         $statement->bindParam(":description", $description, PDO::PARAM_STR);
         $statement->bindParam(":content", $content, PDO::PARAM_STR);
         $statement->bindParam(":preview_image", $preview_image, PDO::PARAM_STR);
         $statement->bindParam(":date", $date, PDO::PARAM_STR);
         $statement->bindParam(":author_id", $author_id, PDO::PARAM_INT);
+        $statement->bindParam(":shows_on_news", $shows_on_news, PDO::PARAM_INT);
         $statement->execute();
 
         $statement = $db->prepare("SELECT LAST_INSERT_ID()");
@@ -249,16 +250,17 @@ class news {
         $statement->execute();
     }
 
-    public static function updateArticle($article_id, $title, $description, $content, $date, $author_id) {
+    public static function updateArticle($article_id, $title, $description, $content, $date, $author_id, $shows_on_news) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("UPDATE news_articles SET news_article_title = :title, news_article_description = :description, news_article_content = :content, news_article_date = :date, news_author_id = :author_id WHERE news_article_id = :article_id");
+        $statement = $db->prepare("UPDATE news_articles SET news_article_title = :title, news_article_description = :description, news_article_content = :content, news_article_date = :date, news_author_id = :author_id, shows_on_news = :shows_on_news WHERE news_article_id = :article_id");
         $statement->bindParam(":title", $title, PDO::PARAM_STR);
         $statement->bindParam(":description", $description, PDO::PARAM_STR);
         $statement->bindParam(":content", $content, PDO::PARAM_STR);
         $statement->bindParam(":date", $date, PDO::PARAM_STR);
         $statement->bindParam(":author_id", $author_id, PDO::PARAM_INT);
         $statement->bindParam(":article_id", $article_id, PDO::PARAM_INT);
+        $statement->bindParam(":shows_on_news", $shows_on_news, PDO::PARAM_INT);
         $statement->execute();
     }
 
