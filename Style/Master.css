@@ -278,6 +278,7 @@ table tr td {
   display: flex;
   align-items: center;
   margin-right: 40px;
+  padding: 0;
 }
 .cpanel-navigation-wrapper .right-side .logo-wrapper img {
   max-height: 30px;
@@ -369,6 +370,26 @@ table tr td {
   transform: rotate(-90deg);
 }
 
+.cpanel-body-wrapper .default-body .welcome-text {
+  color: #FFFFFF;
+  font-size: 28px;
+  line-height: 32px;
+  padding-top: 40px;
+  text-align: center;
+}
+.cpanel-body-wrapper .default-body .trello-board-wrapper {
+  padding-top: 30px;
+}
+.cpanel-body-wrapper .default-body .trello-board-wrapper ul li button {
+  color: #FFFFFF;
+}
+.cpanel-body-wrapper .default-body .trello-board-wrapper ul li button.active {
+  background-color: #00d6bd;
+}
+.cpanel-body-wrapper .default-body .trello-board-wrapper iframe {
+  width: 100%;
+  height: 100vh;
+}
 .cpanel-body-wrapper .tournament-list h4 {
   padding: 10px 20px;
   background-color: #00d6bd;
@@ -1328,6 +1349,12 @@ footer .footer-last-container .container .row .copyright span {
 }
 .navigation-desktop .content-wrapper .right-side .navbar-nav li {
   padding: 0 15px;
+}
+.navigation-desktop .content-wrapper .right-side .navbar-nav li.dropdown {
+  cursor: pointer;
+}
+.navigation-desktop .content-wrapper .right-side .navbar-nav li a:hover {
+  color: #00d6bd;
 }
 .navigation-desktop .content-wrapper .right-side .dropdown-menu {
   text-transform: uppercase;

@@ -26,6 +26,13 @@
 		$lang_id = 1;
 	}
 
+	$role_trello_admin = false;
+	$role_trello_tournaments = false;
+	$role_trello_socials = false;
+	$role_trello_organs = false;
+	$role_trello_graphics = false;
+	$role_trello_devs = false;
+	$role_trello_stream = false;
 	$role_admin = false;
 	$role_webdev = false;
 	$role_news = false;
@@ -41,6 +48,20 @@
 				$role_news = true;
 			} else if ($role['title'] == "Game admin - DiRT Rally 2.0") {
 				$role_admin_dirt_rally_2_0 = true;
+			} else if ($role['title'] == "Trello - Admins") {
+				$role_trello_admin = true;
+			} else if ($role['title'] == "Trello - Tournaments") {
+				$role_trello_tournaments = true;
+			} else if ($role['title'] == "Trello - Socials") {
+				$role_trello_socials = true;
+			} else if ($role['title'] == "Trello - Organs") {
+				$role_trello_organs = true;
+			} else if ($role['title'] == "Trello - Graphics") {
+				$role_trello_graphics = true;
+			} else if ($role['title'] == "Trello - Devs") {
+				$role_trello_devs = true;
+			} else if ($role['title'] == "Trello - Stream") {
+				$role_trello_stream = true;
 			}
 		}
 	}
@@ -137,10 +158,10 @@
 		<?php if(isset($_SESSION['user'])) { ?>
 		<div class="cpanel-navigation-wrapper">
 			<div class="right-side">
-				<div class="logo-wrapper">
+				<a class="logo-wrapper" href="/cpanel.php">
 					<img src="Content/Images/Logos/ESZS/eszs_simbol_white.png" />
 					<span class="page-title">CPanel</span>
-				</div>
+				</a>
 				<div class="navigation-links">
 					<?php if($role_webdev || $role_admin){ ?>
 						<div class="dropdown">
@@ -197,10 +218,19 @@
 				
 			</div>
 		</div>
-		<div class="cpanel-body-wrapper">
+		<div class="cpanel-body-wrapper container">
 			<?php if(!isset($_GET['tab'])) { ?>
 				<div class="default-body">
-					Dobrodošel, uporabnik.
+					<div class="welcome-text">
+						<?php foreach(editors::getAllAdmins() as $user) {
+							if($user['admin_id'] == $_SESSION['user']) { ?>
+								Zdravo, <?= $user['ime'] ?>! Oglej si svoje naloge...
+							<?php break;
+							}
+						} ?>
+					</div>					
+					<!-- trello board -->
+					<?php include "Views/CPanel/tab_trello_board.php" ?>
 				</div>
 			<?php } ?>
 			<!-- website editor -->
@@ -290,6 +320,7 @@
         <script src="Plugins/quill/image-resize.min.js"></script>
         <script src="Plugins/quill/quill.imageUploader.min.js"></script>		
         <script src="Scripts/QuillEditor.js"></script>
+		<script src="https://p.trellocdn.com/embed.min.js"></script>
 	</body>
 	<footer>
 	</footer>

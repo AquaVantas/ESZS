@@ -135,6 +135,16 @@
 
                 li {
                     padding: 0 15px;
+
+                    &.dropdown {
+                        cursor: pointer;
+                    }
+
+                    a {
+                        &:hover {
+                            color: $primarybluefive;
+                        }
+                    }
                 }
             }
 

@@ -15,6 +15,7 @@
             display: flex;
             align-items: center;
             margin-right: 40px;
+            padding: 0;
 
             img {
                 max-height: 30px;
@@ -132,6 +133,37 @@
 }
 
 .cpanel-body-wrapper {
+    .default-body {
+        .welcome-text {
+            color: $white;
+            font-size: 28px;
+            line-height: 32px;
+            padding-top: 40px;
+            text-align: center;
+        }
+
+        .trello-board-wrapper {
+            padding-top: 30px;
+
+            ul {
+                li {
+                    button {
+                        color: $white;
+
+                        &.active {                            
+                            background-color: $primarybluefive;
+                        }
+                    }
+                }
+            }
+
+            iframe {
+                width: 100%;
+                height: 100vh;
+            }
+        }
+    }
+    
     .tournament-list {
         h4 {
             padding: 10px 20px;
