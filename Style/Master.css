@@ -1903,11 +1903,9 @@ footer .footer-last-container .container .row .copyright span {
   flex-wrap: wrap;
   align-content: space-around;
   align-items: center;
-  justify-content: space-between;
 }
 .BlockSDPGameShort .banners img {
   max-width: 100%;
-  max-height: 50px;
   padding: 5px 0;
 }
 .BlockSDPGameShort .banners .line {

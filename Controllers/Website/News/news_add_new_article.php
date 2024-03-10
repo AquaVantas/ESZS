@@ -1,4 +1,5 @@
 <?php
+require_once("../../../Internal/news_database.php");
 if (isset($_POST["article_id"])) {
     if (
         !isset($_POST["title"]) ||
@@ -11,9 +12,7 @@ if (isset($_POST["article_id"])) {
     ) {
         header("HTTP/1.1 400 Bad Request");
         die();
-    }
-
-    require_once("../../../Internal/news_database.php");
+    }    
 
     news::updateArticle($_POST["article_id"], $_POST["title"], $_POST["description"], $_POST["content"], $_POST["date"], $_POST["author_id"], $_POST["shows_on_news"]);
     $article_id = $_POST["article_id"];
@@ -31,7 +30,7 @@ if (isset($_POST["article_id"])) {
         header("HTTP/1.1 400 Bad Request");
         die();
     }
-    $targetdir = 'images/articles/previews/';
+    $targetdir = '../../../Content/Images/Articles/Previews/';
     $targetfile = $targetdir . $_FILES['preview_image']['name'];
 
     if (!move_uploaded_file($_FILES['preview_image']['tmp_name'], $targetfile)) {
@@ -44,8 +43,6 @@ if (isset($_POST["article_id"])) {
 
 $tags_arr = explode(",", $_POST["tags"]);
 echo $_POST["tags"] . "<br><br>";
-
-require_once("internal/news_db.php");
 
 if (isset($_POST["article_id"])) {
     $tags = news::getTagsByArticle($article_id);

@@ -218,9 +218,9 @@
 				
 			</div>
 		</div>
-		<div class="cpanel-body-wrapper container">
+		<div class="cpanel-body-wrapper">
 			<?php if(!isset($_GET['tab'])) { ?>
-				<div class="default-body">
+				<div class="default-body container">
 					<div class="welcome-text">
 						<?php foreach(editors::getAllAdmins() as $user) {
 							if($user['admin_id'] == $_SESSION['user']) { ?>

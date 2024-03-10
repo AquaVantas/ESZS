@@ -125,6 +125,12 @@
 						case 3:
 							include "Views/Partials/Sections/SectionForm/formFifa.php";
 							break;
+						case 4:
+							include "Views/Partials/Sections/SectionForm/formMobileLegends.php";
+							break;
+						case 5:
+							include "Views/Partials/Sections/SectionForm/formEFootball.php";
+							break;
 					}
 				}
 			}

@@ -82,9 +82,8 @@ if((isset($cpanel_tab) && $cpanel_tab == "news_editor")  && ($role_admin || $rol
 <script src="image-resize.min.js"></script>
 <script src="quill.imageUploader.min.js"></script>
 <script>
-
-Quill.register("modules/imageUploader", ImageUploader);
-var editor = new Quill('#editor-container', {
+    Quill.register("modules/imageUploader", ImageUploader);
+    var editor = new Quill('#editor-container', {
         modules: {
             toolbar: '#editor-toolbar',
             imageResize: {
@@ -122,29 +121,28 @@ var editor = new Quill('#editor-container', {
         },
         theme: 'snow'
     });
-        </script>
-        <script>
-function saveArticle() {
-    let fd = new FormData();
-    //$title, $description, $content, $preview_image, $date, $author_id
-    fd.append("title", document.getElementById("title").value);
-    fd.append("description", document.getElementById("description").value);
-    fd.append("preview_image", document.getElementById("preview_image").files[0]);
-    fd.append("tags", document.getElementById("tags").value);
-    fd.append("date", document.getElementById("date").value);
-    fd.append("author_id", document.getElementById("author_id").value);
-    fd.append("shows_on_news", document.getElementById("shows-on-news").checked ? 1 : 0);
-    fd.append("content", $(".ql-editor").html());
-    <?php
-    if ($edit_existing) { ?>
-        fd.append("article_id", <?= $article_id ?>);
-    <?php }?>
+</script>
+<script>
+    function saveArticle() {
+        let fd = new FormData();
+        //$title, $description, $content, $preview_image, $date, $author_id
+        fd.append("title", document.getElementById("title").value);
+        fd.append("description", document.getElementById("description").value);
+        fd.append("preview_image", document.getElementById("preview_image").files[0]);
+        fd.append("tags", document.getElementById("tags").value);
+        fd.append("date", document.getElementById("date").value);
+        fd.append("author_id", document.getElementById("author_id").value);
+        fd.append("shows_on_news", document.getElementById("shows-on-news").checked ? 1 : 0);
+        fd.append("content", $(".ql-editor").html());
+        <?php
+        if ($edit_existing) { ?>
+            fd.append("article_id", <?= $article_id ?>);
+        <?php }?>
 
-    let xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
 
-    
-    xhr.open("POST", "Controllers/Website/News/news_add_new_article.php");
-    xhr.send(fd);
-}
-        </script>
+        xhr.open("POST", "Controllers/Website/News/news_add_new_article.php");
+        xhr.send(fd);
+    }
+</script>
 <?php } ?>

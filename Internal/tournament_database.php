@@ -90,6 +90,30 @@ class tournament {
         return $statement->fetchColumn();
     }
 
+    public static function addPlayerMobileLegends($team, $name, $surname, $from, $discord, $nickname, $ingameId, $serverId, $nationality, $dateofbirth, $postalcode) {
+        $db = self::getInstance();
+        
+        $statement = $db->prepare("INSERT INTO tournament_mobile_legends(ekipa, ime, priimek, email, discord, ingameName, ingameID, serverID, nationality, dateOfBirth, postal_code, apply_time) 
+        VALUES(:team, :name, :surname, :from, :discord, :nickname, :ingameId, :serverId, :nationality, :dateofbirth, :postalcode, NOW())");
+        $statement->bindParam(":team", $team, PDO::PARAM_STR);
+        $statement->bindParam(":name", $name, PDO::PARAM_STR);
+        $statement->bindParam(":surname", $surname, PDO::PARAM_STR);
+        $statement->bindParam(":from", $from, PDO::PARAM_STR);
+        $statement->bindParam(":discord", $discord, PDO::PARAM_STR);
+        $statement->bindParam(":nickname", $nickname, PDO::PARAM_STR);
+        $statement->bindParam(":ingameId", $ingameId, PDO::PARAM_STR);
+        $statement->bindParam(":serverId", $serverId, PDO::PARAM_STR);
+        $statement->bindParam(":nationality", $nationality, PDO::PARAM_STR);
+        $statement->bindParam(":dateofbirth", $dateofbirth, PDO::PARAM_STR);
+        $statement->bindParam(":postalcode", $postalcode, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
     public static function addPlayerFifa($first_name, $last_name, $nickname, $discord, $from, $ekipa, $platform, $term, $dateofbirth, $postalcode) {
         $db = self::getInstance();
         
