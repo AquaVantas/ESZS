@@ -1,13 +1,25 @@
 <?php
 class tournament {
-    private static $host = "localhost";
-    private static $user = "root";
-    private static $password = "";
-    private static $schema = "eszs";
+    private static $host;
+    private static $user;
+    private static $password;
+    private static $schema;
     private static $instance = null;
+
+    private static function init() {
+        if (!defined('HOST') || !defined('USER') || !defined('PASSWORD') || !defined('SCHEMA')) {
+            include "info.php";
+        }
+    
+        self::$host = HOST;
+        self::$user = USER;
+        self::$password = PASSWORD;
+        self::$schema = SCHEMA;
+    }
 
     private static function getInstance() {
         if (!self::$instance) {
+            self::init();
             $config = "mysql:host=" . self::$host
                     . ";dbname=" . self::$schema;
             $options = array(
@@ -128,6 +140,28 @@ class tournament {
         $statement->bindParam(":platform", $platform, PDO::PARAM_STR);
         $statement->bindParam(":date_of_birth", $dateofbirth, PDO::PARAM_STR); // Assuming date_of_birth is a string.
         $statement->bindParam(":postal_code", $postalcode, PDO::PARAM_INT); // Assuming postal_code is an integer.
+
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
+    public static function addPlayerEFootball($first_name, $last_name, $nickname, $discord, $from, $dateofbirth, $postalcode, $nationality) {
+        $db = self::getInstance();
+        
+        $statement = $db->prepare("INSERT INTO tournament_efootball(player_name, player_surname, playstation_id, email, discord, date_of_birth, postal_code, time_applied, nationality) VALUES(:ime, :priimek, :nickname, :email, :discord, :date_of_birth, :postal_code, NOW(), :nationality)");
+
+        $statement->bindParam(":ime", $first_name, PDO::PARAM_STR);
+        $statement->bindParam(":priimek", $last_name, PDO::PARAM_STR);
+        $statement->bindParam(":nickname", $nickname, PDO::PARAM_STR);
+        $statement->bindParam(":email", $from, PDO::PARAM_STR); // Assuming email corresponds to "SignedUpTo" in the table.
+        $statement->bindParam(":discord", $discord, PDO::PARAM_STR);
+        $statement->bindParam(":date_of_birth", $dateofbirth, PDO::PARAM_STR); // Assuming date_of_birth is a string.
+        $statement->bindParam(":postal_code", $postalcode, PDO::PARAM_INT); // Assuming postal_code is an integer.
+        $statement->bindParam(":nationality", $nationality, PDO::PARAM_STR); 
 
         $statement->execute();
 

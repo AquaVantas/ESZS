@@ -1,13 +1,25 @@
 <?php
 class news {
-    private static $host = "localhost";
-    private static $user = "root";
-    private static $password = "";
-    private static $schema = "eszs";
+    private static $host;
+    private static $user;
+    private static $password;
+    private static $schema;
     private static $instance = null;
+
+    private static function init() {
+        if (!defined('HOST') || !defined('USER') || !defined('PASSWORD') || !defined('SCHEMA')) {
+            include "info.php";
+        }
+    
+        self::$host = HOST;
+        self::$user = USER;
+        self::$password = PASSWORD;
+        self::$schema = SCHEMA;
+    }
 
     private static function getInstance() {
         if (!self::$instance) {
+            self::init();
             $config = "mysql:host=" . self::$host
                     . ";dbname=" . self::$schema;
             $options = array(
