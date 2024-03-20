@@ -1,5 +1,5 @@
 <?php
-	$media_root = "/xampp/htdocs/ESZS_new/Content/WebsiteContent";
+	$media_root = "/xampp/htdocs/ESZS/Content/WebsiteContent";
 	if(isset($_GET['path'])) {
 		$dir = $_GET['path'];
 		$files1 = scandir($dir);

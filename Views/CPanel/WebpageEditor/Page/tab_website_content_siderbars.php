@@ -1,6 +1,6 @@
 ﻿<?php
 	
-	$dir = "/xampp/htdocs/ESZS_new/Content/WebsiteContent";					
+	$dir = "/xampp/htdocs/ESZS/Content/WebsiteContent";					
 	$files1 = scandir($dir);
 	$fileDirectories = array($dir);
 	checkAllFolders($fileDirectories, $dir);

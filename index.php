@@ -131,6 +131,9 @@
 						case 5:
 							include "Views/Partials/Sections/SectionForm/formEFootball.php";
 							break;
+						case 6:
+							include "Views/Partials/Sections/SectionForm/formPubgMobile.php";
+							break;
 					}
 				}
 			}

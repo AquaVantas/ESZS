@@ -170,7 +170,7 @@
 						</button>
 						<ul class="dropdown-menu">
 							<li><a href="?tab=webpage_editor" class="nav-link <?php if($cpanel_tab == "webpage_editor"){echo "active"; } ?>">Urejevalnik</a></li>
-							<li><a href="?tab=media&path=/xampp/htdocs/ESZS_new/Content/WebsiteContent" class="nav-link <?php if($cpanel_tab == "media"){echo "active"; } ?>">Vsebina</a></li>
+							<li><a href="?tab=media&path=/xampp/htdocs/ESZS/Content/WebsiteContent" class="nav-link <?php if($cpanel_tab == "media"){echo "active"; } ?>">Vsebina</a></li>
 						</ul>
 					</div>
 					<?php } ?>

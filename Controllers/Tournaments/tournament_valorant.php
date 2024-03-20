@@ -3,6 +3,7 @@
 	require_once("../../Internal/tournament_database.php");
 	
     $to = "prijave@eszs.si"; // this is your Email address
+	$infomail = "info@eszs.si";
     $from = $_POST['email']; // this is the sender's Email address
 	$team = $_POST['team'];
     $name = $_POST['name'];
@@ -144,6 +145,7 @@ Za dodatne informacije smo vam na voljo na info@eszs.si ali na discord server po
     $headers = "From:" . $from . "\r\n";
     $headers2 = "From:" . $to;
     mail($to,$subject,$message,$headers);
+    mail($infomail,$subject,$message,$headers);
     //mail($laki,$subject,$message,$headers);
     mail($from,$subject2,$messagekapetan,$headers2); // sends a copy of the message to the sender
 	

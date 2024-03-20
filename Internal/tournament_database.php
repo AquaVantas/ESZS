@@ -126,10 +126,34 @@ class tournament {
         return $statement->fetchColumn();
     }
 
+    public static function addPlayerPubgMobile($team, $name, $surname, $from, $discord, $nickname, $ingameId, $serverId, $nationality, $dateofbirth, $postalcode) {
+        $db = self::getInstance();
+        
+        $statement = $db->prepare("INSERT INTO tournament_pubg_mobile(team, player_name, player_surname, email, discord, nickname, game_id, player_role, nationality, date_of_birth, postal_code, apply_time) 
+        VALUES(:team, :name, :surname, :from, :discord, :nickname, :ingameId, :serverId, :nationality, :dateofbirth, :postalcode, NOW())");
+        $statement->bindParam(":team", $team, PDO::PARAM_STR);
+        $statement->bindParam(":name", $name, PDO::PARAM_STR);
+        $statement->bindParam(":surname", $surname, PDO::PARAM_STR);
+        $statement->bindParam(":from", $from, PDO::PARAM_STR);
+        $statement->bindParam(":discord", $discord, PDO::PARAM_STR);
+        $statement->bindParam(":nickname", $nickname, PDO::PARAM_STR);
+        $statement->bindParam(":ingameId", $ingameId, PDO::PARAM_STR);
+        $statement->bindParam(":serverId", $serverId, PDO::PARAM_STR);
+        $statement->bindParam(":nationality", $nationality, PDO::PARAM_STR);
+        $statement->bindParam(":dateofbirth", $dateofbirth, PDO::PARAM_STR);
+        $statement->bindParam(":postalcode", $postalcode, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+
     public static function addPlayerFifa($first_name, $last_name, $nickname, $discord, $from, $ekipa, $platform, $term, $dateofbirth, $postalcode) {
         $db = self::getInstance();
         
-        $statement = $db->prepare("INSERT INTO tournament_fifa(ime, priimek, nick, email, discord, ekipa, platform, date_of_birth, postal_code, time_applied) VALUES(:ime, :priimek, :nickname, :email, :discord, :ekipa, :platform, :date_of_birth, :postal_code, NOW())");
+        $statement = $db->prepare("INSERT INTO tournament_fifa(player_name, player_surname, nickname, email, discord, team, platform, date_of_birth, postal_code, time_applied) VALUES(:ime, :priimek, :nickname, :email, :discord, :ekipa, :platform, :date_of_birth, :postal_code, NOW())");
 
         $statement->bindParam(":ime", $first_name, PDO::PARAM_STR);
         $statement->bindParam(":priimek", $last_name, PDO::PARAM_STR);

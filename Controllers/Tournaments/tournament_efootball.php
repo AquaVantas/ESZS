@@ -4,6 +4,7 @@
 	require_once("../../Internal/website_database.php");
 	
     $to = "prijave@eszs.si"; // this is your Email address
+	$infomail = "info@eszs.si";
     $from = $_POST['email']; // this is the sender's Email address
     $first_name = $_POST['name'];
     $last_name = $_POST['surname'];
@@ -42,6 +43,7 @@ Za dodatne informacije smo vam na voljo na info@eszs.si.";
 		mail($email,$subject,$message,$headers);
 	}
 	mail($to,$subject,$message,$headers);
+    mail($infomail,$subject,$message,$headers);
 	mail($from,$subject,$message2,$headers2);
 	
 	tournament::addPlayerEFootball($first_name, $last_name, $nickname, $discord, $from, $dateofbirth, $postalCode, $nationality);
