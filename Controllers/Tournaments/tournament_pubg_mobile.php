@@ -199,9 +199,25 @@ Za dodatne informacije smo vam na voljo na info@eszs.si ali na discord server po
         }
 	}
 	
-	
-    header('Location: index.php'); 
-    
 ?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prijava uspešna</title>
+    <meta http-equiv="refresh" content="15;url=/"> <!-- Change 'index.php' to your desired destination -->
+    <link rel="stylesheet" href="../../Style/Master.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12" style="text-align: center;">                
+                <h1>Vaša prijava na turnir je bila uspešna.</h1>
+                <p>Potrdilo je bilo poslano na Vaš e-poštni naslov. Če ga ne vidite, prosimo, poglejte še pod vsiljeno pošto.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 
 
