@@ -45,6 +45,16 @@ class tournament {
         return $statement->fetchAll();
     }
 
+    public static function getTournamentGame($tournament_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT game_id, tournament_title, apply_start_time, apply_end_time FROM tournament_list WHERE id = :tournament_id");
+        $statement->bindParam(":tournament_id", $tournament_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public static function addTournament($tournament_title, $game_id, $start, $end) {
         $db = self::getInstance();
         
@@ -105,7 +115,7 @@ class tournament {
     public static function addPlayerMobileLegends($team, $name, $surname, $from, $discord, $nickname, $ingameId, $serverId, $nationality, $dateofbirth, $postalcode) {
         $db = self::getInstance();
         
-        $statement = $db->prepare("INSERT INTO tournament_mobile_legends(ekipa, ime, priimek, email, discord, ingameName, ingameID, serverID, nationality, dateOfBirth, postal_code, apply_time) 
+        $statement = $db->prepare("INSERT INTO tournament_mobile_legends(team, player_name, player_surname, email, discord, nickname, game_id, server_id, nationality, date_of_birth, postal_code, apply_time) 
         VALUES(:team, :name, :surname, :from, :discord, :nickname, :ingameId, :serverId, :nationality, :dateofbirth, :postalcode, NOW())");
         $statement->bindParam(":team", $team, PDO::PARAM_STR);
         $statement->bindParam(":name", $name, PDO::PARAM_STR);
@@ -125,6 +135,18 @@ class tournament {
 
         return $statement->fetchColumn();
     }
+
+    public static function getPlayerMobileLegends($date_to, $date_from) {
+        $db = self::getInstance();
+
+       $statement = $db->prepare("SELECT player_name, player_surname, email, discord, nickname, game_id, nationality, team, server_id, date_of_birth, postal_code
+                                   FROM tournament_mobile_legends WHERE apply_time <= :date_to AND apply_time >= :date_from");
+       $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+       $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+       $statement->execute();
+
+       return $statement->fetchAll();
+   } 
 
     public static function addPlayerPubgMobile($team, $name, $surname, $from, $discord, $nickname, $ingameId, $serverId, $nationality, $dateofbirth, $postalcode) {
         $db = self::getInstance();

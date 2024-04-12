@@ -14,9 +14,9 @@
 		}
 	}
 	function printSubMenu($parent, $parent_title, $lang_id) {
-		$html = "<li class='nav-item dropdown'>
+		$html = "<li class='nav-item dropdown' onhover='navigationHover()'>
 					<a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" . $parent_title . "</a>
-					<ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>";
+					<ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink' style='position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-40px, 30px);'>";
 			foreach(website::getAllWebsitePageSubpagesPageNavigation($parent, $lang_id) as $subpage) {
 				if(count(website::getAllWebsitePageSubpagesPageNavigation($subpage['WP_page_id'], $lang_id)) > 0) { 
 					$html .= printSubMenu($subpage['WP_page_id'], $subpage['WPD_page_title'], $lang_id);

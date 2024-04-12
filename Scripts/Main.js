@@ -259,3 +259,25 @@ function openMobileSidemenu(value) {
     }
     
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Get all dropdown items
+    var dropdownItems = document.querySelectorAll('.nav-item.dropdown');
+
+    // Loop through each dropdown item
+    dropdownItems.forEach(function(item) {
+        // Add mouseenter event listener
+        item.addEventListener('mouseenter', function() {
+            console.log($(this).children(".dropdown-menu"));
+            $(this).children(".dropdown-menu").first().addClass("show");
+            //this.querySelector('.dropdown-menu').style.display = 'block';
+        });
+
+        // Add mouseleave event listener
+        item.addEventListener('mouseleave', function() {
+            // Hide submenu
+            $(this).children(".dropdown-menu").first().removeClass("show");
+            //this.querySelector('.dropdown-menu').style.display = 'none';
+        });
+    });
+});

@@ -3,6 +3,7 @@
 	require_once("../../Internal/tournament_database.php");
 	
     $to = "prijave@eszs.si"; // this is your Email address
+    $thechild = "ben.klemenc@eszs.si";
 	$infomail = "info@eszs.si";
     $from = $_POST['email']; // this is the sender's Email address
 	$team = $_POST['team'];
@@ -156,9 +157,9 @@ Za dodatne informacije smo vam na voljo na info@eszs.si ali na discord server po
     $headers2 = "From:" . $to;
     $headers2 .= "Content-Type: text/plain; charset=UTF-8\r\n";
     mail($to,$subject,$message,$headers);
+    mail($thechild,$subject,$message,$headers);
     mail($infomail,$subject,$message,$headers);
-    //mail($laki,$subject,$message,$headers);
-    mail($from,$subject2,$message,$headers2); // sends a copy of the message to the sender
+    mail($from,$subject2,$message,$headers2);
 	
 	if($_POST['name'] != NULL && $_POST['dateofbirth']) {
 	    tournament::addPlayerMobileLegends($team, $name, $surname, $from, $discord, $nickname, $ingameId, $serverId, $nationality, $dateofbirth, $postalcode);

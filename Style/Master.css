@@ -1642,6 +1642,7 @@ footer .footer-last-container .container .row .copyright span {
   line-height: 20px;
   color: white;
   background-color: #192133;
+  cursor: default;
 }
 .BlockHighlightedNews .scores .tab-content .tab-pane .tab-container .match-wrapper.upcoming a.btn-primary {
   background-color: #192133;
@@ -1674,7 +1675,7 @@ footer .footer-last-container .container .row .copyright span {
 }
 .BlockAboutUsShort .wrapper p {
   margin-bottom: 0;
-  text-align: center;
+  text-align: justify;
 }
 .BlockAboutUsShort .wrapper a {
   margin-top: 30px;
@@ -2380,6 +2381,7 @@ footer .footer-last-container .container .row .copyright span {
   font-size: 16px;
   line-height: 20px;
   color: white;
+  cursor: default;
 }
 .BlockResultsUpcoming .match-wrapper.upcoming a.btn-primary {
   background-color: #192133;

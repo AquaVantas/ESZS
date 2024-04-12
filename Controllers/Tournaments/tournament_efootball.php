@@ -39,14 +39,18 @@ Za dodatne informacije smo vam na voljo na info@eszs.si.";
 	}
 
 	$emailsarray = preg_split('/\s+/', $emails);
-	foreach($emailsarray as $email) {
-		mail($email,$subject,$message,$headers);
-	}
-	mail($to,$subject,$message,$headers);
-    mail($infomail,$subject,$message,$headers);
-	mail($from,$subject,$message2,$headers2);
 	
-	tournament::addPlayerEFootball($first_name, $last_name, $nickname, $discord, $from, $dateofbirth, $postalCode, $nationality);    
+	if($_POST['name'] != NULL) {
+		foreach($emailsarray as $email) {
+			mail($email,$subject,$message,$headers);
+		}
+
+		mail($to,$subject,$message,$headers);
+		mail($infomail,$subject,$message,$headers);
+		mail($from,$subject,$message2,$headers2);
+		
+		tournament::addPlayerEFootball($first_name, $last_name, $nickname, $discord, $from, $dateofbirth, $postalCode, $nationality);    
+	}
     
 ?>
 <html lang="en">
