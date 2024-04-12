@@ -37,6 +37,15 @@
 	$role_webdev = false;
 	$role_news = false;
 	$role_admin_dirt_rally_2_0 = false;
+	$role_admin_league_of_legends = false;
+	$role_admin_cs_go = false;
+	$role_admin_valorant = false;
+	$role_admin_efootball = false;
+	$role_admin_mobile_legends = false;
+	$role_admin_acc = false;
+	$role_admin_fifa = false;
+	$role_admin_ranbox_six_siege = false;
+	$role_admin_rocket_league = false;
 
 	if(isset($_SESSION['user'])) {
 		foreach(editors::getSpecificAdminRoles($_SESSION['user']) as $role) {
