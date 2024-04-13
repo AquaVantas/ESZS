@@ -36,6 +36,7 @@
 	$role_admin = false;
 	$role_webdev = false;
 	$role_news = false;
+	$role_game_admin = false;
 	$role_admin_dirt_rally_2_0 = false;
 	$role_admin_league_of_legends = false;
 	$role_admin_cs_go = false;
@@ -46,30 +47,82 @@
 	$role_admin_fifa = false;
 	$role_admin_ranbox_six_siege = false;
 	$role_admin_rocket_league = false;
+	$role_admin_pubg_mobile = false;
 
 	if(isset($_SESSION['user'])) {
 		foreach(editors::getSpecificAdminRoles($_SESSION['user']) as $role) {
 			if($role['title'] == "Admin") {
 				$role_admin = true;
-			} else if ($role['title'] == "Web dev") {
+			} 
+			if ($role['title'] == "Web dev") {
 				$role_webdev = true;
-			} else if ($role['title'] == "Novinar") {
+			} 
+			if ($role['title'] == "Novinar") {
 				$role_news = true;
-			} else if ($role['title'] == "Game admin - DiRT Rally 2.0") {
+			} 
+			if ($role['title'] == "Game admin - DiRT Rally 2.0") {
 				$role_admin_dirt_rally_2_0 = true;
-			} else if ($role['title'] == "Trello - Admins") {
+				$role_game_admin = true;
+			} 
+			if ($role['title'] == "Game admin - League of Legends") {
+			    $role_admin_league_of_legends = true;
+				$role_game_admin = true;
+			} 
+			if ($role['title'] == "Game admin - FIFA") {
+			    $role_admin_fifa = true;
+				$role_game_admin = true;
+			} 
+			if ($role['title'] == "Game admin - Valorant") {
+			    $role_admin_valorant = true;
+				$role_game_admin = true;
+			} 
+			if ($role['title'] == "Game admin - Counter Strike: Global Offensive") {
+			    $role_admin_cs_go = true;
+				$role_game_admin = true;
+			} 
+			if ($role['title'] == "Game admin - Assetto Corsa: Competizione") {
+			    $role_admin_acc = true;
+				$role_game_admin = true;
+			} 
+			if ($role['title'] == "Game admin - EFootball") {
+			    $role_admin_efootball = true;
+				$role_game_admin = true;
+			} 
+			if ($role['title'] == "Game admin - Mobile Legends") {
+			    $role_admin_mobile_legends = true;
+				$role_game_admin = true;
+			} 
+			if ($role['title'] == "Game admin - Rocket League") {
+			    $role_admin_rocket_league = true;
+				$role_game_admin = true;
+			} 
+			if ($role['title'] == "Game admin - Rainbow Six: Siege") {
+			    $role_admin_ranbox_six_siege = true;
+				$role_game_admin = true;
+			} 
+			if ($role['title'] == "Game admin - PUBG Mobile") {
+			    $role_admin_pubg_mobile = true;
+				$role_game_admin = true;
+			} 
+			if ($role['title'] == "Trello - Admins") {
 				$role_trello_admin = true;
-			} else if ($role['title'] == "Trello - Tournaments") {
+			} 
+			if ($role['title'] == "Trello - Tournaments") {
 				$role_trello_tournaments = true;
-			} else if ($role['title'] == "Trello - Socials") {
+			} 
+			if ($role['title'] == "Trello - Socials") {
 				$role_trello_socials = true;
-			} else if ($role['title'] == "Trello - Organs") {
+			} 
+			if ($role['title'] == "Trello - Organs") {
 				$role_trello_organs = true;
-			} else if ($role['title'] == "Trello - Graphics") {
+			} 
+			if ($role['title'] == "Trello - Graphics") {
 				$role_trello_graphics = true;
-			} else if ($role['title'] == "Trello - Devs") {
+			} 
+			if ($role['title'] == "Trello - Devs") {
 				$role_trello_devs = true;
-			} else if ($role['title'] == "Trello - Stream") {
+			} 
+			if ($role['title'] == "Trello - Stream") {
 				$role_trello_stream = true;
 			}
 		}
@@ -205,7 +258,9 @@
 							<?php } ?>
 						</ul>
 					</div>-->
-					<a href="?tab=tournaments" class="nav-link <?php if($cpanel_tab == "tournaments"){echo "active"; } ?>">Tekmovanja</a>
+					<?php if($role_game_admin || $role_admin) { ?>
+    					<a href="?tab=tournaments" class="nav-link <?php if($cpanel_tab == "tournaments"){echo "active"; } ?>">Tekmovanja</a>
+					<?php } ?>
 					<a href="?tab=user_list" class="nav-link <?php if($cpanel_tab == "user_list" || $cpanel_tab == "user_list_create" || $cpanel_tab == "user_list_edit"){echo "active"; } ?>">Uporabniki</a>
 				</div>
 			</div>
