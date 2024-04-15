@@ -12,7 +12,10 @@
                 foreach(tournament::getTournamentGame($_GET['tournament_id']) as $game) { ?>
                     <div class="col-12">
                         <h2><?= $game['tournament_title'] ?></h2>
-                        <?php if($game['game_id'] == 9) { 
+                        <?php if($game['game_id'] == 6) {
+                            include "Games/game_applications_cs_go.php";
+                        }
+                        if($game['game_id'] == 9) { 
                             include "Games/game_applications_efootball.php";
                         }
                         if($game['game_id'] == 10) { 

@@ -86,6 +86,18 @@ function openFileUploader() {
     $(".content-upload-sidebar").toggleClass("active");
 }
 
+function openNewFolderModal(dir) {
+    let currHref = $(".modal.add-folder .modal-body a").attr("onclick");
+    $(".modal.add-folder .modal-body a").attr("onclick", "createNewFolder('" + currHref + dir+ "')");
+}
+
+function createNewFolder(link) {
+    let folderName = $(".modal.add-folder .modal-body input").val();
+    let pageDetailsFormDataXHR = new XMLHttpRequest();
+    pageDetailsFormDataXHR.open("POST", link + "&folder_name=" + folderName);
+    pageDetailsFormDataXHR.send();
+}
+
 function uploadFile(filePath, formID) {
     filePath = filePath.replaceAll('.', '_');
     formID = formID.replaceAll('.', '_');

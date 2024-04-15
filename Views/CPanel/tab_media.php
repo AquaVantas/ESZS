@@ -8,14 +8,19 @@
 		$prevPath = substr($_GET['path'], 0, (1+strpos(strrev($_GET['path']), "/"))*(-1));
 	}
 
-	if(isset($cpanel_tab) && $cpanel_tab == "media" && ($role_admin || $role_news)) { ?>
+	if(isset($cpanel_tab) && $cpanel_tab == "media" && ($role_admin || $role_news || $role_webdev)) { ?>
 		<div class="media-viewer">
 			<div class="user-body container">
 				<div class="row">
 						<div class="col-12 create-bar">
 							<?php if(isset($prevPath)) { ?>
-								<?php if($role_admin) { ?><a class="btn btn-primary" href="?tab=media&path=<?= $prevPath ?>"><div class="arrow-icon"></div>Nazaj</a><?php } ?>
-								<?php if($role_admin) { ?><a class="btn btn-primary" onclick="openFileUploader()">Dodaj sliko</a><?php } ?>
+								<?php if($role_admin || $role_webdev) { ?><a class="btn btn-primary" href="?tab=media&path=<?= $prevPath ?>"><div class="arrow-icon"></div>Nazaj</a><?php } ?>
+								<?php if($role_admin || $role_webdev) { ?>
+									<div class="buttons-wrapper">
+										<a class="btn btn-primary" onclick="openFileUploader()">Dodaj mapo</a>
+										<a class="btn btn-primary" onclick="openFileUploader()">Dodaj sliko</a>
+									</div>
+								<?php } ?>
 							<?php } ?>
 							</div>
 					<?php				

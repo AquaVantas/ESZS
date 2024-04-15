@@ -359,6 +359,24 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal fade add-folder" id="add-folder" tabindex="-1" aria-labelledby="add-folder-label" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Dodaj mapo</h5>
+						<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="folder-name-input">
+						<a class="variant-block btn btn-primary" onclick="Controllers/Website/Media/media_add_folder.php?dir=">
+							DODAJ
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 		<?php } else { ?> 
 			<div class="login-box container ">
 				<div class="row">

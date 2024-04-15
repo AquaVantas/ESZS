@@ -92,6 +92,18 @@ class tournament {
         return $statement->fetchAll();
     }
 
+    public static function getPlayerCSGO($date_to, $date_from) {
+        $db = self::getInstance();
+
+       $statement = $db->prepare("SELECT player_name, player_surname, email, discord, nickname, nationality, team
+                                   FROM tournament_CS_GO WHERE apply_time <= :date_to AND apply_time >= :date_from");
+       $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+       $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+       $statement->execute();
+
+       return $statement->fetchAll();
+   }
+
     public static function addPlayerValorant($team, $name, $surname, $email, $discord, $nickname, $dateofbirth, $postalcode) {
         $db = self::getInstance();
         
@@ -216,5 +228,17 @@ class tournament {
 
         return $statement->fetchColumn();
     }
+
+    public static function getPlayerEFootball($date_to, $date_from) {
+        $db = self::getInstance();
+
+       $statement = $db->prepare("SELECT player_name, player_surname, email, discord, playstation_id, nationality, date_of_birth, postal_code
+                                   FROM tournament_efootball WHERE time_applied <= :date_to AND time_applied >= :date_from");
+       $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+       $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+       $statement->execute();
+
+       return $statement->fetchAll();
+   } 
 }
 ?>

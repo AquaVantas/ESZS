@@ -35,7 +35,7 @@
 							<input id="submit" type="submit" onclick="submitImageChanges()">
 						</form>
 						<div class="action-buttons">
-							<a class="btn btn-primary">TO-DO: Dodaj mapo</a>
+							<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-folder" onclick="openNewFolderModal('<?= $currDir ?>')">Dodaj mapo</a>
 							<a class="btn btn-primary" onclick="openInputFileForm('<?= $currDir ?>')">Dodaj sliko</a>
 						</div>
 					</div>
