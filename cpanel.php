@@ -370,7 +370,7 @@
 					</div>
 					<div class="modal-body">
 						<input type="text" class="folder-name-input">
-						<a class="variant-block btn btn-primary" onclick="Controllers/Website/Media/media_add_folder.php?dir=">
+						<a class="variant-block btn btn-primary" onclick="Controllers/Website/Media/media_add_folder.php?dir=" data-bs-dismiss="modal" aria-label="Close">
 							DODAJ
 						</a>
 					</div>

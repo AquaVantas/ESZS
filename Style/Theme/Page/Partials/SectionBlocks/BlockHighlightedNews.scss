@@ -65,9 +65,11 @@
         height: fit-content;
         display: flex;
         flex-direction: column;
+        max-height: 500px;
 
         @include media-breakpoint-up(lg) {
             height: 100%;
+            max-height: none;
             min-width: 550px;
             max-width: 550px;
         }

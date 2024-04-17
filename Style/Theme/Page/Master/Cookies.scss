@@ -20,6 +20,17 @@
         }
     }
 
+    p {
+        a {
+            padding: 0;
+            display: inline-block;
+
+            &:hover {
+                color: $background;
+            }
+        }
+    }
+
     .accept-deny {
         display: flex;
         justify-content: flex-end;

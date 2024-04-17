@@ -619,6 +619,10 @@
         .create-bar {
             display: flex;
             justify-content: space-between;
+
+            .buttons-wrapper {
+                display: flex;
+            }
         }
 
         .media-folder-wrapper {

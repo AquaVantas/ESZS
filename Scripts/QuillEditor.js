@@ -15,7 +15,7 @@ for (let index = 0; index < arrayOfToolbars.length; index++) {
 						formData.append("image", file);
 
 						fetch(
-							"/upload_image.php",
+							"Controllers/Website/News/news_upload_image.php",
 							{
 								method: "POST",
 								body: formData
