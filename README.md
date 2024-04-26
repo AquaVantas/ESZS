@@ -1,1 +1,1 @@
-My thesis projet
+My thesis project
