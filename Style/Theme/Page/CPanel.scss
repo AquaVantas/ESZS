@@ -165,10 +165,19 @@
     }
     
     .tournament-list {
+        display: flex;
+        flex-direction: column;
+
         h4 {
             padding: 10px 20px;
             background-color: $primarybluefive;
             color: $white;
+        }
+
+        a {
+            &:last-child {
+                margin-bottom: 20px;
+            }
         }
     }
 

@@ -232,13 +232,25 @@ class tournament {
     public static function getPlayerEFootball($date_to, $date_from) {
         $db = self::getInstance();
 
-       $statement = $db->prepare("SELECT player_name, player_surname, email, discord, playstation_id, nationality, date_of_birth, postal_code
-                                   FROM tournament_efootball WHERE time_applied <= :date_to AND time_applied >= :date_from");
-       $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
-       $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
-       $statement->execute();
+        $statement = $db->prepare("SELECT player_name, player_surname, email, discord, playstation_id, nationality, date_of_birth, postal_code
+                                    FROM tournament_efootball WHERE time_applied <= :date_to AND time_applied >= :date_from");
+        $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+        $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+        $statement->execute();
 
-       return $statement->fetchAll();
-   } 
+        return $statement->fetchAll();
+    } 
+
+   public static function getPlayerDirtRally20($date_to, $date_from) {
+    $db = self::getInstance();
+
+    $statement = $db->prepare("SELECT player_name, surname, email, discord, race_username, racecar, team, raceteam, date_of_birth, postal_code
+                                FROM tournament_dirt_rally_2_0 WHERE time_applied <= :date_to AND time_applied >= :date_from");
+    $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+    $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+    $statement->execute();
+
+    return $statement->fetchAll();
+    } 
 }
 ?>

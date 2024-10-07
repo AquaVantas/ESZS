@@ -15,6 +15,9 @@
                         <?php if($game['game_id'] == 6) {
                             include "Games/game_applications_cs_go.php";
                         }
+                        if($game['game_id'] == 8) { 
+                            include "Games/game_applications_dirt_rally_2_0.php";
+                        }
                         if($game['game_id'] == 9) { 
                             include "Games/game_applications_efootball.php";
                         }

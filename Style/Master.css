@@ -390,10 +390,17 @@ table tr td {
   width: 100%;
   height: 100vh;
 }
+.cpanel-body-wrapper .tournament-list {
+  display: flex;
+  flex-direction: column;
+}
 .cpanel-body-wrapper .tournament-list h4 {
   padding: 10px 20px;
   background-color: #00d6bd;
   color: #FFFFFF;
+}
+.cpanel-body-wrapper .tournament-list a:last-child {
+  margin-bottom: 20px;
 }
 .cpanel-body-wrapper .user-body .create-bar {
   margin-top: 20px;
