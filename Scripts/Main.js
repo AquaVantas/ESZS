@@ -81,6 +81,15 @@ function closeFileSelector() {
     $(".content-sidebar-wrapper").removeClass("active");
 }
 
+function openFileEditor(imageId, imagePath, altText) {  
+    if(!$(".content-edit-sidebar").hasClass("active")) {
+        $(".content-edit-sidebar").toggleClass("active");
+    }
+    $(".content-edit-sidebar .image-wrapper img").attr("src", imagePath);
+    $(".content-edit-sidebar form .alt-wrapper input#image_id").val(imageId);
+    $(".content-edit-sidebar form .alt-wrapper input#alt_text").val(altText);
+}
+
 function openFileUploader() {
     console.log("hm");
     $(".content-upload-sidebar").toggleClass("active");

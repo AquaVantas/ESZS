@@ -46,15 +46,19 @@
 					<?php				
 						foreach($files1 as $file) {
 							if(!is_dir($dir . "/" . $file)) {
+								$image_path = substr($_GET['path'], strpos($_GET['path'], 'Content')) . '/' . $file;
+								foreach(media::getImageByPath($image_path) as $foundImage) { ?>
+									<div class="col-2 media-folder-wrapper" onclick="openFileEditor(<?= $foundImage['image_id'] ?>, '<?= $foundImage['image_path'] ?>', '<?= $foundImage['alt_text'] ?>')">
+										<div class="media-folder-image">
+											<img src="<?= $image_path ?>" />
+										</div>
+										<div class="media-folder-title">
+											<span><?php echo $file; ?></span>
+										</div>
+									</div>
+								<?php }
 								?>
-								<div class="col-2 media-folder-wrapper">
-									<div class="media-folder-image">
-										<img src="<?= substr($_GET['path'], strpos($_GET['path'], 'Content')) . '/' . $file ?>" />
-									</div>
-									<div class="media-folder-title">
-										<span><?php echo $file; ?></span>
-									</div>
-								</div>
+								
 								<?php
 							}
 						}
@@ -65,5 +69,7 @@
 		
 		<!-- image upload sidebar -->
 		<?php include "Views/CPanel/WebpageEditor/Page/tab_website_content_upload_siderbars.php" ?>
+		<!-- image edit sidebar -->
+		<?php include "Views/CPanel/WebpageEditor/Page/tab_website_content_edit.php" ?>
 	<?php } 
 ?>

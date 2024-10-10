@@ -67,5 +67,26 @@ class media {
 
         return $statement->fetchAll();
     }
+
+    public static function getImageByPath($path) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT image_id, image_path, alt_text FROM website_images WHERE image_path LIKE :image_path");
+        $statement->bindParam(":image_path", $path, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function editImageAltText($imageID, $altText) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE website_images SET alt_text = :alt_text WHERE image_id = :image_id");
+        $statement->bindParam(":image_id", $imageID, PDO::PARAM_STR);
+        $statement->bindParam(":alt_text", $altText, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
 }
 ?>
