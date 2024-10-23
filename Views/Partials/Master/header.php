@@ -24,7 +24,7 @@
         } ?>
         <meta name="description" content="<?= $page_details['meta_description'] ?>">
         <meta name="keywords" content="<?= $page_details['meta_keyword'] ?>">
-        <meta name="author" content="EŠZS">
+        <meta name="author" content="Eï¿½ZS">
     <?php }
     if(isset($_COOKIE['cookies']) && $_COOKIE['cookies'] == "yes") { ?>
         <!-- Google tag (gtag.js) -->
@@ -40,9 +40,10 @@
 ?>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="Content/favicon.ico">
 <link rel="stylesheet" href="Plugins/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="Style/Master.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 <script src="Plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="Scripts/Main.js"></script>
