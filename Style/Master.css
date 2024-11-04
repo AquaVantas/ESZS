@@ -377,19 +377,6 @@ table tr td {
   padding-top: 40px;
   text-align: center;
 }
-.cpanel-body-wrapper .default-body .trello-board-wrapper {
-  padding-top: 30px;
-}
-.cpanel-body-wrapper .default-body .trello-board-wrapper ul li button {
-  color: #FFFFFF;
-}
-.cpanel-body-wrapper .default-body .trello-board-wrapper ul li button.active {
-  background-color: #00d6bd;
-}
-.cpanel-body-wrapper .default-body .trello-board-wrapper iframe {
-  width: 100%;
-  height: 100vh;
-}
 .cpanel-body-wrapper .tournament-list {
   display: flex;
   flex-direction: column;
@@ -1091,6 +1078,53 @@ table tr td {
   margin-right: 20px;
   width: 100%;
   margin-top: 40px;
+}
+
+.tournaments ul.nav-tabs li button {
+  color: #00d6bd;
+}
+.tournaments ul.nav-tabs li button.active {
+  background-color: #00d6bd;
+  color: #FFFFFF;
+}
+.tournaments .tab-content {
+  padding-top: 40px;
+}
+.tournaments .tab-content .add-match .submit-button {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
+}
+.tournaments .tab-content .match-list .upcoming, .tournaments .tab-content .match-list .finished {
+  padding-top: 40px;
+}
+.tournaments .tab-content .match-list .upcoming h3, .tournaments .tab-content .match-list .finished h3 {
+  margin-bottom: 16px;
+}
+.tournaments .tab-content .match-list .upcoming .match-wrapper, .tournaments .tab-content .match-list .finished .match-wrapper {
+  padding: 40px 20px;
+  border: 1px solid #00d6bd;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tournaments .tab-content .match-list .upcoming .match-wrapper .vs-logos, .tournaments .tab-content .match-list .finished .match-wrapper .vs-logos {
+  display: flex;
+  align-items: center;
+}
+.tournaments .tab-content .match-list .upcoming .match-wrapper .vs-logos .team-logo, .tournaments .tab-content .match-list .finished .match-wrapper .vs-logos .team-logo {
+  color: #FFFFFF;
+}
+.tournaments .tab-content .match-list .upcoming .match-wrapper .vs-logos .team-logo img, .tournaments .tab-content .match-list .finished .match-wrapper .vs-logos .team-logo img {
+  max-width: 110px;
+}
+.tournaments .tab-content .match-list .upcoming .match-wrapper .vs-logos h4, .tournaments .tab-content .match-list .finished .match-wrapper .vs-logos h4 {
+  margin: 12px;
+}
+.tournaments .tab-content .match-list .upcoming .match-wrapper span, .tournaments .tab-content .match-list .finished .match-wrapper span {
+  color: #FFFFFF;
 }
 
 .modal .modal-content {

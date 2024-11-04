@@ -1,5 +1,3 @@
-console.log("samo povem");
-
 var swiper = new Swiper('.highlight-news-swiper', {
     observer: true,
     observeParents: true,

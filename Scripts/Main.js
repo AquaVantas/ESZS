@@ -135,6 +135,42 @@ function deleteThisImage(image) {
     $(image).parent().attr("chosen-image-id", null);
 }
 
+function openTeamLogoInput(event, team) {
+    event.preventDefault();
+    if(team == 1) {
+        $("form#teamFileLogoOne input#logoFile").click();
+    }
+    else {
+        $("form#teamFileLogoTwo input#logoFile").click();
+    }
+}
+
+function uploadLogoToDatabase(event, playerName, tournament_id) {
+    const input = event.target;
+    const file = input.files[0];
+
+    console.log(file);
+    if(file) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const base64String = e.target.result.split(',')[1];
+            const mimeType = file.type;
+
+            const data = {
+                player: playerName,
+                tournament_id: tournament_id,
+                logo: base64String,
+                mimeType: mimeType
+            };
+
+            talkToDatabase("Controllers/Tournaments/tournament_add_logo_to_player.php", data);
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+
 function submitPageChanges(page_id, lang_id) {
     let pageDetailsFormData = new FormData();
     pageDetailsFormData.append("page_published", $("#page_published").is(":checked"));

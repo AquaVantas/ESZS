@@ -81,6 +81,50 @@ class tournament {
         return $statement->fetchAll();
     }
 
+    public static function addMatch($game_id, $tournament_id, $player_one, $player_two, $player_one_points, $player_two_points, $match_date) {
+        $db = self::getInstance();
+    
+        try {
+            $db->beginTransaction();
+    
+            $statement = $db->prepare("INSERT INTO tournament_match (game_id, tournament_id, player_one, player_two, match_date, player_one_score, player_two_score) 
+                                       VALUES (:game_id, :tournament_id, :player_one, :player_two, :match_date, :player_one_score, :player_two_score)");
+            
+            $statement->bindParam(":game_id", $game_id, PDO::PARAM_INT);
+            $statement->bindParam(":tournament_id", $tournament_id, PDO::PARAM_INT);
+            $statement->bindParam(":player_one", $player_one, PDO::PARAM_STR);
+            $statement->bindParam(":player_two", $player_two, PDO::PARAM_STR);
+            $statement->bindParam(":match_date", $match_date, PDO::PARAM_STR);
+            $statement->bindParam(":player_one_score", $player_one_points, PDO::PARAM_INT);
+            $statement->bindParam(":player_two_score", $player_two_points, PDO::PARAM_INT);
+            
+            $statement->execute();
+    
+            $lastInsertId = $db->lastInsertId();
+    
+            $db->commit();
+    
+            return $lastInsertId;
+        } catch (Exception $e) {
+            $db->rollBack();
+
+            error_log("Error adding match: " . $e->getMessage());
+
+            return false;
+        }
+    }
+
+    public static function getTournamentMatches($tournament_id) {
+        $db = self::getInstance();
+
+       $statement = $db->prepare("SELECT player_one, player_two, match_date, player_one_score, player_two_score, map_played, match_end
+                                   FROM tournament_match WHERE tournament_id = :tournament_id");
+       $statement->bindParam(":tournament_id", $tournament_id, PDO::PARAM_STR);
+       $statement->execute();
+
+       return $statement->fetchAll();
+   }
+
     public static function getTournamentsACCEntries($from, $to) {
          $db = self::getInstance();
 
@@ -122,6 +166,53 @@ class tournament {
         $statement->execute();
 
         return $statement->fetchColumn();
+    }
+
+    public static function addLogoToPlayerValorant($team, $logo, $mimeType) {
+        $db = self::getInstance();
+        
+        $statement = $db->prepare("UPDATE tournament_valorant SET logo = :logo, logo_data_type = :mimeType WHERE team = :team");
+        $statement->bindParam(":team", $team, PDO::PARAM_STR);
+        $statement->bindParam(":logo", $logo, PDO::PARAM_STR);
+        $statement->bindParam(":mimeType", $mimeType, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->rowCount();
+    }
+
+    public static function getPlayerValorant($date_to, $date_from) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT player_name, player_surname, email, discord, nickname, team, date_of_birth, postal_code
+                                   FROM tournament_valorant WHERE apply_time <= :date_to AND apply_time >= :date_from");
+        $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+        $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    } 
+
+    public static function getTeamsValorant($date_to, $date_from) {
+        $db = self::getInstance();
+
+       $statement = $db->prepare("SELECT team, logo_data_type, logo FROM tournament_valorant WHERE apply_time <= :date_to AND apply_time >= :date_from GROUP BY team");
+       $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+       $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+       $statement->execute();
+
+       return $statement->fetchAll();
+    } 
+
+    public static function getTeamValorant($date_to, $date_from, $team) {
+        $db = self::getInstance();
+
+       $statement = $db->prepare("SELECT team, logo_data_type, logo FROM tournament_valorant WHERE apply_time <= :date_to AND apply_time >= :date_from AND team LIKE :team GROUP BY team");
+       $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+       $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+       $statement->bindParam(":team", $team, PDO::PARAM_STR);
+       $statement->execute();
+
+       return $statement->fetchAll();
     }
 
     public static function addPlayerMobileLegends($team, $name, $surname, $from, $discord, $nickname, $ingameId, $serverId, $nationality, $dateofbirth, $postalcode) {

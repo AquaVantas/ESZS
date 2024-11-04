@@ -26,13 +26,6 @@
 		$lang_id = 1;
 	}
 
-	$role_trello_admin = false;
-	$role_trello_tournaments = false;
-	$role_trello_socials = false;
-	$role_trello_organs = false;
-	$role_trello_graphics = false;
-	$role_trello_devs = false;
-	$role_trello_stream = false;
 	$role_admin = false;
 	$role_webdev = false;
 	$role_news = false;
@@ -103,27 +96,6 @@
 			if ($role['title'] == "Game admin - PUBG Mobile") {
 			    $role_admin_pubg_mobile = true;
 				$role_game_admin = true;
-			} 
-			if ($role['title'] == "Trello - Admins") {
-				$role_trello_admin = true;
-			} 
-			if ($role['title'] == "Trello - Tournaments") {
-				$role_trello_tournaments = true;
-			} 
-			if ($role['title'] == "Trello - Socials") {
-				$role_trello_socials = true;
-			} 
-			if ($role['title'] == "Trello - Organs") {
-				$role_trello_organs = true;
-			} 
-			if ($role['title'] == "Trello - Graphics") {
-				$role_trello_graphics = true;
-			} 
-			if ($role['title'] == "Trello - Devs") {
-				$role_trello_devs = true;
-			} 
-			if ($role['title'] == "Trello - Stream") {
-				$role_trello_stream = true;
 			}
 		}
 	}
@@ -293,8 +265,6 @@
 							}
 						} ?>
 					</div>					
-					<!-- trello board -->
-					<?php include "Views/CPanel/tab_trello_board.php" ?>
 				</div>
 			<?php } ?>
 			<!-- website editor -->
@@ -401,8 +371,8 @@
 		<script src="Plugins/quill/quill.min.js"></script>
         <script src="Plugins/quill/image-resize.min.js"></script>
         <script src="Plugins/quill/quill.imageUploader.min.js"></script>		
-        <script src="Scripts/QuillEditor.js"></script>
-		<script src="https://p.trellocdn.com/embed.min.js"></script>
+        <script src="Scripts/QuillEditor.js"></script>		
+        <script src="Scripts/CallController.js"></script>
 	</body>
 	<footer>
 	</footer>

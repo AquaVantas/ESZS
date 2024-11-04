@@ -3,14 +3,18 @@
 		<div class="row">
 			<div class="col-xxl-2 col-xl-2 col-lg-2"></div>
 			<div class="col-xxl-8 col-xl-8 col-lg-8" style="padding-bottom: 70px;">
-				<img src="Content/WebsiteImages/Images/Events/SDP/2023-2024/Valorant_prijave_odprte.jpg" width="100%">
-				<br><br><br>
-				<h1>Prijavnica na kvalifikacije za svetovno prvenstvo iz Valorant</h1>
-				Polja označena z <span style="color: red;">*</span> so obvezna!<br>
-				Prijave se zbirajo do 8. 9. 2023.
+			<?php foreach(website::getWebsiteSectionForm($section_type['section_id']) as $sectionForm) {
+					if($sectionForm['WSF_image_id'] != NULL) {
+						foreach(website::getWebsiteImageByID(intval($sectionForm['WSF_image_id'])) as $image) { ?>						
+							<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>"/>
+						<?php }					
+					} ?>
+					<br><br><br>
+					<h1><?= $sectionForm['WSF_section_name'] ?></h1>
+					<?= $sectionForm['WSF_form_header'] ?><br>
+					<?= $sectionForm['WSF_form_subheader'] ?>
 					
-					
-				<form method="post" action="Controllers/Tournaments/tournament_valorant.php"><br>
+					<form method="post" action="Controllers/Tournaments/tournament_valorant.php"><br>
 					<label for="team">Email: <span style="color: red;">*</span></label><br>
 					<input type="text" id="team" name="team" placeholder="janezki" required><br>
 
@@ -224,7 +228,8 @@
 						</tr>
 					</table><br><br>
 					<input id="submitButton" type="submit" value="PRIJAVA">
-				</form> 
+				</form> 				
+				<?php } ?>	 
 			</div>			
 		</div>
 	</div>

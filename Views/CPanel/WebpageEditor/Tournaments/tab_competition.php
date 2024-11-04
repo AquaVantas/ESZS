@@ -6,13 +6,16 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container tournaments">
         <div class="row">
             <?php 
                 foreach(tournament::getTournamentGame($_GET['tournament_id']) as $game) { ?>
                     <div class="col-12">
                         <h2><?= $game['tournament_title'] ?></h2>
-                        <?php if($game['game_id'] == 6) {
+                        <?php if($game['game_id'] == 5) {
+                            include "Games/game_applications_valorant.php";
+                        }
+                        if($game['game_id'] == 6) {
                             include "Games/game_applications_cs_go.php";
                         }
                         if($game['game_id'] == 8) { 

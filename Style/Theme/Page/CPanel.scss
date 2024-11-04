@@ -141,27 +141,6 @@
             padding-top: 40px;
             text-align: center;
         }
-
-        .trello-board-wrapper {
-            padding-top: 30px;
-
-            ul {
-                li {
-                    button {
-                        color: $white;
-
-                        &.active {                            
-                            background-color: $primarybluefive;
-                        }
-                    }
-                }
-            }
-
-            iframe {
-                width: 100%;
-                height: 100vh;
-            }
-        }
     }
     
     .tournament-list {
@@ -1067,6 +1046,77 @@
             margin-top: 40px;
         }
     }
+}
+
+.tournaments {
+    ul {
+        &.nav-tabs {
+            li {
+                button {
+                    color: $primarybluefive;
+
+                    &.active {
+                        background-color: $primarybluefive;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    .tab-content {
+        padding-top: 40px;
+
+        .add-match {
+            .submit-button {
+                display: flex;
+                justify-content: flex-end;
+                padding-top: 15px;
+            }
+        }
+
+        .match-list {
+            .upcoming, .finished {
+                padding-top: 40px;
+
+                h3 {
+                    margin-bottom: 16px;
+                }
+
+                .match-wrapper {
+                    padding: 40px 20px;
+                    border: 1px solid $primarybluefive;
+                    border-radius: 4px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    .vs-logos {
+                        display: flex;
+                        align-items: center;                     
+
+                        .team-logo {
+                            color: $white;
+
+                            img {                                
+                                max-width: 110px;
+                            }
+                        }
+
+                        h4 {
+                            margin: 12px;
+
+                        }
+                    }
+
+                    span {
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }    
 }
 
 .modal {
