@@ -133,6 +133,17 @@
 }
 
 .cpanel-body-wrapper {
+    .match-status {
+        display: flex;
+        align-items: center;
+        margin-top: 16px;
+
+        input {
+            width: fit-content;
+            margin-right: 12px;
+        }
+    }
+
     .default-body {
         .welcome-text {
             color: $white;

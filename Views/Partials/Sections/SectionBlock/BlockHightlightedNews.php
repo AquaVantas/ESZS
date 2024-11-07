@@ -62,94 +62,114 @@
 						if($counter == 0) { ?>
 							<div class="tab-pane fade show active" id="nav-<?= str_replace(" ", "", strtolower($button['WBCB_button_title'])) ?>" role="tabpanel" aria-labelledby="nav-<?= str_replace(" ", "", strtolower($button['WBCB_button_title'])) ?>-tab">
 								<div class="tab-container">
-									<?php foreach(website::getWebsiteBlockContent($section['WSB_section_block_id']) as $blockContent) { 
-										if($blockContent['WBC_block_link'] == "results") { ?>
-											<div class="match-wrapper">
-												<?php $counter = 0;
-												foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $button) { 
-													if($counter == 0) { ?>
-														<div class="contestant left-contestant">
-															<?php if($button['WBCB_image_id'] != NULL) {
-																foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { ?>						
-																	<div class="logo" style="background-image: url('<?= $image['image_path'] ?>')"></div>
-																<?php }					
-															} ?>
-															<div class="name">
-																<span><?= $button['WBCB_button_title'] ?></span>
+								<?php foreach(tournament::getTournamentMatchesAll() as $match) { 
+										if($match['match_end'] == 1) { ?>
+											<div class="match-wrapper upcoming">
+												<?php foreach(tournament::getTournamentsById($match['tournament_id']) as $tournament) {
+													if($tournament['game_id'] == 5) { 
+														foreach(tournament::getTeamValorant($tournament['apply_end_time'], $tournament['apply_start_time'], $match['player_one']) as $team) { ?>															
+															<div class="contestant left-contestant">
+																<div class="logo" style="background-image: url('data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>')"></div>
+																<div class="name">
+																	<span><?= $match['player_two'] ?></span>
+																</div>
 															</div>
+														<?php } ?>														
+														<div class="middle-block">
+															<?php 
+																$date = new DateTime($match['match_date']);
+
+																$slovenianDays = [
+																	'Monday'    => 'ponedeljek',
+																	'Tuesday'   => 'torek',
+																	'Wednesday' => 'sreda',
+																	'Thursday'  => 'četrtek',
+																	'Friday'    => 'petek',
+																	'Saturday'  => 'sobota',
+																	'Sunday'    => 'nedelja'
+																];
+
+																$englishDay = $date->format('l');
+																$day = $date->format('d');
+																$month = $date->format('m');
+																$year = $date->format('Y');
+
+																$slovenianDay = strtoupper($slovenianDays[$englishDay]);
+
+																$formattedDate = "$slovenianDay, $day. $month. $year";
+															?>
+															<div class="match-title"><span><?= $formattedDate ?></span></div>
+															<a class="match-score btn btn-primary"><?= $match['player_one_score'] ?> : <?= $match['player_two_score'] ?></a>
 														</div>
-													 <?php }
-													 $counter = $counter + 1;
-												} ?>							
-												<div class="middle-block">
-													<div class="match-title"><span><?= $blockContent['WBC_block_heading'] ?></span></div>
-													<a class="match-score btn btn-primary"><?= $blockContent['WBC_block_subheading'] ?></a>
-												</div>
-												<?php $counter = 0;
-												foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $button) { 
-													if($counter == 1) { ?>
-														<div class="contestant right-contestant">										
-															<?php if($button['WBCB_image_id'] != NULL) {
-																foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { ?>						
-																	<div class="logo" style="background-image: url('<?= $image['image_path'] ?>')"></div>
-																<?php }					
-															} ?>
-															<div class="name">
-																<span><?= $button['WBCB_button_title'] ?></span>
+														<?php foreach(tournament::getTeamValorant($tournament['apply_end_time'], $tournament['apply_start_time'], $match['player_two']) as $team) { ?>															
+															<div class="contestant right-contestant">
+																<div class="logo" style="background-image: url('data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>')"></div>
+																<div class="name">
+																	<span><?= $match['player_two'] ?></span>
+																</div>
 															</div>
-														</div>
-													 <?php }
-													 $counter = $counter + 1;
+														<?php } ?>	
+													<?php } 
 												} ?>
 											</div>
-										<?php }				
+										<?php } 
 									} ?>
 								</div>
 							</div>
 						<?php } else { ?>
 							<div class="tab-pane fade" id="nav-<?= str_replace(" ", "", strtolower($button['WBCB_button_title'])) ?>" role="tabpanel" aria-labelledby="nav-<?= str_replace(" ", "", strtolower($button['WBCB_button_title'])) ?>-tab">
 								<div class="tab-container">
-									<?php foreach(website::getWebsiteBlockContent($section['WSB_section_block_id']) as $blockContent) { 
-										if($blockContent['WBC_block_link'] == "upcoming") { ?>
+									<?php foreach(tournament::getTournamentMatchesAll() as $match) { 
+										if($match['match_end'] == 0) { ?>
 											<div class="match-wrapper upcoming">
-												<?php $counter = 0;
-												foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $button) { 
-													if($counter == 0) { ?>
-														<div class="contestant left-contestant">
-															<?php if($button['WBCB_image_id'] != NULL) {
-																foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { ?>						
-																	<div class="logo" style="background-image: url('<?= $image['image_path'] ?>')"></div>
-																<?php }					
-															} ?>
-															<div class="name">
-																<span><?= $button['WBCB_button_title'] ?></span>
+												<?php foreach(tournament::getTournamentsById($match['tournament_id']) as $tournament) {
+													if($tournament['game_id'] == 5) { 
+														foreach(tournament::getTeamValorant($tournament['apply_end_time'], $tournament['apply_start_time'], $match['player_one']) as $team) { ?>															
+															<div class="contestant left-contestant">
+																<div class="logo" style="background-image: url('data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>')"></div>
+																<div class="name">
+																	<span><?= $match['player_two'] ?></span>
+																</div>
 															</div>
+														<?php } ?>														
+														<div class="middle-block">
+															<?php 
+																$date = new DateTime($match['match_date']);
+
+																$slovenianDays = [
+																	'Monday'    => 'ponedeljek',
+																	'Tuesday'   => 'torek',
+																	'Wednesday' => 'sreda',
+																	'Thursday'  => 'četrtek',
+																	'Friday'    => 'petek',
+																	'Saturday'  => 'sobota',
+																	'Sunday'    => 'nedelja'
+																];
+
+																$englishDay = $date->format('l');
+																$day = $date->format('d');
+																$month = $date->format('m');
+																$year = $date->format('Y');
+
+																$slovenianDay = strtoupper($slovenianDays[$englishDay]);
+
+																$formattedDate = "$slovenianDay, $day. $month. $year";
+															?>
+															<div class="match-title"><span><?= $formattedDate ?></span></div>
+															<a class="match-score btn btn-primary">TBD</a>
 														</div>
-														<?php }
-														$counter = $counter + 1;
-												} ?>							
-												<div class="middle-block">
-													<div class="match-title"><span><?= $blockContent['WBC_block_heading'] ?></span></div>
-													<a class="match-score btn btn-primary"><?= $blockContent['WBC_block_subheading'] ?></a>
-												</div>
-												<?php $counter = 0;
-												foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $button) { 
-													if($counter == 1) { ?>
-														<div class="contestant right-contestant">										
-															<?php if($button['WBCB_image_id'] != NULL) {
-																foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { ?>						
-																	<div class="logo" style="background-image: url('<?= $image['image_path'] ?>')"></div>
-																<?php }					
-															} ?>
-															<div class="name">
-																<span><?= $button['WBCB_button_title'] ?></span>
+														<?php foreach(tournament::getTeamValorant($tournament['apply_end_time'], $tournament['apply_start_time'], $match['player_two']) as $team) { ?>															
+															<div class="contestant right-contestant">
+																<div class="logo" style="background-image: url('data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>')"></div>
+																<div class="name">
+																	<span><?= $match['player_two'] ?></span>
+																</div>
 															</div>
-														</div>
-														<?php }
-														$counter = $counter + 1;
+														<?php } ?>	
+													<?php } 
 												} ?>
 											</div>
-										<?php }				
+										<?php } 
 									} ?>
 								</div>
 							</div>				

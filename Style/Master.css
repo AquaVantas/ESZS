@@ -370,6 +370,15 @@ table tr td {
   transform: rotate(-90deg);
 }
 
+.cpanel-body-wrapper .match-status {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+.cpanel-body-wrapper .match-status input {
+  width: fit-content;
+  margin-right: 12px;
+}
 .cpanel-body-wrapper .default-body .welcome-text {
   color: #FFFFFF;
   font-size: 28px;

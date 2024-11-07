@@ -104,6 +104,9 @@
                                 </div>
                             </div>
                             <span class="date-time-of-match"><?= $match['match_date'] ?></span>
+                            <div class="edit-match">
+                                <a class="btn btn-primary" href="?tab=match_edit&match=<?= $match['id'] ?>&tournament_id=<?= $match['tournament_id'] ?>">UREDI</a>
+                            </div>
                         </div>
                     <?php }
                     ?>

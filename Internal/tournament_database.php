@@ -81,6 +81,16 @@ class tournament {
         return $statement->fetchAll();
     }
 
+    public static function getTournamentsById($tournament_id) {
+        $db = self::getInstance();
+
+       $statement = $db->prepare("SELECT id, tournament_title, game_id, apply_start_time, apply_end_time FROM tournament_list WHERE id = :tournament_id");
+       $statement->bindParam(":tournament_id", $tournament_id, PDO::PARAM_STR);
+       $statement->execute();
+
+       return $statement->fetchAll();
+   }
+
     public static function addMatch($game_id, $tournament_id, $player_one, $player_two, $player_one_points, $player_two_points, $match_date) {
         $db = self::getInstance();
     
@@ -117,13 +127,45 @@ class tournament {
     public static function getTournamentMatches($tournament_id) {
         $db = self::getInstance();
 
-       $statement = $db->prepare("SELECT player_one, player_two, match_date, player_one_score, player_two_score, map_played, match_end
+       $statement = $db->prepare("SELECT id, game_id, tournament_id, player_one, player_two, match_date, player_one_score, player_two_score, map_played, match_end
                                    FROM tournament_match WHERE tournament_id = :tournament_id");
        $statement->bindParam(":tournament_id", $tournament_id, PDO::PARAM_STR);
        $statement->execute();
 
        return $statement->fetchAll();
    }
+
+   public static function getTournamentMatchesAll() {
+    $db = self::getInstance();
+
+   $statement = $db->prepare("SELECT id, game_id, tournament_id, player_one, player_two, match_date, player_one_score, player_two_score, map_played, match_end
+                               FROM tournament_match");
+   $statement->execute();
+
+   return $statement->fetchAll();
+}
+
+    public static function getTournamentMatchById($match_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT id, game_id, tournament_id, player_one, player_two, match_date, player_one_score, player_two_score, map_played, match_end
+                                FROM tournament_match WHERE id = :id");
+        $statement->bindParam(":id", $match_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public static function editTournamentMatch($id, $score_one, $score_two, $match_done) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("UPDATE tournament_match SET player_one_score = :score_one, player_two_score = :score_two, match_end = :match_done WHERE id = :id");
+        $statement->bindParam(":id", $id, PDO::PARAM_STR);
+        $statement->bindParam(":score_one", $score_one, PDO::PARAM_STR);
+        $statement->bindParam(":score_two", $score_two, PDO::PARAM_STR);
+        $statement->bindParam(":match_done", $match_done, PDO::PARAM_STR);
+        $statement->execute();
+    }
 
     public static function getTournamentsACCEntries($from, $to) {
          $db = self::getInstance();
