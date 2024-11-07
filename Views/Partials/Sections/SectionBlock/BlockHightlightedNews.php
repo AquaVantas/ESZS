@@ -62,7 +62,7 @@
 						if($counter == 0) { ?>
 							<div class="tab-pane fade show active" id="nav-<?= str_replace(" ", "", strtolower($button['WBCB_button_title'])) ?>" role="tabpanel" aria-labelledby="nav-<?= str_replace(" ", "", strtolower($button['WBCB_button_title'])) ?>-tab">
 								<div class="tab-container">
-								<?php foreach(tournament::getTournamentMatchesAll() as $match) { 
+								<?php foreach(tournament::getTournamentMatchesAllDesc() as $match) { 
 										if($match['match_end'] == 1) { ?>
 											<div class="match-wrapper upcoming">
 												<?php foreach(tournament::getTournamentsById($match['tournament_id']) as $tournament) {
@@ -71,7 +71,7 @@
 															<div class="contestant left-contestant">
 																<div class="logo" style="background-image: url('data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>')"></div>
 																<div class="name">
-																	<span><?= $match['player_two'] ?></span>
+																	<span><?= $match['player_one'] ?></span>
 																</div>
 															</div>
 														<?php } ?>														
@@ -128,7 +128,7 @@
 															<div class="contestant left-contestant">
 																<div class="logo" style="background-image: url('data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>')"></div>
 																<div class="name">
-																	<span><?= $match['player_two'] ?></span>
+																	<span><?= $match['player_one'] ?></span>
 																</div>
 															</div>
 														<?php } ?>														

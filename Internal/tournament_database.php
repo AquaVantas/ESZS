@@ -133,17 +133,27 @@ class tournament {
        $statement->execute();
 
        return $statement->fetchAll();
-   }
+    }
 
-   public static function getTournamentMatchesAll() {
-    $db = self::getInstance();
+    public static function getTournamentMatchesAll() {
+        $db = self::getInstance();
 
-   $statement = $db->prepare("SELECT id, game_id, tournament_id, player_one, player_two, match_date, player_one_score, player_two_score, map_played, match_end
-                               FROM tournament_match");
-   $statement->execute();
+        $statement = $db->prepare("SELECT id, game_id, tournament_id, player_one, player_two, match_date, player_one_score, player_two_score, map_played, match_end
+                                    FROM tournament_match");
+        $statement->execute();
 
-   return $statement->fetchAll();
-}
+        return $statement->fetchAll();
+    }
+
+    public static function getTournamentMatchesAllDesc() {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT id, game_id, tournament_id, player_one, player_two, match_date, player_one_score, player_two_score, map_played, match_end
+                                    FROM tournament_match ORDER BY id DESC");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
 
     public static function getTournamentMatchById($match_id) {
         $db = self::getInstance();

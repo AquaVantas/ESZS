@@ -5,10 +5,18 @@ function talkToDatabase(path, data) {
         data: data,
         dataType: 'json',
         success: function (response) {
-            console.log("I made it!");
+            Swal.fire({
+                icon: "success",
+                title: "Tvoje delo je bilo shranjeno.",
+                text: "Za prikaz sprememb osveži stran."
+            });
         },
         error: function (response) {
-            console.log(response);            
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Your programmer did a fucky wucky! Please poke her on Discord so she can rectify her miserable excuse of an existance."
+            });
         }
     });
 }

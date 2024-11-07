@@ -71,11 +71,11 @@
                 <h3>Prihajajoče</h3>
                 <div class="row">
                     <?php foreach(tournament::getTournamentMatches($_GET['tournament_id']) as $match) { ?>                        
-                        <form id="teamFileLogoOne" class="visually-hidden">
+                        <form id="teamFileLogoOne<?= $match['id'] ?>" class="visually-hidden">
                             <input type="file" id="logoFile" name="filename" onchange="uploadLogoToDatabase(event, '<?= $match['player_one'] ?>', <?= $_GET['tournament_id'] ?>)">
                             <input id="submit" type="submit" onclick="()">
                         </form>
-                        <form id="teamFileLogoTwo" class="visually-hidden">
+                        <form id="teamFileLogoTwo<?= $match['id'] ?>" class="visually-hidden">
                             <input type="file" id="logoFile" name="filename" onchange="uploadLogoToDatabase(event, '<?= $match['player_two'] ?>', <?= $_GET['tournament_id'] ?>)">
                             <input id="submit" type="submit" onclick="()">
                         </form>
@@ -86,7 +86,7 @@
                                         if($team['logo']) { ?>
                                             <img src="data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>" alt="<?= $match['player_one'] ?>">
                                         <?php } else { ?>
-                                            <button class="btn btn-primary" onclick="openTeamLogoInput(event, 1)">Dodaj LOGOTIP</button>
+                                            <button class="btn btn-primary" onclick="openTeamLogoInput(event, 1, <?= $match['id'] ?>)">Dodaj LOGOTIP</button>
                                             <?= $match['player_one'] ?>
                                         <?php } ?>
                                     <?php } ?>
@@ -97,7 +97,7 @@
                                         if($team['logo']) { ?>
                                             <img src="data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>" alt="<?= $match['player_two'] ?>">
                                         <?php } else { ?>
-                                            <button class="btn btn-primary" onclick="openTeamLogoInput(event, 2)">Dodaj LOGOTIP</button>
+                                            <button class="btn btn-primary" onclick="openTeamLogoInput(event, 2, <?= $match['id'] ?>)">Dodaj LOGOTIP</button>
                                             <?= $match['player_two'] ?>
                                         <?php } ?>
                                     <?php } ?>

@@ -185,6 +185,7 @@
 		<link rel="stylesheet" href="Plugins/bootstrap/bootstrap.min.css">
 		<link rel="stylesheet" href="Style/Master.css">
         <link rel="stylesheet" href="Plugins/quill/quill.snow.css" />  
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<script type="text/javascript" src="Scripts/Main.js"></script>
 		<script src="Plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	</head>

@@ -135,13 +135,14 @@ function deleteThisImage(image) {
     $(image).parent().attr("chosen-image-id", null);
 }
 
-function openTeamLogoInput(event, team) {
+function openTeamLogoInput(event, num, id) {
     event.preventDefault();
-    if(team == 1) {
-        $("form#teamFileLogoOne input#logoFile").click();
+    console.log("ma kej");
+    if(num == 1) {
+        $("form#teamFileLogoOne" + id + " input#logoFile").click();
     }
     else {
-        $("form#teamFileLogoTwo input#logoFile").click();
+        $("form#teamFileLogoTwo" + id + " input#logoFile").click();
     }
 }
 
