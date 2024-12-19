@@ -62,8 +62,9 @@
 						if($counter == 0) { ?>
 							<div class="tab-pane fade show active" id="nav-<?= str_replace(" ", "", strtolower($button['WBCB_button_title'])) ?>" role="tabpanel" aria-labelledby="nav-<?= str_replace(" ", "", strtolower($button['WBCB_button_title'])) ?>-tab">
 								<div class="tab-container">
-								<?php foreach(tournament::getTournamentMatchesAllDesc() as $match) { 
-										if($match['match_end'] == 1) { ?>
+									<?php $count = 0;
+									foreach(tournament::getTournamentMatchesAllDesc() as $match) { 
+										if($match['match_end'] == 1 && $count < 20) { ?>
 											<div class="match-wrapper upcoming">
 												<?php foreach(tournament::getTournamentsById($match['tournament_id']) as $tournament) {
 													if($tournament['game_id'] == 5) { 
@@ -112,15 +113,17 @@
 													<?php } 
 												} ?>
 											</div>
-										<?php } 
+										<?php $count = $count + 1;
+										} 
 									} ?>
 								</div>
 							</div>
 						<?php } else { ?>
 							<div class="tab-pane fade" id="nav-<?= str_replace(" ", "", strtolower($button['WBCB_button_title'])) ?>" role="tabpanel" aria-labelledby="nav-<?= str_replace(" ", "", strtolower($button['WBCB_button_title'])) ?>-tab">
 								<div class="tab-container">
-									<?php foreach(tournament::getTournamentMatchesAll() as $match) { 
-										if($match['match_end'] == 0) { ?>
+									<?php $count = 0;
+									foreach(tournament::getTournamentMatchesAll() as $match) { 
+										if($match['match_end'] == 0 && $count < 20) { ?>
 											<div class="match-wrapper upcoming">
 												<?php foreach(tournament::getTournamentsById($match['tournament_id']) as $tournament) {
 													if($tournament['game_id'] == 5) { 
@@ -169,7 +172,8 @@
 													<?php } 
 												} ?>
 											</div>
-										<?php } 
+										<?php $count = $count + 1;
+										} 
 									} ?>
 								</div>
 							</div>				

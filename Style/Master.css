@@ -1726,9 +1726,6 @@ footer .footer-last-container .container .row .copyright span {
 .BlockHighlightedNews .scores .tab-content .tab-pane .tab-container .match-wrapper.upcoming a.btn-primary {
   background-color: #192133;
 }
-.BlockHighlightedNews .scores .tab-content .tab-pane:first-child .tab-container {
-  flex-direction: column-reverse;
-}
 
 .BlockAboutUsShort {
   padding-top: 60px;

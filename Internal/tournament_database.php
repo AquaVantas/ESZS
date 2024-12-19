@@ -149,7 +149,7 @@ class tournament {
         $db = self::getInstance();
 
         $statement = $db->prepare("SELECT id, game_id, tournament_id, player_one, player_two, match_date, player_one_score, player_two_score, map_played, match_end
-                                    FROM tournament_match ORDER BY id DESC");
+                                    FROM tournament_match ORDER BY match_date DESC");
         $statement->execute();
 
         return $statement->fetchAll();

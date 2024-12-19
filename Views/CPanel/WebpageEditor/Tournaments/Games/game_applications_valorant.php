@@ -70,50 +70,149 @@
             <div class="upcoming">
                 <h3>Prihajajoče</h3>
                 <div class="row">
-                    <?php foreach(tournament::getTournamentMatches($_GET['tournament_id']) as $match) { ?>                        
-                        <form id="teamFileLogoOne<?= $match['id'] ?>" class="visually-hidden">
-                            <input type="file" id="logoFile" name="filename" onchange="uploadLogoToDatabase(event, '<?= $match['player_one'] ?>', <?= $_GET['tournament_id'] ?>)">
-                            <input id="submit" type="submit" onclick="()">
-                        </form>
-                        <form id="teamFileLogoTwo<?= $match['id'] ?>" class="visually-hidden">
-                            <input type="file" id="logoFile" name="filename" onchange="uploadLogoToDatabase(event, '<?= $match['player_two'] ?>', <?= $_GET['tournament_id'] ?>)">
-                            <input id="submit" type="submit" onclick="()">
-                        </form>
-                        <div class="col-12 col-lg-4 match-wrapper">
-                            <div class="vs-logos">
-                                <div class="team-logo">
-                                    <?php foreach(tournament::getTeamValorant($game['apply_end_time'], $game['apply_start_time'], $match['player_one']) as $team) { 
-                                        if($team['logo']) { ?>
-                                            <img src="data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>" alt="<?= $match['player_one'] ?>">
-                                        <?php } else { ?>
-                                            <button class="btn btn-primary" onclick="openTeamLogoInput(event, 1, <?= $match['id'] ?>)">Dodaj LOGOTIP</button>
-                                            <?= $match['player_one'] ?>
-                                        <?php } ?>
-                                    <?php } ?>
-                                </div>
-                                <h4>VS</h4>
-                                <div class="team-logo">
-                                <?php foreach(tournament::getTeamValorant($game['apply_end_time'], $game['apply_start_time'], $match['player_two']) as $team) { 
-                                        if($team['logo']) { ?>
-                                            <img src="data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>" alt="<?= $match['player_two'] ?>">
-                                        <?php } else { ?>
-                                            <button class="btn btn-primary" onclick="openTeamLogoInput(event, 2, <?= $match['id'] ?>)">Dodaj LOGOTIP</button>
-                                            <?= $match['player_two'] ?>
-                                        <?php } ?>
-                                    <?php } ?>
+                    <?php foreach(tournament::getTournamentMatches($_GET['tournament_id']) as $match) { 
+                        if($match['match_end'] != 1) { ?>                        
+                            <form id="teamFileLogoOne<?= $match['id'] ?>" class="visually-hidden">
+                                <input type="file" id="logoFile" name="filename" onchange="uploadLogoToDatabase(event, '<?= $match['player_one'] ?>', <?= $_GET['tournament_id'] ?>)">
+                                <input id="submit" type="submit" onclick="()">
+                            </form>
+                            <form id="teamFileLogoTwo<?= $match['id'] ?>" class="visually-hidden">
+                                <input type="file" id="logoFile" name="filename" onchange="uploadLogoToDatabase(event, '<?= $match['player_two'] ?>', <?= $_GET['tournament_id'] ?>)">
+                                <input id="submit" type="submit" onclick="()">
+                            </form>
+                            <div class="col-12 col-lg-4">
+                                <div class="match-wrapper">
+                                    <div class="vs-logos">
+                                        <div class="team-logo">
+                                            <?php foreach(tournament::getTeamValorant($game['apply_end_time'], $game['apply_start_time'], $match['player_one']) as $team) { 
+                                                if($team['logo']) { ?>
+                                                    <img src="data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>" alt="<?= $match['player_one'] ?>">
+                                                <?php } else { ?>
+                                                    <button class="btn btn-primary" onclick="openTeamLogoInput(event, 1, <?= $match['id'] ?>)">Dodaj LOGOTIP</button>
+                                                    <?= $match['player_one'] ?>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </div>
+                                        <h4>VS</h4>
+                                        <div class="team-logo">
+                                        <?php foreach(tournament::getTeamValorant($game['apply_end_time'], $game['apply_start_time'], $match['player_two']) as $team) { 
+                                                if($team['logo']) { ?>
+                                                    <img src="data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>" alt="<?= $match['player_two'] ?>">
+                                                <?php } else { ?>
+                                                    <button class="btn btn-primary" onclick="openTeamLogoInput(event, 2, <?= $match['id'] ?>)">Dodaj LOGOTIP</button>
+                                                    <?= $match['player_two'] ?>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                    <span class="date-time-of-match">
+                                        <?php 
+                                            $date = new DateTime($match['match_date']);
+
+                                            $slovenianDays = [
+                                                'Monday'    => 'ponedeljek',
+                                                'Tuesday'   => 'torek',
+                                                'Wednesday' => 'sreda',
+                                                'Thursday'  => 'četrtek',
+                                                'Friday'    => 'petek',
+                                                'Saturday'  => 'sobota',
+                                                'Sunday'    => 'nedelja'
+                                            ];
+
+                                            $englishDay = $date->format('l');
+                                            $day = $date->format('d');
+                                            $month = $date->format('m');
+                                            $year = $date->format('Y');
+
+                                            $slovenianDay = strtoupper($slovenianDays[$englishDay]);
+
+                                            $formattedDate = "$slovenianDay, $day. $month. $year";
+                                        ?>
+                                        <?= $formattedDate ?>
+                                    </span>
+                                    <div class="edit-match">
+                                        <a class="btn btn-primary" href="?tab=match_edit&match=<?= $match['id'] ?>&tournament_id=<?= $match['tournament_id'] ?>">UREDI</a>
+                                    </div>
                                 </div>
                             </div>
-                            <span class="date-time-of-match"><?= $match['match_date'] ?></span>
-                            <div class="edit-match">
-                                <a class="btn btn-primary" href="?tab=match_edit&match=<?= $match['id'] ?>&tournament_id=<?= $match['tournament_id'] ?>">UREDI</a>
-                            </div>
-                        </div>
-                    <?php }
-                    ?>
+                        <?php }
+                    } ?>
                 </div>
             </div>
             <div class="finished">
                 <h3>Zaključene</h3>
+                <div class="row">
+                    <?php foreach(tournament::getTournamentMatches($_GET['tournament_id']) as $match) { 
+                        if($match['match_end'] == 1) { ?>                        
+                            <form id="teamFileLogoOne<?= $match['id'] ?>" class="visually-hidden">
+                                <input type="file" id="logoFile" name="filename" onchange="uploadLogoToDatabase(event, '<?= $match['player_one'] ?>', <?= $_GET['tournament_id'] ?>)">
+                                <input id="submit" type="submit" onclick="()">
+                            </form>
+                            <form id="teamFileLogoTwo<?= $match['id'] ?>" class="visually-hidden">
+                                <input type="file" id="logoFile" name="filename" onchange="uploadLogoToDatabase(event, '<?= $match['player_two'] ?>', <?= $_GET['tournament_id'] ?>)">
+                                <input id="submit" type="submit" onclick="()">
+                            </form>
+                            <div class="col-12 col-lg-4">
+                                <div class="match-wrapper">
+                                    <div class="vs-logos">
+                                        <div class="team-logo">
+                                            <?php foreach(tournament::getTeamValorant($game['apply_end_time'], $game['apply_start_time'], $match['player_one']) as $team) { 
+                                                if($team['logo']) { ?>
+                                                    <img src="data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>" alt="<?= $match['player_one'] ?>">
+                                                <?php } else { ?>
+                                                    <button class="btn btn-primary" onclick="openTeamLogoInput(event, 1, <?= $match['id'] ?>)">Dodaj LOGOTIP</button>
+                                                    <?= $match['player_one'] ?>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </div>
+                                        <h4>VS</h4>
+                                        <div class="team-logo">
+                                        <?php foreach(tournament::getTeamValorant($game['apply_end_time'], $game['apply_start_time'], $match['player_two']) as $team) { 
+                                                if($team['logo']) { ?>
+                                                    <img src="data:<?= $team['logo_data_type'] ?>;base64, <?= $team['logo'] ?>" alt="<?= $match['player_two'] ?>">
+                                                <?php } else { ?>
+                                                    <button class="btn btn-primary" onclick="openTeamLogoInput(event, 2, <?= $match['id'] ?>)">Dodaj LOGOTIP</button>
+                                                    <?= $match['player_two'] ?>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                    <span class="date-time-of-match">
+                                        <?php 
+                                            $date = new DateTime($match['match_date']);
+
+                                            $slovenianDays = [
+                                                'Monday'    => 'ponedeljek',
+                                                'Tuesday'   => 'torek',
+                                                'Wednesday' => 'sreda',
+                                                'Thursday'  => 'četrtek',
+                                                'Friday'    => 'petek',
+                                                'Saturday'  => 'sobota',
+                                                'Sunday'    => 'nedelja'
+                                            ];
+
+                                            $englishDay = $date->format('l');
+                                            $day = $date->format('d');
+                                            $month = $date->format('m');
+                                            $year = $date->format('Y');
+
+                                            $slovenianDay = strtoupper($slovenianDays[$englishDay]);
+
+                                            $formattedDate = "$slovenianDay, $day. $month. $year";
+                                        ?>                                        
+                                        <?= $formattedDate ?>
+                                    </span>
+                                    <span class="score">
+                                        <?= $match['player_one_score'] ?> : <?= $match['player_two_score'] ?>
+                                    </span>
+                                    <div class="edit-match">
+                                        <a class="btn btn-primary" href="?tab=match_edit&match=<?= $match['id'] ?>&tournament_id=<?= $match['tournament_id'] ?>">UREDI</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php }
+                    } ?>
+                </div>
             </div>
         </div>
     </div>
