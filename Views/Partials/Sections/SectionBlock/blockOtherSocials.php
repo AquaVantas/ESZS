@@ -10,11 +10,11 @@
 							foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { 						
 								if($button['WBCB_page_id'] == NULL || $button['WBCB_page_id'] == 0) { ?>
 									<a class="partner" href="<?= $button['WBCB_button_link'] ?>">
-										<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+										<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
 									</a>
 								<?php } else { ?>
-									<a class="partner" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>">
-										<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+									<a class="partner" href="<?= makeTheLinkPath($lang_id, $button['WBCB_page_id'], null) ?>">
+										<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
 									</a>
 								<?php }
 							}					

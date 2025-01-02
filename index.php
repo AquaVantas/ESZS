@@ -13,16 +13,67 @@
 			return empty($needle) || strpos($haystack, $needle) !== false;
 		}
 	}
-	function printSubMenu($parent, $parent_title, $lang_id) {
+
+	function replaceSpecialCharacters($stringToReplace) {
+		$stringToReplace = strtolower($stringToReplace);
+		$stringToReplace = str_replace("Š", "s", (str_replace("š", "s", str_replace("č", "c", str_replace("ž", "z", str_replace("đ", "d", str_replace("ć", "c", $stringToReplace)))))));
+		$stringToReplace = str_replace("- ", "", $stringToReplace);
+		$specialCharacters = [".", ",", "+", ";", ">", "<"];
+		$stringToReplace = str_replace($specialCharacters, "", $stringToReplace);
+		$stringToReplace = str_replace(" ", "-", $stringToReplace);
+		return $stringToReplace;
+	}
+
+	function makeTheLinkPath($lang_id, $pageId, $news_id) {
+		$pagePathArray = array($pageId);
+		$pagePath = (($lang_id == 1) ? "" : ("/" . website::getSpecificWebsiteLanguage($lang_id)[0]['iso'] ?? ""));
+
+		foreach(website::getSpecificWebsitePage($pageId) as $page) {
+			$pagePathArray = getParentPage($pagePathArray, $page['subpage_to']);
+		}
+
+		for($i = count($pagePathArray) - 1; $i >= 0; $i--) {
+			foreach(website::getSpecificWebsitePageDetails($pagePathArray[$i], $lang_id) as $page) {
+				$pagePath .= "/" . str_replace("/", "-", $page['page_title']);
+			}
+		}	
+		if($news_id == null) {
+			
+		}
+		else {
+		
+		}
+		return replaceSpecialCharacters($pagePath);
+	}
+
+	function getParentPage($pagePathArray, $pageId) {
+		if($pageId != null) {
+			array_push($pagePathArray, $pageId);
+			foreach(website::getSpecificWebsitePage($pageId) as $page) {
+				return getParentPage($pagePathArray, $page['subpage_to']);
+			}
+		}
+		else {
+			return $pagePathArray;
+		}
+	}
+
+	function printSubMenu($parent, $parent_title, $lang_id, $currPath) {		
+		if($currPath == "" && $lang_id != 1) {
+			foreach(website::getSpecificWebsiteLanguage($lang_id) as $used_language) {
+				$currPath .= "/" . $used_language['iso'];
+			}
+		}
+		$currPath .= "/" . str_replace("/", "-", $parent_title);
 		$html = "<li class='nav-item dropdown' onhover='navigationHover()'>
 					<a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" . $parent_title . "</a>
 					<ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink' style='position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-40px, 30px);'>";
 			foreach(website::getAllWebsitePageSubpagesPageNavigation($parent, $lang_id) as $subpage) {
 				if(count(website::getAllWebsitePageSubpagesPageNavigation($subpage['WP_page_id'], $lang_id)) > 0) { 
-					$html .= printSubMenu($subpage['WP_page_id'], $subpage['WPD_page_title'], $lang_id);
+					$html .= printSubMenu($subpage['WP_page_id'], $subpage['WPD_page_title'], $lang_id, $currPath);
 				} else {
 					$html .= "<li class='nav-item'>
-							<a class='nav-link' href='?lang_id=" . $lang_id . "&page_id=" . $subpage['WP_page_id'] . "'>" . $subpage['WPD_page_title'] . "</a>
+							<a class='nav-link' href='" . replaceSpecialCharacters($currPath . "/" . str_replace("/", "-", $subpage['WPD_page_title'])) . "'>" . $subpage['WPD_page_title'] . "</a>
 						</li>";
 				}
 			}
@@ -33,30 +84,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include "Views/Partials/Master/header.php"; ?>
+		<?php 			
+			include "routing.php";
+			include "Views/Partials/Master/header.php"; 
+		?>
 	</head>
 	<body>
 		<?php 
-		
-		if(!isset($_GET['page_id'])) {
-			$page_id = 1;
-		}
-		else {
-			$page_id = $_GET['page_id'];
-		}
-
-		if(!isset($_GET['lang_id'])) {
-			$lang_id = 1;
-		}
-		else {			
-			$lang_id = $_GET['lang_id'];
-		}
-
 		$page_details_id = 0;
 		foreach(website::getSpecificWebsitePageDetails($page_id, $lang_id) as $page) {
 			$page_details_id = $page['page_detail_id'];
 		}
-
+		
 		include "Views/Partials/Master/navigation.php";
 
 		foreach(website::getWebsiteSections($page_details_id) as $section_type) {
@@ -133,6 +172,9 @@
 							break;
 						case 6:
 							include "Views/Partials/Sections/SectionForm/formPubgMobile.php";
+							break;
+						case 6:
+							include "Views/Partials/Sections/SectionForm/formPhyigitalFootball.php";
 							break;
 					}
 				}

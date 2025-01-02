@@ -16,11 +16,11 @@
 							<?php }									
 						} else { 
 							if($button['WBCB_target'] == 1) { ?>
-								<a class="partner" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>" target="_blank">
+								<a class="partner" href="<?= makeTheLinkPath($lang_id, $button['WBCB_page_id'], null) ?>" target="_blank">
 									Prijavi se
 								</a>
 							<?php } else { ?>
-								<a class="partner" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>">
+								<a class="partner" href="<?= makeTheLinkPath($lang_id, $button['WBCB_page_id'], null) ?>">
 									Prijavi se
 								</a>
 							<?php }

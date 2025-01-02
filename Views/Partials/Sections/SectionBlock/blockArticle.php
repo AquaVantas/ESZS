@@ -1,6 +1,8 @@
 ﻿<?php 
+echo "hi";
 	$article = news::getArticleById($_GET["news_id"]);
 ?>
+hiiiiiiiiiii
 <section class="BlockArticle">
 	<div class="container article-title">
 		<div class="row">
@@ -36,9 +38,9 @@
 				foreach ($previews as $preview) {
 					$date = $preview["news_article_date"];
 					$date = date("d.m.y", strtotime($date));
-					?> <a class="news-link" href="?lang_id=<?= $lang_id ?>&page_id=<?= $_GET["page_id"] ?>&news_id=<?= $preview["news_article_id"] ?>">
+					?> <a class="news-link" href="<?= makeTheLinkPath($lang_id, $page_id, $preview["news_article_id"]) ?>?news_id=<?= $preview["news_article_id"] ?>">
 						<div class="newsboxcontainer">
-							<div class="article-background" style="background-image: url('<?= $preview['news_article_preview_image'] ?>')"></div>
+							<div class="article-background" style="background-image: url('<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $preview['news_article_preview_image'] ?>')"></div>
 							<div class="overlay">
 								<div class="newstitletext">
 									<div class="newssubtitlepin">Dogodek | <?= $date ?></div>

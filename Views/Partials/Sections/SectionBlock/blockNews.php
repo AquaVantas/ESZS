@@ -39,9 +39,9 @@
 				    }
 			    } ?>			
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
-                    <a class="news-link" href="?lang_id=<?= $lang_id ?>&page_id=<?= $news_page ?>&news_id=<?= $preview["news_article_id"] ?>" target="_blank">
+                    <a class="news-link" href="<?= makeTheLinkPath($lang_id, $news_page, null) ?>?news_id=<?= $preview["news_article_id"] ?>" target="_blank">
                     <div class="newsboxcontainer">
-                        <div class="article-background" style="background-image: url('<?= $preview['news_article_preview_image'] ?>')"></div>
+                        <div class="article-background" style="background-image: url('<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $preview['news_article_preview_image'] ?>')"></div>
                         <div class="overlay">
                             <div class="newstitletext">
                                 <div class="newssubtitlepin">Dogodek | <?= $date ?></div>
@@ -72,7 +72,7 @@ document.getElementById("query").addEventListener("keypress", function(event) {
         var lang_id = "<?php echo $_GET['lang_id']; ?>";
         var page_id = "<?php echo $_GET['page_id']; ?>";
 
-        var generatedURL = "?lang_id=" + lang_id + "&page_id=" + page_id + "&query=" + queryValue;
+        var generatedURL = "/?lang_id=" + lang_id + "&page_id=" + page_id + "&query=" + queryValue;
 
         // Redirect to the generated URL
         window.location.href = generatedURL;

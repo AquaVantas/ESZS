@@ -11,11 +11,11 @@
 								foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { 						
 									if($button['WBCB_page_id'] == NULL || $button['WBCB_page_id'] == 0) { ?>
 										<a class="partner" href="<?= $button['WBCB_button_link'] ?>">
-											<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+											<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
 										</a>
 									<?php } else { ?>
-										<a class="partner" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>">
-											<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+										<a class="partner" href="<?= makeTheLinkPath($lang_id, $button['WBCB_page_id'], null) ?>">
+											<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
 										</a>
 									<?php }
 								}					
@@ -42,7 +42,7 @@
 				<span class="footer-link-title">Povezave</span>
 				<?php foreach(website::getWebsiteFooterLink($lang_id) as $link) {
 					foreach(website::getWebsiteButtonByID($link['button_id']) as $button) { ?>
-						<a href=""><?= $button['WBCB_button_title'] ?></a>
+						<a href="<?= makeTheLinkPath($lang_id, $button['WBCB_page_id'], null) ?>"><?= $button['WBCB_button_title'] ?></a>
 				<?php }
 				} ?>
 			</div>
@@ -51,7 +51,7 @@
 					foreach(website::getWebsiteImageByID(intval($button_image['WBCB_image_id'])) as $image) {?>
 						<div class="col-2 footer-image-wrapper <?= $button_image['WBCB_button_title'] ?>">
 							<a href="<?= $button_image['WBCB_button_link'] ?>">
-								<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
+								<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
 							</a>
 						</div>
 					<?php }					
@@ -66,7 +66,7 @@
 					<?php foreach(website::getWebsiteDefault($lang_id) as $footer) {
 						if($footer['footer_logo'] != NULL) {
 							foreach(website::getWebsiteImageByID(intval($footer['footer_logo'])) as $image) { ?>
-								<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
+								<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" />
 							<?php }
 						}
 					} ?>

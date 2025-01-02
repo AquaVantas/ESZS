@@ -13,7 +13,7 @@
 						<div class="col-lg-2 col-4">
 							<div class="file-wrapper">
 								<div>
-									<img src="Content/Images/Icons/pdf.svg" alt="pdf_file">
+									<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?>Content/Images/Icons/pdf.svg" alt="pdf_file">
 									<h4><?= $blockContent['WBC_block_heading'] ?></h4>
 									<p><?= $blockContent['WBC_block_subheading'] ?></p>
 								</div>

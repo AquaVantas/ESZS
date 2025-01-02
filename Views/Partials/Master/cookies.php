@@ -3,7 +3,7 @@ if(!isset($_COOKIE['cookies'])) { ?>
     <div class="cookies">
         <?php foreach(website::getWebsiteDefault($lang_id) as $default) { ?>
             <div class="heading-line">
-                <img src="Content/Images/Icons/cookies-icon.svg" alt="cookies-icon" />
+                <img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?>Content/Images/Icons/cookies-icon.svg" alt="cookies-icon" />
                 <?= $default['website_cookies_title'] ?>
             </div>
             <?= $default['website_cookies_text'] ?>

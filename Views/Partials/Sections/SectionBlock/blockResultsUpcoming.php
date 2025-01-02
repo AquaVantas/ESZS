@@ -16,7 +16,7 @@
 									<?= $button['WBCB_button_link'] ?>
 								</a>
 							<?php } else { ?>
-								<a class="partner" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>">
+								<a class="partner" href="<?= makeTheLinkPath($lang_id, $button['WBCB_page_id'], null) ?>">
 									<?= $button['WBCB_button_link'] ?>
 								</a>
 							<?php } ?>
@@ -35,7 +35,7 @@
 									<div class="contestant left-contestant">
 										<?php if($button['WBCB_image_id'] != NULL) {
 											foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { ?>						
-												<div class="logo" style="background-image: url('<?= $image['image_path'] ?>')"></div>
+												<div class="logo" style="background-image: url('<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>')"></div>
 											<?php }					
 										} ?>
 										<div class="name">

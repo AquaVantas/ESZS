@@ -5,7 +5,7 @@
 				<?php foreach(website::getWebsiteBlockContent($section['WSB_section_block_id']) as $blockContent) { 
 					if($blockContent['WBC_image_id'] != NULL) {
 						foreach(website::getWebsiteImageByID(intval($blockContent['WBC_image_id'])) as $image) { ?>						
-							<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>"/>
+							<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>"/>
 						<?php }					
 					} ?>
 					<h2><?= $section['WSB_block_header'] ?></h2>
@@ -16,7 +16,7 @@
 						if($button['WBCB_page_id'] == NULL || $button['WBCB_page_id'] == 0) { ?>
 							<a class="btn btn-primary" href="<?= $button['WBCB_button_link'] ?>"><?= $button['WBCB_button_title'] ?></a>
 						<?php } else { ?>
-							<a class="btn btn-primary" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>"><?= $button['WBCB_button_title'] ?></a>
+							<a class="btn btn-primary" href="<?= makeTheLinkPath($lang_id, $button['WBCB_page_id'], null) ?>"><?= $button['WBCB_button_title'] ?></a>
 						<?php }
 					}
 				}

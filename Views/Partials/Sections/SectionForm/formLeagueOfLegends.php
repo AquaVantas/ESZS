@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-xxl-2 col-xl-2 col-lg-2"></div>
 		<div class="col-xxl-8 col-xl-8 col-lg-8" style="padding-bottom: 70px;">
-			<img src="Content/WebsiteImages/Images/Events/SDP/2023-2024/Valorant_prijave_odprte.jpg" width="100%">
+			<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?>Content/WebsiteImages/Images/Events/SDP/2023-2024/Valorant_prijave_odprte.jpg" width="100%">
 			<br><br><br>
 			<h1>Prijavnica na kvalifikacije za svetovno prvenstvo iz Valorant</h1>
 			Polja označena z <span style="color: red;">*</span> so obvezna!<br>

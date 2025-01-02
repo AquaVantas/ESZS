@@ -6,7 +6,7 @@
 				<?php foreach(website::getWebsiteSectionForm($section_type['section_id']) as $sectionForm) {
 					if($sectionForm['WSF_image_id'] != NULL) {
 						foreach(website::getWebsiteImageByID(intval($sectionForm['WSF_image_id'])) as $image) { ?>						
-							<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>"/>
+							<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>"/>
 						<?php }					
 					} ?>
 					<br><br><br>

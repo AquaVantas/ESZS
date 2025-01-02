@@ -39,7 +39,7 @@ class website {
     public static function getAllWebsiteLanguages() {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT language_id, title, short FROM website_language");
+        $statement = $db->prepare("SELECT language_id, title, short, iso FROM website_language");
         $statement->execute();
 
         return $statement->fetchAll();
@@ -48,7 +48,7 @@ class website {
     public static function getSpecificWebsiteLanguage($language_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT language_id, title, short FROM website_language WHERE language_id = :language_id");
+        $statement = $db->prepare("SELECT language_id, title, short, iso FROM website_language WHERE language_id = :language_id");
         $statement->bindParam(":language_id", $language_id, PDO::PARAM_STR);
         $statement->execute();
 
@@ -278,6 +278,20 @@ class website {
         return $statement->fetchAll();
     }
 
+    public static function getAllWebsiteRootPagesByLanguage($lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_page.page_id as page_id, website_page_details.page_title as page_title
+                                    FROM website_page
+                                    INNER JOIN website_page_details
+                                    ON website_page_details.page_id = website_page.page_id
+                                    WHERE website_page.subpage_to IS NULL AND website_page_details.language_id = :lang_id");
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public static function getAllWebsitePagesPageNavigation($lang_id) {
         $db = self::getInstance();
 
@@ -345,10 +359,26 @@ class website {
         return $statement->fetchAll();
     }
 
+    public static function getAllWebsitePageSubpagesPageNavigationWithUnpublished($page_id, $lang_id) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT website_page.page_id as WP_page_id, website_page_details.page_title as WPD_page_title
+                                    FROM website_page 
+                                    INNER JOIN website_page_details
+                                    ON website_page_details.page_id = website_page.page_id
+                                    WHERE website_page.subpage_to = :page_id AND website_page_details.language_id = :lang_id
+                                    ORDER BY website_page.sequence_num");
+        $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
+        $statement->bindParam(":lang_id", $lang_id, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public static function getSpecificWebsitePage($page_id) {
         $db = self::getInstance();
 
-        $statement = $db->prepare("SELECT page_id, page_title FROM website_page WHERE page_id = :page_id");
+        $statement = $db->prepare("SELECT page_id, page_title, subpage_to FROM website_page WHERE page_id = :page_id");
         $statement->bindParam(":page_id", $page_id, PDO::PARAM_STR);
         $statement->execute();
 

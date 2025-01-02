@@ -3,7 +3,7 @@
 		<?php foreach(website::getWebsiteDefault($lang_id) as $default) {
 			if($default['header_logo'] != NULL) {
 				foreach(website::getWebsiteImageByID(intval($default['header_logo'])) as $image) { ?>
-					<a href="/"><img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" /></a>
+					<a href="/"><img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" /></a>
 				<?php }
 			}
 		} ?>	
@@ -26,7 +26,7 @@ foreach(website::getAllWebsitePagesPageNavigationMobile($lang_id) as $pageMob) {
 							<div class="arrow-image"></div>
 						</a>
 					<?php } else { ?>
-						<a class="nav-item" href="?lang_id=<?= $lang_id ?>&page_id=<?= $page['WP_page_id'] ?>">
+						<a class="nav-item" href="<?= makeTheLinkPath($lang_id, $page['WP_page_id'], null) ?>">
 							<span><?= $page['WPD_page_title'] ?></span>
 						</a>
 					<?php }
@@ -51,7 +51,7 @@ foreach(website::getAllWebsitePagesPageNavigationMobile($lang_id) as $pageMob) {
 							<div class="arrow-image"></div>
 						</a>
 					<?php } else { ?>
-						<a class="nav-item" href="?lang_id=<?= $lang_id ?>&page_id=<?= $subpage['WP_page_id'] ?>">
+						<a class="nav-item" href="<?= makeTheLinkPath($lang_id, $subpage['WP_page_id'], null) ?>">
 							<span><?= $subpage['WPD_page_title'] ?></span>
 						</a>
 					<?php }
@@ -70,7 +70,7 @@ foreach(website::getAllWebsitePagesPageNavigationMobile($lang_id) as $pageMob) {
 					<?php foreach(website::getWebsiteDefault($lang_id) as $default) {
 						if($default['header_logo'] != NULL) {
 							foreach(website::getWebsiteImageByID(intval($default['header_logo'])) as $image) { ?>
-								<a href="/"><img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" /></a>
+								<a href="/"><img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>" /></a>
 							<?php }
 						}
 					} ?>			
@@ -81,10 +81,10 @@ foreach(website::getAllWebsitePagesPageNavigationMobile($lang_id) as $pageMob) {
 					<ul class="navbar-nav ml-auto staridelaj" style="padding-right: 70px;">
 						<?php foreach(website::getAllWebsitePagesPageNavigation($lang_id) as $page) { 
 							if(count(website::getAllWebsitePageSubpages($page['WP_page_id'])) > 0) {
-								echo printSubMenu($page['WP_page_id'], $page['WPD_page_title'], $lang_id);
+								echo printSubMenu($page['WP_page_id'], $page['WPD_page_title'], $lang_id, "");
 							} else { ?>
 								<li class="nav-item">
-									<a class="nav-link" href="?lang_id=<?= $lang_id ?>&page_id=<?= $page['WP_page_id'] ?>"><?= $page['WPD_page_title'] ?></a>
+									<a class="nav-link" href="/<?= replaceSpecialCharacters(str_replace("/", "-", $page['WPD_page_title'])) ?>"><?= $page['WPD_page_title'] ?></a>
 								</li>
 							<?php }
 						} ?>

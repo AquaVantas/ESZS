@@ -2,7 +2,7 @@
 	<div class="highlight-news-swiper swiper">
 		<div class="swiper-wrapper">
 			<?php foreach(news::getArticlesHighlighted() as $highlighted) { ?>
-				<div class="swiper-slide" style="background-image: url('<?= $highlighted['news_article_preview_image'] ?>')">
+				<div class="swiper-slide" style="background-image: url('<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $highlighted['news_article_preview_image'] ?>')">
 					<div class="content-wrapper">
 						<div class="container">
 							<div class="row">
@@ -20,7 +20,7 @@
 												if($blockContent['WBC_block_link'] == "pagelinkblock") {
 													foreach(website::getWebsiteBlockContentButton($blockContent['WBC_block_content_id']) as $button) {
 														if($counter == 2) { ?>
-															<a class="partner btn btn-primary" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>&news_id=<?= $highlighted['news_article_id'] ?>>"><?= $button['WBCB_button_title'] ?></a>														
+															<a class="partner btn btn-primary" href="<?= makeTheLinkPath($lang_id, $button['WBCB_page_id'], $highlighted['news_article_id']) ?>?news_id=<?= $highlighted['news_article_id'] ?>"><?= $button['WBCB_button_title'] ?></a>														
 														<?php }
 														$counter++;
 													}

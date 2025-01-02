@@ -13,7 +13,7 @@
 						if($blockContent['WBC_image_id'] != NULL) {
 							foreach(website::getWebsiteImageByID(intval($blockContent['WBC_image_id'])) as $image) { ?>
 								<div class="col-12 banner">
-									<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+									<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
 								</div>
 							<?php 
 							}					
@@ -33,7 +33,7 @@
 							if($button['WBCB_image_id'] != NULL) {
 								foreach(website::getWebsiteImageByID(intval($button['WBCB_image_id'])) as $image) { ?>
 									<?php if($counter != 1) { ?>
-										<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+										<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
 									<?php } 
 								}					
 							}

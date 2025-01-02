@@ -18,13 +18,13 @@
 									if($button['WBCB_page_id'] == NULL || $button['WBCB_page_id'] == 0) { ?>
 										<div>
 											<a class="partner" href="<?= $button['WBCB_button_link'] ?>">
-												<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+												<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
 											</a>
 										</div>
 									<?php } else { ?>
 										<div>
-											<a class="partner" href="?page_id=<?= $button['WBCB_page_id'] ?>&lang_id=<?= $lang_id ?>">
-												<img src="<?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
+											<a class="partner" href="<?= makeTheLinkPath($lang_id, $button['WBCB_page_id'], null) ?>">
+												<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" alt="<?= $image['alt_text'] ?>">
 											</a>
 										</div>
 									<?php }

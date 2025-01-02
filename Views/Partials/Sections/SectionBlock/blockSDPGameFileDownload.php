@@ -13,7 +13,7 @@
 									<div class="document-sdp">
 										<div class="document-wrapper">
 											<div class="image-and-text">
-												<img src="Content/Images/Icons/pdf.svg">
+												<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?>Content/Images/Icons/pdf.svg">
 												<p><?= $blockContent['WBC_block_heading'] ?></p>
 											</div>
 											<a href="<?= $image['image_path'] ?>" target="_blank">
