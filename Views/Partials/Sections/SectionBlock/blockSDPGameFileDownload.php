@@ -16,7 +16,7 @@
 												<img src="<?= str_repeat("../", count($pageRoutePath) - 1) ?>Content/Images/Icons/pdf.svg">
 												<p><?= $blockContent['WBC_block_heading'] ?></p>
 											</div>
-											<a href="<?= $image['image_path'] ?>" target="_blank">
+											<a href="<?= str_repeat("../", count($pageRoutePath) - 1) ?><?= $image['image_path'] ?>" target="_blank">
 												Preberi več
 											</a>
 										</div>

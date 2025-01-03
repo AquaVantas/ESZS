@@ -21,8 +21,8 @@
 						<table>
 							<tr>
 								<td>									
-									<label for="company_name">Ime podjetja: <span style="color: red;">*</span></label><br>
-									<input type="text" id="company_name" name="company_name" placeholder="Janez Novak d.o.o." required><br>
+									<label for="company_name">Ime podjetja (društvo): <span style="color: red;">*</span></label><br>
+									<input type="text" id="company_name" name="company_name" placeholder="Janez Novak d.o.o."><br>
 								</td>
 								<td>
 									<label for="team_name">Ime ekipe: <span style="color: red;">*</span></label><br>

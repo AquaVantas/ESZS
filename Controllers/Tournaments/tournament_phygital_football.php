@@ -264,7 +264,9 @@
     }
     
     $player_sex_8 = htmlspecialchars($_POST['player_sex_8'], ENT_QUOTES, 'UTF-8');
-    $date_of_birth_8 = DateTime::createFromFormat('Y-m-d', $_POST['date_of_birth_8'])->format('Y-m-d'); // Ensure correct date format
+    $date_of_birth_8 = isset($_POST['date_of_birth_8']) && !empty($_POST['date_of_birth_8'])
+    ? DateTime::createFromFormat('Y-m-d', $_POST['date_of_birth_8'])->format('Y-m-d') 
+    : null; // or use a default date like '0000-00-00' if needed
     $player_nationality_8 = htmlspecialchars($_POST['player_nationality_8'], ENT_QUOTES, 'UTF-8');
     $player_emso_8 = (int)$_POST['player_emso_8'];
     $player_document_no_8 = htmlspecialchars($_POST['player_document_no_8'], ENT_QUOTES, 'UTF-8');
@@ -292,7 +294,9 @@
     }
     
     $player_sex_9 = htmlspecialchars($_POST['player_sex_9'], ENT_QUOTES, 'UTF-8');
-    $date_of_birth_9 = DateTime::createFromFormat('Y-m-d', $_POST['date_of_birth_9'])->format('Y-m-d'); // Ensure correct date format
+    $date_of_birth_9 = isset($_POST['date_of_birth_9']) && !empty($_POST['date_of_birth_9'])
+    ? DateTime::createFromFormat('Y-m-d', $_POST['date_of_birth_9'])->format('Y-m-d') 
+    : null; // or use a default date
     $player_nationality_9 = htmlspecialchars($_POST['player_nationality_9'], ENT_QUOTES, 'UTF-8');
     $player_emso_9 = (int)$_POST['player_emso_9'];
     $player_document_no_9 = htmlspecialchars($_POST['player_document_no_9'], ENT_QUOTES, 'UTF-8');
@@ -320,7 +324,9 @@
     }
     
     $player_sex_10 = htmlspecialchars($_POST['player_sex_10'], ENT_QUOTES, 'UTF-8');
-    $date_of_birth_10 = DateTime::createFromFormat('Y-m-d', $_POST['date_of_birth_10'])->format('Y-m-d'); // Ensure correct date format
+    $date_of_birth_10 = isset($_POST['date_of_birth_10']) && !empty($_POST['date_of_birth_10'])
+    ? DateTime::createFromFormat('Y-m-d', $_POST['date_of_birth_10'])->format('Y-m-d') 
+    : null; // or use a default date
     $player_nationality_10 = htmlspecialchars($_POST['player_nationality_10'], ENT_QUOTES, 'UTF-8');
     $player_emso_10 = (int)$_POST['player_emso_10'];
     $player_document_no_10 = htmlspecialchars($_POST['player_document_no_10'], ENT_QUOTES, 'UTF-8');
@@ -448,53 +454,59 @@
     }
 
     // Player 8
-    $teamId = tournament::addPlayerPhygitalFootball(
-        $company_name, $team_name, null, $country, $city, $team_representative, 
-        $contact_number, $contact_email, $about, $team_social_media, 
-        $name_8, $nickname_8, $player_icon_8, $player_sex_8, $date_of_birth_8, 
-        $player_nationality_8, $player_emso_8, $player_document_no_8, 
-        $player_position_8, $player_jersey_8, $player_class_p_8, 
-        $player_class_p_plus_8, $player_social_media_8
-    );
+    if (!empty($date_of_birth_8)) {
+        $teamId = tournament::addPlayerPhygitalFootball(
+            $company_name, $team_name, null, $country, $city, $team_representative, 
+            $contact_number, $contact_email, $about, $team_social_media, 
+            $name_8, $nickname_8, $player_icon_8, $player_sex_8, $date_of_birth_8, 
+            $player_nationality_8, $player_emso_8, $player_document_no_8, 
+            $player_position_8, $player_jersey_8, $player_class_p_8, 
+            $player_class_p_plus_8, $player_social_media_8
+        );
 
-    if ($teamId) {
-        echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
-    } else {
-        http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 8.']);
+        if ($teamId) {
+            echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+        } else {
+            http_response_code(500);
+            echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 8.']);
+        }
     }
 
     // Player 9
-    $teamId = tournament::addPlayerPhygitalFootball(
-        $company_name, $team_name, null, $country, $city, $team_representative, 
-        $contact_number, $contact_email, $about, $team_social_media, 
-        $name_9, $nickname_9, $player_icon_9, $player_sex_9, $date_of_birth_9, 
-        $player_nationality_9, $player_emso_9, $player_document_no_9, 
-        $player_position_9, $player_jersey_9, $player_class_p_9, 
-        $player_class_p_plus_9, $player_social_media_9
-    );
+    if (!empty($date_of_birth_9)) {
+        $teamId = tournament::addPlayerPhygitalFootball(
+            $company_name, $team_name, null, $country, $city, $team_representative, 
+            $contact_number, $contact_email, $about, $team_social_media, 
+            $name_9, $nickname_9, $player_icon_9, $player_sex_9, $date_of_birth_9, 
+            $player_nationality_9, $player_emso_9, $player_document_no_9, 
+            $player_position_9, $player_jersey_9, $player_class_p_9, 
+            $player_class_p_plus_9, $player_social_media_9
+        );
 
-    if ($teamId) {
-        echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
-    } else {
-        http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 9.']);
+        if ($teamId) {
+            echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+        } else {
+            http_response_code(500);
+            echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 9.']);
+        }
     }
 
     // Player 10
-    $teamId = tournament::addPlayerPhygitalFootball(
-        $company_name, $team_name, null, $country, $city, $team_representative, 
-        $contact_number, $contact_email, $about, $team_social_media, 
-        $name_10, $nickname_10, $player_icon_10, $player_sex_10, $date_of_birth_10, 
-        $player_nationality_10, $player_emso_10, $player_document_no_10, 
-        $player_position_10, $player_jersey_10, $player_class_p_10, 
-        $player_class_p_plus_10, $player_social_media_10
-    );
+    if (!empty($date_of_birth_10)) {
+        $teamId = tournament::addPlayerPhygitalFootball(
+            $company_name, $team_name, null, $country, $city, $team_representative, 
+            $contact_number, $contact_email, $about, $team_social_media, 
+            $name_10, $nickname_10, $player_icon_10, $player_sex_10, $date_of_birth_10, 
+            $player_nationality_10, $player_emso_10, $player_document_no_10, 
+            $player_position_10, $player_jersey_10, $player_class_p_10, 
+            $player_class_p_plus_10, $player_social_media_10
+        );
 
-    if ($teamId) {
-        echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
-    } else {
-        http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 10.']);
+        if ($teamId) {
+            echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+        } else {
+            http_response_code(500);
+            echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 10.']);
+        }
     }
 ?>
