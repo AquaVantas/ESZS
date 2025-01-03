@@ -350,6 +350,69 @@ class tournament {
         return $statement->fetchColumn();
     }
 
+    public static function addPlayerPhygitalFootball(
+        $company_name, $team_name, $team_logo, $country, $city, $team_representative,
+        $contact_number, $contact_email, $about, $team_social_media, $name, $nickname,
+        $player_icon, $player_sex, $date_of_birth, $player_nationality, $player_emso,
+        $player_document_no, $player_position, $player_jersey, $player_class_p,
+        $player_class_p_plus, $player_social_media
+    ) {
+        $db = self::getInstance();
+    
+        try {
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+            $statement = $db->prepare("
+                INSERT INTO tournament_phygital_football (
+                    full_name, nickname, player_image, sex, date_of_birth, nationality, emso,
+                    id_number, player_position, jersey_number, class_p_player, class_p_plus_player,
+                    social_media_links, company_name, team_name, team_logo, country, city,
+                    team_representative, contact_number, contact_email, about, social_media,
+                    time_applied
+                ) VALUES (
+                    :full_name, :nickname, :player_icon, :player_sex, :date_of_birth, :player_nationality,
+                    :player_emso, :player_document_no, :player_position, :player_jersey, :player_class_p,
+                    :player_class_p_plus, :player_social_media, :company_name, :team_name, :team_logo,
+                    :country, :city, :team_representative, :contact_number, :contact_email, :about,
+                    :team_social_media, NOW()
+                )
+            ");
+    
+            $statement->bindParam(":company_name", $company_name, PDO::PARAM_STR);
+            $statement->bindParam(":team_name", $team_name, PDO::PARAM_STR);
+            $statement->bindParam(":team_logo", $team_logo, PDO::PARAM_LOB);
+            $statement->bindParam(":country", $country, PDO::PARAM_STR);
+            $statement->bindParam(":city", $city, PDO::PARAM_STR);
+            $statement->bindParam(":team_representative", $team_representative, PDO::PARAM_STR);
+            $statement->bindParam(":contact_number", $contact_number, PDO::PARAM_STR);
+            $statement->bindParam(":contact_email", $contact_email, PDO::PARAM_STR);
+            $statement->bindParam(":about", $about, PDO::PARAM_STR);
+            $statement->bindParam(":team_social_media", $team_social_media, PDO::PARAM_STR);
+            $statement->bindParam(":full_name", $name, PDO::PARAM_STR);
+            $statement->bindParam(":nickname", $nickname, PDO::PARAM_STR);
+            $statement->bindParam(":player_icon", $player_icon, PDO::PARAM_LOB);
+            $statement->bindParam(":player_sex", $player_sex, PDO::PARAM_STR);
+            $statement->bindParam(":date_of_birth", $date_of_birth, PDO::PARAM_STR);
+            $statement->bindParam(":player_nationality", $player_nationality, PDO::PARAM_STR);
+            $statement->bindParam(":player_emso", $player_emso, PDO::PARAM_INT);
+            $statement->bindParam(":player_document_no", $player_document_no, PDO::PARAM_STR);
+            $statement->bindParam(":player_position", $player_position, PDO::PARAM_STR);
+            $statement->bindParam(":player_jersey", $player_jersey, PDO::PARAM_INT);
+            $statement->bindParam(":player_class_p", $player_class_p, PDO::PARAM_INT);
+            $statement->bindParam(":player_class_p_plus", $player_class_p_plus, PDO::PARAM_INT);
+            $statement->bindParam(":player_social_media", $player_social_media, PDO::PARAM_STR);
+    
+            $statement->execute();
+    
+            return $db->lastInsertId();
+        } catch (PDOException $e) {
+            error_log("Error in addPlayerPhygitalFootball: " . $e->getMessage());
+            echo json_encode(['status' => 'error', 'message' => 'An error occurred while processing your request. Please try again.' . $e->getMessage()]);
+            return false;
+        }
+    }
+    
+
     public static function addPlayerEFootball($first_name, $last_name, $nickname, $discord, $from, $dateofbirth, $postalcode, $nationality) {
         $db = self::getInstance();
         

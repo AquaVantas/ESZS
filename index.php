@@ -173,8 +173,8 @@
 						case 6:
 							include "Views/Partials/Sections/SectionForm/formPubgMobile.php";
 							break;
-						case 6:
-							include "Views/Partials/Sections/SectionForm/formPhyigitalFootball.php";
+						case 7:
+							include "Views/Partials/Sections/SectionForm/formPhygitalFootball.php";
 							break;
 					}
 				}
