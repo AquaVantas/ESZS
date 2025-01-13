@@ -411,6 +411,18 @@ class tournament {
             return false;
         }
     }
+
+    public static function getPlayerPhygitalFootball($date_to, $date_from) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT full_name, nickname, player_image, sex, date_of_birth, nationality, emso, id_number, player_position, jersey_number, class_p_player, class_p_plus_player, social_media_links, company_name, team_name, team_logo, country, city, team_representative, contact_number, contact_email, about, social_media
+                                   FROM tournament_phygital_football WHERE time_applied <= :date_to AND time_applied >= :date_from");
+        $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+        $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    } 
     
 
     public static function addPlayerEFootball($first_name, $last_name, $nickname, $discord, $from, $dateofbirth, $postalcode, $nationality) {

@@ -26,6 +26,9 @@
                         }
                         if($game['game_id'] == 10) { 
                             include "Games/game_applications_mobile_legends.php";
+                        } 
+                        if($game['game_id'] == 14) { 
+                            include "Games/game_applications_phygital_football.php";
                         } ?>
                     </div>              
                 <?php }

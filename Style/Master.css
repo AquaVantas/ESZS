@@ -422,18 +422,18 @@ table tr td {
 .cpanel-body-wrapper .tournament-list a:last-child {
   margin-bottom: 20px;
 }
-.cpanel-body-wrapper .user-body .create-bar {
+.cpanel-body-wrapper .user-body .create-bar, .cpanel-body-wrapper .tournaments .create-bar {
   margin-top: 20px;
   margin-bottom: 50px;
 }
-.cpanel-body-wrapper .user-body .accordion-item {
+.cpanel-body-wrapper .user-body .accordion-item, .cpanel-body-wrapper .tournaments .accordion-item {
   margin-bottom: 5px;
   background-color: #192133;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header {
   border: 1px solid #00d6bd;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button {
   background-color: transparent;
   color: #FFFFFF;
   display: flex;
@@ -441,71 +441,71 @@ table tr td {
   justify-content: space-between;
   line-height: normal;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button:not(.collapsed) {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button:not(.collapsed), .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button:not(.collapsed) {
   color: #FFFFFF;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button:focus {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button:focus, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button:focus {
   border-color: none;
   box-shadow: none;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button::after {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button::after, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button::after {
   display: none;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button .actions-wrapper {
   display: flex;
   flex-direction: row;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .delete {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .delete, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button .actions-wrapper .delete {
   margin-top: -2px;
   height: 16px;
   width: 16px;
   padding-right: 0;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .delete img {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .delete img, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button .actions-wrapper .delete img {
   margin-left: -10px;
   width: 16px;
   height: 16px;
   transform: rotate(45deg);
   filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button .actions-wrapper .up-down-arrows {
   display: flex;
   flex-direction: row;
   margin-right: 10px;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .up-arrow {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .up-arrow, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .up-arrow {
   margin-top: 2px;
   padding: 0;
   height: 18px;
   width: 18px;
   transform: rotate(180deg);
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .up-arrow img {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .up-arrow img, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .up-arrow img {
   width: 100%;
   filter: brightness(100%);
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .down-arrow {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .down-arrow, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .down-arrow {
   margin-top: -2px;
   padding: 0;
   height: 18px;
   width: 18px;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .down-arrow img {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .down-arrow img, .cpanel-body-wrapper .tournaments .accordion-item .accordion-header button .actions-wrapper .up-down-arrows .down-arrow img {
   width: 100%;
   filter: brightness(100%);
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body {
   border: 1px solid #00d6bd;
   border-top: none;
   background-color: rgba(255, 255, 255, 0.1019607843);
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body input {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body input, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body input {
   margin-bottom: 15px;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body #editor-wrapper {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body #editor-wrapper, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body #editor-wrapper {
   margin-bottom: 15px;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown button {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown button, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .dropdown button {
   width: 100%;
   padding: 0;
   background-color: transparent;
@@ -513,7 +513,7 @@ table tr td {
   font-size: 14px;
   line-height: 20px;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown button.btn {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown button.btn, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .dropdown button.btn {
   margin: 0;
   justify-content: space-between;
   padding: 20px;
@@ -521,13 +521,13 @@ table tr td {
   background-color: rgba(255, 255, 255, 0.1019607843);
   text-transform: none;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown button::after {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown button::after, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .dropdown button::after {
   display: none;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown button:focus {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown button:focus, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .dropdown button:focus {
   box-shadow: none;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown button .arrow {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown button .arrow, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .dropdown button .arrow {
   width: 20px;
   height: 20px;
   background-image: url("../Content/Images/Icons/arrow.svg");
@@ -537,40 +537,40 @@ table tr td {
   margin-left: 10px;
   transform: rotate(-90deg);
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown ul {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown ul, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .dropdown ul {
   background-color: #464c5b;
   border-color: #00d6bd;
   width: 100%;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown ul li:hover {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown ul li:hover, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .dropdown ul li:hover {
   background-color: rgba(255, 255, 255, 0.1019607843);
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown ul li:hover a {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .dropdown ul li:hover a, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .dropdown ul li:hover a {
   color: #FFFFFF;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .template-dropdown .dropdown-menu {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .template-dropdown .dropdown-menu, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .template-dropdown .dropdown-menu {
   max-height: 200px;
   overflow-y: scroll;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .page-list-wrapper {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .page-list-wrapper, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .page-list-wrapper {
   max-height: 250px;
   overflow-y: scroll;
   background-color: rgba(255, 255, 255, 0.1019607843);
   padding: 10px 15px;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page {
   padding-left: 10px;
   display: flex;
   flex-direction: column;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page input {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page input, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page input {
   width: fit-content;
   margin: 0 10px 0 0;
 }
-.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page label {
+.cpanel-body-wrapper .user-body .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page label, .cpanel-body-wrapper .tournaments .accordion-item .accordion-collapse .accordion-body .page-list-wrapper .a-page label {
   margin: 0;
 }
-.cpanel-body-wrapper .user-body .add-block-content {
+.cpanel-body-wrapper .user-body .add-block-content, .cpanel-body-wrapper .tournaments .add-block-content {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.1019607843);
   border: 1px dashed #00d6bd;
@@ -580,7 +580,7 @@ table tr td {
   border-radius: 8px;
   margin-bottom: 15px;
 }
-.cpanel-body-wrapper .user-body .user-card {
+.cpanel-body-wrapper .user-body .user-card, .cpanel-body-wrapper .tournaments .user-card {
   margin-bottom: 20px;
   padding: 30px 15px 20px 15px;
   display: flex;
@@ -594,14 +594,14 @@ table tr td {
   border-radius: 8px;
   height: calc(100% - 20px);
 }
-.cpanel-body-wrapper .user-body .user-card .news-image {
+.cpanel-body-wrapper .user-body .user-card .news-image, .cpanel-body-wrapper .tournaments .user-card .news-image {
   width: 100%;
   height: 100px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.cpanel-body-wrapper .user-body .user-card .user-icon {
+.cpanel-body-wrapper .user-body .user-card .user-icon, .cpanel-body-wrapper .tournaments .user-card .user-icon {
   min-height: 80px;
   min-width: 80px;
   border-radius: 100%;
@@ -614,28 +614,28 @@ table tr td {
   line-height: 40px;
   font-family: "Montserrat-SemiBold";
 }
-.cpanel-body-wrapper .user-body .user-card .user-info {
+.cpanel-body-wrapper .user-body .user-card .user-info, .cpanel-body-wrapper .tournaments .user-card .user-info {
   padding: 20px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.cpanel-body-wrapper .user-body .user-card .user-info .user-info-name {
+.cpanel-body-wrapper .user-body .user-card .user-info .user-info-name, .cpanel-body-wrapper .tournaments .user-card .user-info .user-info-name {
   text-align: center;
   margin-bottom: 5px;
 }
-.cpanel-body-wrapper .user-body .user-card .user-info .user-info-email {
+.cpanel-body-wrapper .user-body .user-card .user-info .user-info-email, .cpanel-body-wrapper .tournaments .user-card .user-info .user-info-email {
   font-size: 12px;
   line-height: 16px;
 }
-.cpanel-body-wrapper .user-body .user-card .user-roles {
+.cpanel-body-wrapper .user-body .user-card .user-roles, .cpanel-body-wrapper .tournaments .user-card .user-roles {
   margin-bottom: 20px;
 }
-.cpanel-body-wrapper .user-body .user-card .user-actions {
+.cpanel-body-wrapper .user-body .user-card .user-actions, .cpanel-body-wrapper .tournaments .user-card .user-actions {
   display: flex;
 }
-.cpanel-body-wrapper .user-body .create-user .add-image-wrapper {
+.cpanel-body-wrapper .user-body .create-user .add-image-wrapper, .cpanel-body-wrapper .tournaments .create-user .add-image-wrapper {
   cursor: pointer;
   width: 150px;
   height: 150px;
@@ -646,10 +646,10 @@ table tr td {
   margin-bottom: 15px;
   position: relative;
 }
-.cpanel-body-wrapper .user-body .create-user .add-image-wrapper img.non-empty {
+.cpanel-body-wrapper .user-body .create-user .add-image-wrapper img.non-empty, .cpanel-body-wrapper .tournaments .create-user .add-image-wrapper img.non-empty {
   max-width: calc(100% - 20px);
 }
-.cpanel-body-wrapper .user-body .create-user .add-image-wrapper .remove-image {
+.cpanel-body-wrapper .user-body .create-user .add-image-wrapper .remove-image, .cpanel-body-wrapper .tournaments .create-user .add-image-wrapper .remove-image {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -661,13 +661,13 @@ table tr td {
   justify-content: center;
   align-items: center;
 }
-.cpanel-body-wrapper .user-body .create-user .add-image-wrapper .remove-image img {
+.cpanel-body-wrapper .user-body .create-user .add-image-wrapper .remove-image img, .cpanel-body-wrapper .tournaments .create-user .add-image-wrapper .remove-image img {
   transform: rotate(45deg);
   width: 15px;
   height: 15px;
   filter: invert(13%) sepia(98%) saturate(6543%) hue-rotate(0deg) brightness(110%) contrast(116%);
 }
-.cpanel-body-wrapper .user-body .create-user .add-image-wrapper .image-empty {
+.cpanel-body-wrapper .user-body .create-user .add-image-wrapper .image-empty, .cpanel-body-wrapper .tournaments .create-user .add-image-wrapper .image-empty {
   width: 120px;
   height: 120px;
   border: 1px dashed #00d6bd;
@@ -675,38 +675,38 @@ table tr td {
   justify-content: center;
   align-items: center;
 }
-.cpanel-body-wrapper .user-body .create-user .add-image-wrapper .image-empty img {
+.cpanel-body-wrapper .user-body .create-user .add-image-wrapper .image-empty img, .cpanel-body-wrapper .tournaments .create-user .add-image-wrapper .image-empty img {
   width: 30px;
   height: 30px;
   filter: invert(71%) sepia(39%) saturate(5468%) hue-rotate(129deg) brightness(100%) contrast(102%);
 }
-.cpanel-body-wrapper .user-body .create-user form.row {
+.cpanel-body-wrapper .user-body .create-user form.row, .cpanel-body-wrapper .tournaments .create-user form.row {
   margin-bottom: 20px;
 }
-.cpanel-body-wrapper .user-body .create-user p.error {
+.cpanel-body-wrapper .user-body .create-user p.error, .cpanel-body-wrapper .tournaments .create-user p.error {
   color: #ebc100;
   font-size: 28px;
   line-height: 34px;
   margin-bottom: 30px;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 {
+.cpanel-body-wrapper .user-body .create-user .col-12, .cpanel-body-wrapper .tournaments .create-user .col-12 {
   margin-bottom: 20px;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12:last-child {
+.cpanel-body-wrapper .user-body .create-user .col-12:last-child, .cpanel-body-wrapper .tournaments .create-user .col-12:last-child {
   margin-bottom: 0;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud {
   background-color: rgba(255, 255, 255, 0.1019607843);
   border-radius: 8px;
   padding: 30px 30px;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud label {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud label, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud label {
   margin-top: 15px;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud label:first-child {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud label:first-child, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud label:first-child {
   margin-top: 0;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .add-section {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud .section-list .add-section, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud .section-list .add-section {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.1019607843);
   border: 1px dashed #00d6bd;
@@ -715,59 +715,66 @@ table tr td {
   justify-content: center;
   border-radius: 8px;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud #editor-wrapper {
   background-color: rgba(255, 255, 255, 0.1019607843);
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar {
   border-color: #00d6bd;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar button svg, .cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar span svg {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar button svg, .cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar span svg, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar button svg, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar span svg {
   filter: invert(93%) sepia(53%) saturate(134%) hue-rotate(216deg) brightness(109%) contrast(106%);
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar .ql-size span:hover {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar .ql-size span:hover, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar .ql-size span:hover {
   color: #00d6bd;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar .ql-size .ql-picker-options {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar .ql-size .ql-picker-options, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud #editor-wrapper .editor-toolbar .ql-size .ql-picker-options {
   background-color: #192133;
   padding: 10px 15px;
   border-color: #00d6bd;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-container {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud #editor-wrapper .editor-container, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud #editor-wrapper .editor-container {
   border-color: #00d6bd;
   min-height: 130px;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud.publish-bubble {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud.publish-bubble, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud.publish-bubble {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud.publish-bubble label {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud.publish-bubble label, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud.publish-bubble label {
   margin-bottom: 0;
 }
-.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud.publish-bubble input {
+.cpanel-body-wrapper .user-body .create-user .col-12 .edit-cloud.publish-bubble input, .cpanel-body-wrapper .tournaments .create-user .col-12 .edit-cloud.publish-bubble input {
   height: 30px;
   width: 30px;
   margin-left: 30px;
 }
-.cpanel-body-wrapper .user-body .create-user .user-permissions {
+.cpanel-body-wrapper .user-body .create-user .user-permissions, .cpanel-body-wrapper .tournaments .create-user .user-permissions {
   display: flex;
   align-items: center;
 }
-.cpanel-body-wrapper .user-body .create-user .user-permissions input {
+.cpanel-body-wrapper .user-body .create-user .user-permissions input, .cpanel-body-wrapper .tournaments .create-user .user-permissions input {
   height: 30px;
   width: fit-content;
   margin-right: 10px;
 }
-.cpanel-body-wrapper .user-body .create-user .user-permissions span {
+.cpanel-body-wrapper .user-body .create-user .user-permissions span, .cpanel-body-wrapper .tournaments .create-user .user-permissions span {
   font-size: 14px;
 }
-.cpanel-body-wrapper .user-body .create-user .submit-field {
+.cpanel-body-wrapper .user-body .create-user .submit-field, .cpanel-body-wrapper .tournaments .create-user .submit-field {
   display: flex;
   justify-content: center;
 }
-.cpanel-body-wrapper .user-body .create-user .submit-field-edit {
+.cpanel-body-wrapper .user-body .create-user .submit-field-edit, .cpanel-body-wrapper .tournaments .create-user .submit-field-edit {
   display: flex;
   justify-content: flex-start;
+}
+.cpanel-body-wrapper .tournaments .accordion table {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.cpanel-body-wrapper .tournaments .accordion table tr td:last-child {
+  width: 100%;
 }
 .cpanel-body-wrapper .media-viewer .create-bar {
   display: flex;

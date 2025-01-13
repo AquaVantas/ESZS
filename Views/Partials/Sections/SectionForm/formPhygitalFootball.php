@@ -17,11 +17,11 @@
 						// Ensure the path is generated properly with PHP
 						var relativePath = "<?= str_repeat('../', count($pageRoutePath) - 1) ?>";
 					</script>
-					<form method="post" onsubmit="addPhygitalApplication(event, relativePath)">
+					<form method="post" action="<?= str_repeat('../', count($pageRoutePath) - 1) ?>Controllers/Tournaments/tournament_pubg_mobile.php" enctype="multipart/form-data">
 						<table>
 							<tr>
 								<td>									
-									<label for="company_name">Ime podjetja (društvo): <span style="color: red;">*</span></label><br>
+									<label for="company_name">Ime podjetja (društvo):</label><br>
 									<input type="text" id="company_name" name="company_name" placeholder="Janez Novak d.o.o."><br>
 								</td>
 								<td>
@@ -873,7 +873,7 @@
 									<input type="checkbox" id="scales" name="scales" style="height: 20px; widght: 20px;" required>
 								</td>
 								<td>
-									<label for="scales">Strinjam se, da se v primeru uvrstitve na IeSF, registriram kot aktivni igralec pri EŠZS. <span style="color: red;">*</span></label>
+									<label for="scales">Strinjam se, da se registriram kot aktivni igralec pri EŠZS. <span style="color: red;">*</span></label>
 								<td>
 								</td>
 							</tr>
@@ -882,7 +882,7 @@
 									<input type="checkbox" id="scales" name="scales" style="height: 20px; widght: 20px;" required>
 								</td>
 								<td>
-									<label for="scales">Strinjam se z obdelavo osebnih  podatkov v promocijske namene za EŠZS in partnerjev pri IeSF. <span style="color: red;">*</span></label>
+									<label for="scales">Strinjam se z obdelavo osebnih  podatkov v promocijske namene za EŠZS in partnerjev pri Phygital. <span style="color: red;">*</span></label>
 								<td>
 								</td>
 							</tr>

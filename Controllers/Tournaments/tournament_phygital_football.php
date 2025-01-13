@@ -1,23 +1,23 @@
-<?php    
+<?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    ini_set('display_errors', 1);  // Display errors in the browser (useful for development)
-    ini_set('log_errors', 1);  // Log errors
-    ini_set('error_log', 'C:\xampp\php\logs\php_error_log');  // Log to a specific file
-    header('Content-Type: application/json'); // Ensure the response is JSON
 
     require_once("../../Internal/tournament_database.php");
 
     if (empty($_POST['date_of_birth_1'])) {
         http_response_code(400);
-        echo json_encode(['status' => 'error', 'message' => 'Invalid or missing dateTime']);
+        // return json_encode(['status' => 'error', 'message' => 'Invalid or missing dateTime']);
         exit();
     }
 
     if (!isset($_POST['company_name'], $_POST['name_1'], $_POST['player_nationality_1'])) {
         http_response_code(400);
-        echo json_encode(['status' => 'error', 'message' => 'Missing required fields']);
+        // return json_encode(['status' => 'error', 'message' => 'Missing required fields']);
         exit();
     }
+
+    $allGood = true;
 
     //TEAM INFO
     $company_name = htmlspecialchars($_POST['company_name'], ENT_QUOTES, 'UTF-8');
@@ -32,15 +32,16 @@
             $team_logo = file_get_contents($_FILES['team_logo']['tmp_name']);
         } else {
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid file type for team_logo']);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'Invalid file type for team_logo']);
+            // exit();
         }
     } else {
         // Handle file upload errors
+        $allGood = false;
         if ($_FILES['team_logo']['error'] !== UPLOAD_ERR_OK) {
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'File upload error: ' . $_FILES['team_logo']['error']]);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'File upload error: ' . $_FILES['team_logo']['error']]);
+            // exit();
         }
     }
 
@@ -63,9 +64,10 @@
         if (in_array($fileType, $allowedTypes)) {
             $player_icon_1 = file_get_contents($_FILES['player_icon_1']['tmp_name']);
         } else {
+            $allGood = false;
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_1']);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_1']);
+            // exit();
         }
     }
 
@@ -89,9 +91,10 @@
         if (in_array($fileType, $allowedTypes)) {
             $player_icon_2 = file_get_contents($_FILES['player_icon_2']['tmp_name']);
         } else {
+            $allGood = false;
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_2']);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_2']);
+            // exit();
         }
     }
     
@@ -117,9 +120,10 @@
         if (in_array($fileType, $allowedTypes)) {
             $player_icon_3 = file_get_contents($_FILES['player_icon_3']['tmp_name']);
         } else {
+            $allGood = false;
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_3']);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_3']);
+            // exit();
         }
     }
     
@@ -145,9 +149,10 @@
         if (in_array($fileType, $allowedTypes)) {
             $player_icon_4 = file_get_contents($_FILES['player_icon_4']['tmp_name']);
         } else {
+            $allGood = false;
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_4']);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_4']);
+            // exit();
         }
     }
     
@@ -173,9 +178,10 @@
         if (in_array($fileType, $allowedTypes)) {
             $player_icon_5 = file_get_contents($_FILES['player_icon_5']['tmp_name']);
         } else {
+            $allGood = false;
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_5']);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_5']);
+            // exit();
         }
     }
     
@@ -201,9 +207,10 @@
         if (in_array($fileType, $allowedTypes)) {
             $player_icon_6 = file_get_contents($_FILES['player_icon_6']['tmp_name']);
         } else {
+            $allGood = false;
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_6']);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_6']);
+            // exit();
         }
     }
     
@@ -229,9 +236,10 @@
         if (in_array($fileType, $allowedTypes)) {
             $player_icon_7 = file_get_contents($_FILES['player_icon_7']['tmp_name']);
         } else {
+            $allGood = false;
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_7']);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_7']);
+            // exit();
         }
     }
     
@@ -258,8 +266,8 @@
             $player_icon_8 = file_get_contents($_FILES['player_icon_8']['tmp_name']);
         } else {
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_8']);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_8']);
+            // exit();
         }
     }
     
@@ -288,8 +296,8 @@
             $player_icon_9 = file_get_contents($_FILES['player_icon_9']['tmp_name']);
         } else {
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_9']);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_9']);
+            // exit();
         }
     }
     
@@ -318,8 +326,8 @@
             $player_icon_10 = file_get_contents($_FILES['player_icon_10']['tmp_name']);
         } else {
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_10']);
-            exit();
+            // return json_encode(['status' => 'error', 'message' => 'Invalid file type for player_icon_10']);
+            // exit();
         }
     }
     
@@ -335,6 +343,11 @@
     $player_class_p_10 = (int)$_POST['player_class_p_10']; // Use PDO::PARAM_INT
     $player_class_p_plus_10 = (int)$_POST['player_class_p_plus_10']; // Use PDO::PARAM_INT
     $player_social_media_10 = htmlspecialchars($_POST['player_social_media_10'], ENT_QUOTES, 'UTF-8');
+
+    $message = "Več podatkov v CPanelu. LP.";
+    $headers = "From:" . $contact_email . "\r\n";
+    mail("info@eszs.si","Nova prijava na Phygital",$message,$headers);
+    mail("tian.vovk@eszs.si","Nova prijava na Phygital",$message,$headers);
     
     $teamId = tournament::addPlayerPhygitalFootball(
         $company_name, $team_name, $team_logo, $country, $city, $team_representative, 
@@ -346,10 +359,11 @@
     );
 
     if ($teamId) {
-        echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+        // return json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
     } else {
+        $allGood = false;
         http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 1.']);
+        // return json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 1.']);
     }
     
     $teamId = tournament::addPlayerPhygitalFootball(
@@ -362,10 +376,11 @@
     );
 
     if ($teamId) {
-        echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+        // return json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
     } else {
+        $allGood = false;
         http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 2.']);
+        // return json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 2.']);
     }
 
     // Player 3
@@ -379,10 +394,11 @@
     );
 
     if ($teamId) {
-        echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+        // return json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
     } else {
+        $allGood = false;
         http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 3.']);
+        // return json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 3.']);
     }
 
     // Player 4
@@ -396,10 +412,11 @@
     );
 
     if ($teamId) {
-        echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+        // return json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
     } else {
+        $allGood = false;
         http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 4.']);
+        // return json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 4.']);
     }
 
     // Player 5
@@ -413,10 +430,11 @@
     );
 
     if ($teamId) {
-        echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+        // return json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
     } else {
+        $allGood = false;
         http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 5.']);
+        // return json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 5.']);
     }
 
     // Player 6
@@ -430,10 +448,11 @@
     );
 
     if ($teamId) {
-        echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+        // return json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
     } else {
+        $allGood = false;
         http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 6.']);
+        // return json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 6.']);
     }
 
     // Player 7
@@ -447,10 +466,11 @@
     );
 
     if ($teamId) {
-        echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+        // return json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
     } else {
+        $allGood = false;
         http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 7.']);
+        // return json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 7.']);
     }
 
     // Player 8
@@ -465,10 +485,11 @@
         );
 
         if ($teamId) {
-            echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+            // return json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
         } else {
+            $allGood = false;
             http_response_code(500);
-            echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 8.']);
+            // return json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 8.']);
         }
     }
 
@@ -484,10 +505,11 @@
         );
 
         if ($teamId) {
-            echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+            // return json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
         } else {
+            $allGood = false;
             http_response_code(500);
-            echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 9.']);
+            // return json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 9.']);
         }
     }
 
@@ -503,10 +525,34 @@
         );
 
         if ($teamId) {
-            echo json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
+            // return json_encode(['status' => 'success', 'message' => 'Prijava je bila uspešno oddana', 'teamId' => $teamId]);
         } else {
+            $allGood = false;
             http_response_code(500);
-            echo json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 10.']);
+            // return json_encode(['status' => 'error', 'message' => 'Prijava ni bila oddana. Prosimo, ponovno preverite vnešene podatke pri igralcu 10.']);
         }
     }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prijava uspešna</title>
+    <!-- <meta http-equiv="refresh" content="15;url=/"> Change 'index.php' to your desired destination -->
+    <link rel="stylesheet" href="../../Style/Master.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <?php if($allGood) { ?>
+                <div class="col-12" style="text-align: center; padding-top: 100px;">                
+                <h1>Vaša prijava na turnir je bila uspešna!</h1>
+                <p style="text-align: center;">Za več informacij o turnirju se prosim pridružite <a href="https://discord.gg/Y438hq5U" style="display: inline;">EŠZS Discordu</a> ali pišite na <a href="mailto:tian.vovk@eszs.si" style="display: inline;">tian.vovk@eszs.si</a></p>
+            </div>
+            <?php } ?>
+            
+        </div>
+    </div>
+</body>
+</html>

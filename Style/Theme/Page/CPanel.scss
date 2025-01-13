@@ -171,7 +171,7 @@
         }
     }
 
-    .user-body {
+    .user-body, .tournaments {
         .create-bar {
             margin-top: 20px;
             margin-bottom: 50px;
@@ -610,6 +610,21 @@
             .submit-field-edit {
                 display: flex;
                 justify-content: flex-start;
+            }
+        }
+    }
+
+    .tournaments {
+        .accordion {
+            table {
+                width: 100%;
+                margin-bottom: 10px;
+
+                tr {
+                    td:last-child {
+                        width: 100%;
+                    }
+                }
             }
         }
     }
