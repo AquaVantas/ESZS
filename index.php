@@ -176,6 +176,9 @@
 						case 7:
 							include "Views/Partials/Sections/SectionForm/formPhygitalFootball.php";
 							break;
+						case 8:
+							include "Views/Partials/Sections/SectionForm/formCSGO.php";
+							break;
 					}
 				}
 			}

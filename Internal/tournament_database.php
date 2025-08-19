@@ -188,6 +188,60 @@ class tournament {
         return $statement->fetchAll();
     }
 
+    public static function addPlayerCS($team, $name, $surname, $email, $discord, $nickname, $dateofbirth, $postalcode) {
+        $db = self::getInstance();
+        
+        $statement = $db->prepare("INSERT INTO tournament_cs(player_name, player_surname, email, discord, steam_id, date_of_birth, postal_code, apply_time, team) VALUES(:player_name, :player_surname, :email, :discord, :nickname, :date_of_birth, :postal_code, NOW(), :team)");
+        $statement->bindParam(":team", $team, PDO::PARAM_STR);
+        $statement->bindParam(":player_name", $name, PDO::PARAM_STR);
+        $statement->bindParam(":player_surname", $surname, PDO::PARAM_STR);
+        $statement->bindParam(":email", $email, PDO::PARAM_STR);
+        $statement->bindParam(":discord", $discord, PDO::PARAM_STR);
+        $statement->bindParam(":nickname", $nickname, PDO::PARAM_STR);
+        $statement->bindParam(":date_of_birth", $dateofbirth, PDO::PARAM_STR);
+        $statement->bindParam(":postal_code", $postalcode, PDO::PARAM_STR);
+        $statement->execute();
+
+        $statement = $db->prepare("SELECT LAST_INSERT_ID()");
+        $statement->execute();
+
+        return $statement->fetchColumn();
+    }
+    public static function getPlayerCS2($date_to, $date_from) {
+        $db = self::getInstance();
+
+        $statement = $db->prepare("SELECT player_name, player_surname, email, discord, steam_id, team, date_of_birth, postal_code
+                                   FROM tournament_cs WHERE apply_time <= :date_to AND apply_time >= :date_from");
+        $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+        $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    } 
+
+    public static function getTeamsCS2($date_to, $date_from) {
+        $db = self::getInstance();
+
+       $statement = $db->prepare("SELECT team, logo_data_type, logo FROM tournament_cs WHERE apply_time <= :date_to AND apply_time >= :date_from GROUP BY team");
+       $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+       $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+       $statement->execute();
+
+       return $statement->fetchAll();
+    } 
+
+    public static function getTeamCS2($date_to, $date_from, $team) {
+        $db = self::getInstance();
+
+       $statement = $db->prepare("SELECT team, logo_data_type, logo FROM tournament_cs WHERE apply_time <= :date_to AND apply_time >= :date_from AND team LIKE :team GROUP BY team");
+       $statement->bindParam(":date_to", $date_to, PDO::PARAM_STR);
+       $statement->bindParam(":date_from", $date_from, PDO::PARAM_STR);
+       $statement->bindParam(":team", $team, PDO::PARAM_STR);
+       $statement->execute();
+
+       return $statement->fetchAll();
+    }
+
     public static function getPlayerCSGO($date_to, $date_from) {
         $db = self::getInstance();
 
